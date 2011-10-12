@@ -28,7 +28,7 @@ public class BooleanExpDemo {
 			BooleanExpParser parser = new BooleanExpParser(tokens);
 
 			Node parserResult = parser.eval();
-			System.out.println("AST for " + aFormula + " = " + parserResult);
+			System.out.println("AST for " + aFormula + " = \n" + parserResult);
 
 			// get the inner unquantified formula
 			Node unquantFormula = parserResult;
