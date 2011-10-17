@@ -19,5 +19,7 @@ public class PublishSubscribe {
     eb.register(r1);
     eb.register(r2);
     eb.post("Hi!");
+    eb.unregister(r1);
+    eb.post("Bye!");
   }
 }
