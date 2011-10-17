@@ -156,7 +156,6 @@
 156, Socket Communication Between Processes
 157, Listing Public Methods And Declared Methods
 158, The Unique Class Object Of A Class And The Runtime Class Of An Object
-# missing comma:
 159, Reflective Object Creation Instance Tests And Casts
 160, Reflective Access To A Field
 161, Reflective Retrieval And Invokation Of A Method
@@ -164,9 +163,3 @@
 163, Reflective Inspection Of Modifiers Such As Static And Private
 164, Declaration And Using A Custom Annotation Type
 165, New Frontiers In Java 5.0
-
-
-
-
-
-
