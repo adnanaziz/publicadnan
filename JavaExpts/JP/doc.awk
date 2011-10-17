@@ -24,7 +24,7 @@ function processLine() {
   if ( count == 0 ) {
     print rs;
   }
-    print es "<a href = \n\"" urlPrefix "\">\n" $1"</a>: " $2 ee;
+    print es "<a href = \n\"" urlPrefix "Example" $1 ".java" "\">\n" $1"</a>: " $2 ee;
   if ( count++ == N - 1 ) {
     print re;
     count = 0;
