@@ -1,0 +1,172 @@
+1,Comments
+2,Program Layout Style
+3,Automatic Boxing Unboxing
+4,Primitive Type Conversion
+5,Signatures
+6,Variable Declarations
+7,Scope Fields Parameters Variables
+8,String Equality Plus
+9,Concatentaing Command Line Arguments
+10,Couting Chars In String
+11,Test String Lexicographic Order
+12,Using toString
+13,Aligning String With StringDotFormat
+14,Aligning Numbers In Columns With OutDotFormat
+15,Formatting Dates and Times As Strings
+16,Locale Specific Formatting Of Dates Times
+17,Local Specific Number Formatting
+18,Creating And Using Arrays
+19,Array Element Assignment Type Check At Runtime
+20,Using An Initialized Array
+21, Creating A String From A Char Array
+22, Creating Multidimensional Arrays
+23, Using Multidimensional Arrays
+24, Class Declaration
+25, Class With Static And Non Static Members
+26, Toplevel Member And Local Classes
+27, Abstract Classes Subclasses And Overriding
+28, Using The Class Hiearchy
+29, Field Declarations
+30, Several Fields With The Same Name
+31, Member Access Modifiers
+32, Private Member Accessibility
+33, Method Name Overloading And Signatures
+34, Method Overloading Overriding And Hiding
+35, Method Overloading And Parameter Array
+36, Constructor Overloading And Calling Another Constructor
+37, Calling A Superclass Constructor
+38, Field Intializers and Initializer Blocks
+39, Member Classes and Local Classes
+40, Iterator As Local Class
+41, Iterator As Anonymous CLass
+42, Objects And Classes
+43, Objects With Multiple Fields Of The Same Name
+44, Inner Objects
+45, Arithmetic Operators
+46, Logical Operators
+47, Bitwise Operators And Shift Operators
+48, Widening Narrowing And Truncation In Assignments
+49, Assignment Does Not Copy Objects
+50, Compound Assignments Operators
+51, Conditional Expressions
+52, Object Creation And Instance Test
+53, Static And Non Static Field Access
+54, Using This When Referring To Shadowed Fields
+55, Using This To Pass The Current Object To A Method
+56, Calling Non Overloaded Non Overridden Methods
+57, Parameter Passing Copies References Not Ojects And Arrays
+58, Calling Overloaded Methods
+59, Calling Overriden And Overloaded Methods
+60, Calling Overriden Methods From A Constructor
+61, Block Statements And Scoping
+62, Empty Statement And An Infinite Loop
+63, Single If Else Statement
+64, Sequence Of If Else Statements
+65, Switch Statement
+66, Switch On Enum Type
+67, Switch On Strings
+68, Nested For Loops
+69, Using Enhanced For On Arrays
+70, Using Enhanced For On An Iterable
+71, Explicitly Going Through An Iterable Using For
+72, Linear Array Search Using While
+73, Binary Search Of Sorted Array Using While
+74, Explicitly Going Through An Iterable Using While
+75, Using Do While
+76, Using Return For Early Loop Termination
+77, Using Break For Early Loop Termination
+78, Poor Practice: Using Continue To Start A New Iteration 
+79, Poor Practice: Using Break To Exit A Labeled Statement Block
+80, Throwing An Exception To Indicate Failure
+81, A Try Catch Statement
+82, A Try Finall Statement
+83, Using Assert To Specify And Check The Result Of An Algorithm
+84, Using Assert To Specify And Check Invariants
+85, Three Interface Declarations
+86, Classes Implementing Interfaces
+87, Using Interfaces As Types
+88, Representing Weekdays And Months Using Enum Types
+89, Declaring A Checked Exception Class
+90, All Paths Through A Try Catch Finally Statement
+91, Multiple Threads
+92, Mutual Exclusion
+93, Synchronized Methods In An Object
+94, Producers And Consumers Communicating Via A Monitor
+95, Graphic Animation Using The Runnable Interface
+96, The Vesssel Hiearchy As A Package
+97, Floating Point Factorial
+98, Generating Gausssing Pseudo Random Numbers
+99, Mathematical Functions: Infinities, NaNs And Special Cases
+100, Efficiently Concatenating All Command Line Arguments
+101, Replacing Occurrences Of A Character By A String
+102, Inefficiently Replacing Occurrences Of A Character By A String
+103, Padding A String To A Given Width
+104, Using A Non Generic ArrayList: Runtime Type Checks And Wrapping Of Values
+105, Using Generic ArrayList: Compile Time Type Checks
+106, Generic Class Type For Pairs
+107, A Generic Class For Logging
+108, A Generic LinkedList Class
+109, Type Parameter Constraints
+110, Constraints Involving Type Parameters
+111, Unchecked Cast To Type Parameter
+112, A Generic List Interface
+113, A Generic Interface Representing A Function
+114, Subtype Relations Between Generic Classes And Interfaces
+115, A Generic Quicksort Method Using A Comparable Object
+116, A Generic Quicksort Method For Comparable Values
+117, A Generic Methods In A Generic Class
+118, Wildcard Types
+119, Implementation By Type Erasure
+120, Java Generics Limiation: Cannot Create Array With Generic Element Type
+121, Using Concrete Collection And Map Classes
+122, Set Membership Test Using HashSet And Binary Search
+123, Using A LinkedHashSet To Remove Duplicates And Preserve Order
+124, Using TreeSet To Show A Range Of Filenames In Alphabetical Order
+125, Storing The Result Of A Database Query
+126, From Weekday Name To Weekday Number Using A HashMap
+127, Building A Concordance
+128, Obtaining A Submap
+129, Interation Over An Iterable Collection
+130, Printing A Concordance Using Iterables
+131, A Method Returning An Iterable
+132, A Comparator For The Integer Class
+133, A Time Class Implementing Comparable<Time>
+134, A Equals Method For The Time Class
+135, A Comparator For The String Class
+136, Understanding The Type Of The Collections.binarySearch Method
+137, Understanding The Type Of The Collections.copy Method
+138, A Worklie Algorithm
+139, Using Sets As Keys In A HashMap
+140, A Complete Input-Output Example
+141, Input-Output: Twelve Examples In One
+142, Printing Numbers In A Text File
+143, Printing An HTML File
+144, Using The Appendable Interface
+145, Reading Numbers From A Text File
+146, Reading Numbers File A Text File Line By Line
+147, Binary Input And Output Of Primitive Data
+148, Serialization To The Same ObjectOutputStream Preserves Sharing
+149, Serialization To Distinct ObjectOutputStreams Does Not Preserve Sharing
+150, Output Buffering
+151, Specifying A Particular Output Encoding
+152, Organizing A String Array File For Random Access
+153, Random Access Reads From A String Array File
+154, Reading And Printing A Directory Hierarchy
+155, Internal Pipes Between Threads
+156, Socket Communication Between Processes
+157, Listing Public Methods And Declared Methods
+158, The Unique Class Object Of A Class And The Runtime Class Of An Object
+# missing comma:
+159, Reflective Object Creation Instance Tests And Casts
+160, Reflective Access To A Field
+161, Reflective Retrieval And Invokation Of A Method
+162, Retrieval Creation Of An Object
+163, Reflective Inspection Of Modifiers Such As Static And Private
+164, Declaration And Using A Custom Annotation Type
+165, New Frontiers In Java 5.0
+
+
+
+
+
+
