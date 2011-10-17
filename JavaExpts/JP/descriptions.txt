@@ -1,23 +1,23 @@
-1,Comments
-2,Program Layout Style
-3,Automatic Boxing Unboxing
-4,Primitive Type Conversion
-5,Signatures
-6,Variable Declarations
-7,Scope Fields Parameters Variables
-8,String Equality Plus
-9,Concatentaing Command Line Arguments
-10,Couting Chars In String
-11,Test String Lexicographic Order
-12,Using toString
-13,Aligning String With StringDotFormat
-14,Aligning Numbers In Columns With OutDotFormat
-15,Formatting Dates and Times As Strings
-16,Locale Specific Formatting Of Dates Times
-17,Local Specific Number Formatting
-18,Creating And Using Arrays
-19,Array Element Assignment Type Check At Runtime
-20,Using An Initialized Array
+1, Comments
+2, Program Layout Style
+3, Automatic Boxing Unboxing
+4, Primitive Type Conversion
+5, Signatures
+6, Variable Declarations
+7, Scope Fields Parameters Variables
+8, String Equality Plus
+9, Concatentaing Command Line Arguments
+10, Couting Chars In String
+11, Test String Lexicographic Order
+12, Using toString
+13, Aligning String With StringDotFormat
+14, Aligning Numbers In Columns With OutDotFormat
+15, Formatting Dates and Times As Strings
+16, Locale Specific Formatting Of Dates Times
+17, Local Specific Number Formatting
+18, Creating And Using Arrays
+19, Array Element Assignment Type Check At Runtime
+20, Using An Initialized Array
 21, Creating A String From A Char Array
 22, Creating Multidimensional Arrays
 23, Using Multidimensional Arrays
