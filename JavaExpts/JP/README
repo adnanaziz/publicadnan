@@ -1,28 +1,568 @@
-File examples/README * Last update 2002-06-08
-
-Examples from 
-
-  Peter Sestoft: Java Precisely, The MIT Press 2002. ISBN 0-262-69276-7.  
-
-These files are from http://www.dina.kvl.dk/~sestoft/javaprecisely/
-
-Java Precisely and its example programs come with no warranty of any
-kind, either expressed or implied. In no event shall I or the Royal
-Veterinary and Agricultural University or the IT University of
-Copenhagen be liable for any damage resulting from its use.
-
-The source code for Example 1 is in file Example1.java, and so on.
-
-Most examples are compiled and ready to run; running them requires
-Java Development Kit 1.3 or 1.4.
-
-For instance, to run the program from Example 5, unpack the example
-archive and type
-
-   java Example5
-
-Some example programs require additional command line argument; they
-will say so if invoked without command line arguments.
-
-The programs Example68 and Example 69 may be run with option -ea or
--enableassertions (under JDK 1.4 or later).
+<html><head><title>Java Precisely Examples</title><style type="text/css" media="screen"> body{  line-height: 1.6em;}#hor-minimalist-a{  font-family: , , Sans-Serif;  font-size: 18px;  background: #fff;  margin: 45px;  width: 1480px;  border-collapse: collapse;  text-align: left;}#hor-minimalist-a th{  font-size: 18px;  font-weight: normal;  color: black;  padding: 10px 8px;  border-bottom: 2px solid #6678b1;}#hor-minimalist-a td{  color: black;  padding: 9px 8px 0px 8px;}#hor-minimalist-a tbody tr:hover td{  color: black;}</style></head><body>
+<table id = hor-minimalist-a style='table-layout:fixed' >
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 1</a>: Comments</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 2</a>: Program Layout Style</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 3</a>: Automatic Boxing Unboxing</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 4</a>: Primitive Type Conversion</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 5</a>: Signatures</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 6</a>: Variable Declarations</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 7</a>: Scope Fields Parameters Variables</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 8</a>: String Equality Plus</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 9</a>: Concatentaing Command Line Arguments</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 10</a>: Couting Chars In String</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 11</a>: Test String Lexicographic Order</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 12</a>: Using toString</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 13</a>: Aligning String With StringDotFormat</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 14</a>: Aligning Numbers In Columns With OutDotFormat</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 15</a>: Formatting Dates and Times As Strings</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 16</a>: Locale Specific Formatting Of Dates Times</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 17</a>: Local Specific Number Formatting</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 18</a>: Creating And Using Arrays</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 19</a>: Array Element Assignment Type Check At Runtime</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 20</a>: Using An Initialized Array</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 21</a>:  Creating A String From A Char Array</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 22</a>:  Creating Multidimensional Arrays</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 23</a>:  Using Multidimensional Arrays</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 24</a>:  Class Declaration</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 25</a>:  Class With Static And Non Static Members</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 26</a>:  Toplevel Member And Local Classes</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 27</a>:  Abstract Classes Subclasses And Overriding</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 28</a>:  Using The Class Hiearchy</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 29</a>:  Field Declarations</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 30</a>:  Several Fields With The Same Name</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 31</a>:  Member Access Modifiers</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 32</a>:  Private Member Accessibility</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 33</a>:  Method Name Overloading And Signatures</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 34</a>:  Method Overloading Overriding And Hiding</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 35</a>:  Method Overloading And Parameter Array</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 36</a>:  Constructor Overloading And Calling Another Constructor</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 37</a>:  Calling A Superclass Constructor</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 38</a>:  Field Intializers and Initializer Blocks</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 39</a>:  Member Classes and Local Classes</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 40</a>:  Iterator As Local Class</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 41</a>:  Iterator As Anonymous CLass</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 42</a>:  Objects And Classes</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 43</a>:  Objects With Multiple Fields Of The Same Name</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 44</a>:  Inner Objects</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 45</a>:  Arithmetic Operators</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 46</a>:  Logical Operators</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 47</a>:  Bitwise Operators And Shift Operators</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 48</a>:  Widening Narrowing And Truncation In Assignments</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 49</a>:  Assignment Does Not Copy Objects</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 50</a>:  Compound Assignments Operators</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 51</a>:  Conditional Expressions</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 52</a>:  Object Creation And Instance Test</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 53</a>:  Static And Non Static Field Access</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 54</a>:  Using This When Referring To Shadowed Fields</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 55</a>:  Using This To Pass The Current Object To A Method</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 56</a>:  Calling Non Overloaded Non Overridden Methods</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 57</a>:  Parameter Passing Copies References Not Ojects And Arrays</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 58</a>:  Calling Overloaded Methods</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 59</a>:  Calling Overriden And Overloaded Methods</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 60</a>:  Calling Overriden Methods From A Constructor</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 61</a>:  Block Statements And Scoping</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 62</a>:  Empty Statement And An Infinite Loop</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 63</a>:  Single If Else Statement</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 64</a>:  Sequence Of If Else Statements</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 65</a>:  Switch Statement</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 66</a>:  Switch On Enum Type</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 67</a>:  Switch On Strings</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 68</a>:  Nested For Loops</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 69</a>:  Using Enhanced For On Arrays</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 70</a>:  Using Enhanced For On An Iterable</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 71</a>:  Explicitly Going Through An Iterable Using For</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 72</a>:  Linear Array Search Using While</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 73</a>:  Binary Search Of Sorted Array Using While</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 74</a>:  Explicitly Going Through An Iterable Using While</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 75</a>:  Using Do While</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 76</a>:  Using Return For Early Loop Termination</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 77</a>:  Using Break For Early Loop Termination</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 78</a>:  Poor Practice: Using Continue To Start A New Iteration </td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 79</a>:  Poor Practice: Using Break To Exit A Labeled Statement Block</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 80</a>:  Throwing An Exception To Indicate Failure</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 81</a>:  A Try Catch Statement</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 82</a>:  A Try Finall Statement</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 83</a>:  Using Assert To Specify And Check The Result Of An Algorithm</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 84</a>:  Using Assert To Specify And Check Invariants</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 85</a>:  Three Interface Declarations</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 86</a>:  Classes Implementing Interfaces</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 87</a>:  Using Interfaces As Types</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 88</a>:  Representing Weekdays And Months Using Enum Types</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 89</a>:  Declaring A Checked Exception Class</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 90</a>:  All Paths Through A Try Catch Finally Statement</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 91</a>:  Multiple Threads</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 92</a>:  Mutual Exclusion</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 93</a>:  Synchronized Methods In An Object</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 94</a>:  Producers And Consumers Communicating Via A Monitor</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 95</a>:  Graphic Animation Using The Runnable Interface</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 96</a>:  The Vesssel Hiearchy As A Package</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 97</a>:  Floating Point Factorial</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 98</a>:  Generating Gausssing Pseudo Random Numbers</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 99</a>:  Mathematical Functions: Infinities</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 100</a>:  Efficiently Concatenating All Command Line Arguments</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 101</a>:  Replacing Occurrences Of A Character By A String</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 102</a>:  Inefficiently Replacing Occurrences Of A Character By A String</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 103</a>:  Padding A String To A Given Width</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 104</a>:  Using A Non Generic ArrayList: Runtime Type Checks And Wrapping Of Values</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 105</a>:  Using Generic ArrayList: Compile Time Type Checks</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 106</a>:  Generic Class Type For Pairs</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 107</a>:  A Generic Class For Logging</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 108</a>:  A Generic LinkedList Class</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 109</a>:  Type Parameter Constraints</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 110</a>:  Constraints Involving Type Parameters</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 111</a>:  Unchecked Cast To Type Parameter</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 112</a>:  A Generic List Interface</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 113</a>:  A Generic Interface Representing A Function</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 114</a>:  Subtype Relations Between Generic Classes And Interfaces</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 115</a>:  A Generic Quicksort Method Using A Comparable Object</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 116</a>:  A Generic Quicksort Method For Comparable Values</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 117</a>:  A Generic Methods In A Generic Class</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 118</a>:  Wildcard Types</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 119</a>:  Implementation By Type Erasure</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 120</a>:  Java Generics Limiation: Cannot Create Array With Generic Element Type</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 121</a>:  Using Concrete Collection And Map Classes</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 122</a>:  Set Membership Test Using HashSet And Binary Search</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 123</a>:  Using A LinkedHashSet To Remove Duplicates And Preserve Order</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 124</a>:  Using TreeSet To Show A Range Of Filenames In Alphabetical Order</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 125</a>:  Storing The Result Of A Database Query</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 126</a>:  From Weekday Name To Weekday Number Using A HashMap</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 127</a>:  Building A Concordance</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 128</a>:  Obtaining A Submap</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 129</a>:  Interation Over An Iterable Collection</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 130</a>:  Printing A Concordance Using Iterables</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 131</a>:  A Method Returning An Iterable</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 132</a>:  A Comparator For The Integer Class</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 133</a>:  A Time Class Implementing Comparable<Time></td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 134</a>:  A Equals Method For The Time Class</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 135</a>:  A Comparator For The String Class</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 136</a>:  Understanding The Type Of The Collections.binarySearch Method</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 137</a>:  Understanding The Type Of The Collections.copy Method</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 138</a>:  A Worklie Algorithm</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 139</a>:  Using Sets As Keys In A HashMap</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 140</a>:  A Complete Input-Output Example</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 141</a>:  Input-Output: Twelve Examples In One</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 142</a>:  Printing Numbers In A Text File</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 143</a>:  Printing An HTML File</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 144</a>:  Using The Appendable Interface</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 145</a>:  Reading Numbers From A Text File</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 146</a>:  Reading Numbers File A Text File Line By Line</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 147</a>:  Binary Input And Output Of Primitive Data</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 148</a>:  Serialization To The Same ObjectOutputStream Preserves Sharing</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 149</a>:  Serialization To Distinct ObjectOutputStreams Does Not Preserve Sharing</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 150</a>:  Output Buffering</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 151</a>:  Specifying A Particular Output Encoding</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 152</a>:  Organizing A String Array File For Random Access</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 153</a>:  Random Access Reads From A String Array File</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 154</a>:  Reading And Printing A Directory Hierarchy</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 155</a>:  Internal Pipes Between Threads</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 156</a>:  Socket Communication Between Processes</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 157</a>:  Listing Public Methods And Declared Methods</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 158</a>:  The Unique Class Object Of A Class And The Runtime Class Of An Object</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example # missing comma:</a>: </td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 159</a>:  Reflective Object Creation Instance Tests And Casts</td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 160</a>:  Reflective Access To A Field</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 161</a>:  Reflective Retrieval And Invokation Of A Method</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 162</a>:  Retrieval Creation Of An Object</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 163</a>:  Reflective Inspection Of Modifiers Such As Static And Private</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 164</a>:  Declaration And Using A Custom Annotation Type</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example 165</a>:  New Frontiers In Java 5.0</td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example </a>: </td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example </a>: </td>
+</tr>
+<tr>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example </a>: </td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example </a>: </td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example </a>: </td>
+<td><a href = 
+"http://www.assembla.com/code/adnanpublic/subversion/nodes/JavaExpts/JP/">
+Example </a>: </td>
+<td>blank</td>
+<td>blank</td>
+<td>blank</td>
+<td>blank</td>
+</tr>
+</table>
+</body></html>
