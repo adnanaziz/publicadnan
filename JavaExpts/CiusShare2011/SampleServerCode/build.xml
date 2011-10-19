@@ -1,0 +1,10 @@
+<project>
+  <target name="compile" 
+      description="Compiles Java source">
+    <javac
+        srcdir="."
+        destdir="./classes"
+        debug="on" />
+  </target>
+
+</project>
