@@ -8,30 +8,31 @@ import static org.junit.Assert.*;
 public class HtmlUnitTest {
 
   // adapted from examples in http://htmlunit.sourceforge.net/gettingStarted.html
-  // @Test
   public static void xpath() throws Exception {
       final WebClient webClient = new WebClient();
-      // does not retrieve correctly...
+      // Note: does not always retrieve correctly
       final HtmlPage page = webClient.getPage("http://www.kayak.com/#flights/SAT-IST/2012-03-10/2012-03-17");
       long sleepTime = 30000;
-      // works fine, shows that javascript can be exected locally in jvm
+
+      // this page works fine, shows that javascript can be exected locally in jvm
       // final HtmlPage page = webClient.getPage("http://users.ece.utexas.edu/%7Eadnan/servletexample/factorial_js.html");
       // long sleepTime = 1000;
       Thread.sleep(sleepTime);
-      System.out.println("Page = \n" + page.asText());
+
+      // printing the entire page is useful for debugging
+      // System.out.println("Page = \n" + page.asText());
   
       // get list of all divs
       final List<?> divs = page.getByXPath("//div");
+      System.out.println("LIST OF DIVS:\n" + divs.toString());
   
       // get div which has a 'name' attribute of 'John'
       // final HtmlDivision div = (HtmlDivision) page.getByXPath("//div[@name='John']").get(0);
-      System.out.println(divs);
   
       webClient.closeAllWindows();
   }
 
   // adapted from http://htmlunit.sourceforge.net/javascript-howto.html
-  // @Test
   public static void homePage() throws Exception {
       final WebClient webClient = new WebClient();
       final HtmlPage page = webClient.getPage("http://htmlunit.sourceforge.net");
