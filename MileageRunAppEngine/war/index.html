@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>MileageRun 1.0</title>
+</head>
+
+<link
+  href="http://www.gstatic.com/codesite/ph/17444577587916266307/css/ph_core.css"
+  rel="stylesheet" type="text/css" />
+<link href="http://code.google.com/css/codesite.pack.04102009.css"
+  rel="stylesheet" type="text/css" />
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script language="javascript" src='script/jquery-1.6.min.js'></script>
+<script language="javascript" src='script/ajax.util.js'></script>
+<script language="javascript" src='script/jquery.history.js'></script>
+</head>
+
+
+<body>
+  <script type="text/javascript">
+      $(window).load(function() {
+        init();
+      });
+    </script>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26434180-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+  <h1>MileageRun 1.0</h1>
+
+  <h3>To navigate the system, please use the button at the page
+    bottom.</h3>
+
+  <div class="global-show-message" id="global-show-message"
+    style="display: none"></div>
+
+  <div class="google-login-ctr" id="google-login-ctr">
+    <div class="message" id="google-login-show-message"
+      style="display: none"></div>
+    <div class="google-login" id="google-login"></div>
+  </div>
+
+<!-- 
+  <div class="login-ctr" id="login-ctr">
+    <div class="message" id="login-show-message" style="display: none">
+    </div>
+    <h2>Login</h2>
+    <form name="login-form" id="login-form">
+      <table width="200" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+            <td><input type="text" style="width: 185px;"
+              autocomplete="off" class="login-input" maxlength="2048"
+              name="username" id="username" />
+            </td>
+            <td><input type="password" style="width: 185px;"
+              autocomplete="off" class="login-input" maxlength="2048"
+              name="password" id="password" /></td>
+            <td><input type="button" class="login" title="Login"
+              value="Login" onclick="userLogin()" />
+            </td>
+          </tr>
+          <tr>
+            <td>User Name</td>
+            <td>Password</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+
+    <h3>
+      Author: Jing-Tang Keith Jang<br> Feedback to
+      keithjtjang@gmail.com
+    </h3>
+  </div>
+ -->
+  <div class="managealert-ctr" id="managealert-ctr">
+    <form class="managealert-username-form"
+      name="managealert-username-form" id="managealert-username-form">
+      <div class="managealert-ctr-username"
+        id="managealert-ctr-username"></div>
+    </form>
+    <div class="managealert-table" id="managealert-table"
+      style="display: none"></div>
+    <div class="managealert-show-message" id="managealert-show-message"
+      style="display: none"></div>
+    <h3>
+      <form name="managealert-navit-form" id="managealert-navit-form">
+        <input type="button" title="addalert" value="Add an alert"
+          onclick="goToAddAlert(this)" />
+      </form>
+    </h3>
+    <p style="font-size:100%">Login with facebook to get automatic personalized suggestions for
+    mileage runs!</p>
+    <div id="fb-root"></div>
+    <!-- Permissions needed: user_photo_video_tags-->
+    <fb:login-button onlogin="checkFBLogin();" perms="email,user_checkins,read_stream,offline_access">Login with Facebook</fb:login-button>
+    <p>
+
+    <div class="fb-suggest-table" id="fb-table" style="display: none"></div> 
+<!-- 
+    After you've logged in above (you may not see a login prompt if you are already logged in to facebook), click on this 
+    <a href="https://www.facebook.com/dialog/oauth?client_id=290100234351079&redirect_uri=http://mileagerun-apt.appspot.com/facebook&scope=email,offline_access,read_stream">link</a> 
+    to see part of what FB knows about you.
+    <a href="https://www.facebook.com/dialog/oauth?client_id=290100234351079&redirect_uri=http://localhost:8888/facebook&scope=email,offline_access,read_stream">link</a> 
+    to see part of what FB knows about you.
+ --> 
+    
+    </div>
+
+  <div class="testalert-ctr" id="testalert-ctr">
+    <form class="testalert-username-form" name="testalert-username-form"
+      id="testalert-username-form">
+      <div class="testalert-ctr-username" id="username"></div>
+    </form>
+    <div class="testalert-table" id="testalert-table"
+      style="display: none"></div>
+    <div class="testalert-show-message" id="testalert-show-message"
+      style="display: none"></div>
+    <h3>
+      <form name="testalert-navit-form" id="testalert-navit-form">
+        <input type="button" title="testalert-prev"
+          value="Previous Page (Manage Alerts)"
+          onclick="goToManageAlert()" />
+      </form>
+    </h3>
+  </div>
+
+  <div class="viewalert-ctr" id="viewalert-ctr">
+    <form class="viewalert-username-form" name="viewalert-username-form"
+      id="viewalert-username-form">
+      <div class="viewalert-ctr-username" id="username"></div>
+    </form>
+    <div class="viewalert-table" id="viewalert-table"
+      style="display: none"></div>
+    <div class="viewalert-show-message" id="viewalert-show-message"
+      style="display: none"></div>
+    <h3>
+      <form name="viewalert-navit-form" id="viewalert-navit-form">
+        <input type="button" title="viewalert-prev"
+          value="Previous Page (Manage Alerts)"
+          onclick="goToManageAlert()" />
+      </form>
+    </h3>
+  </div>
+
+
+  <div class="addalert-ctr" id="addalert-ctr">
+    <form name="addalert-username-form" id="addalert-username-form">
+      <div class="addalert-ctr-username" id="addalert-ctr-username"></div>
+    </form>
+    <div class="message" id="addalert-show-message"
+      style="display: none"></div>
+    <h2>Add an alert</h2>
+    <form name="addalert-form" id="addalert-form">
+      <table>
+        <tbody>
+          <tr>
+            <td><input type="text" style="width: 185px;"
+              autocomplete="off" class="addalert-input" maxlength="2048"
+              name="addalert_name" id="addalert_name" /></td>
+            <td><input type="text" style="width: 60px;"
+              autocomplete="off" class="addalert-input" maxlength="2048"
+              name="addalert_orig" id="addalert_orig" />
+            </td>
+            <td><input type="text" style="width: 60px;"
+              autocomplete="off" class="addalert-input" maxlength="2048"
+              name="addalert_dest" id="addalert_dest" />
+            </td>
+            <td><input type="text" style="width: 60px;"
+              autocomplete="off" class="addalert-input" maxlength="2048"
+              name="addalert_monthyear" id="addalert_monthyear" />
+            </td>
+            <td><input type="text" style="width: 185px;"
+              autocomplete="off" class="addalert-input" maxlength="2048"
+              name="addalert_email" id="addalert_email" />
+            </td>
+            <td><input type="text" style="width: 60px;"
+              autocomplete="off" class="addalert-input" maxlength="2048"
+              name="addalert_ppm" id="addalert_ppm" />
+            </td>
+          </tr>
+          <tr>
+            <td>Name (optional)</td>
+            <td>Origin</td>
+            <td>Dest (optional)</td>
+            <td>Travel Month<br>(MMYYYY)</td>
+            <td>Email</td>
+            <td>$/mile</td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <tbody>
+          <tr>
+            <td><input type="radio" name="checkFreq"
+              value="sixhours" />Check every 6 hours</td>
+            <td rowspan="2"><input type="text" autocomplete="off"
+              class="addalert-input" maxlength="2048"
+              name="addalert_expiredate" id="addalert_expiredate" /> <br>Expiration
+              Date<br>(mm/dd/yyyy)</td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="checkFreq" value="oneday" />Check
+              every 24 hours</td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="checkFreq"
+              value="oneweek" />Check weekly</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="button" class="addalert-input"
+        title="addalert-button" value="Create alert"
+        onclick="addAlert_do(this.form)" />
+    </form>
+    <h3>
+      <form name="addalert-navit-form" id="addalert-navit-form">
+        <input type="button" title="addalert-prev"
+          value="Previous Page (Manage Alerts)"
+          onclick="goToManageAlert()" />
+      </form>
+    </h3>
+  </div>
+
+  <p>
+    Author: Jing-Tang Keith Jang <br>Feedback to
+    keithjtjang@gmail.com
+  </p>
+
+</body>
+</html>

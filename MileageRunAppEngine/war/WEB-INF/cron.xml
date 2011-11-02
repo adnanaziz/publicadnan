@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+  <cron>
+    <url>/everysixhours</url>
+    <description>Check the 6-hour alerts</description>
+    <schedule>every 6 hours</schedule>
+  </cron>
+  <cron>
+    <url>/everyday</url>
+    <description>Check the one-day alerts</description>
+    <schedule>every 24 hours</schedule>
+  </cron>
+  <cron>
+    <url>/everyweek</url>
+    <description>Check the one-week alerts</description>
+    <schedule>every monday 03:00</schedule>
+  </cron>
+</cronentries>

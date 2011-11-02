@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>MileageRun 1.0</title>
+</head>
+
+<link
+  href="http://www.gstatic.com/codesite/ph/17444577587916266307/css/ph_core.css"
+  rel="stylesheet" type="text/css" />
+<link href="http://code.google.com/css/codesite.pack.04102009.css"
+  rel="stylesheet" type="text/css" />
+<script language="javascript" src='script/jquery-1.6.min.js'></script>
+<script language="javascript" src='script/ajax.util.js'></script>
+</head>
+
+
+<body>
+  <h1>MileageRun 1.0</h1>
+
+  <div class="managealert-ctr" id="managealert-ctr">
+    <div class="managealert-show-message" id="managealert-show-message"
+      style="display: none"></div>
+    <table cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <td>id</td>
+          <td>Name</td>
+          <td>Description</td>
+          <td>Actions</td>
+          <td>Date Added</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>
+      <form name="login-form" id="login-form">
+        <input type="button" title="Add an alert" value="addalert"
+          onclick="addAlert()" />
+        <form name="login-form" id="login-form">
+          <input type="button" title="Logout" value="logout"
+            onclick="userLogin()" />
+        </form>
+    </h3>
+  </div>
+
+</body>
+</html>
