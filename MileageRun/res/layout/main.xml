@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:background="#FF808080"
+    android:layout_width="fill_parent" android:layout_height="fill_parent">
+    <TextView android:id="@+id/title" android:text="Mileage Run 1.0"
+    	 android:layout_height="wrap_content" android:layout_width="fill_parent"
+    	 android:textAppearance="?android:attr/textAppearanceLarge"
+    	 color="#FF000000" android:gravity="center_horizontal">
+    	 <requestFocus></requestFocus></TextView>
+	<View
+	    android:background="@drawable/black"
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+	    android:layout_below="@id/title" />
+   	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="horizontal" android:weightSum="1.0"
+	    android:layout_width="fill_parent" android:layout_height="wrap_content">
+	    <TextView android:id="@+id/worlddeparturetext" android:text="World Airport Code\n(Autocomplete)"
+	    		android:layout_height="wrap_content" android:layout_weight="0.5"
+	    		android:gravity="center_horizontal" android:layout_gravity="center_horizontal" 
+	    		android:layout_width="fill_parent">
+	    </TextView>
+		<AutoCompleteTextView android:id="@+id/ac_worldcodes"
+		        android:layout_width="fill_parent" android:layout_height="wrap_content"
+		        android:layout_weight="0.5"/>
+	</LinearLayout>
+    <TextView android:text="OR"
+    		android:layout_height="wrap_content"
+    		android:gravity="center" android:layout_width="fill_parent"
+    		android:layout_marginTop="10dp"	android:layout_marginBottom="10dp"
+    		>
+    </TextView>
+   	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="horizontal" android:weightSum="1.0"
+	    android:layout_width="fill_parent" android:layout_height="wrap_content">
+	    <TextView android:id="@+id/usdeparturetext" android:text="US Airport Code\n(Drop-Down List)"
+	    		android:layout_height="wrap_content" android:layout_weight="0.5"
+	    		android:gravity="center_horizontal" android:layout_gravity="center_horizontal" 
+	    		android:layout_width="fill_parent">
+	    </TextView>
+	    <Spinner android:id="@+id/uscodes" android:prompt="@string/uscodes_prompt"
+	    		android:layout_height="wrap_content" android:layout_weight="0.5"
+	    		android:maxLength="3" android:layout_width="fill_parent"
+	    		android:layout_gravity="center_horizontal">
+	    </Spinner>
+	</LinearLayout>
+	<View
+	    android:background="@drawable/black"
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+	    android:layout_below="@id/title" />
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="horizontal" android:weightSum="1.0"
+	    android:layout_width="fill_parent" android:layout_height="wrap_content">
+	    <TextView android:text="Year and Month (YYYYMM)"
+	    		android:layout_height="wrap_content" android:layout_weight="0.5"
+	    		android:gravity="center" android:layout_gravity="center_horizontal" 
+	    		android:layout_width="fill_parent">
+	    </TextView>
+	    <EditText android:id="@+id/month"
+	    		android:layout_width="fill_parent" android:layout_height="wrap_content"
+	    		android:layout_weight="0.5" android:inputType="number" android:maxLength="6"
+	    		android:layout_gravity="center_horizontal" >
+	    </EditText>
+	</LinearLayout>
+	<View
+	    android:background="@drawable/black"
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+	    android:layout_below="@id/title" />
+	<Button android:id="@+id/go" android:text="Find my flights!"
+		android:layout_height="wrap_content" android:layout_width="wrap_content"
+		android:layout_gravity="center">
+	</Button>
+</LinearLayout>

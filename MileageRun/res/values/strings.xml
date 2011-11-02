@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, MileageRunActivity!</string>
+	<string name="app_name">MileageRun</string>
+	<string name="uscodes_prompt">US Airport Code</string>
+	<string-array name="uscodes_array">
+		<item></item>
+		<item>ABQ</item>
+		<item>ALB</item>
+		<item>ATL</item>
+		<item>AUS</item>
+		<item>BDL</item>
+		<item>BHM</item>
+		<item>BNA</item>
+		<item>BOS</item>
+		<item>BUF</item>
+		<item>BWI</item>
+		<item>CAE</item>
+		<item>CHS</item>
+		<item>CID</item>
+		<item>CLE</item>
+		<item>CLT</item>
+		<item>CMH</item>
+		<item>COS</item>
+		<item>CVG</item>
+		<item>DAY</item>
+		<item>DCA</item>
+		<item>DEN</item>
+		<item>DFW</item>
+		<item>DSM</item>
+		<item>DTW</item>
+		<item>ELP</item>
+		<item>EWR</item>
+		<item>FLL</item>
+		<item>GRR</item>
+		<item>HNL</item>
+		<item>HOU</item>
+		<item>IAD</item>
+		<item>IAH</item>
+		<item>ICT</item>
+		<item>IND</item>
+		<item>JAN</item>
+		<item>JFK</item>
+		<item>LAS</item>
+		<item>LAX</item>
+		<item>LGA</item>
+		<item>LIT</item>
+		<item>LNK</item>
+		<item>MCI</item>
+		<item>MCO</item>
+		<item>MDW</item>
+		<item>MEM</item>
+		<item>MGM</item>
+		<item>MKE</item>
+		<item>MSP</item>
+		<item>MSY</item>
+		<item>OAK</item>
+		<item>OMA</item>
+		<item>ONT</item>
+		<item>ORD</item>
+		<item>ORF</item>
+		<item>PDX</item>
+		<item>PHL</item>
+		<item>PIT</item>
+		<item>PVD</item>
+		<item>PWM</item>
+		<item>RDU</item>
+		<item>RSW</item>
+		<item>SAN</item>
+		<item>SAT</item>
+		<item>SDF</item>
+		<item>SEA</item>
+		<item>SFO</item>
+		<item>SGF</item>
+		<item>SHV</item>
+		<item>SLC</item>
+		<item>SNA</item>
+		<item>STL</item>
+		<item>TPA</item>
+		<item>TUL</item>
+	</string-array>
+</resources>
