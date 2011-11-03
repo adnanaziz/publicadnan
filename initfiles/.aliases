@@ -70,7 +70,7 @@ a mroe more
 a c clear
 a ls 'ls -G -F'
 a hi history 
-set host=`/bin/hostname | /usr/bin/sed 's/\..*$//'`
+set host=`/bin/hostname | sed 's/\..*$//'`
 alias prmpt 'set prompt="[adnan@$host]${cwd} ! "'
 alias cd 'cd \!* ; prmpt'   
 set cdpath=(. /Volumes/My\ Book/ /nfs/narya /nfs/narya/src ~/ ~/narya/camcode/vis  ~/papers ~/classes)
