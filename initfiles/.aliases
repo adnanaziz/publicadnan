@@ -1,7 +1,7 @@
 alias dotdown ' \
   cp  ~/adnanpublic/initfiles/.cshrc ~/; \
   cp  ~/adnanpublic/initfiles/.vimrc ~/; \
-  cp  ~/adnanpublic/initfiles/.aliases; ~/ \
+  cp  ~/adnanpublic/initfiles/.aliases ~/; \
 '
 
 alias dotup ' \
