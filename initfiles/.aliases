@@ -1,0 +1,162 @@
+alias dotdown ' \
+  cp  ~/adnanpublic/initfiles/.cshrc ~/; \
+  cp  ~/adnanpublic/initfiles/.vimrc ~/; \
+  cp  ~/adnanpublic/initfiles/.aliases; ~/ \
+'
+
+alias dotup ' \
+  cp ~/.vimrc ~/adnanpublic/initfiles/; \
+  cp ~/.cshrc ~/adnanpublic/initfiles/; \
+  cp ~/.aliases ~/adnanpublic/initfiles/; \
+'
+  
+alias aftp 'sftp adnan@192.168.1.10'
+
+alias mmove 'rm \!*; ln -s /Volumes/My\ Book/dvdrips/\!* \!*'
+alias mcd 'cd /Users/adnanaziz/Music/iTunes/iTunes Music/Movies'
+
+alias ib 'java -cp jts.jar:hsqldb.jar:jcommon-1.0.12.jar:jfreechart-1.0.9.jar:jhall.jar:other.jar:rss.jar -Xmx512M jclient.LoginFrame .'
+alias jc javac -classpath junit-4.6.jar:google.jar:. SortArrays.java TradeTester.java sp.java Trade.java TradeArray.java Pair.java Data.java 
+alias jr java -Xmx100M -Xms100M -Xincgc -ea -classpath google.jar:. -verbose:gc SortArrays
+alias ju java -classpath google.jar:junit-4.6.jar:. org.junit.runner.JUnitCore TradeTester
+
+complete ant 'p@*@`cat build.xml|& grep "target name" | sed -e "s/.*name=//g" | sed -e "s/depends.*//g" | sed s/\"//g`@'
+
+# makes it easier to compile and run using !c and !j
+alias cj javac
+
+alias acrobat "/Applications/Adobe\ Reader\ 9/Adobe Reader.app/Contents/MacOS/AdobeReader"
+alias bigfiles 'find / -type f -size +20000k -exec ls -lh {} \;' 
+
+alias . cd ..
+alias .. cd ../..
+alias ... cd ../../..
+
+# setenv LD_LIBRARY_PATH /nfs/narya/pf/tcl8.4.14/unix
+
+alias vnc1 'vncserver -geometry 1300x940 :1'
+alias vnc4 'vncserver -geometry 1600x800 :4'
+alias vnc2 'vncserver -geometry 1800x1200 :2'
+alias vnc3 'vncserver -geometry 1550x1150 :3'
+
+alias tcpdump 'tcpdump -n'
+
+limit coredumpsize 0
+alias dmalloc 'eval `\dmalloc -C \~*`'
+
+alias more less
+
+setenv CVS_RSH ssh
+setenv CVSROOT /Users/adnanaziz/cvs
+stty erase 
+
+set fignore = ( .o .bak \~ )
+
+set history = 1000
+set savehist = 1000
+
+set correct = cmd
+set correct = all
+
+setenv VISUAL /bin/vi
+
+alias a alias
+a pdf2ps 'gs -q -dNOPAUSE -dBATCH -sDEVICE=pswrite -sOutputFile=$2 $OPTIONS -c save p op -f $1'
+a pdf2ps 'gs -q -dNOPAUSE -dBATCH -sDEVICE=pswrite -sOutputFile=$2 -c save p op -f $1'
+
+a hi history
+a mo more
+a mroe more
+a c clear
+a ls 'ls -G -F'
+a hi history 
+set host=`/bin/hostname | /usr/bin/sed 's/\..*$//'`
+alias prmpt 'set prompt="[adnan@$host]${cwd} ! "'
+alias cd 'cd \!* ; prmpt'   
+set cdpath=(. /Volumes/My\ Book/ /nfs/narya /nfs/narya/src ~/ ~/narya/camcode/vis  ~/papers ~/classes)
+alias xps gv
+
+alias myxterm 'xterm -fg blue2 -bg ivory1 -fn -adobe-courier-bold-r-\*-\*-20-140-\*-\*-m-100-\*-\*'
+
+alias backup 'cp *.tex *.fig *.c *.h bak/'
+
+if ($?REMOTEHOST) then
+   setenv DISPLAY ${REMOTEHOST}:0
+endif
+
+mesg y
+
+alias myvim  'gvim -font -\*-courier-\*-r-\*-\*-\*-200-\*-\*-\*-\*-\*-\* \!*'
+alias fsun 'sftp balrog'
+
+alias dvips 'dvips -Ppdf -G0  -o \!*.ps \!*; ps2pdf \!*.ps'
+
+alias fromsun 'scp adnan@balrog.ece.utexas.edu:\!* \!*'
+alias download fromsun
+alias tosun 'scp \!* adnan@balrog.ece.utexas.edu:\!*'
+alias upload tosun
+
+# alias dvips 'dvips -o \!*.ps \!*' 
+alias slides_dvips '/usr/bin/dvips -Ppdf -O0.7in,-0.4in -o \!*.ps \!*'
+# alias pager 'cat \!* | rsh church '/usr/bin/mpage -bletter' > /tmp/adnan_tmp123.ps; lpr /tmp/adnan_tmp123.ps;'
+# alias scpr 'scp \!* adnan@russell.ece.utexas.edu:\!*;'
+
+alias lpr 'lpr -h'
+#setenv PRINTER lp
+
+# alias ric 'rlogin ic.berkeley.edu -l adnan'
+# alias fic 'ftp ic.berkeley.edu '
+
+setenv VIS_LIBRARY_PATH /home/adnan/vis/vis-1.1/share/
+setenv MOZILLA_HOME /usr/local/netscape
+
+set hosts = (		peach.ece.utexas.edu \
+              mario.ece.utexas.edu 192.168.1.10 \
+              192.168.1.100 \
+              daisy \
+			        texas.yi.org \
+              adnan.yi.org \
+			azinix.sourceforge.net	\ )
+
+complete slogin 'p/1/$hosts/'
+complete ftp 'p/1/$hosts/'
+complete sftp 'p/1/$hosts/'
+complete scp 'p/1/$hosts/'
+
+complete set	'c/*=/f/' 'p/1/s/=' 'n/=/f/'
+complete unset	p/1/s/
+complete setenv 	p/1/e/		# only environment variables 
+complete unsetenv 	p/1/e/
+complete alias 	p/1/a/		# only aliases are valid
+complete unalias 	p/1/a/
+
+complete xdvi 	'n/*/f:*.dvi/'	# Only files that match *.dvi
+complete xps 	'n/*/f:*{ps}/'	# Only files that match *ps
+complete gv 	'n/*/f:*{ps}/'	# Only files that match *ps
+complete acroread 	'n/*/f:*{pdf}/'	# Only files that match *pdf
+complete lpr 	'n/*/f:*ps/'	# Only files that match *ps
+complete xpdf 	'n/*/f:*{pdf}/'	# Only files that match *pdf
+complete kpdf 	'n/*/f:*{pdf}/'	# Only files that match *pdf
+complete gpdf 	'n/*/f:*{pdf}/'	# Only files that match *pdf
+
+complete ghostview 	'n/*/f:*ps/'	# Only files that match *ps
+complete gv 	'n/*/f:*{ps,pdf}/'	# Only files that match *ps
+
+complete latex 	'n/*/f:*.tex/'
+
+complete vi 	'n/*/f:^{core, *.dvi, *.ps, *.aux, *.bib, *.log , *.[ao]}/'
+
+complete limit	'c/-/"(h)"/ n/*/l/'
+complete unlimit	'c/-/"(h)"/ n/*/l/'
+
+
+### from http://www.linuxjournal.com/article/2066
+# perl -ne 'if (/^([^.#][^:]+):/) {print "$1 "}' 
+#         Makefile
+# complete make  'p@*@`perl -ne '"'"'>if (/^([^.#][^:]+):/)  {print "$1"}'"'"'Makefile`@'
+#	'n/-f/f/' \
+#	'c/*=/f/' \
+complete make \
+	'n@*@`cat -s GNUmakefile Makefile makefile |& sed -n -e "/No such file/d" -e "/^[^	#].*:/s/:.*//p"`@'
+
+
