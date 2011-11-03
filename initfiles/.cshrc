@@ -7,7 +7,7 @@ set path = ( /usr/texbin /sbin /usr/sbin /usr/local/bin /usr/bin /bin /usr/local
 # always get the hostname because it is used later in various ways
 if ( ! $?hostname ) then
     set full_hostname = `/bin/hostname`
-    set hostname      = `echo $full_hostname | /usr/bin/sed -e 's/\..*//'`
+    set hostname      = `echo $full_hostname | sed -e 's/\..*//'`
 endif
 
 if ( $?prompt ) then
