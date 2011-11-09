@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// can read temperatures from http://www.google.com/ig/api?weather=Mountain+View
 public class TestingLabConverterServlet extends HttpServlet {
 	
 	@Override
@@ -50,7 +49,7 @@ public class TestingLabConverterServlet extends HttpServlet {
 					
 
         String austinTemperature = CityTemperatureServiceProvider.lookup("Austin");
-        out.println("<h3>The temperature in Austin is " + austinTemperature + " degrees Farenheit");
+        out.println("<p><h3>The temperature in Austin is " + austinTemperature + " degrees Farenheit</h3>");
         out.println("</body></html>");
 		out.close();
 	}
