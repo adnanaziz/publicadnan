@@ -1,5 +1,3 @@
-package guestbook;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
@@ -9,8 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// can read temperatures from http://www.google.com/ig/api?weather=Mountain+View
 public class TestingLabConverterServlet extends HttpServlet {
-
+	
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +46,12 @@ public class TestingLabConverterServlet extends HttpServlet {
 		String celTemp = df.format(celTempDouble);
         out.println("<html><head><title>Temperature Converter Result</title>"
 					+ "</head><body><h2>" + farTemp + " Farenheit = " + celTemp + " Celsius "
-					+ "</h2></body></html>");
+					+ "</h2>");
+					
+
+        String austinTemperature = CityTemperatureServiceProvider.lookup("Austin");
+        out.println("<h3>The temperature in Austin is " + austinTemperature + " degrees Farenheit");
+        out.println("</body></html>");
 		out.close();
 	}
 
