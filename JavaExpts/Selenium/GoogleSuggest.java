@@ -31,7 +31,7 @@ public class GoogleSuggest {
             try {
               resultsDiv = driver.findElement(By.className("gsq_a"));
             } catch (Exception e) {
-              System.out.println("AA: error in findElement, " + e.toString());
+              System.out.println("Error in findElement, " + e.toString());
             }
 
             // If results have been returned, the results are displayed in a drop down.
@@ -42,13 +42,13 @@ public class GoogleSuggest {
 
         // And now list the suggestions
         // AA: trying different classes
-        List<WebElement> allSuggestions = driver.findElements(By.xpath("//td[@class='gac_c']"));
+        // List<WebElement> allSuggestions = driver.findElements(By.xpath("//td[@class='gac_c']"));
         // List<WebElement> allSuggestions = driver.findElements(By.xpath("//td[@class='gssb_e']"));
+        List<WebElement> allSuggestions = driver.findElements(By.className("gsq_a"));
         
+        System.out.println("allSuggestions.size() = " + allSuggestions.size() );
         for (WebElement suggestion : allSuggestions) {
             System.out.println(suggestion.getText());
         }
-
-        driver.get("http://bit.ly/logdes");
      }
 }

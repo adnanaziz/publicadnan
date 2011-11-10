@@ -26,7 +26,5 @@ public class Example  {
 
         // Check the title of the page
         System.out.println("Page title is: " + driver.getTitle());
-
-        System.out.println("Page is " + driver.getPageSource());
     }
 }
