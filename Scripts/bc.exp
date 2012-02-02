@@ -1,0 +1,38 @@
+# sample expect test script based on 
+# "Essential Open Source Toolset", Zeller & Krinike, page 210
+# start bc
+spawn bc
+
+# leave some time for the initial messages
+sleep 1
+
+# the pass and fail procedures
+# output the test outcome:
+# PASS = "test is successful"
+# FAIL = "test has failed"
+
+proc pass {a} { puts "PASS $a" }
+proc fail {a} { puts "FAIL $a" }
+
+# bc_test expr result sends expr to BC
+proc bc_test {expr result} {
+ send "$expr\n"
+
+ # the option '-gl' makes sure that a 
+ # pattern beginning with '-' is not interpreted
+ # as an option to expect
+
+ expect {
+    -gl "$result\r\r" { pass "$expr" }
+    "*\r\n"           { fail "$expr" }
+    timeout { fail "(timeout) $expr }
+  }
+}
+
+# individual test cases
+
+bc_test "2+2"   "4"
+bc_test "7*9"   "63"
+bc_test "3-7"   "-4"
+bc_test "9/3"   "4"
+
