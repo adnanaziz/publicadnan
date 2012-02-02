@@ -17,6 +17,8 @@ proc fail {a} { puts "FAIL $a" }
 # bc_test expr result sends expr to BC
 proc bc_test {expr result} {
  send "$expr\n"
+ # this line is a bug in book?
+ # expect "$expr\r\n"
 
  # the option '-gl' makes sure that a 
  # pattern beginning with '-' is not interpreted
