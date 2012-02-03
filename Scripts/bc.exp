@@ -20,7 +20,7 @@ proc bc_test {expr result} {
  # once per test (otherwise we'd spawn
  # it at the start of the script)
  spawn factorial-recur
- sleep 0.1
+ sleep 0.5
  # puts "entering send"
  # -- escapes issues with negative numbers treated as args
  send -- "$expr\n"
@@ -30,7 +30,7 @@ proc bc_test {expr result} {
  # expect "$expr\r\n"
 
  # get a race if we dont sleep
- sleep 0.01
+ sleep 0.1
 
  # the option '-gl' makes sure that a 
  # pattern beginning with '-' is not interpreted
@@ -38,10 +38,17 @@ proc bc_test {expr result} {
 
  expect {
     # -gl "$result\r\n" { pass "$expr" }
-    -re "$result\r\n" { pass "$expr" }
-    "*\r\n"           { fail "$expr - $result" }
+    -re "$result" { pass "$expr" }
+    # TODO: need to figure out how to get
+    # latest contents returned to expect, see http://wiki.tcl.tk/17378
+    "*\r\n"           { fail "input: $expr; expected $result; got $expect_out(buffer)" }
     timeout { fail "(timeout) $expr" }
   }
+
+  # TODO: struggling to figure out how to get next msg...
+  # expect $prompt
+  # puts "FINAL RECEIVE MSG: $expect_out(buffer)"
+
 }
 
 # individual test cases
