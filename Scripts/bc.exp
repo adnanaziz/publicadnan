@@ -1,38 +1,44 @@
 # sample expect test script based on 
 # "Essential Open Source Toolset", Zeller & Krinike, page 210
-# start bc
-#spawn factorial-recur
 
-# leave some time for the initial messages
-#sleep 1
+# if the program operated in a loop, we'd spawn it
+# once here, would interact with it for the rest
+# of the script
 
-# the pass and fail procedures
-# output the test outcome:
-# PASS = "test is successful"
-# FAIL = "test has failed"
+# the pass and fail procedures output the test outcome:
+# set PASS "test is successful"
+# set FAIL "test has failed"
 
 proc pass {a} { puts "PASS $a" }
 proc fail {a} { puts "FAIL $a" }
 
 # bc_test expr result sends expr to BC
 proc bc_test {expr result} {
+ # factorial-recur prompts
+ # us once for the argument, and exits
+ # on completion so we need to spawn
+ # once per test (otherwise we'd spawn
+ # it at the start of the script)
  spawn factorial-recur
- sleep 1
- puts "entering send"
+ sleep 0.1
+ # puts "entering send"
  # -- escapes issues with negative numbers treated as args
  send -- "$expr\n"
- puts "send is succ"
- # sleep 1
+ # puts "send is succ"
+
  # this line is a bug in book?
  # expect "$expr\r\n"
+
+ # get a race if we dont sleep
+ sleep 0.01
 
  # the option '-gl' makes sure that a 
  # pattern beginning with '-' is not interpreted
  # as an option to expect
- sleep 1
 
  expect {
-    -gl "$result\r\n" { pass "$expr" }
+    # -gl "$result\r\n" { pass "$expr" }
+    -re "$result\r\n" { pass "$expr" }
     "*\r\n"           { fail "$expr - $result" }
     timeout { fail "(timeout) $expr" }
   }
@@ -40,7 +46,11 @@ proc bc_test {expr result} {
 
 # individual test cases
 
-#bc_test "4"   "The factorial of 4 is 24"
-#bc_test "0"   "The factorial of 0 is 1"
-#bc_test "0"   "The factorial of 0 is 1"
-bc_test "-1"  "The factorial of -1 is 1"
+bc_test "4"   "24"
+bc_test "4"   "25"
+bc_test "4"   "The factorial of 4 is 24"
+bc_test "0"   "The factorial of 0 is 1"
+bc_test "0"   "The factorial of 0 is 10"
+bc_test "-1"  "You entered a negative number: -1"
+bc_test "-1"  ".*negative.*"
+bc_test "0"   "The factorial of 0 is 1"
