@@ -1,7 +1,7 @@
 # sample expect test script based on 
 # "Essential Open Source Toolset", Zeller & Krinike, page 210
 # start bc
-spawn bc
+spawn factorial-recur
 
 # leave some time for the initial messages
 sleep 1
@@ -17,6 +17,7 @@ proc fail {a} { puts "FAIL $a" }
 # bc_test expr result sends expr to BC
 proc bc_test {expr result} {
  send "$expr\n"
+ # sleep 1
  # this line is a bug in book?
  # expect "$expr\r\n"
 
@@ -25,16 +26,13 @@ proc bc_test {expr result} {
  # as an option to expect
 
  expect {
-    -gl "$result\r\r" { pass "$expr" }
+    # -gl "$result\r\r" { pass "$expr" }
+    "$result\r\r" { pass "$expr" }
     "*\r\n"           { fail "$expr" }
-    timeout { fail "(timeout) $expr }
+    timeout { fail "(timeout) $expr" }
   }
 }
 
 # individual test cases
 
-bc_test "2+2"   "4"
-bc_test "7*9"   "63"
-bc_test "3-7"   "-4"
-bc_test "9/3"   "4"
-
+bc_test "4"   "The factorial of 4 is 24"
