@@ -47,9 +47,11 @@ proc bc_test {expr result} {
 # individual test cases
 
 bc_test "4"   "24"
+# should fail:
 bc_test "4"   "25"
 bc_test "4"   "The factorial of 4 is 24"
 bc_test "0"   "The factorial of 0 is 1"
+# should fail:
 bc_test "0"   "The factorial of 0 is 10"
 bc_test "-1"  "You entered a negative number: -1"
 bc_test "-1"  ".*negative.*"
