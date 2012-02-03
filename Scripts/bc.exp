@@ -18,7 +18,9 @@ proc fail {a} { puts "FAIL $a" }
 proc bc_test {expr result} {
  spawn factorial-recur
  sleep 1
- send "$expr\n"
+ puts "entering send"
+ # -- escapes issues with negative numbers treated as args
+ send -- "$expr\n"
  puts "send is succ"
  # sleep 1
  # this line is a bug in book?
@@ -30,7 +32,6 @@ proc bc_test {expr result} {
  sleep 1
 
  expect {
-    # -gl "$result\r\r" { pass "$expr" }
     -gl "$result\r\n" { pass "$expr" }
     "*\r\n"           { fail "$expr - $result" }
     timeout { fail "(timeout) $expr" }
@@ -39,7 +40,7 @@ proc bc_test {expr result} {
 
 # individual test cases
 
-bc_test "4"   "The factorial of 4 is 24"
-bc_test "0"   "The factorial of 0 is 1"
-bc_test "0"   "The factorial of 0 is 1"
+#bc_test "4"   "The factorial of 4 is 24"
+#bc_test "0"   "The factorial of 0 is 1"
+#bc_test "0"   "The factorial of 0 is 1"
 bc_test "-1"  "The factorial of -1 is 1"
