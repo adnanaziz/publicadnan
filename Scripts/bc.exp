@@ -1,10 +1,10 @@
 # sample expect test script based on 
 # "Essential Open Source Toolset", Zeller & Krinike, page 210
 # start bc
-spawn factorial-recur
+#spawn factorial-recur
 
 # leave some time for the initial messages
-sleep 1
+#sleep 1
 
 # the pass and fail procedures
 # output the test outcome:
@@ -16,7 +16,10 @@ proc fail {a} { puts "FAIL $a" }
 
 # bc_test expr result sends expr to BC
 proc bc_test {expr result} {
+ spawn factorial-recur
+ sleep 1
  send "$expr\n"
+ puts "send is succ"
  # sleep 1
  # this line is a bug in book?
  # expect "$expr\r\n"
@@ -24,11 +27,12 @@ proc bc_test {expr result} {
  # the option '-gl' makes sure that a 
  # pattern beginning with '-' is not interpreted
  # as an option to expect
+ sleep 1
 
  expect {
     # -gl "$result\r\r" { pass "$expr" }
-    "$result\r\r" { pass "$expr" }
-    "*\r\n"           { fail "$expr" }
+    -gl "$result\r\n" { pass "$expr" }
+    "*\r\n"           { fail "$expr - $result" }
     timeout { fail "(timeout) $expr" }
   }
 }
@@ -36,3 +40,6 @@ proc bc_test {expr result} {
 # individual test cases
 
 bc_test "4"   "The factorial of 4 is 24"
+bc_test "0"   "The factorial of 0 is 1"
+bc_test "0"   "The factorial of 0 is 1"
+bc_test "-1"  "The factorial of -1 is 1"
