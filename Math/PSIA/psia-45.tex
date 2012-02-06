@@ -54,6 +54,18 @@ Example: if you have to add all the even numbers from 2 to 40,
 it's the same as 2 times all the numbers from 1 to 20.
 So the answer is $2 \times \frac{20\times 21}{2} = 20\times 21 = 420$.
 
+Formula: The sum of all the even numbers from $2$ to $2\times M$ is $\frac{M}{M+1}$.
+
+Example: The sum of all the even numbers from $2$ to $100 = 2 \time 50$ is 
+$50 \times 51 =  2550$.
+
+Formula: The sum of all the odd numbers from $1$ to $2 \times M  - 1$ is $M^2$.
+
+Example: The sum of all the odd numbers from $1$ to $15 = 2 \times 8 - 1 $ is 
+$8^2 = 64$.
+
+
+
 
 \section{Difference of squares}
 ${4^2 - 2^2 = (4 + 2) \times (4 - 2) =  6 \times 2 = 12  }$
@@ -114,6 +126,64 @@ ${ = \frac{11}{30}}$
 
 $\frac{3}{4} \div \frac{5}{7} = \frac{3}{4} \times \frac{7}{5} = \frac{3 \times 7 }{4 \times 5}$
 
+Be very careful when you have multiple fractions:
+
+$\frac{3}{2} \div \frac{3}{4} \div \frac{3}{5}$ is $(\frac{3}{2} \div \frac{3}{4})\div \frac{3}{5}$
+and {\bf not} $(\frac{3}{2} \div \frac{3}{4})\div \frac{3}{5}$
+
+So $\frac{3}{2} \div \frac{3}{4} \div \frac{3}{5} = (\frac{3}{2} \times \frac{4}{3}) \times \frac{5}{3}$, which simplifies to $\frac{10}{3} = 3 \frac{1}{3}$.
+
+Be smart about cancelling---usually, you should look at factors and try and cancel.
+
+$\frac{28 \times 42}{49}$: instead of multiplying $28$ and $42$, write it as 
+$\frac{(7 \times 2 \times 2)\times (2 \times 3 \times 7)}{7 \times 7}$. Now you can cancel
+both the $7$s in the denominator, and get the answer is $2 \times 2 \times 2 \times 3 = 24$.
+
+\section{Order of operations}
+
+Multiplication and division first. Then addition and subtraction.
+
+So $2 + 3 \times 4 - 9 \div 3 = 2 + 12 - 3 = 9$
+
+Regardless, parens are done first: $(2 + 3 ) \times 5 + 1 = 5 \times 5 + 1 = 26$.
+
+\section{Decimals}
+
+\subsection{Adding}
+
+$1.23 + 4.56 = 5.79$. $1.9 + 2.7 = 4.6$. $1.234 + 0.999 = 2.233$.
+
+\subsection{Subtracting}
+
+$4.56 - 1.23 = 3.33$. $3.14 - 1.25 = 1.89$ $3.1 - 0.999 = 2.1001$.
+
+\subsection{Multiplying}
+
+$0.12 \times 0.34 = 0.0408$ (Multiply without the decimal, than bring it back.
+You may need to add 0s in front.
+
+\subsection{Dividing}
+
+$\frac{12}{0.3} = 40$. 
+
+Approach 1: it's $\frac{12}{\frac{3}{10}} = \frac{12}{1}\times\frac{10}{3} = \frac{120}{3} = 40$.
+
+Approach 2: first ignore the decimal point: $\frac{12}{3} = 4$. Now we need
+to move left for numerator (0) and right for denominator (1), gives us $40$.
+
+$\frac{12.3}{0.03}$ using Approach~2 is $\frac{123}{3} = 41$. Now we move one left
+for numerator, and then two right for denominator, i.e., overall one right $ = 410$.
+
+$4.41 \div 0.7$: ignore the decimals, get $441\div 7 = (420 + 21) \div 7 = 60 + 3 = 63$.
+Now we need to move the decimal 2 left ($4.41$) and 1 right $0.7$, i.e, 1 left,
+so the answer is $6.3$.
+
+\section{Roman Numbers}
+
+$DCCV = 500 + 200 + 5$. $MMXI = 2000 + 10  + 1$. $LIII = 53$ $IL = 49$. $MCMXC = 1990$
+
+
+
 \section{Perfect squares}
 {\tiny
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|} \hline
@@ -130,7 +200,38 @@ Also remember $25^2 = 625$.
 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 91, 97, 101    103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199
 
 \section{Magic numbers}
-$3^4 = 9^2 = 81$, $9^3 = 729$
+$3^4 = 9^2 = 81$, $9^3 = 729 = 81 \times 9$
+
+$24 \times 3 = 72, 24 \times 4 = 96, 24  \times 5 = 120, 24 \times 6 = 144$
+
+\section{Divisibility rules}
+
+A number is divisible by 2 exactly when last digit is one of $0,2,4,6,8$.
+
+$1214, 8, 24, 100000$: yes. $123, 41, 471, 88889$ no.
+
+A number is divisible by 3 exactly when the sum of its digits is divisible by
+$3$, and the remainder is the remainder of the sum. 
+
+Instead of adding all the digits, you can ``cast out'' the 3s as you add them.
+
+$123457$: $1$, $1+2=0 \; \mbox{since we cast out the 3}$, $0+3 = 0$,
+$0+4 = 1$, $1+5 = 0$, $0+7=1$, so the remainder is 1.
+
+Same rule for 9---``cast out'' the 9s.
+
+$123457$: $1$, $1+2=3$, $3+4 = 7$,
+$7+5 = 3 \; \mbox{since we cast out the 9}$, 
+$3+7=1$, so the remainder is 1.
+
+A number is divisible by 5 exactly when the last digit is one of $0$ or $5$.
+
+A number is divisible by 11 exactly when the sum of the odd digits minus the sum
+of the even digits is divisible by 11.
+
+For example: $34871903$. Even digits are $3+8+1+0=12$; odd
+digits are $4+7+9+3=23$. Since $23-12=11$ we have $34871903$ is divisible by 11.
+
 
 \section{Good fractions}
 
@@ -145,6 +246,22 @@ $\frac{24}{72} = \frac{1}{3}$, $\frac{24}{108} = \frac{2}{9}$, $\frac{36}{144} =
 
 Common percentages: 10\% of 120 = 12; 50\% of 120 = $\frac{120}{2}$; 
 40\% of 80 = $80 \times \frac{2}{5}$.
+
+$750 =  375 \times 2$
+
+To get $\frac{22}{25}$ as a decimal convert the 
+denomintor to $100$: $\frac{4\times 22}{4\times} = \frac{88}{100} = 0.88$.
+
+To get $\frac{203}{50}$ as a decimal convert the 
+denominator to $100$: $\frac{2 \times 203}{2 \times 50} = \frac{406}{100} = 4.06$.
+
+$\frac{7}{40}$ as a decimal = $\frac{7 \times 2.5 }{40 \times 2.5} = \frac{17.5}{100} = 0.175$.
+
+$48$ minutes is $\frac{48}{60}$ as a fraction of an hour, $\frac{12\times 4 }{12 \times 5} = \frac{4}{5}$. Same for $12, 24, 36, 72$ minutes.
+
+$45$ minutes is $\frac{45}{60}$ as a fraction of an hours, $\frac{15 \times 3}{15 \times 4} = \frac{3}{4}$. Same for $15, 75$ minutes.
+
+
 
 \section{Multiplying decimals}
 
@@ -272,6 +389,7 @@ $\frac{?}{\cancel{5}} \times \cancel{5} = \frac{3 \times 5}{4}$ so  $? = \frac{1
 Fact: the triangle inside a rectangle in the figure below always has half the area
 of the rectangle.
 
+
 \vspace{3in}
 
 \subsection{Angles}
@@ -283,10 +401,15 @@ Angles are acute (less than $90$ degrees), right (equal to 90 degrees) and obtus
 
 Fact: for a right triangle, the square of the long side is the sum of the square of
 the short sides. So a right triangle with short sides $3$ and $4$ has it's long
-side length $ = \sqrt(3 \times 3 + 4 \times 4) = \sqrt(9 + 16) = \sqrt(25) = 5$.
+side length $ = \sqrt(3 \times 3 + 4 \times 4) = \sqrt(9 + 16) = \sqrt(25) = 5$.j
 
 If you double the lengths of the short sides, the long side doubles too, same
-for tripling, or any multiplication.
+for tripling, or any multiplication. For example, 
+in a right triangle if the shorter sides are $6$ and $8$, then the long side
+is $10$ (since $6 = 3 \times 2$ and $8 = 4 \times 2$).
+
+Memorize: if the two short sides of a right triangle are $5$ and $12$ the third is
+$13$.
 
 \subsection{Sum of angles}
 Sum of angles of triangle = 180 degrees 
@@ -304,13 +427,19 @@ Perimeter of square/triangle/rectangle/any polygon is lenght of its sides.
 The number of posts for a rectangle of perimeter
 20 is 10 if the posts are spaced 2 apart.
 
-Area of rectangle is lenght times width.
+Area of rectangle is length times width.
+
+Area of rhombus is half of diagonal times diagonal.
+
+Example: Rhombus has short diagonal length = 10 and long diagonal length = 20,
+its area is $\frac{10 \times 20}{2} = 100$.
 
 Area of circle is $\pi \times r \times r$, where $r$ is the radius (which is half the diamater).
 
 Volume of a cube of side 3 is $3 \times 3 \times 3$.
 
-Volume of cylinder is area of circle times height of cylinder.
+Volume of cylinder is area of base (which is a circle) times the
+height of cylinder.
 
 \subsection{Transformations}
 
@@ -359,11 +488,30 @@ Keep things factored!
 So LCM equals 
 $\frac{(2 \times 2 \times 2 \times 3) \times (3 \times 5)}{ 3} = 120$
 
+What is the smallest even number that both 21 and 15 divide?
+
+Prime factorization: $21 = 3 \times 7$, $15 = 3 \times 5$, so LCM is 
+$3 \times 5 \times 7 = 105$. It's odd, so the smallest even number
+that both divide is $2 \times 105 = 210$.
+
+\subsection{Number of divisors}
+
+The number of distinct divisors of $2^4\times 5^7 \times 11^1 = (4+1)\times(7+1)\times(1+1)$
+
+\section{Exponents}
+
+$(2^3)^5 = 2^{3 \times 5} = 2^{15}$. (NOT $26{8}$.)
+
+$(2^3 \times 7^9)^5 = 2^{3 \times 5}  \times 7^{9 \times 5}= 2^{15} \times 7^{45}$
+
+$3^5 \times 3^6 = 3^{11}$ (NOT $3^{5 \times 6}$.)
+
+$\frac{2^5 \times 7^2}{2^3 \times 7^3} = \frac{2^{5-3}}{7^{3-1}}$.
+
 \section{Miscellaneous/unclassified}
 \begin{itemize}
-\item Leap years: February  2010 has how many days?
-\item Division by a decimal: $\frac{12}{0.3}$
-\item  Which is biggest: $\frac{11}{13}, \frac{12}{11}, \frac{14}{9}$?
+\item leap years: February  2010 has how many days?
+%\item division by a decimal: $\frac{12}{0.3}$
 \item convert to decimal
 \item place values (hundredths, tenths, units, tens, etc.)
 \item concept of density
@@ -375,7 +523,8 @@ $\frac{(2 \times 2 \times 2 \times 3) \times (3 \times 5)}{ 3} = 120$
 \section{Problems to skip}
 Which is biggest of some fractions? 
 \begin{itemize}
-\item Example: $\frac{7}{11}, \frac{6}{13}, \frac{5}{9}, \frac{2}{3}$
+\item example: $\frac{7}{11}, \frac{6}{13}, \frac{5}{9}, \frac{2}{3}$
+\item which is biggest: $\frac{11}{13}, \frac{12}{11}, \frac{14}{9}$?
 \end{itemize} 
 
 % \section{Notes}
