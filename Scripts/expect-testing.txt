@@ -1,0 +1,56 @@
+
+Relevant files:
+
+  - actual expect script: assign_tester.exp 
+  - test cases: a2input.txt 
+  - sample code to test: assignment-2.c 
+  - output for sample code: proc_assignment-2.o_output
+
+TODO: how to execute, link to lab 2
+
+---
+
+Prof. Aziz,
+
+Based on our discussion last week, I created a testing script 
+assign_tester.exp (attached), to automatically run test cases for 
+assignments. Given a C executable and an input text file, the script 
+runs all the tests in the input file on the C executable. The script 
+requires Tcl and Expect. I didn't get a chance to test it v thoroughly, 
+but it seems to work on a test case file (attached) I created based on 
+Assignment 2.
+
+For the purpose of the file, each test case is defined as consists of a 
+number of steps. For example, Step 1: get menu display and enter menu 
+option 1 to choose the option to convert from Austin to Irish time, and 
+Step 2: Enter Austin time and get Irish time as output. Each row of the 
+input file is a step in a test case. As each test case occupies multiple 
+rows, 'xx' serves as the delimiter to separate one test case from 
+another. If a test case fails midway, the currently spawned process 
+being tested is killed, and the next test case is run with a freshly 
+respawned process. Details on how to run the script, and some more 
+information. is provided as comments in the Exp file. Please let me know 
+any feedback.
+
+Thanks,
+Suratna
+
+---
+
+
+Prof. Aziz,
+
+A short note about the input file format: the first line is the regex 
+matching the first message you see when you run the program (this is to 
+handle the Expect problem we discussed today). The rest of the file 
+consists of test cases, separated by the delimiter 'xx'.
+
+I am also attaching the sample C code (a student's submission) I am 
+using to test the program, and the output file generated, with test 
+pass/fail results. The output file is named as proc_$procName_output, 
+where procName is the name of the process.
+
+Thanks,
+Suratna
+
+

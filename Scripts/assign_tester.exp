@@ -1,0 +1,82 @@
+# Author: Suratna Budalakoti, sbudalakoti@lips.utexas.edu
+
+# To call the script: 
+#     expect assign_tester.exp $process_name $testcases_filename
+#
+# where $process_name is the compiled C executable, and 
+# $testcases_filename is a file with the test cases to be executed.
+
+proc cases_test {procName testsList opFile} {
+
+spawn $procName 
+sleep 1
+
+# Flag to mark if the current step in a test has failed. 
+# All future steps of this test are skipped in that case, 
+# and a new process is spawned to being testing from the next 
+# test onwards.
+
+set flag 0
+set fidout [open $opFile w]
+
+# firstOutput contains an expression for the first thing the 
+# user sees when he/she runs the program.  
+
+# In Assignment 2, it is the main menu, ending with a : . 
+# The matching expression in that case can simply be :.
+
+set firstOutput [lindex $testsList 0]
+set testsList [lrange $testsList 1 end]
+set testCntr 1
+puts $fidout "Running Test $testCntr\n"
+expect "$firstOutput"
+
+# For each test case in the list do:
+foreach testCase $testsList {
+
+# The line 'xx' in the input file indicates that all the steps of 
+# a test case have been read. If the just read in  test 
+# case failed (flag = 1), this is the place to respawn and restart testing.
+   set z [string compare $testCase "xx"]
+   if {$z == 0} {
+     puts $fidout "********************"
+     incr testCntr 1
+     puts $fidout "Running Test $testCntr\n"
+     if {$flag == 1} {
+        close $spawn_id
+        spawn $procName
+        set flag 0
+        expect "$firstOutput"
+       }
+     continue
+   }
+   if {$flag == 1} {
+      continue
+   }
+   set ipAndOp [split $testCase '\t']
+   set expr [lindex $ipAndOp 0]
+   set result [lindex $ipAndOp 1]
+
+   send -- "$expr\n"
+   sleep 0.5 
+   expect {
+      -re "$result" { puts $fidout "TEST $testCntr PASSED: $expr, $expect_out(buffer)\n" }
+      -re ".*\n"    {set flag 1;puts  $fidout "TEST $testCntr FAILED input: $expr; expected $result , got $expect_out(buffer)";}
+      timeout       {set flag 1;puts  $fidout "TEST $testCntr FAILED input: $expr; expected $result , got $expect_out(buffer)";}
+    }
+}
+close $fidout
+}
+
+# Read in process name and input file.
+set procName [lindex $argv 0]
+set ipFile [lindex $argv 1]
+
+set outputFile "proc_${procName}_output"
+set fid [open $ipFile r]
+
+while {[gets $fid line] >= 0} {
+          lappend testCases $line
+}
+close $fid
+cases_test $procName $testCases $outputFile

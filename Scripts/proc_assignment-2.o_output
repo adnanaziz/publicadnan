@@ -1,0 +1,57 @@
+Running Test 1
+
+TEST 1 PASSED: 1,  1
+Enter a Austin time to be converted, expressed in hours and minutes:
+
+TEST 1 PASSED: 23 25,  23 25
+The time in Dublin equivalent to 23 25 in Austin is 5 25 the next day
+Enter a number from the menu (1-11) to select a specific conversion to perform or to quit:
+
+********************
+Running Test 2
+
+TEST 2 PASSED: 2,  2
+Enter a Dublin time to be converted, expressed in hours and minutes:
+
+TEST 2 PASSED: 2 25,  2 25
+The time in Austin equivalent to 2 25 in Dublin is 20 25 the previous day
+Enter a number from the menu (1-11) to select a specific conversion to perform or to quit:
+
+********************
+Running Test 3
+
+TEST 3 PASSED: 3,  3
+Enter an USD to be converted, expressed in dollars and cents:
+
+TEST 3 FAILED input: 24 05; expected 19\.96.*: , got  24 05
+The bill in EUR equivalent to 24 dollars 05 cents in USD is 18.96
+
+********************
+Running Test 4
+
+TEST 4 PASSED: 4,  4
+Enter an EUR to be converted:
+
+TEST 4 PASSED: 15.66,  15.66
+The bill in USD equivalent to 15.66 in USD is 19 dollars 86 cents
+Enter a number from the menu (1-11) to select a specific conversion to perform or to quit:
+
+********************
+Running Test 5
+
+TEST 5 PASSED: 5,  5
+Enter a Fahrenheit temperature to be converted:
+
+TEST 5 PASSED: 101,  101
+The temperature in Celcius equivalent to 101 in Fahrenheit is 38.3
+Enter a number from the menu (1-11) to select a specific conversion to perform or to quit:
+
+********************
+Running Test 6
+
+TEST 6 PASSED: 6,  6
+Enter a Celsius temperature to be converted:
+
+TEST 6 FAILED input: 37.5; expected 110.*: , got  37.5
+The temperature in Fahrenheit equivalent to 37.5 in Celsius is 100
+
