@@ -36,7 +36,8 @@ public class OptionScraper  {
   }
 
   public static void main( String [] args ) {
-    List<String> result = scrapeFromUrl( "http://finance.yahoo.com/q/op?s=qqq&m=2012-03" );
+    // List<String> result = scrapeFromUrl( "http://finance.yahoo.com/q/op?s=qqq&m=2012-03" );
+    List<String> result = scrapeFromUrl( "http://finance.yahoo.com/q/op?s=spy&m=2012-03");
     for ( String s : result ) {
       System.out.println("line:" + s);
     }
