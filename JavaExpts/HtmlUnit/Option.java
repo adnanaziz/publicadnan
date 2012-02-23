@@ -11,14 +11,14 @@ public class Option {
 
   public static class Builder {
 
-    private final String quoteString;
-    private final stockPrice;
-    private final double strike;
-    private final double bid;
-    private final double ask;
-    private final double last;
-    private final int vol;
-    private final int open;
+    private String quoteString;
+    private double stockPrice;
+    private double strike;
+    private double bid;
+    private double ask;
+    private double last;
+    private int vol;
+    private int open;
 
     public Builder(String quoteString, double stockPrice ) {
       this.quoteString = quoteString;
@@ -37,20 +37,20 @@ public class Option {
     public Builder last( double last ) { this.last = last; return this; }
     public Builder vol( int vol ) { this.vol = vol; return this; }
     public Builder strike( int open ) { this.open = open; return this; }
-
+ 
     public Option build() {
       return new Option( this );
     }
-
-    private Option( Builder builder ) {
-      this.quoteString = builder.quoteString;
-      this.stockPrice = builder.stockPrice;
-      this.strike = builder.strike;
-      this.bid = builder.bid;
-      this.ask = builder.ask;
-      this.last = builder.last;
-      this.vol = builder.vol;
-      this.open = builder.open;
-    }
+  }
+ 
+  private Option( Builder builder ) {
+    this.quoteString = builder.quoteString;
+    this.stockPrice = builder.stockPrice;
+    this.strike = builder.strike;
+    this.bid = builder.bid;
+    this.ask = builder.ask;
+    this.last = builder.last;
+    this.vol = builder.vol;
+    this.open = builder.open;
   }
 }
