@@ -1,5 +1,7 @@
+import java.util.Random;
 import java.util.Collections;
 import java.util.Date;
+import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +30,7 @@ public class OptionAnalyzer {
             sb.append(tmp + "\n");
           }
           List<Option> options = OptionParse.parse(sb.toString());
+          options = randomize( options );
           analyze( options );
         }
 	System.out.println(new Date().toString());
@@ -46,12 +49,52 @@ public class OptionAnalyzer {
       }
     }
     Collections.sort( l );
+    render( l );
+  }
+
+  public static void render( List<OptionValue> l ) {
     int i = 0;
+    String prolog = "<html> <head> <title> Option Analyzer"
+                    + "results </title> <meta http-equiv=\"refresh\" content=\"2\">" 
+                    + "</head>";
+
+    StringBuffer sb = new StringBuffer(prolog);
+    sb.append("<body>\n");
     for ( OptionValue ov :  l ) {
-      System.out.println(i++ + " " + ov.toString() );
+      sb.append("<li>" +  ov.toString() );
       if ( i > 10 ) {
         break;
       }
     }
+    sb.append("</body>\n");
+    try {
+      File resultFile = new File("analyzer.html");
+      Files.write(sb.toString(), resultFile, Charsets.UTF_8 );
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    System.out.println(sb.toString());
   }
+
+  public static double update(Random r) { return 1.0 + r.nextDouble()/10.0; }
+
+  public static List<Option> randomize( List<Option> l ) {
+    List<Option> randomizedOptions = new ArrayList<Option>();
+    Random r = new Random();
+    for ( Option o : l ) {
+      Option ro = new Option.Builder( o.quoteString, o.stockPrice * update(r) )
+                        .strike( o.strike * update(r) )
+                        .last( o.last * update(r) )
+                        .change( o.change * update(r) )
+                        .bid( o.bid * update(r) )
+                        .ask( o.ask * update(r) )
+                        .vol( (int) ( o.vol * update(r) ) )
+                        .open( (int) ( o.open * update(r) ) )
+                        .build();
+      
+      randomizedOptions.add( ro );
+    }
+    return randomizedOptions;
+  }
+
 }

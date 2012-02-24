@@ -20,14 +20,9 @@ public class OptionParse {
     List<Option> result = new ArrayList<Option>();
     while ( i < N) {
       Option.Builder optBuilder = new Option.Builder( lines[i+2], currentPrice );
-      optBuilder.strike( lines[i+1] );
-      optBuilder.last( lines[i+3] );
-      optBuilder.change( lines[i+4] );
-      optBuilder.bid( lines[i+5] );
-      optBuilder.ask( lines[i+6] );
-      optBuilder.vol( lines[i+7] );
-      optBuilder.open( lines[i+8] );
-      Option opt = optBuilder.build();
+      Option opt = new Option.Builder( lines[i+2], currentPrice ).strike( lines[i+1] )
+                          .last( lines[i+3] ).change( lines[i+4] ).bid( lines[i+5] )
+                          .ask( lines[i+6] ).vol( lines[i+7] ).open( lines[i+8] ).build();
       result.add( opt );
       i += 8;
     }
