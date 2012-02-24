@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -38,12 +39,18 @@ public class OptionAnalyzer {
   }
 
   public static void analyze( List<Option> options) {
+    List<OptionValue> l = new ArrayList<OptionValue>();
     for ( Option opt : options ) {
-      double ask = opt.ask;
-      if ( opt.isCall && ( opt.strike - opt.stockPrice ) <= 0.5 * ask ) {
-        System.out.println("Winner: " + opt.toString() );
-      } else {
-        System.out.println("Loser: " + opt.toString() );
+      if ( opt.isCall ) {
+        l.add( new OptionValue( opt, ( opt.strike - opt.stockPrice ) ) );
+      }
+    }
+    Collections.sort( l );
+    int i = 0;
+    for ( OptionValue ov :  l ) {
+      System.out.println(i++ + " " + ov.toString() );
+      if ( i > 10 ) {
+        break;
       }
     }
   }

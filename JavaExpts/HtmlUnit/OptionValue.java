@@ -1,14 +1,24 @@
 public class OptionValue implements Comparable {
-  double value;
   Option opt;
+  double value;
 
-  public int compareTo( OptionValue ov ) {
+  public int compareTo( Object ovObject ) {
+    OptionValue ov = (OptionValue) ovObject;
     if ( value < ov.value ) {
-      return -1;
-    } else if ( value > ov.value ) {
       return 1;
+    } else if ( value > ov.value ) {
+      return -1;
     } else {
       return 0;
     }
+  }
+
+  public OptionValue( Option op, double value ) {
+    this.opt = op;
+    this.value = value;
+  }
+
+  public String toString() {
+    return ( new Double( value ).toString() ) + " " + opt.toString();
   }
 }
