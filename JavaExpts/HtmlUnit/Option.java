@@ -1,4 +1,5 @@
 import com.google.common.base.CharMatcher;
+import com.google.common.base.Joiner;
 
 public class Option {
 
@@ -86,7 +87,18 @@ public class Option {
   }
 
   public String toString() {
-    return quoteString;
+    Joiner joiner = Joiner.on(",").skipNulls();
+    return joiner.join(quoteString, 
+    			"stockPrice:" + new Double( stockPrice ).toString(), 
+    			"change:" + new Double( change ).toString(), 
+    			"strike:" + new Double( strike ).toString(), 
+    			"bid:" + new Double( bid ).toString(), 
+    			"ask:" + new Double( ask ).toString(), 
+    			"last:" + new Double( last ).toString(), 
+    			"vol:" + new Integer( vol ).toString(), 
+    			"open:"  + new Integer( open ).toString(), 
+			(isCall ? "call" : "put") );
+
   }
 
   public static boolean isCall( String quoteString ) {

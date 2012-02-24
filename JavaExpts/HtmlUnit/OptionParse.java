@@ -5,14 +5,20 @@ import com.google.common.io.*;
 import com.google.common.base.Charsets;
 
 public class OptionParse {
+
+  public static void printLines( String [] lines ) {
+    for (int i = 0 ; i < lines.length; i++ ) {
+      System.out.println("Line " + i + ": " + lines[i] );
+    }
+  }
+
   public static List<Option> parse( String dataString ) {
-    String lines[] = dataString.split( "\\n");
+    String lines[] = dataString.split( "\n");
     double currentPrice = new Double( lines[0] );
     int i = 0;
     int N = ((lines.length )/ 9) * 9; // use this to skip last blank line
     List<Option> result = new ArrayList<Option>();
     while ( i < N) {
-      System.out.println( lines[i+1] + " , " + lines[i+2] );
       Option.Builder optBuilder = new Option.Builder( lines[i+2], currentPrice );
       optBuilder.strike( lines[i+1] );
       optBuilder.last( lines[i+3] );
