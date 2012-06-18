@@ -17,9 +17,6 @@ namespace quotes {
 
 namespace {
 
-const ::google::protobuf::Descriptor* Quote_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  Quote_reflection_ = NULL;
 const ::google::protobuf::Descriptor* QuoteList_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   QuoteList_reflection_ = NULL;
@@ -33,24 +30,9 @@ void protobuf_AssignDesc_quotes_2eproto() {
     ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
       "quotes.proto");
   GOOGLE_CHECK(file != NULL);
-  Quote_descriptor_ = file->message_type(0);
-  static const int Quote_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Quote, price_),
-  };
-  Quote_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      Quote_descriptor_,
-      Quote::default_instance_,
-      Quote_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Quote, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Quote, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(Quote));
-  QuoteList_descriptor_ = file->message_type(1);
+  QuoteList_descriptor_ = file->message_type(0);
   static const int QuoteList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(QuoteList, price_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(QuoteList, quote_),
   };
   QuoteList_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -76,16 +58,12 @@ inline void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    Quote_descriptor_, &Quote::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     QuoteList_descriptor_, &QuoteList::default_instance());
 }
 
 }  // namespace
 
 void protobuf_ShutdownFile_quotes_2eproto() {
-  delete Quote::default_instance_;
-  delete Quote_reflection_;
   delete QuoteList::default_instance_;
   delete QuoteList_reflection_;
 }
@@ -97,14 +75,11 @@ void protobuf_AddDesc_quotes_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\014quotes.proto\022\006quotes\"\026\n\005Quote\022\r\n\005price"
-    "\030\001 \002(\001\")\n\tQuoteList\022\034\n\005price\030\001 \003(\0132\r.quo"
-    "tes.Quote", 89);
+    "\n\014quotes.proto\022\006quotes\"\032\n\tQuoteList\022\r\n\005q"
+    "uote\030\001 \003(\001", 50);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "quotes.proto", &protobuf_RegisterTypes);
-  Quote::default_instance_ = new Quote();
   QuoteList::default_instance_ = new QuoteList();
-  Quote::default_instance_->InitAsDefaultInstance();
   QuoteList::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_quotes_2eproto);
 }
@@ -120,213 +95,7 @@ struct StaticDescriptorInitializer_quotes_2eproto {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Quote::kPriceFieldNumber;
-#endif  // !_MSC_VER
-
-Quote::Quote()
-  : ::google::protobuf::Message() {
-  SharedCtor();
-}
-
-void Quote::InitAsDefaultInstance() {
-}
-
-Quote::Quote(const Quote& from)
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void Quote::SharedCtor() {
-  _cached_size_ = 0;
-  price_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-Quote::~Quote() {
-  SharedDtor();
-}
-
-void Quote::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-void Quote::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* Quote::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Quote_descriptor_;
-}
-
-const Quote& Quote::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_quotes_2eproto();  return *default_instance_;
-}
-
-Quote* Quote::default_instance_ = NULL;
-
-Quote* Quote::New() const {
-  return new Quote;
-}
-
-void Quote::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    price_ = 0;
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool Quote::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required double price = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &price_)));
-          set_has_price();
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void Quote::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // required double price = 1;
-  if (has_price()) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->price(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* Quote::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // required double price = 1;
-  if (has_price()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->price(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int Quote::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required double price = 1;
-    if (has_price()) {
-      total_size += 1 + 8;
-    }
-    
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void Quote::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const Quote* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const Quote*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void Quote::MergeFrom(const Quote& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_price()) {
-      set_price(from.price());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void Quote::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void Quote::CopyFrom(const Quote& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool Quote::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
-  
-  return true;
-}
-
-void Quote::Swap(Quote* other) {
-  if (other != this) {
-    std::swap(price_, other->price_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata Quote::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Quote_descriptor_;
-  metadata.reflection = Quote_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-#ifndef _MSC_VER
-const int QuoteList::kPriceFieldNumber;
+const int QuoteList::kQuoteFieldNumber;
 #endif  // !_MSC_VER
 
 QuoteList::QuoteList()
@@ -378,7 +147,7 @@ QuoteList* QuoteList::New() const {
 }
 
 void QuoteList::Clear() {
-  price_.Clear();
+  quote_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -389,17 +158,24 @@ bool QuoteList::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .quotes.Quote price = 1;
+      // repeated double quote = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_price:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_price()));
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_quote:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 1, 9, input, this->mutable_quote())));
+        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
+                   == ::google::protobuf::internal::WireFormatLite::
+                      WIRETYPE_LENGTH_DELIMITED) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, this->mutable_quote())));
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(10)) goto parse_price;
+        if (input->ExpectTag(9)) goto parse_quote;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -422,10 +198,10 @@ bool QuoteList::MergePartialFromCodedStream(
 
 void QuoteList::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .quotes.Quote price = 1;
-  for (int i = 0; i < this->price_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->price(i), output);
+  // repeated double quote = 1;
+  for (int i = 0; i < this->quote_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(
+      1, this->quote(i), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -436,11 +212,10 @@ void QuoteList::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* QuoteList::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .quotes.Quote price = 1;
-  for (int i = 0; i < this->price_size(); i++) {
+  // repeated double quote = 1;
+  for (int i = 0; i < this->quote_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->price(i), target);
+      WriteDoubleToArray(1, this->quote(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -453,12 +228,11 @@ void QuoteList::SerializeWithCachedSizes(
 int QuoteList::ByteSize() const {
   int total_size = 0;
   
-  // repeated .quotes.Quote price = 1;
-  total_size += 1 * this->price_size();
-  for (int i = 0; i < this->price_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->price(i));
+  // repeated double quote = 1;
+  {
+    int data_size = 0;
+    data_size = 8 * this->quote_size();
+    total_size += 1 * this->quote_size() + data_size;
   }
   
   if (!unknown_fields().empty()) {
@@ -486,7 +260,7 @@ void QuoteList::MergeFrom(const ::google::protobuf::Message& from) {
 
 void QuoteList::MergeFrom(const QuoteList& from) {
   GOOGLE_CHECK_NE(&from, this);
-  price_.MergeFrom(from.price_);
+  quote_.MergeFrom(from.quote_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -504,15 +278,12 @@ void QuoteList::CopyFrom(const QuoteList& from) {
 
 bool QuoteList::IsInitialized() const {
   
-  for (int i = 0; i < price_size(); i++) {
-    if (!this->price(i).IsInitialized()) return false;
-  }
   return true;
 }
 
 void QuoteList::Swap(QuoteList* other) {
   if (other != this) {
-    price_.Swap(&other->price_);
+    quote_.Swap(&other->quote_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

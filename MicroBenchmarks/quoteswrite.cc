@@ -2,14 +2,18 @@
 #include <fstream>
 #include <string>
 #include "quotes.pb.h"
+#include <stdio.h>
 using namespace std;
 
 // This function fills in a Person message based on user input.
-void addq(quotes::Quote* q) {
-  cout << "Enter quote: ";
+void addquotes(quotes::QuoteList* ql) {
+  FILE *fp = fopen("q.txt", "r");
   double p;
-  cin >> p;
-  q->set_price(p);
+  while ( EOF != fscanf(fp, "%lf", & p ) ) {
+    ql->add_quote(p);
+    // printf("processed %lf\n", p );
+  }
+  fclose(fp);
 }
 
 int main(int argc, char* argv[]) {
@@ -22,15 +26,14 @@ int main(int argc, char* argv[]) {
     return -1;
   }
 
-  quotes::Quote q;
+  quotes::QuoteList ql;
 
-  // Add an quote.
-  addq(&q);
+  addquotes(&ql);
 
   {
-    // Write the new address book back to disk.
+    // Write the new quote list back to disk.
     fstream output(argv[1], ios::out | ios::trunc | ios::binary);
-    if (!q.SerializeToOstream(&output)) {
+    if (!ql.SerializeToOstream(&output)) {
       cerr << "Failed to write quote file." << endl;
       return -1;
     }

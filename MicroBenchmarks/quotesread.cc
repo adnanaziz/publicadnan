@@ -5,11 +5,11 @@
 using namespace std;
 
 // Iterates though all people in the AddressBook and prints info about them.
-void ListQuotes(const quotes::Quote& qlist) {
-  for (int i = 0; i < qlist._size(); i++) {
-    const quotes::Quote& q = qlist.quote(i);
-
-    cout << "Q=" << q.quote() << endl;
+void ListQuotes(const quotes::QuoteList& qlist) {
+  cout << "number of entries = " << qlist.quote_size() << endl;
+  for (int i = 0; i < qlist.quote_size(); i++) {
+    cout << "Q=" << qlist.quote(i) << endl;
+  }
 }
 
 // Main function:  Reads the entire address book from a file and prints all
@@ -24,18 +24,18 @@ int main(int argc, char* argv[]) {
     return -1;
   }
 
-  quotes::Quote q;
+  quotes::QuoteList q;
 
   {
     // Read the existing address book.
     fstream input(argv[1], ios::in | ios::binary);
-    if (!address_book.ParseFromIstream(&input)) {
+    if (!q.ParseFromIstream(&input)) {
       cerr << "Failed to parse address book." << endl;
       return -1;
     }
   }
 
-  ListQuotes(address_book);
+  ListQuotes(q);
 
   // Optional:  Delete all global objects allocated by libprotobuf.
   google::protobuf::ShutdownProtobufLibrary();
