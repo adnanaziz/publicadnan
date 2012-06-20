@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// 5366146 is the number of lines in q.txt, which
+// is the number of quotes
+#define N 5366146
+
 /*************************************************************************
 // This program shows the basic usage of the LZO library.
 // We will compress a block of data and decompress again.
@@ -24,11 +28,11 @@
 
 /*
 #if defined(__LZO_STRICT_16BIT)
-#define IN_LEN      (5366146*sizeof(double))
+#define IN_LEN      (N*sizeof(double))
 #elif defined(LZO_ARCH_I086) && !defined(LZO_HAVE_MM_HUGE_ARRAY)
-#define IN_LEN      (5366146*sizeof(double))
+#define IN_LEN      (N*sizeof(double))
 #else
-#define IN_LEN      (5366146*sizeof(double))
+#define IN_LEN      (N*sizeof(double))
 #endif
 #define OUT_LEN     (IN_LEN + IN_LEN / 16 + 64 + 3)
 
@@ -46,7 +50,15 @@ static unsigned char __LZO_MMODEL out [ OUT_LEN ];
 
 static HEAP_ALLOC(wrkmem, LZO1X_1_MEM_COMPRESS);
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]){
+  int i;
+  int doDecomp=1;
+  for ( i = 0 ; i < 10; i++ ) {
+    profile(doDecomp);
+  }
+}
+
+int profile(int doDecomp) 
 {
     int r;
     lzo_uint new_len;
@@ -62,13 +74,21 @@ int main(int argc, char *argv[])
         return 3;
     }
 
-    // 5366146 is the number of lines in q.txt, which
-    // is the number of quotes
-    adnan_out_len = adnan_in_len = 5366146*sizeof(double);
-    static char adnan_in[5366146*sizeof(double)];
-    static char adnan_out[5366146*sizeof(double)];
+    adnan_out_len = adnan_in_len = N*sizeof(double);
+    static char adnan_in[N*sizeof(double)];
+    static char adnan_out[N*sizeof(double)];
     char *tmp = adnan_in;
     FILE *fp = fopen("q.txt", "r");
+    if ( fp == NULL ) {
+      // create dummy file
+      fp = fopen("q.txt", "w");
+      int j;
+      for ( j = 0 ; j < N; j++ ) {
+         fprintf(fp, "%d\n", rand() % 128 ); 
+      }
+      fclose(fp);
+      fp = fopen("q.txt", "r");
+    }
     double p;
     while ( EOF != fscanf(fp, "%lf", &p ) ) {
       // printf("%lf\n", p );
@@ -77,9 +97,9 @@ int main(int argc, char *argv[])
     }
     fclose(fp);
     int i;
-    for ( i = 0 ; i < 5366146; i++ ) {
+    // for ( i = 0 ; i < N; i++ ) {
       // printf("wrote in %lf\n", ((double*)adnan_in)[i]);
-    }
+    // }
 
 
     // AA: commented out
@@ -101,7 +121,10 @@ int main(int argc, char *argv[])
         printf("This block contains incompressible data.\n");
         return 0;
     }
-
+    if (!doDecomp) {
+      printf("no decomp\n");
+      return 0;
+    }
 
     new_len = adnan_in_len;
     // r = lzo1x_decompress(out,out_len,in,&new_len,NULL);

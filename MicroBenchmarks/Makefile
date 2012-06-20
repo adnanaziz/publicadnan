@@ -1,3 +1,8 @@
+
+textlzo: testlzo.c
+	gcc -O4 -o testlzo testlzo.c minilzo-2.06/minilzo.c -Iminilzo-2.06
+
+
 SRCDIR=.
 DSTDIR=.
 
