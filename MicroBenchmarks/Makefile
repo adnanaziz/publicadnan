@@ -1,4 +1,7 @@
 
+mem: mem.c
+	gcc -O4 -o mem mem.c -lpthread
+
 textlzo: testlzo.c
 	gcc -O4 -o testlzo testlzo.c minilzo-2.06/minilzo.c -Iminilzo-2.06
 
