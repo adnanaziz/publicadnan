@@ -1,9 +1,18 @@
 
+SNAPPYDIR = ./snappy-1.0.5
+
+						# $(SNAPPYDIR)/snappy_unittest-snappy-test.o $(SNAPPYDIR)/snappy_unittest-snappy_unittest.o
+SNAPPYOBJS = $(SNAPPYDIR)/snappy-c.o $(SNAPPYDIR)/snappy.o $(SNAPPYDIR)/snappy-sinksource.o $(SNAPPYDIR)/snappy-stubs-internal.o 
+
+CFLAGS = -g -fpermissive
+
+
 mem: mem.c
 	gcc -O4 -o mem mem.c -lpthread
 
 textlzo: testlzo.c
-	gcc -O4 -o testlzo testlzo.c minilzo-2.06/minilzo.c -Iminilzo-2.06
+	g++ $(CFLAGS)  -c  testlzo.c minilzo-2.06/minilzo.c -Iminilzo-2.06 -I$(SNAPPYDIR); \
+	g++ $(CFLAGS)  -o testlzo testlzo.o minilzo-2.06/minilzo.o -Iminilzo-2.06 $(SNAPPYOBJS)  -I$(SNAPPYDIR) 
 
 
 SRCDIR=.
