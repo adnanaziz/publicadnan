@@ -61,10 +61,10 @@ static HEAP_ALLOC(wrkmem, LZO1X_1_MEM_COMPRESS);
 
 int main(int argc, char *argv[]){
   int i;
-  int doDecomp=1;
+  int doDecomp=0;
   init();
   for ( i = 0 ; i < 100; i++ ) {
-    profile(doDecomp, SNAPPY);
+    profile(doDecomp, LZO);
   }
 }
 

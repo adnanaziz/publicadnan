@@ -4,7 +4,7 @@ SNAPPYDIR = ./snappy-1.0.5
 						# $(SNAPPYDIR)/snappy_unittest-snappy-test.o $(SNAPPYDIR)/snappy_unittest-snappy_unittest.o
 SNAPPYOBJS = $(SNAPPYDIR)/snappy-c.o $(SNAPPYDIR)/snappy.o $(SNAPPYDIR)/snappy-sinksource.o $(SNAPPYDIR)/snappy-stubs-internal.o 
 
-CFLAGS = -g -fpermissive
+CFLAGS = -O4 -fpermissive
 
 
 mem: mem.c
