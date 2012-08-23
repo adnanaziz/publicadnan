@@ -2,6 +2,19 @@ import java.util.Stack;
 import java.util.zip.DataFormatException;
 import java.util.EmptyStackException;
 
+import java.lang.annotation.*;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.*;
+
+@Target(TYPE)
+@Retention(RUNTIME)
+
+@interface Author {
+  public String name() default  "Missing Name" ;
+  public String uteid() default  "Missing UTEID" ;
+}
+
+@Author(name="Adnan Aziz", uteid="aa123")
 public class RPN {
 
   public static boolean isStringNumber( String s ) {
