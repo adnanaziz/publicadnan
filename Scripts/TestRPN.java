@@ -18,15 +18,45 @@ public class TestRPN {
     // System.out.println("Setting up");
   }
 
+  // should be a better way to do this using existing lib function
+  static String getAnnotationAttributeValue( Annotation [] annos, String annoName, String attribute ) {
+    String annoLine = null;
+    for ( Annotation anno : annos ) {
+      if ( anno.toString().startsWith( annoName ) ) {
+        annoLine = anno.toString();
+        break;
+      }
+    }
+    if ( annoLine == null ) {
+      return null;
+    }
+    // annLine is of the form:
+    // "@Author(name=Adnan Aziz, uteid=aa123)"
+    String tmp1 = annoLine.replace("@Author", "");
+    String tmp2 = tmp1.replace("(", "");
+    String tmp3 = tmp2.replace(")", "");
+    String attribValuePairs[] = tmp3.split(",");
+    for ( int i = 0 ; i < attribValuePairs.length; i++ ) {
+      // System.out.println("a-v:" + attribValuePairs[i]);
+      String pair[] = attribValuePairs[i].trim().split("=");
+      for( int j = 0 ; j < pair.length; j++ ) {
+        // System.out.println(pair[j]);
+      }
+      if ( pair[0].equals( attribute ) ) {
+        return pair[1];
+      }
+    }
+    return null;
+  }
+
   @AfterClass
   public static void oneTimeTearDown() {
-    System.out.println("\nFinal score is " + score );
     Class rpn = RPN.class;
     Annotation[] annos = rpn.getDeclaredAnnotations();
-    // System.out.println("The annotations are:");
-    for ( Annotation anno : annos ) {
-      System.out.println(anno);
-    }
+    String name = getAnnotationAttributeValue( annos, "@Author", "name" );
+
+    String uteid = getAnnotationAttributeValue( annos, "@Author", "uteid" );
+    System.out.println("\nName:" + name + "\nUTEID:" + uteid + "\nScore:" + score);
   }
 
   @Test
