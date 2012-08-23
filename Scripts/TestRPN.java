@@ -56,7 +56,7 @@ public class TestRPN {
     String name = getAnnotationAttributeValue( annos, "@Author", "name" );
 
     String uteid = getAnnotationAttributeValue( annos, "@Author", "uteid" );
-    System.out.println("\nName:" + name + "\nUTEID:" + uteid + "\nScore:" + score);
+    System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
 
   @Test
