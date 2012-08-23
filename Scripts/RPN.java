@@ -1,5 +1,6 @@
 import java.util.Stack;
 import java.util.zip.DataFormatException;
+import java.util.EmptyStackException;
 
 public class RPN {
 
@@ -16,30 +17,41 @@ public class RPN {
     Stack<Integer> stack = new Stack<Integer>();
     String [] strings = s.split(" ");
     for ( int i = 0 ; i < strings.length; i++ ) {
-      if ( isStringNumber( strings[i] ) ) {
-        stack.push( new Integer( strings[i] ) );
-      } else if ( strings[i].equals("+") ) {
-        int a = stack.pop();
-        int b = stack.pop();
-        stack.push( a + b );
-      } else if ( strings[i].equals("*") ) {
-        int a = stack.pop();
-        int b = stack.pop();
-        stack.push( a + b );
-      } else {
-        throw new DataFormatException("Unknown operation: " +  strings[i]);
+      try {
+        if ( isStringNumber( strings[i] ) ) {
+          stack.push( new Integer( strings[i] ) );
+        } else if ( strings[i].equals("+") ) {
+          int a = stack.pop();
+          int b = stack.pop();
+          stack.push( a + b );
+        } else if ( strings[i].equals("*") ) {
+          int a = stack.pop();
+          int b = stack.pop();
+          stack.push( a + b );
+        } else {
+          throw new DataFormatException("Unknown operation: " +  strings[i]);
+        }
+      } catch (EmptyStackException e) {
+          throw new DataFormatException("Stack empty operation: " +  e.toString());
       }
     }
     return stack.pop();
   }
 
-  public static void main(String args[]) {
+  public static void testEvalRPN( String s ) {
     try {
-      evalRPN( "1 2 +" );
-      evalRPN( "1 2 + 3 *" );
-      evalRPN( "1 2 + 3 * +" );
+      evalRPN( s );
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  public static void main(String args[]) {
+    testEvalRPN( "1 2 +" );
+    testEvalRPN( "1 2 + 3 *" );
+    testEvalRPN( "1 2 + 3 * +" );
+    testEvalRPN( "+" );
+    testEvalRPN( "a b +" );
+    testEvalRPN( "12.3 44 +" );
   }
 }
