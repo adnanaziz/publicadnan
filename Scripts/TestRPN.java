@@ -166,5 +166,37 @@ public class TestRPN {
       score += 10;
     }
   }
-}
 
+  @Test 
+  public void testNumberFormatException() {
+    try {
+      RPN.evalRPN("1.0 2 + ");
+      fail("Should have thrown IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      assertTrue(true);
+      score += 10;
+    }
+  }
+
+  @Test 
+  public void testUnsupportedOperandException() {
+    try {
+      RPN.evalRPN("1 2 % ");
+      fail("Should have thrown IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      assertTrue(true);
+      score += 10;
+    }
+  }
+
+  @Test 
+  public void testUnsupportedOperandAndNumberFormatException() {
+    try {
+      RPN.evalRPN("1 1 + 2.0 % ");
+      fail("Should have thrown IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      assertTrue(e.toString().indexOf("Bad input:3") != -1);
+      score += 10;
+    }
+  }
+}
