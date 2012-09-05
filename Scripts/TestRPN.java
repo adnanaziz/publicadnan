@@ -54,35 +54,117 @@ public class TestRPN {
     Class rpn = RPN.class;
     Annotation[] annos = rpn.getDeclaredAnnotations();
     String name = getAnnotationAttributeValue( annos, "@Author", "name" );
-
     String uteid = getAnnotationAttributeValue( annos, "@Author", "uteid" );
     System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
 
   @Test
-  public void testBadSum() throws DataFormatException {
-    assertEquals( RPN.evalRPN("2 2 +"), 3 );
-    // note: the increment below does not happen since
-    // the assert fails. furthermore, no additional
-    // code will be invoked (see example below)
-    // therefore all tests should have a SINGLE assert
-    // (since if it fails, all subsequent ones are skipped
-    score += 10;
-    // this code will not be invoked since the previous
-    // assert fails. in particular the score will not be incremented
-    // by 10 in the line following it
-    assertEquals( RPN.evalRPN("1 2 +"), 3 );
-    score += 10;
+  public void testSimpleAdd() {
+    assertEquals( 2, RPN.evalRPN("1 1 +") );
+    score += 5;
   }
 
   @Test
-  public void testEmptyStackExceptionThrown() throws DataFormatException {
+  public void testSimpleSubtract() {
+    assertEquals( 1, RPN.evalRPN("2 1 -") );
+    score += 5;
+  }
+
+  @Test
+  public void testSimpleDivide() {
+    assertEquals( 2, RPN.evalRPN("4 2 /") );
+    score += 5;
+  }
+
+  @Test
+  public void testSimpleMultiply() {
+    assertEquals( 42, RPN.evalRPN("7 6 *") );
+    score += 5;
+  }
+
+  @Test
+  public void testAddWithNegative() {
+    assertEquals( -1, RPN.evalRPN("-7 6 +") );
+    score += 5;
+  }
+
+  @Test
+  public void testSubtractWithNegative() {
+    assertEquals( -1, RPN.evalRPN("-7 -6 -") );
+    score += 5;
+  }
+
+  @Test
+  public void testComplex() {
+    assertEquals( -30, RPN.evalRPN(" 2 -7 + -6 * -1 /") );
+    score += 5;
+  }
+
+  @Test
+  public void testComplexWhitespace1() {
+    assertEquals( -30, RPN.evalRPN(" 2    -7    + -6    * -1 /  ") );
+    score += 5;
+  }
+
+  @Test
+  public void testComplexWhitespace2() {
+    assertEquals( -26, RPN.evalRPN(" 4 555 + -555 + 2    -7    + -6    * -1 /  + ") );
+    score += 5;
+  }
+
+  @Test
+  public void testEmptyStackExceptionThrown() {
     try {
       RPN.evalRPN("1 +");
-      fail("Should have thrown DataFormatException");
-    } catch (DataFormatException e) {
+      fail("Should have thrown EmptyStackException");
+    } catch (EmptyStackException e) {
       assertTrue(true);
       score += 10;
     }
   }
+
+  @Test 
+  public void testDivideByZero() {
+    try {
+      RPN.evalRPN("100 0 /");
+      fail("Should have thrown ArithmeticException");
+    } catch (ArithmeticException e) {
+      assertTrue(true);
+      score += 10;
+    }
+  }
+
+  @Test 
+  public void testDivideByZeroCorrectMessage() {
+    try {
+      RPN.evalRPN("100 0 /");
+      fail("Should have thrown ArithmeticException");
+    } catch (ArithmeticException e) {
+      assertTrue(e.toString().indexOf("Divide by zero:2") != -1);
+      score += 10;
+    }
+  }
+
+  @Test 
+  public void testStackLeftoverException() {
+    try {
+      RPN.evalRPN("-1 23 + 456");
+      fail("Should have thrown StackLeftoverException");
+    } catch (StackLeftoverException e) {
+      assertTrue(true);
+      score += 10;
+    }
+  }
+
+  @Test 
+  public void testStackLeftoverExceptionCorrectMessage() {
+    try {
+      RPN.evalRPN("-1 23 + 456");
+      fail("Should have thrown StackLeftoverException");
+    } catch (StackLeftoverException e) {
+      assertTrue(e.toString().indexOf("Stack contains more than one entry:22,456") != -1);
+      score += 10;
+    }
+  }
 }
+

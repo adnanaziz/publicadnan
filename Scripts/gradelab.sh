@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function test {
-  svn co https://subversion.assembla.com/svn/$1 RPN.java
+  # svn co https://subversion.assembla.com/svn/$1 RPN.java
   ./run.sh | grep "@score" >> labgrades.csv
 }
 
