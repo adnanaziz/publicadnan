@@ -21,16 +21,16 @@ class StackLeftoverException extends RuntimeException {
 public class Postfix {
     
   //TODO(EE422C): implement this function as per the lab specification
-  public static int evalRPN( String s ) throws 
+  public static int evalPostfix( String s ) throws 
 
   }
 
   // this is a convenience function; it's a little
   // easier to experiment with the calculator without junit
   // using the main within the class, specified below
-  public static void testEvalRPN( String s ) {
+  public static void testEvalPostfix( String s ) {
     try {
-      Integer result = evalRPN( s );
+      Integer result = evalPostfix( s );
       System.out.println(s + " = " + result );
     } catch (Exception e) {
       e.printStackTrace();
@@ -38,15 +38,15 @@ public class Postfix {
   }
 
   public static void main(String args[]) {
-    testEvalRPN( "1 3 + 0 /" );
-    testEvalRPN( " 2    -7    + -6    * -1 /  ");
-    testEvalRPN( "1 2 +" );
-    testEvalRPN( "1 2 + 3 *" );
-    testEvalRPN( "1 2 + 3 * +" );
-    testEvalRPN( " 0 1 2 + 3 * +" );
-    testEvalRPN( " 0 1 2 + 3 * + -123" );
-    testEvalRPN( "+" );
-    testEvalRPN( "a b +" );
-    testEvalRPN( "12.3 44 +" );
+    testEvalPostfix( "1 3 + 0 /" );
+    testEvalPostfix( " 2    -7    + -6    * -1 /  ");
+    testEvalPostfix( "1 2 +" );
+    testEvalPostfix( "1 2 + 3 *" );
+    testEvalPostfix( "1 2 + 3 * +" );
+    testEvalPostfix( " 0 1 2 + 3 * +" );
+    testEvalPostfix( " 0 1 2 + 3 * + -123" );
+    testEvalPostfix( "+" );
+    testEvalPostfix( "a b +" );
+    testEvalPostfix( "12.3 44 +" );
   }
 }
