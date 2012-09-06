@@ -6,6 +6,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Target(TYPE)
 @Retention(RUNTIME)
 
+//TODO(EE422C): update these to your name and eid
 @interface Author {
   public String name() default  "John Snow" ;
   public String uteid() default  "js123" ;
@@ -17,6 +18,7 @@ class StackLeftoverException extends RuntimeException {
 
 }
 
+//TODO(EE422C): update these to your name and eid
 @Author(name="John Snow", uteid="js123")
 public class Postfix {
     
@@ -37,6 +39,10 @@ public class Postfix {
     }
   }
 
+  // every class can have its own main method, and 
+  // running that class runs the main method. as
+  // this is NOT the main test suite, it's just
+  // some functions to do sanity checking. 
   public static void main(String args[]) {
     testEvalPostfix( "1 3 + 0 /" );
     testEvalPostfix( " 2    -7    + -6    * -1 /  ");
