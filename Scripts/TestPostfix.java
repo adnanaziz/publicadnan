@@ -51,8 +51,8 @@ public class TestPostfix {
 
   @AfterClass
   public static void oneTimeTearDown() {
-    Class rpn = Postfix.class;
-    Annotation[] annos = rpn.getDeclaredAnnotations();
+    Class postfix = Postfix.class;
+    Annotation[] annos = postfix.getDeclaredAnnotations();
     String name = getAnnotationAttributeValue( annos, "@Author", "name" );
     String uteid = getAnnotationAttributeValue( annos, "@Author", "uteid" );
     System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
