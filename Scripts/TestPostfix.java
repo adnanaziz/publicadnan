@@ -51,7 +51,7 @@ public class TestPostfix {
 
   @AfterClass
   public static void oneTimeTearDown() {
-    Class rpn = RPN.class;
+    Class rpn = Postfix.class;
     Annotation[] annos = rpn.getDeclaredAnnotations();
     String name = getAnnotationAttributeValue( annos, "@Author", "name" );
     String uteid = getAnnotationAttributeValue( annos, "@Author", "uteid" );
@@ -60,62 +60,62 @@ public class TestPostfix {
 
   @Test
   public void testSimpleAdd() {
-    assertEquals( 2, RPN.evalRPN("1 1 +") );
+    assertEquals( 2, Postfix.evalPostfix("1 1 +") );
     score += 5;
   }
 
   @Test
   public void testSimpleSubtract() {
-    assertEquals( 1, RPN.evalRPN("2 1 -") );
+    assertEquals( 1, Postfix.evalPostfix("2 1 -") );
     score += 5;
   }
 
   @Test
   public void testSimpleDivide() {
-    assertEquals( 2, RPN.evalRPN("4 2 /") );
+    assertEquals( 2, Postfix.evalPostfix("4 2 /") );
     score += 5;
   }
 
   @Test
   public void testSimpleMultiply() {
-    assertEquals( 42, RPN.evalRPN("7 6 *") );
+    assertEquals( 42, Postfix.evalPostfix("7 6 *") );
     score += 5;
   }
 
   @Test
   public void testAddWithNegative() {
-    assertEquals( -1, RPN.evalRPN("-7 6 +") );
+    assertEquals( -1, Postfix.evalPostfix("-7 6 +") );
     score += 5;
   }
 
   @Test
   public void testSubtractWithNegative() {
-    assertEquals( -1, RPN.evalRPN("-7 -6 -") );
+    assertEquals( -1, Postfix.evalPostfix("-7 -6 -") );
     score += 5;
   }
 
   @Test
   public void testComplex() {
-    assertEquals( -30, RPN.evalRPN(" 2 -7 + -6 * -1 /") );
+    assertEquals( -30, Postfix.evalPostfix(" 2 -7 + -6 * -1 /") );
     score += 5;
   }
 
   @Test
   public void testComplexWhitespace1() {
-    assertEquals( -30, RPN.evalRPN(" 2    -7    + -6    * -1 /  ") );
+    assertEquals( -30, Postfix.evalPostfix(" 2    -7    + -6    * -1 /  ") );
     score += 5;
   }
 
   @Test
   public void testComplexWhitespace2() {
-    assertEquals( -26, RPN.evalRPN(" 4 555 + -555 + 2    -7    + -6    * -1 /  + ") );
+    assertEquals( -26, Postfix.evalPostfix(" 4 555 + -555 + 2    -7    + -6    * -1 /  + ") );
     score += 5;
   }
 
   @Test
   public void testEmptyStackExceptionThrown() {
     try {
-      RPN.evalRPN("1 +");
+      Postfix.evalPostfix("1 +");
       fail("Should have thrown EmptyStackException");
     } catch (EmptyStackException e) {
       assertTrue(true);
@@ -126,7 +126,7 @@ public class TestPostfix {
   @Test 
   public void testDivideByZero() {
     try {
-      RPN.evalRPN("100 0 /");
+      Postfix.evalPostfix("100 0 /");
       fail("Should have thrown ArithmeticException");
     } catch (ArithmeticException e) {
       assertTrue(true);
@@ -137,7 +137,7 @@ public class TestPostfix {
   @Test 
   public void testDivideByZeroCorrectMessage() {
     try {
-      RPN.evalRPN("100 0 /");
+      Postfix.evalPostfix("100 0 /");
       fail("Should have thrown ArithmeticException");
     } catch (ArithmeticException e) {
       assertTrue(e.toString().indexOf("Divide by zero:2") != -1);
@@ -148,7 +148,7 @@ public class TestPostfix {
   @Test 
   public void testStackLeftoverException() {
     try {
-      RPN.evalRPN("-1 23 + 456");
+      Postfix.evalPostfix("-1 23 + 456");
       fail("Should have thrown StackLeftoverException");
     } catch (StackLeftoverException e) {
       assertTrue(true);
@@ -159,7 +159,7 @@ public class TestPostfix {
   @Test 
   public void testStackLeftoverExceptionCorrectMessage() {
     try {
-      RPN.evalRPN("-1 23 + 456");
+      Postfix.evalPostfix("-1 23 + 456");
       fail("Should have thrown StackLeftoverException");
     } catch (StackLeftoverException e) {
       assertTrue(e.toString().indexOf("Stack contains more than one entry:22,456") != -1);
@@ -170,7 +170,7 @@ public class TestPostfix {
   @Test 
   public void testNumberFormatException() {
     try {
-      RPN.evalRPN("1.0 2 + ");
+      Postfix.evalPostfix("1.0 2 + ");
       fail("Should have thrown IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       assertTrue(true);
@@ -181,7 +181,7 @@ public class TestPostfix {
   @Test 
   public void testUnsupportedOperandException() {
     try {
-      RPN.evalRPN("1 2 % ");
+      Postfix.evalPostfix("1 2 % ");
       fail("Should have thrown IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       assertTrue(true);
@@ -192,7 +192,7 @@ public class TestPostfix {
   @Test 
   public void testUnsupportedOperandAndNumberFormatException() {
     try {
-      RPN.evalRPN("1 1 + 2.0 % ");
+      Postfix.evalPostfix("1 1 + 2.0 % ");
       fail("Should have thrown IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       assertTrue(e.toString().indexOf("Bad input:3") != -1);
