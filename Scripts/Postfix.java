@@ -23,8 +23,7 @@ class StackLeftoverException extends RuntimeException {
 public class Postfix {
     
   //TODO(EE422C): implement this function as per the lab specification
-  public static int evalPostfix( String s ) throws 
-
+  public static int evalPostfix( String s ) throws {
   }
 
   // this is a convenience function; it's a little
