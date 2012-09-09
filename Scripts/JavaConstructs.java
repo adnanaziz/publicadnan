@@ -6,9 +6,6 @@ import java.lang.annotation.*;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
-@Target(TYPE)
-@Retention(RUNTIME)
-
 class Student {
   public double GPA;
   public String name;
@@ -27,7 +24,7 @@ class Student {
 
   public static Student [] createTestArray() {
     Student s0 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
-    Student s1 = new Student( 3.8d, "Imran Aziz", 543, "UT Arlington");
+    Student s1 = new Student( 3.8d, "Imran Aziz", 543, "MIT");
     Student s2 = new Student( 3.9d, "Aardvark Smith", 459, "Berkeley");
     Student s3 = new Student( 2.9d, "Thomas Jefferson", 453, "UT Austin");
     Student s4 = new Student( 3.3d, "Matt Biondi", 3383, "Berkeley");
@@ -66,10 +63,13 @@ public class JavaConstructs {
 
    @Override  
     public boolean hasNext() {  
-     while ( currentIndex < underlyingArray.length && !underlyingArray[currentIndex].equals( school ) ) {
-       currentIndex++;
+      int tmpIndex = currentIndex;
+     while ( tmpIndex < underlyingArray.length && !underlyingArray[tmpIndex].school.equals( school ) ) {
+       // System.out.println(school + ": currentIndex = " + tmpIndex );
+       // System.out.println(underlyingArray[currentIndex]);
+       tmpIndex++;
      }
-     if ( currentIndex == underlyingArray.length ) {
+     if ( tmpIndex == underlyingArray.length ) {
        return false;
      }
      return true;
@@ -79,13 +79,15 @@ public class JavaConstructs {
     public Student next() {  
      Student currentStudent = underlyingArray[currentIndex];
      int startingIndex = currentIndex;
-     while ( currentIndex < underlyingArray.length && !underlyingArray[currentIndex].equals( school ) ) {
+     while ( currentIndex < underlyingArray.length && !underlyingArray[currentIndex].school.equals( school ) ) {
        currentIndex++;
      }
      if ( currentIndex == underlyingArray.length ) {
        throw new NoSuchElementException( "starting index = " + startingIndex);
      }
-     return underlyingArray[currentIndex];
+     Student result = underlyingArray[currentIndex];
+     currentIndex++;
+     return result;
     }  
 
     // EE422C: you do not need to implement this function
@@ -99,21 +101,27 @@ public class JavaConstructs {
       this.underlyingArray = underlyingArray;
       this.school = school;
     }
-
-    public StudentIteratorBySchool getInstance(
-      String [] underlyingArray, String schoolName ) {
-      return new StudentIteratorBySchool( underlyingArray, schoolName ) ;
-    }
   }
 
 
 
   public static void main(String [] args) {
     Student [] testCase = Student.createTestArray();
+    JavaConstructs dummy = new JavaConstructs();
     Iterator<Student> berkeleyIterator = 
-        new StudentIteratorBySchool().getInstance(testCase, "Berkeley");
+        dummy.new StudentIteratorBySchool(testCase, "Berkeley");
     while ( berkeleyIterator.hasNext() ) {
       System.out.println("berkeley: " + berkeleyIterator.next().toString());
+    }
+    Iterator<Student> mitIterator = 
+        dummy.new StudentIteratorBySchool(testCase, "MIT");
+    while ( mitIterator.hasNext() ) {
+      System.out.println("MIT: " + mitIterator.next().toString());
+    }
+    Iterator<Student> stanfordIterator = 
+        dummy.new StudentIteratorBySchool(testCase, "Stanford");
+    while ( stanfordterator.hasNext() ) {
+      System.out.println("Stanford: " + mitIterator.next().toString());
     }
   }
 }
