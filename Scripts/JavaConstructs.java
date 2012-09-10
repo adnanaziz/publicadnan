@@ -11,6 +11,7 @@ class Student {
   public String name;
   public int id;
   public String school;
+
   public Student( double GPA, String name, int id, String school) {
     this.GPA = GPA;
     this.name = name;
@@ -25,12 +26,56 @@ class Student {
   public static Student [] createTestArray() {
     Student s0 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
     Student s1 = new Student( 3.8d, "Imran Aziz", 543, "MIT");
-    Student s2 = new Student( 3.9d, "Aardvark Smith", 459, "Berkeley");
+    Student s2 = new Student( 3.5d, "Aardvark Smith", 459, "Berkeley");
     Student s3 = new Student( 2.9d, "Thomas Jefferson", 453, "UT Austin");
     Student s4 = new Student( 3.3d, "Matt Biondi", 3383, "Berkeley");
     Student [] testarray = {s0, s1, s2, s3, s4};
     return testarray;
  }
+
+ @Override
+ public boolean equals(Object o) {
+    if ( o == null ) {
+      return false;
+    }
+    if ( !( o instanceof Student ) ) {
+      return false;
+    }
+    Student os = (Student) o;
+    return (os.GPA == GPA) && os.name.equals(name) && (os.id == id) && (os.school.equals(school));
+ }
+
+}
+
+class StudentAthelete extends Student {
+  public enum SportType {Baseball, Basketball, Football, Soccer };
+  SportType sport;
+
+  public StudentAthelete( double GPA, String name, int id, String school, SportType sport) {
+    super(GPA, name, id, school);
+    this.sport = sport;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if ( o == null ) {
+      return false;
+    }
+    if ( !( o instanceof Student ) ) {
+      return false;
+    }
+    if ( !( o instanceof StudentAthelete ) ) {
+      return ( (Student) o ).equals( (Student) this );
+    }
+    boolean chk1 = super.equals((Student) o);
+    boolean chk2 = ((StudentAthelete) o).sport == this.sport;
+    return chk1 && chk2;
+  }
+
+  @Override
+  public String toString() {
+    return super.toString() + "," + sport;
+  }
 }
 
 
@@ -47,11 +92,14 @@ public class JavaConstructs {
     
   //TODO(EE422C): re-implement this function as per the lab specification
   public static String nCopies( int n, String s ) {
-    String result = "";
+    // String result = "";
+    StringBuilder sb = new StringBuilder();
     for ( int i = 0 ; i < n; i++ ) {
-      result += s;
+      // result += s;
+      sb.append(s);
     }
-    return result;
+    // return result;
+    return sb.toString();
   }
 
   //TODO(EE422C): implement this iterator as per the lab specification
@@ -103,9 +151,32 @@ public class JavaConstructs {
     }
   }
 
+  interface StudentPredicate {
+    boolean check( Student s );
+  }
+
+  public static Student [] apply( Student [] input, StudentPredicate predicate ) {
+    Student [] tmparray = new Student[input.length];
+    int i = 0;
+    for ( Student s : input ) {
+      if ( predicate.check( s ) ) {
+        tmparray[i++] = s;
+      }
+    }
+    Student [] result = new Student[i];
+    i = 0;
+    for ( Student s : tmparray ) {
+      if ( s != null ) {
+        result[i++] = s;
+      } else  {
+        break;
+      }
+    }
+    return result;
+  }
 
 
-  public static void main(String [] args) {
+  public static void checkIterator() {
     Student [] testCase = Student.createTestArray();
     JavaConstructs dummy = new JavaConstructs();
     Iterator<Student> berkeleyIterator = 
@@ -120,9 +191,54 @@ public class JavaConstructs {
     }
     Iterator<Student> stanfordIterator = 
         dummy.new StudentIteratorBySchool(testCase, "Stanford");
-    while ( stanfordterator.hasNext() ) {
+    while ( stanfordIterator.hasNext() ) {
       System.out.println("Stanford: " + mitIterator.next().toString());
     }
+  }
+
+  public static void checkPredicate() {
+    Student [] testCase = Student.createTestArray();
+    final double lowRange = 3.5;
+    final double highRange = 3.5;
+    Student [] filteredTestCase =  apply( testCase, new StudentPredicate() {
+      public boolean check( Student s ) {
+        return (s.GPA >= lowRange && s.GPA <= highRange );
+      }
+    });
+    for ( Student s : filteredTestCase ) {
+      System.out.println( "filteredTestCase:" + s );
+    }
+  }
+
+  public static void checkString() {
+    for ( int i = 1 ; i < 16; i++ ) {
+       long startTime = System.nanoTime();
+       String tmp = nCopies( (int) Math.pow(2,i), "test" );
+       long finishTime = System.nanoTime();
+       System.out.println("Iteration " + i + ": string of length " + tmp.length() + 
+         " took " + ((double)(finishTime - startTime))/1000000000.0d + " seconds");
+    }
+  }
+
+  public static void checkEquals() {
+    Student s0 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
+    Student s1 = new Student( 3.9d, "Adnan Aziz", 123, "UT Austin");
+    Student s2 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
+    StudentAthelete sa0 = new StudentAthelete( 3.9d, "Adnan Aziz", 123, "UT Austin", 
+        StudentAthelete.SportType.Baseball);
+    StudentAthelete sa1 = new StudentAthelete( 3.9d, "Adnan Aziz", 123, "UT Austin",
+        StudentAthelete.SportType.Football);
+    // System.out.println(s0 + " == " + s1 + " : " + s0.equals(s1));
+    // System.out.println(s0 + " == " + s2 + " : " + s0.equals(s1));
+    // System.out.println(s1 + " == " + sa0 + " : " + s1.equals(sa0));
+    // System.out.println(sa0 + " == " + s1 + " : " + sa0.equals(s1));
+    // System.out.println(s1 + " == " + sa1 + " : " + s1.equals(sa1));
+    // System.out.println(sa1 + " == " + s1 + " : " + sa1.equals(s1));
+    System.out.println(sa1 + " == " + sa0 + " : " + sa1.equals(sa0));
+  }
+
+  public static void main( String [] args ) {
+    checkEquals();
   }
 }
 
