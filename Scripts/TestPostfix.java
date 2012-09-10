@@ -51,7 +51,7 @@ public class TestPostfix {
 
   @AfterClass
   public static void oneTimeTearDown() {
-    Class postfix = PostfixSolutionclass;
+    Class postfix = PostfixSolution.class;
     Annotation[] annos = postfix.getDeclaredAnnotations();
     String name = getAnnotationAttributeValue( annos, "@Author", "name" );
     String uteid = getAnnotationAttributeValue( annos, "@Author", "uteid" );
@@ -60,62 +60,62 @@ public class TestPostfix {
 
   @Test
   public void testSimpleAdd() {
-    assertEquals( 2, PostfixSolutionevalPostfix("1 1 +") );
+    assertEquals( 2, PostfixSolution.evalPostfix("1 1 +") );
     score += 5;
   }
 
   @Test
   public void testSimpleSubtract() {
-    assertEquals( 1, PostfixSolutionevalPostfix("2 1 -") );
+    assertEquals( 1, PostfixSolution.evalPostfix("2 1 -") );
     score += 5;
   }
 
   @Test
   public void testSimpleDivide() {
-    assertEquals( 2, PostfixSolutionevalPostfix("4 2 /") );
+    assertEquals( 2, PostfixSolution.evalPostfix("4 2 /") );
     score += 5;
   }
 
   @Test
   public void testSimpleMultiply() {
-    assertEquals( 42, PostfixSolutionevalPostfix("7 6 *") );
+    assertEquals( 42, PostfixSolution.evalPostfix("7 6 *") );
     score += 5;
   }
 
   @Test
   public void testAddWithNegative() {
-    assertEquals( -1, PostfixSolutionevalPostfix("-7 6 +") );
+    assertEquals( -1, PostfixSolution.evalPostfix("-7 6 +") );
     score += 5;
   }
 
   @Test
   public void testSubtractWithNegative() {
-    assertEquals( -1, PostfixSolutionevalPostfix("-7 -6 -") );
+    assertEquals( -1, PostfixSolution.evalPostfix("-7 -6 -") );
     score += 5;
   }
 
   @Test
   public void testComplex() {
-    assertEquals( -30, PostfixSolutionevalPostfix(" 2 -7 + -6 * -1 /") );
+    assertEquals( -30, PostfixSolution.evalPostfix(" 2 -7 + -6 * -1 /") );
     score += 5;
   }
 
   @Test
   public void testComplexWhitespace1() {
-    assertEquals( -30, PostfixSolutionevalPostfix(" 2    -7    + -6    * -1 /  ") );
+    assertEquals( -30, PostfixSolution.evalPostfix(" 2    -7    + -6    * -1 /  ") );
     score += 5;
   }
 
   @Test
   public void testComplexWhitespace2() {
-    assertEquals( -26, PostfixSolutionevalPostfix(" 4 555 + -555 + 2    -7    + -6    * -1 /  + ") );
+    assertEquals( -26, PostfixSolution.evalPostfix(" 4 555 + -555 + 2    -7    + -6    * -1 /  + ") );
     score += 5;
   }
 
   @Test
   public void testEmptyStackExceptionThrown() {
     try {
-      PostfixSolutionevalPostfix("1 +");
+      PostfixSolution.evalPostfix("1 +");
       fail("Should have thrown EmptyStackException");
     } catch (EmptyStackException e) {
       assertTrue(true);
@@ -126,7 +126,7 @@ public class TestPostfix {
   @Test 
   public void testDivideByZero() {
     try {
-      PostfixSolutionevalPostfix("100 0 /");
+      PostfixSolution.evalPostfix("100 0 /");
       fail("Should have thrown ArithmeticException");
     } catch (ArithmeticException e) {
       assertTrue(true);
@@ -137,7 +137,7 @@ public class TestPostfix {
   @Test 
   public void testDivideByZeroCorrectMessage() {
     try {
-      PostfixSolutionevalPostfix("100 0 /");
+      PostfixSolution.evalPostfix("100 0 /");
       fail("Should have thrown ArithmeticException");
     } catch (ArithmeticException e) {
       assertTrue(e.toString().indexOf("Divide by zero:2") != -1);
@@ -148,7 +148,7 @@ public class TestPostfix {
   @Test 
   public void testStackLeftoverException() {
     try {
-      PostfixSolutionevalPostfix("-1 23 + 456");
+      PostfixSolution.evalPostfix("-1 23 + 456");
       fail("Should have thrown StackLeftoverException");
     } catch (StackLeftoverException e) {
       assertTrue(true);
@@ -159,7 +159,7 @@ public class TestPostfix {
   @Test 
   public void testStackLeftoverExceptionCorrectMessage() {
     try {
-      PostfixSolutionevalPostfix("-1 23 + 456");
+      PostfixSolution.evalPostfix("-1 23 + 456");
       fail("Should have thrown StackLeftoverException");
     } catch (StackLeftoverException e) {
       assertTrue(e.toString().indexOf("Stack contains more than one entry:22,456") != -1);
@@ -170,7 +170,7 @@ public class TestPostfix {
   @Test 
   public void testNumberFormatException() {
     try {
-      PostfixSolutionevalPostfix("1.0 2 + ");
+      PostfixSolution.evalPostfix("1.0 2 + ");
       fail("Should have thrown IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       assertTrue(true);
@@ -181,7 +181,7 @@ public class TestPostfix {
   @Test 
   public void testUnsupportedOperandException() {
     try {
-      PostfixSolutionevalPostfix("1 2 % ");
+      PostfixSolution.evalPostfix("1 2 % ");
       fail("Should have thrown IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       assertTrue(true);
@@ -192,7 +192,7 @@ public class TestPostfix {
   @Test 
   public void testUnsupportedOperandAndNumberFormatException() {
     try {
-      PostfixSolutionevalPostfix("1 1 + 2.0 % ");
+      PostfixSolution.evalPostfix("1 1 + 2.0 % ");
       fail("Should have thrown IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       assertTrue(e.toString().indexOf("Bad input:3") != -1);

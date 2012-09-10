@@ -25,7 +25,7 @@ class Student {
 
   public static Student [] createTestArray() {
     Student s0 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
-    Student s1 = new Student( 3.8d, "Imran Aziz", 543, "MIT");
+    Student s1 = new Student( 3.6d, "Imran Aziz", 543, "MIT");
     Student s2 = new Student( 3.5d, "Aardvark Smith", 459, "Berkeley");
     Student s3 = new Student( 2.9d, "Thomas Jefferson", 453, "UT Austin");
     Student s4 = new Student( 3.3d, "Matt Biondi", 3383, "Berkeley");
@@ -89,6 +89,18 @@ class StudentAthelete extends Student {
 //TODO(EE422C): update these to your name and eid
 @Author(name="John Snow", uteid="js123")
 public class JavaConstructs {
+
+   static public class GpaPredicate implements StudentPredicate {
+     double low;
+     double high;
+     public GpaPredicate( double low, double high ) {
+       this.low = low;
+       this.high = high;
+     }
+     public boolean check( Student s ) {
+       return (s.GPA>= low && s.GPA <= high );
+     }
+   }
     
   //TODO(EE422C): re-implement this function as per the lab specification
   public static String nCopies( int n, String s ) {
@@ -206,8 +218,13 @@ public class JavaConstructs {
       }
     });
     for ( Student s : filteredTestCase ) {
-      System.out.println( "filteredTestCase:" + s );
+      System.out.println( "anonymous class 3.5-3.5, GpaPredicate:" + s );
     }
+    filteredTestCase = apply( testCase, new  GpaPredicate(3.5, 3.6) );
+    for ( Student s : filteredTestCase ) {
+      System.out.println( "GpaPredicate 3.5-3.6:" + s );
+    }
+
   }
 
   public static void checkString() {
@@ -238,7 +255,8 @@ public class JavaConstructs {
   }
 
   public static void main( String [] args ) {
-    checkEquals();
+    checkPredicate();
+    // checkEquals();
   }
 }
 
