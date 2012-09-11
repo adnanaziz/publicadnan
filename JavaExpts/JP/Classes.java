@@ -4,18 +4,6 @@ interface CustomCompare {
 
 public class Classes {
 
- static public class CompareName implements CustomCompare {
-   public int compare( Student s0, Student s1 ) {
-     return s0.name.compareTo(s1.name);
-   }
- }
-
- public class CompareSchool implements CustomCompare {
-   public int compare( Student s0, Student s1 ) {
-     return s0.school.compareTo(s1.school);
-   }
- }
-
  public static Student [] createTestArray() {
     Student s0 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
     Student s1 = new Student( 3.8d, "Imran Aziz", 543, "UT Arlington");
@@ -25,18 +13,35 @@ public class Classes {
     return testarray;
  }
 
- public void dummy() {
-    Student [] testarray = createTestArray();
-    Student [] sortedSchool = mysort( testarray, new CompareSchool() );
-    System.out.println("by schools");
-    for (Student s : sortedSchool ) {
-      System.out.println(s);
-    }
+ // static member class
+ static public class CompareName implements CustomCompare {
+   public int compare( Student s0, Student s1 ) {
+     return s0.name.compareTo(s1.name);
+   }
+ }
+
+ static public CompareName compareName = new CompareName();
+
+ // nonstatic member class
+ public class CompareSchool implements CustomCompare {
+   public int compare( Student s0, Student s1 ) {
+     return s0.school.compareTo(s1.school);
+   }
+ }
+
+ // need this nonstatic function,
+ // since nonstatic class cannot be accessed
+ // from a static method
+ public Student [] compareSchool(Student [] testarray) {
+    Student [] sortedSchool = Classes.mysort( testarray, new CompareSchool() );
+    return sortedSchool;
  }
 
   public static void main(String [] args) {
+
     Student [] testarray = createTestArray();
 
+    // local class
     class CompareGpa implements CustomCompare {
       public int compare( Student s0, Student s1 ) {
         if ( s0.GPA < s1.GPA ) {
@@ -57,8 +62,10 @@ public class Classes {
     System.out.println("by gpa");
     for (Student s : sortedGpa ) {
       System.out.println(s);
-    }
+    }  
+
     Student [] sortedId = mysort( testarray,
+      // anonymous local class
       new CustomCompare() {
         public int compare( Student s0, Student s1 ) {
           if ( s0.id < s1.id ) {
@@ -77,12 +84,16 @@ public class Classes {
     }
 
     System.out.println("by name");
-    Student [] sortedName = mysort( testarray, new CompareName() );
+    Student [] sortedName = mysort( testarray, compareName );
     for (Student s : sortedName ) {
       System.out.println(s);
     }
 
-    new Classes().dummy();
+    Student [] sortedSchool = new Classes().compareSchool(testarray);
+    System.out.println("by school");
+    for (Student s : sortedSchool ) {
+      System.out.println(s);
+    }
   }
 
   public static Student [] mysort( Student [] studentArray, CustomCompare cmp ) {

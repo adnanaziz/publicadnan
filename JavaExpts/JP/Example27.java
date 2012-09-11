@@ -4,7 +4,8 @@
 
 abstract class Vessel {
   double contents;
-  abstract double capacity();
+  // abstract double capacity();
+  double capacity() { return 1.0d; };
   void fill(double amount) { contents = Math.min(contents + amount, capacity()); }
 }
 
