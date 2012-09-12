@@ -112,15 +112,26 @@ public class Option {
 
   public static final DecimalFormat df = new DecimalFormat("#.##");
 
+  public static String fields() {
+    Joiner joiner = Joiner.on(",").skipNulls();
+    return joiner.join("Quote String", 
+                "Underlying Price", "Days to Expiry", "Change", 
+                "Strike", "Bid", "Ask", "Last", "Volume", "Open", "Type" );
+  }
+
+  public double cost() {
+    return 0.5 * ( bid + ask );
+  }
+
   public String toString() {
     Date today = new Date();
     long millisToExpire = expiryDate - today.getTime();
     long daysToExpire = millisToExpire / ( 1000 * 60 * 60 * 24 );
-    String daysToExpireString = "days to expiry:" + new Double( daysToExpire ).toString();
+    String daysToExpireString = "expiry:" + new Double( daysToExpire ).toString();
     Joiner joiner = Joiner.on(",").skipNulls();
 
     return joiner.join(quoteString, 
-    			"stockPrice:" + df.format( stockPrice ),
+    			"stockprice:" + df.format( stockPrice ),
           daysToExpireString,
     			"change:" + df.format( change ),
     			"strike:" + df.format( strike ),

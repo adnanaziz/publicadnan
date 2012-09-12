@@ -19,7 +19,6 @@ public class OptionParse {
     int N = ((lines.length )/ 9) * 9; // use this to skip last blank line
     List<Option> result = new ArrayList<Option>();
     while ( i < N) {
-      Option.Builder optBuilder = new Option.Builder( lines[i+2], currentPrice );
       Option opt = new Option.Builder( lines[i+2], currentPrice ).strike( lines[i+1] )
                           .last( lines[i+3] ).change( lines[i+4] ).bid( lines[i+5] )
                           .ask( lines[i+6] ).vol( lines[i+7] ).open( lines[i+8] ).build();

@@ -19,6 +19,6 @@ public class OptionValue implements Comparable {
   }
 
   public String toString() {
-    return ( Option.df.format( value ) + " " + opt.toString() );
+    return ( Option.df.format( value ) + "," + opt.toString() );
   }
 }
