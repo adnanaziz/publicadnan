@@ -33,22 +33,52 @@ class Student {
     return testarray;
  }
 
- @Override
- public boolean equals(Object o) {
-    if ( o == null ) {
-      return false;
-    }
-    if ( !( o instanceof Student ) ) {
-      return false;
-    }
-    Student os = (Student) o;
-    return (os.GPA == GPA) && os.name.equals(name) && (os.id == id) && (os.school.equals(school));
- }
-
+  // TODO(EE422C): implement equals so that 
+  // 1. nothing equals null
+  // 2. a Student object never equals an
+  //    object that's not of Student type
+  // 3. Student objects are equal if 
+  //    they agree on all their fields
+  @Override
+  public boolean equals(Object o) {
+     //@exclude
+     if ( o == null ) {
+       return false;
+     }
+     if ( !( o instanceof Student ) ) {
+       return false;
+     }
+     Student os = (Student) o;
+     return (os.GPA == GPA) && os.name.equals(name) && (os.id == id) && (os.school.equals(school));
+     //@include
+  }
 }
 
+// TODO(EE422C): add fields and a constructor for this enum type
+// the arguments are the sport's name, the average weight of that
+// type of player, and the average GPA for that type of player
+
+enum SportType {
+  Baseball("baseball", 180,3.9d), Basketball("basketball", 175,3.7d), 
+  Football("football", 240,3.6d), Soccer("soccer", 165,3.9d);
+  //@exclude
+  private final String sportname;
+  private final int weight;
+  private final double avgGPA;
+  SportType(String sportname, int weight, double avgGPA) {
+    this.sportname = sportname;
+    this.weight = weight;
+    this.avgGPA = avgGPA;
+  }
+  @Override 
+  public String toString() { return sportname + ":" + weight + ":" + avgGPA; }
+  //@include
+  public String sportname() { return sportname; }
+  public int weight() { return weight; }
+  public double avgGPA() { return avgGPA; }
+};
+
 class StudentAthelete extends Student {
-  public enum SportType {Baseball, Basketball, Football, Soccer };
   SportType sport;
 
   public StudentAthelete( double GPA, String name, int id, String school, SportType sport) {
@@ -56,8 +86,19 @@ class StudentAthelete extends Student {
     this.sport = sport;
   }
 
+
+  // TODO(EE422C): implement equals so that 
+  // 1. nothing equals null
+  // 2. a StudentAthelete object never equals an
+  //    object that's not of Student type
+  // 3. a StudentAthelete is equal to a Student
+  //    object that's not of StudentAthelete type
+  //    if they are equal as Student objects
+  // 4. a StudentAthelete if equal to a StudentAthelete
+  //    if they agree on their inherited fields, and their sport
   @Override
   public boolean equals(Object o) {
+    //@exclude
     if ( o == null ) {
       return false;
     }
@@ -70,6 +111,7 @@ class StudentAthelete extends Student {
     boolean chk1 = super.equals((Student) o);
     boolean chk2 = ((StudentAthelete) o).sport == this.sport;
     return chk1 && chk2;
+    //@include
   }
 
   @Override
@@ -91,6 +133,11 @@ class StudentAthelete extends Student {
 public class JavaConstructs {
 
    static public class GpaPredicate implements StudentPredicate {
+     //TODO(EE422C): implement this class so that 
+     // it has low and high fields (which are doubles), 
+     // and the check function sees if the passed student 
+     // objects GPA is in the range [low, high]
+     //@exclude
      double low;
      double high;
      public GpaPredicate( double low, double high ) {
@@ -100,22 +147,24 @@ public class JavaConstructs {
      public boolean check( Student s ) {
        return (s.GPA>= low && s.GPA <= high );
      }
+     //@include
    }
     
   //TODO(EE422C): re-implement this function as per the lab specification
   public static String nCopies( int n, String s ) {
-    // String result = "";
-    StringBuilder sb = new StringBuilder();
+    //@updatestart
+    String result = "";
     for ( int i = 0 ; i < n; i++ ) {
-      // result += s;
-      sb.append(s);
+      result += s;
     }
-    // return result;
-    return sb.toString();
+    return result;
+    //@updatefinish
   }
 
   //TODO(EE422C): implement this iterator as per the lab specification
+  // the remove method should  throw an UnsupportedOperationException
   public class StudentIteratorBySchool implements Iterator<Student> {
+    //@exclude
 
    int currentIndex;
    String school;
@@ -125,8 +174,6 @@ public class JavaConstructs {
     public boolean hasNext() {  
       int tmpIndex = currentIndex;
      while ( tmpIndex < underlyingArray.length && !underlyingArray[tmpIndex].school.equals( school ) ) {
-       // System.out.println(school + ": currentIndex = " + tmpIndex );
-       // System.out.println(underlyingArray[currentIndex]);
        tmpIndex++;
      }
      if ( tmpIndex == underlyingArray.length ) {
@@ -161,12 +208,18 @@ public class JavaConstructs {
       this.underlyingArray = underlyingArray;
       this.school = school;
     }
+
+    //@include
   }
 
   interface StudentPredicate {
     boolean check( Student s );
   }
 
+  // iterates through input array, determining which students satisfy
+  // predicate, returns array of precisely those elements. not the 
+  // most efficient way to create the result, but the better ways
+  // involve data structures we havent talked about yet
   public static Student [] apply( Student [] input, StudentPredicate predicate ) {
     Student [] tmparray = new Student[input.length];
     int i = 0;
@@ -187,7 +240,7 @@ public class JavaConstructs {
     return result;
   }
 
-
+  // sanity checks for the iterator
   public static void checkIterator() {
     Student [] testCase = Student.createTestArray();
     JavaConstructs dummy = new JavaConstructs();
@@ -208,27 +261,31 @@ public class JavaConstructs {
     }
   }
 
-  public static void checkPredicate() {
-    Student [] testCase = Student.createTestArray();
-    final double lowRange = 3.5;
-    final double highRange = 3.5;
+  // sanity checks for predicate
+  public static Student []  checkPredicate1(Student [] testCase, double L, double H ) {
+    final double lowRange = L;
+    final double highRange = H;
     Student [] filteredTestCase =  apply( testCase, new StudentPredicate() {
+      // TODO(EE422C): implement this anonymous inner class
+      // so that the call to apply returns students whose
+      // GPAs are in the specified range
+      // @exclude
       public boolean check( Student s ) {
         return (s.GPA >= lowRange && s.GPA <= highRange );
       }
+      // @include
     });
-    for ( Student s : filteredTestCase ) {
-      System.out.println( "anonymous class 3.5-3.5, GpaPredicate:" + s );
-    }
-    filteredTestCase = apply( testCase, new  GpaPredicate(3.5, 3.6) );
-    for ( Student s : filteredTestCase ) {
-      System.out.println( "GpaPredicate 3.5-3.6:" + s );
-    }
-
+    return filteredTestCase;
   }
 
-  public static void checkString() {
-    for ( int i = 1 ; i < 16; i++ ) {
+  // sanity checks for predicate
+  public static Student []  checkPredicate2(Student [] testCase, double L, double H ) {
+    Student [] filteredTestCase = apply( testCase, new  GpaPredicate(L, H) );
+    return filteredTestCase;
+  }
+
+  public static void checkString(int N) {
+    for ( int i = 1 ; i < N; i++ ) {
        long startTime = System.nanoTime();
        String tmp = nCopies( (int) Math.pow(2,i), "test" );
        long finishTime = System.nanoTime();
@@ -242,21 +299,24 @@ public class JavaConstructs {
     Student s1 = new Student( 3.9d, "Adnan Aziz", 123, "UT Austin");
     Student s2 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
     StudentAthelete sa0 = new StudentAthelete( 3.9d, "Adnan Aziz", 123, "UT Austin", 
-        StudentAthelete.SportType.Baseball);
+        SportType.Baseball);
     StudentAthelete sa1 = new StudentAthelete( 3.9d, "Adnan Aziz", 123, "UT Austin",
-        StudentAthelete.SportType.Football);
-    // System.out.println(s0 + " == " + s1 + " : " + s0.equals(s1));
-    // System.out.println(s0 + " == " + s2 + " : " + s0.equals(s1));
-    // System.out.println(s1 + " == " + sa0 + " : " + s1.equals(sa0));
-    // System.out.println(sa0 + " == " + s1 + " : " + sa0.equals(s1));
-    // System.out.println(s1 + " == " + sa1 + " : " + s1.equals(sa1));
-    // System.out.println(sa1 + " == " + s1 + " : " + sa1.equals(s1));
+        SportType.Football);
+    System.out.println(s0 + " == " + s1 + " : " + s0.equals(s1));
+    System.out.println(s0 + " == " + s2 + " : " + s0.equals(s1));
+    System.out.println(s1 + " == " + sa0 + " : " + s1.equals(sa0));
+    System.out.println(sa0 + " == " + s1 + " : " + sa0.equals(s1));
+    System.out.println(s1 + " == " + sa1 + " : " + s1.equals(sa1));
+    System.out.println(sa1 + " == " + s1 + " : " + sa1.equals(s1));
     System.out.println(sa1 + " == " + sa0 + " : " + sa1.equals(sa0));
   }
 
   public static void main( String [] args ) {
-    checkPredicate();
-    // checkEquals();
+    checkIterator();
+    checkPredicate1(Student.createTestArray(), 3.5, 3.7);
+    checkPredicate2(Student.createTestArray(), 3.5, 3.7);
+    checkEquals();
+    checkString(12);
   }
 }
 
