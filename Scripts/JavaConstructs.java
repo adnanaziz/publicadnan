@@ -269,11 +269,11 @@ public class JavaConstructs {
       // TODO(EE422C): implement this anonymous inner class
       // so that the call to apply returns students whose
       // GPAs are in the specified range
-      // @exclude
+      //@exclude
       public boolean check( Student s ) {
         return (s.GPA >= lowRange && s.GPA <= highRange );
       }
-      // @include
+      //@include
     });
     return filteredTestCase;
   }

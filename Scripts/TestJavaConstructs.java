@@ -149,9 +149,9 @@ public class TestJavaConstructs {
     Student s1 = new Student( 3.9d, "Adnan Aziz", 123, "UT Austin");
     Student s2 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
     StudentAthelete sa0 = new StudentAthelete( 3.9d, "Adnan Aziz", 123, "UT Austin", 
-        StudentAthelete.SportType.Baseball);
+        SportType.Baseball);
     StudentAthelete sa1 = new StudentAthelete( 3.9d, "Adnan Aziz", 123, "UT Austin",
-        StudentAthelete.SportType.Football);
+        SportType.Football);
 
     assertFalse( s0.equals(s1) );
     assertFalse( s1.equals(s0) );
