@@ -44,7 +44,6 @@ class Student {
 	//TODOBEGIN(EE422C)
 
 	//TODOEND(EE422C)
-     //@include
   }
 }
 
@@ -58,7 +57,6 @@ enum SportType {
 	//TODOBEGIN(EE422C)
 
 	//TODOEND(EE422C)
-  //@include
   public String sportname() { return sportname; }
   public int weight() { return weight; }
   public double avgGPA() { return avgGPA; }
@@ -87,7 +85,6 @@ class StudentAthelete extends Student {
 	//TODOBEGIN(EE422C)
 
 	//TODOEND(EE422C)
-    //@include
   }
 
   @Override
@@ -116,7 +113,6 @@ public class JavaConstructs {
 	//TODOBEGIN(EE422C)
 
 	//TODOEND(EE422C)
-     //@include
    }
     
   //TODO(EE422C): re-implement this function as per the lab specification
@@ -136,7 +132,6 @@ public class JavaConstructs {
 	//TODOBEGIN(EE422C)
 
 	//TODOEND(EE422C)
-    //@include
   }
 
   interface StudentPredicate {
@@ -199,7 +194,6 @@ public class JavaConstructs {
 	//TODOBEGIN(EE422C)
 
 	//TODOEND(EE422C)
-      //@include
     });
     return filteredTestCase;
   }
