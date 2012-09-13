@@ -41,15 +41,9 @@ class Student {
   //    they agree on all their fields
   @Override
   public boolean equals(Object o) {
-     //@exclude
-     if ( o == null ) {
-       return false;
-     }
-     if ( !( o instanceof Student ) ) {
-       return false;
-     }
-     Student os = (Student) o;
-     return (os.GPA == GPA) && os.name.equals(name) && (os.id == id) && (os.school.equals(school));
+	//TODOBEGIN(EE422C)
+
+	//TODOEND(EE422C)
      //@include
   }
 }
@@ -61,17 +55,9 @@ class Student {
 enum SportType {
   Baseball("baseball", 180,3.9d), Basketball("basketball", 175,3.7d), 
   Football("football", 240,3.6d), Soccer("soccer", 165,3.9d);
-  //@exclude
-  private final String sportname;
-  private final int weight;
-  private final double avgGPA;
-  SportType(String sportname, int weight, double avgGPA) {
-    this.sportname = sportname;
-    this.weight = weight;
-    this.avgGPA = avgGPA;
-  }
-  @Override 
-  public String toString() { return sportname + ":" + weight + ":" + avgGPA; }
+	//TODOBEGIN(EE422C)
+
+	//TODOEND(EE422C)
   //@include
   public String sportname() { return sportname; }
   public int weight() { return weight; }
@@ -98,19 +84,9 @@ class StudentAthelete extends Student {
   //    if they agree on their inherited fields, and their sport
   @Override
   public boolean equals(Object o) {
-    //@exclude
-    if ( o == null ) {
-      return false;
-    }
-    if ( !( o instanceof Student ) ) {
-      return false;
-    }
-    if ( !( o instanceof StudentAthelete ) ) {
-      return ( (Student) o ).equals( (Student) this );
-    }
-    boolean chk1 = super.equals((Student) o);
-    boolean chk2 = ((StudentAthelete) o).sport == this.sport;
-    return chk1 && chk2;
+	//TODOBEGIN(EE422C)
+
+	//TODOEND(EE422C)
     //@include
   }
 
@@ -137,16 +113,9 @@ public class JavaConstructs {
      // it has low and high fields (which are doubles), 
      // and the check function sees if the passed student 
      // objects GPA is in the range [low, high]
-     //@exclude
-     double low;
-     double high;
-     public GpaPredicate( double low, double high ) {
-       this.low = low;
-       this.high = high;
-     }
-     public boolean check( Student s ) {
-       return (s.GPA>= low && s.GPA <= high );
-     }
+	//TODOBEGIN(EE422C)
+
+	//TODOEND(EE422C)
      //@include
    }
     
@@ -164,51 +133,9 @@ public class JavaConstructs {
   //TODO(EE422C): implement this iterator as per the lab specification
   // the remove method should  throw an UnsupportedOperationException
   public class StudentIteratorBySchool implements Iterator<Student> {
-    //@exclude
+	//TODOBEGIN(EE422C)
 
-   int currentIndex;
-   String school;
-   Student [] underlyingArray;
-
-   @Override  
-    public boolean hasNext() {  
-      int tmpIndex = currentIndex;
-     while ( tmpIndex < underlyingArray.length && !underlyingArray[tmpIndex].school.equals( school ) ) {
-       tmpIndex++;
-     }
-     if ( tmpIndex == underlyingArray.length ) {
-       return false;
-     }
-     return true;
-    }  
-     
-    @Override  
-    public Student next() {  
-     Student currentStudent = underlyingArray[currentIndex];
-     int startingIndex = currentIndex;
-     while ( currentIndex < underlyingArray.length && !underlyingArray[currentIndex].school.equals( school ) ) {
-       currentIndex++;
-     }
-     if ( currentIndex == underlyingArray.length ) {
-       throw new NoSuchElementException( "starting index = " + startingIndex);
-     }
-     Student result = underlyingArray[currentIndex];
-     currentIndex++;
-     return result;
-    }  
-
-    // EE422C: you do not need to implement this function
-    @Override  
-    public void remove() throws UnsupportedOperationException {  
-     throw new UnsupportedOperationException("remove doesn't make sense for arrays");
-    }
-
-    public StudentIteratorBySchool( Student [] underlyingArray, String school ) {
-      this.currentIndex = 0;
-      this.underlyingArray = underlyingArray;
-      this.school = school;
-    }
-
+	//TODOEND(EE422C)
     //@include
   }
 
@@ -269,10 +196,9 @@ public class JavaConstructs {
       // TODO(EE422C): implement this anonymous inner class
       // so that the call to apply returns students whose
       // GPAs are in the specified range
-      //@exclude
-      public boolean check( Student s ) {
-        return (s.GPA >= lowRange && s.GPA <= highRange );
-      }
+	//TODOBEGIN(EE422C)
+
+	//TODOEND(EE422C)
       //@include
     });
     return filteredTestCase;
