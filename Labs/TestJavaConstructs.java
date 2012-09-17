@@ -51,7 +51,7 @@ public class TestJavaConstructs {
 
   @AfterClass
   public static void oneTimeTearDown() {
-    Class postfix = PostfixSolution.class;
+    Class postfix = JavaConstructs.class;
     Annotation[] annos = postfix.getDeclaredAnnotations();
     String name = getAnnotationAttributeValue( annos, "@Author", "name" );
     String uteid = getAnnotationAttributeValue( annos, "@Author", "uteid" );
