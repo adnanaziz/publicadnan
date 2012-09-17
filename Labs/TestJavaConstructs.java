@@ -81,6 +81,7 @@ public class TestJavaConstructs {
       count++;
     }
     assertEquals( count, 2 );
+    score += 5;
   }
 
   @Test
@@ -96,6 +97,7 @@ public class TestJavaConstructs {
       count++;
     }
     assertEquals( count, 1 );
+    score += 5;
   }
 
   @Test
@@ -106,6 +108,7 @@ public class TestJavaConstructs {
     Iterator<Student> stanfordIterator = 
         dummy.new StudentIteratorBySchool(testCase, "Stanford");
     assertFalse( stanfordIterator.hasNext() );
+    score += 5;
   }
 
   @Test
@@ -121,6 +124,7 @@ public class TestJavaConstructs {
     for ( Student s : filteredTestCase ) {
       assertTrue( s.GPA >= lowRange && s.GPA <= highRange );
     }
+    score += 15;
   }
 
   @Test
@@ -130,6 +134,7 @@ public class TestJavaConstructs {
     for ( Student s : filteredTestCase ) {
       assertTrue( s.GPA >= 3.5 && s.GPA <= 3.6 );
     }
+    score += 15;
   }
 
   @Test(timeout=1000)
@@ -141,6 +146,7 @@ public class TestJavaConstructs {
        System.out.println("Iteration " + i + ": string of length " + tmp.length() + 
          " took " + ((double)(finishTime - startTime))/1000000000.0d + " seconds");
     }
+    score += 7;
   }
 
   @Test 
@@ -160,5 +166,6 @@ public class TestJavaConstructs {
     assertTrue( sa0.equals(s1) );
     assertTrue( sa1.equals(s1) );
     assertFalse( sa0.equals(sa1) );
+    score += 13;
   }
 }
