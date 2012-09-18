@@ -93,7 +93,8 @@ class StudentAthelete extends Student {
   }
 }
 
-
+@Target(TYPE)
+@Retention(RUNTIME)
 //TODO(EE422C): update these to your name and eid
 @interface Author {
   public String name() default  "John Snow" ;
