@@ -8,17 +8,8 @@ class Bear {
 // TODOEND(EE422C)
 }
 
-@Target(TYPE)
-@Retention(RUNTIME)
 //TODO(EE422C): update these to your name and eid
-@interface Author {
-  public String name() default  "John Snow" ;
-  public String uteid() default  "js123" ;
-}
-
-
-//TODO(EE422C): update these to your name and eid
-@Author(name="John Snow", uteid="js123")
+@Author(name="Joel Garner", uteid="jg123")
 public class PairingConstraints {
 
 //TODO(EE422C): implement your helper functions here
