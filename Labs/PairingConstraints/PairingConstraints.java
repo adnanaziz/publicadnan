@@ -25,13 +25,13 @@ public class PairingConstraints {
 // TODOBEGIN(EE422C)
 // TODOEND(EE422C)
 
-  public static String [] solveFromFile( String filename ) {
+  public static String [] solve( String filename ) {
     // TODOBEGIN(EE422C)
     return new String[]{"Pat + Jack the Great"};
     // TODOEND(EE422C)
   }
 
-  public static String [] solveFromStringArray( String[] data ) {
+  public static String [] solve( String[] data ) {
     // TODOBEGIN(EE422C)
     return new String[]{"Pat + Jack the Great"};
     // TODOEND(EE422C)

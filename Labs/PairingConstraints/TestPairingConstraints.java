@@ -11,6 +11,8 @@ import java.lang.reflect.*;
 
 public class TestPairingConstraints {
 
+  public static final Class CLASSUNDERTEST = PairingConstraints.class;
+
   public static int score = 0;
 
   @Before
@@ -18,46 +20,31 @@ public class TestPairingConstraints {
     // System.out.println("Setting up");
   }
 
-  // should be a better way to do this using existing lib function
-  static String getAnnotationAttributeValue( Annotation [] annos, String annoName, String attribute ) {
-    String annoLine = null;
-    for ( Annotation anno : annos ) {
-      if ( anno.toString().startsWith( annoName ) ) {
-        annoLine = anno.toString();
-        break;
-      }
-    }
-    if ( annoLine == null ) {
-      return null;
-    }
-    // annLine is of the form:
-    // "@Author(name=Adnan Aziz, uteid=aa123)"
-    String tmp1 = annoLine.replace("@Author", "");
-    String tmp2 = tmp1.replace("(", "");
-    String tmp3 = tmp2.replace(")", "");
-    String attribValuePairs[] = tmp3.split(",");
-    for ( int i = 0 ; i < attribValuePairs.length; i++ ) {
-      // System.out.println("a-v:" + attribValuePairs[i]);
-      String pair[] = attribValuePairs[i].trim().split("=");
-      for( int j = 0 ; j < pair.length; j++ ) {
-        // System.out.println(pair[j]);
-      }
-      if ( pair[0].equals( attribute ) ) {
-        return pair[1];
-      }
-    }
-    return null;
+  // Ang's suggestion on getting annotation values
+  public static String getClassAnnotationValue(Class classType, 
+                                               Class annotationType, 
+                                               String attributeName) {
+    String value = null;
+    Annotation annotation = classType.getAnnotation(annotationType);
+    if (annotation != null) {
+      try {
+        value = (String) annotation.annotationType().getMethod(attributeName)
+                                                    .invoke(annotation);
+     } catch (Exception ex) {
+        System.out.println("Failed loading class annotations");
+     }
+   }
+   return value;
   }
 
   @AfterClass
   public static void oneTimeTearDown() {
-    Class javacontructs = PairingConstraints.class;
-    Annotation[] annos = javacontructs.getDeclaredAnnotations();
-    String name = getAnnotationAttributeValue( annos, "@Author", "name" );
-    String uteid = getAnnotationAttributeValue( annos, "@Author", "uteid" );
-    System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
+    String name = getClassAnnotationValue(CLASSUNDERTEST,
+                                          Author.class, "name");
+    String uteid = getClassAnnotationValue(CLASSUNDERTEST,
+                                           Author.class, "uteid");
+   System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
-
 
   public static String [] tc1 = {
 			"Pooh Bear : M : Angie : Fred : 5.0" ,
@@ -80,7 +67,7 @@ public class TestPairingConstraints {
   @Test
   public void testTc1() {
     String [] tc1ExpectedResult = {"Pat + Jack the Great"};
-    String [] result = PairingConstraints.solveFromStringArray( tc1 );
+    String [] result = PairingConstraints.solve( tc1 );
     assertArrayEquals( "tc1: ", tc1ExpectedResult, result );
     score += 5;
   }
