@@ -51,8 +51,8 @@ public class TestJavaConstructs {
 
   @AfterClass
   public static void oneTimeTearDown() {
-    Class postfix = PostfixSolution.class;
-    Annotation[] annos = postfix.getDeclaredAnnotations();
+    Class javacontructs = JavaConstructs.class;
+    Annotation[] annos = javacontructs.getDeclaredAnnotations();
     String name = getAnnotationAttributeValue( annos, "@Author", "name" );
     String uteid = getAnnotationAttributeValue( annos, "@Author", "uteid" );
     System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
@@ -67,7 +67,22 @@ public class TestJavaConstructs {
     Student s4 = new Student( 3.3d, "Matt Biondi", 3383, "Berkeley");
     Student [] testarray = {s0, s1, s2, s3, s4};
     return testarray;
- }
+  }
+
+  @Test
+  public void testIterator0() {
+    Student [] testCase = Student.createTestArray();
+    JavaConstructs dummy = new JavaConstructs();
+    Iterator<Student> emptyIterator = 
+        dummy.new StudentIteratorBySchool(testCase, "");
+    int count = 0;
+    while ( emptyIterator.hasNext() ) {
+      assertTrue( emptyIterator.next().school.equals( ""));
+      count++;
+    }
+    assertEquals( count, 0 );
+    score += 5;
+  }
 
   @Test
   public void testIterator1() {
@@ -81,6 +96,7 @@ public class TestJavaConstructs {
       count++;
     }
     assertEquals( count, 2 );
+    score += 3;
   }
 
   @Test
@@ -96,6 +112,7 @@ public class TestJavaConstructs {
       count++;
     }
     assertEquals( count, 1 );
+    score += 3;
   }
 
   @Test
@@ -106,6 +123,7 @@ public class TestJavaConstructs {
     Iterator<Student> stanfordIterator = 
         dummy.new StudentIteratorBySchool(testCase, "Stanford");
     assertFalse( stanfordIterator.hasNext() );
+    score += 3;
   }
 
   @Test
@@ -113,23 +131,46 @@ public class TestJavaConstructs {
     Student [] testCase = Student.createTestArray();
     final double lowRange = 3.5;
     final double highRange = 3.5;
-    Student [] filteredTestCase =  JavaConstructs.apply( testCase, new JavaConstructs.StudentPredicate() {
-      public boolean check( Student s ) {
-        return (s.GPA >= lowRange && s.GPA <= highRange );
-      }
-    });
+    // Student [] filteredTestCase =  JavaConstructs.apply( testCase, new JavaConstructs.StudentPredicate() {
+    //   public boolean check( Student s ) {
+    //     return (s.GPA >= lowRange && s.GPA <= highRange );
+    //   }
+    // });
+    Student [] filteredTestCase = JavaConstructs.checkPredicate2( testCase, lowRange, highRange );
     for ( Student s : filteredTestCase ) {
       assertTrue( s.GPA >= lowRange && s.GPA <= highRange );
     }
+    assertTrue( filteredTestCase.length == 1 );
+    score += 5;
   }
 
   @Test
   public void testPredicate2() {
     Student [] testCase = Student.createTestArray();
+    final double lowRange = 3.0;
+    final double highRange = 4.0;
+    // Student [] filteredTestCase =  JavaConstructs.apply( testCase, new JavaConstructs.StudentPredicate() {
+    //   public boolean check( Student s ) {
+    //     return (s.GPA >= lowRange && s.GPA <= highRange );
+    //   }
+    // });
+    Student [] filteredTestCase = JavaConstructs.checkPredicate2( testCase, lowRange, highRange );
+    for ( Student s : filteredTestCase ) {
+      assertTrue( s.GPA >= lowRange && s.GPA <= highRange );
+    }
+    assertTrue( filteredTestCase.length == 4 );
+    score += 5;
+  }
+
+  @Test
+  public void testPredicate3() {
+    Student [] testCase = Student.createTestArray();
     Student [] filteredTestCase = JavaConstructs.apply( testCase, new  JavaConstructs.GpaPredicate(3.5, 3.6) );
     for ( Student s : filteredTestCase ) {
       assertTrue( s.GPA >= 3.5 && s.GPA <= 3.6 );
     }
+    assertTrue( filteredTestCase.length == 2 );
+    score += 5;
   }
 
   @Test(timeout=1000)
@@ -141,24 +182,56 @@ public class TestJavaConstructs {
        System.out.println("Iteration " + i + ": string of length " + tmp.length() + 
          " took " + ((double)(finishTime - startTime))/1000000000.0d + " seconds");
     }
+    score += 6;
+  }
+
+  Student s0 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
+  Student s1 = new Student( 3.9d, "Adnan Aziz", 123, "UT Austin");
+  Student s2 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
+  StudentAthelete sa0 = new StudentAthelete( 3.9d, "Adnan Aziz", 123, "UT Austin", 
+        SportType.Baseball);
+  StudentAthelete sa1 = new StudentAthelete( 3.9d, "Adnan Aziz", 123, "UT Austin",
+        SportType.Football);
+
+  @Test 
+  public void testEquals1() {
+    assertFalse( s0.equals(s1) );
+    score += 2;
   }
 
   @Test 
-  public void testEquals() {
-    Student s0 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
-    Student s1 = new Student( 3.9d, "Adnan Aziz", 123, "UT Austin");
-    Student s2 = new Student( 3.8d, "Adnan Aziz", 123, "UT Austin");
-    StudentAthelete sa0 = new StudentAthelete( 3.9d, "Adnan Aziz", 123, "UT Austin", 
-        SportType.Baseball);
-    StudentAthelete sa1 = new StudentAthelete( 3.9d, "Adnan Aziz", 123, "UT Austin",
-        SportType.Football);
-
-    assertFalse( s0.equals(s1) );
+  public void testEquals2() {
     assertFalse( s1.equals(s0) );
+    score += 2;
+  }
+
+  @Test 
+  public void testEquals3() {
     assertTrue( s0.equals(s0) );
+    score += 2;
+  }
+
+  @Test 
+  public void testEquals4() {
     assertTrue( s0.equals(s2) );
+    score += 2;
+  }
+
+  @Test 
+  public void testEquals5() {
     assertTrue( sa0.equals(s1) );
+    score += 2;
+  }
+
+  @Test 
+  public void testEquals6() {
     assertTrue( sa1.equals(s1) );
+    score += 2;
+  }
+
+  @Test 
+  public void testEquals7() {
     assertFalse( sa0.equals(sa1) );
+    score += 2;
   }
 }

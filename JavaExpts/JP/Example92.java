@@ -6,13 +6,15 @@ class Printer extends Thread {
   static Object mutex = new Object();
   public void run() {
     for (;;) {
-      synchronized (mutex) {
+      // synchronized (mutex) {
         System.out.print("-");
         Util.pause(100,300);
         System.out.print("/");
-      }
+      // }
       Util.pause(200);
-} } }
+  } 
+  } 
+}
 
 class Example92 {
   public static void main(String[] args) 

@@ -27,7 +27,6 @@ public class PairingConstraints {
     return new String[]{"Pat + Jack the Great"};
     // TODOEND(EE422C)
   }
-  
 
 }
 
