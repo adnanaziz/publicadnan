@@ -2,6 +2,17 @@ public class SudokuSolver {
 
    // "Near worst case" example from
    // http://en.wikipedia.org/wiki/Sudoku_algorithms
+   public static final String testCaseString =
+				"153 " + "178 " + "185 " +
+				 "221 " + "242 " +
+			 	 "335 " + "357 " +
+				 "424 " + "461 " +
+				 "519 " +
+				 "605 " + "677 " + "683 " +
+				 "722 " + "741 " +
+				 "844 " + "889 ";
+
+
    public static final String[] testCase =
 				{"153", "178", "185",
 				 "221", "242",
@@ -17,7 +28,7 @@ public class SudokuSolver {
    public static long count = 0;
    
    public static void main(String[] args) {
-     solve("123 456 789");
+     solve(testCaseString);
      return;
    }
 
@@ -53,9 +64,10 @@ public class SudokuSolver {
   }
 
   public static String solve( String s ) {
-    System.out.println("In SudokuSolver solve method");
+    // System.out.println("In SudokuSolver solve method");
     int [][] matrix = readInput( s );
     return isSolvable(matrix);
+    // return s + ":return";
   }
 
   public static boolean isSolvable(int i, int j, int[][] matrix) {
