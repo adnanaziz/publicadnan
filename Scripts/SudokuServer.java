@@ -80,6 +80,7 @@ class ThreadedSudokuClient implements Runnable {
 }
 
 
+@Author(name="Adnan Aziz", uteid="aa375")
 public class SudokuServer {
   final static int PORT = 16789;
   final static int NTHREADS = 1;

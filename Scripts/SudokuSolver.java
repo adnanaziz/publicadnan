@@ -12,21 +12,8 @@ public class SudokuSolver {
 				 "722 " + "741 " +
 				 "844 " + "889 ";
 
-
-   public static final String[] testCase =
-				{"153", "178", "185",
-				 "221", "242",
-			 	 "335", "357",
-				 "424", "461",
-				 "519",
-				 "605", "677", "683",
-				 "722", "741",
-				 "844", "889"};
-
    public static final int N = 9;
 
-   public static long count = 0;
-   
    public static void main(String[] args) {
      solve(testCaseString);
      return;
@@ -128,6 +115,22 @@ public class SudokuSolver {
     return true;
   }
 
+  public static boolean isLegalSolution( String s ) {
+    int [][] matrix = readInput( s );
+    if (!isValid (matrix)) {
+      return false;
+    }
+    // check that it's fully filled in
+    for (int i = 0; i < N; ++i) {
+      for (int j = 0; j < N; ++j) {
+        if ( matrix[i][j] == 0 || matrix[i][j] < 0 || matrix[i][j] > 9 ) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
   // Check if a partially filled matrix has any conflicts
   public static boolean isValid(int[][] matrix) {
     // Row constraints
@@ -179,9 +182,9 @@ public class SudokuSolver {
   }
 
    public static int[][] readInput( String[] args ) {
-     if ( args.length == 0 ) {
-       args = testCase;
-     }
+     // if ( args.length == 0 ) {
+     //   args = testCase;
+     // }
      int[][] result = new int[N][];
      for ( int k = 0 ; k < N; k++ ) {
        result[k] = new int[N];
