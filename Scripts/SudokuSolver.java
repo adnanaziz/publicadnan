@@ -201,7 +201,7 @@ public class SudokuSolver {
      String result = "";
      for ( int i  = 0 ; i < matrix.length; i++ ) {
        for ( int j  = 0 ; j < matrix[0].length; j++ ) {
-         result = result + matrix[i][j] + ( (j < 8) ? " " : " newline ");
+         result = result + i + j + matrix[i][j] + " ";
        }
      }
      return result;

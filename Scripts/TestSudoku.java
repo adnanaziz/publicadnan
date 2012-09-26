@@ -39,19 +39,74 @@ public class TestSudoku {
 
   @AfterClass
   public static void oneTimeTearDown() {
-    String name = getClassAnnotationValue(CLASSUNDERTEST,
-                                          Author.class, "name");
-    String uteid = getClassAnnotationValue(CLASSUNDERTEST,
-                                           Author.class, "uteid");
-   System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
+    // String name = getClassAnnotationValue(CLASSUNDERTEST,
+    //                                       Author.class, "name");
+    // String uteid = getClassAnnotationValue(CLASSUNDERTEST,
+    //                                        Author.class, "uteid");
+   // System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
 
-  @Test
-  public void testTc1() {
-    String tc1 = "111 222 333 444 555 666 777 888 999 ";
-    String result = SudokuSolver.solve( tc1 );
+  @Ignore @Test
+  public void testTcEasy() {
+    String tc = "111 222 333 444 555 666 777 888 000 ";
+    String result = SudokuSolver.solve( tc );
     assertTrue( SudokuSolver.isLegalSolution( result ));
     score += 5;
   }
 
+  @Ignore @Test
+  public void testTcHard() {
+    String tc = "153 " + "178 " + "185 " + "221 " + "242 " 
+                       + "335 " + "357 " + "424 " + "461 " 
+                       + "519 " + "605 " + "677 " + "683 " 
+                       + "722 " + "741 " + "844 " + "889 ";
+    String result = SudokuSolver.solve( tc );
+    assertTrue( SudokuSolver.isLegalSolution( result ));
+    score += 5;
+  }
+
+  @Test 
+  public void basicServerTest() {
+    try {
+      SudokuServer.start();
+    } catch (Exception e) {
+      fail();
+    }
+    SudokuClient client = new SudokuClient("111 222 333 444 555 666 777 888 000 ");
+    client.solve();
+    if ( client.success ) {
+      score += 10;
+    }
+  }
+
+  @Test 
+  public void twoNonConcurrentServerTest() {
+    SudokuClient c2 = new SudokuClient("113 222 333 444 555 666 777 888 000 ");
+    SudokuClient c1 = new SudokuClient("113 222 331 445 554 666 778 887 000 ");
+    c1.solve();
+    c2.solve();
+    if ( c1.success && c2.success ) {
+      score += 10;
+    }
+  }
+
+  @Test 
+  public void twoConcurrentServerTest() {
+    final SudokuClient c1 = new SudokuClient("113 222 331 445 554 666 778 887 000 ");
+    final SudokuClient c2 = new SudokuClient("113 222 333 444 555 666 777 888 000 ");
+    Thread t1 = new Thread() {
+      public void run() {
+        c1.solve();
+      }
+    };
+    Thread t2 = new Thread() {
+      public void run() {
+        c2.solve();
+      }
+    };
+
+    if ( c1.success && c2.success ) {
+      score += 20;
+    }
+  }
 }
