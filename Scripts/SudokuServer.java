@@ -1,6 +1,3 @@
-// Example 156 from page 133 of Java Precisely second edition (The MIT Press 2005)
-// Author: Peter Sestoft (sestoft@itu.dk)
-
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
@@ -10,12 +7,12 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 import java.lang.reflect.*;
 
-// @Author(name="Joel Garner", uteid="jg123")
 public class SudokuServer {
-  final static int PORT = 16789;
-  final static int NTHREADS = 1;
+  static int PORT = -1;
+  final static int MAXPARALLELTHREADS = 3;
 
-  public static void start() throws IOException {
+  public static void start(int portNumber ) throws IOException {
+    PORT = portNumber;
     Runnable serverThread = new ThreadedSudokuServer();
     Thread t = new Thread( serverThread );
     t.start();
@@ -23,6 +20,7 @@ public class SudokuServer {
 }
 
 
+//@exclude
 class ThreadedSolver implements Runnable {
   private Socket sock;
   public ThreadedSolver( Socket sock ) {
@@ -48,7 +46,7 @@ class ThreadedSolver implements Runnable {
 
 class ThreadedSudokuServer implements Runnable {
 
-  public static ExecutorService threadpool = Executors.newFixedThreadPool(SudokuServer.NTHREADS);
+  public static ExecutorService threadpool = Executors.newFixedThreadPool(SudokuServer.MAXPARALLELTHREADS);
 
   public void run() {
     try {

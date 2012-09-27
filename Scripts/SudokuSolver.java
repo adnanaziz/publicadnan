@@ -2,7 +2,7 @@ public class SudokuSolver {
 
    // "Near worst case" example from
    // http://en.wikipedia.org/wiki/Sudoku_algorithms
-   public static final String testCaseString =
+  public static final String testCaseString =
 				"153 " + "178 " + "185 " +
 				 "221 " + "242 " +
 			 	 "335 " + "357 " +
@@ -12,33 +12,22 @@ public class SudokuSolver {
 				 "722 " + "741 " +
 				 "844 " + "889 ";
 
-   public static final int N = 9;
+  public static final int N = 9;
 
-   public static void main(String[] args) {
-     solve(testCaseString);
-     return;
-   }
+  public static void main(String[] args) {
+    String result = solve(testCaseString);
+    boolean correct = isLegalSolution( result, testCaseString );
+    System.out.println("Your solver ouput is " + (correct ? "wrong" : "right"));
+  }
 
-   public static void oldmain(String[] args) {
-     int[][] matrix = readInput(args);
-     print("Initial configuration", matrix);
-     if ( !isValid( matrix ) ) {
-       System.out.println("Initial configuration violates constraints");
-       return;
-     }
-     if (isSolvable(0,0,matrix)) {
-       if ( !isValid( matrix ) ) {
-         System.out.println("Buggy algorithm, returns true and a matrix that"
-	 	+ "doesn't satisfy constraints");
-         print("Buggy output", matrix);
-       } else {
-         print("Solved configuration", matrix);
-       }
-     } else {
-       System.out.println("---no solution exists");
-     }
-   }
+  public static String solve( String s ) {
+    //@exclude
+    int [][] matrix = readInput( s );
+    return isSolvable(matrix);
+    //@include
+  }
 
+  //@exclude
   public static String isSolvable(int[][] matrix) {
     String result = "none";
     if ( !isSolvable(0, 0, matrix)) {
@@ -46,16 +35,9 @@ public class SudokuSolver {
     } else {
       result = matrixToString(matrix);
     }
-    System.out.println("result = \n" + result );
     return result;
   }
 
-  public static String solve( String s ) {
-    // System.out.println("In SudokuSolver solve method");
-    int [][] matrix = readInput( s );
-    return isSolvable(matrix);
-    // return s + ":return";
-  }
 
   public static boolean isSolvable(int i, int j, int[][] matrix) {
     if (i == N) {
@@ -114,18 +96,25 @@ public class SudokuSolver {
     }
     return true;
   }
+  //@include
 
-  public static boolean isLegalSolution( String s ) {
-    int [][] matrix = readInput( s );
-    if (!isValid (matrix)) {
+  public static boolean isLegalSolution( String solution, String initialConfig ) {
+    int [][] solutionmatrix = readInput( solution );
+    int [][] initialConfigMatrix = readInput( initialConfig );
+    if (!isValid (solutionmatrix)) {
       return false;
     }
     // check that it's fully filled in
     for (int i = 0; i < N; ++i) {
       for (int j = 0; j < N; ++j) {
-        if ( matrix[i][j] == 0 || matrix[i][j] < 0 || matrix[i][j] > 9 ) {
+        if ( solutionmatrix[i][j] == 0 || solutionmatrix[i][j] < 0 || solutionmatrix[i][j] > 9 ) {
           return false;
         }
+        // check that it matches with initialConfigMatrix
+        if ( initialConfigMatrix[i][j] != 0  &&
+             initialConfigMatrix[i][j] != solutionmatrix[i][j] ) {
+           return false;
+         }
       }
     }
     return true;
@@ -182,9 +171,6 @@ public class SudokuSolver {
   }
 
    public static int[][] readInput( String[] args ) {
-     // if ( args.length == 0 ) {
-     //   args = testCase;
-     // }
      int[][] result = new int[N][];
      for ( int k = 0 ; k < N; k++ ) {
        result[k] = new int[N];
