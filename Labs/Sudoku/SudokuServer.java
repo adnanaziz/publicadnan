@@ -7,6 +7,16 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 import java.lang.reflect.*;
 
+
+@Target(TYPE)
+@Retention(RUNTIME)
+//TODO(EE422C): update these to your name and eid
+@interface Author {
+  public String name() default  "John Snow" ;
+    public String uteid() default  "js123" ;
+  }
+}
+
 public class SudokuServer {
   static int PORT = -1;
   // EE422C: no matter how many concurrent requests you get,
@@ -21,5 +31,6 @@ public class SudokuServer {
   }
 }
 
-
 	//TODOBEGIN(EE422C)
+	//TODOEND(EE422C)
+
