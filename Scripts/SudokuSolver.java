@@ -15,7 +15,7 @@ public class SudokuSolver {
   public static final int N = 9;
 
   public static void main(String[] args) {
-    String result = solve(testCaseString);
+    String result = solve( testCaseString );
     boolean correct = isLegalSolution( result, testCaseString );
     System.out.println("Your solver ouput is " + (correct ? "wrong" : "right"));
   }
@@ -99,15 +99,20 @@ public class SudokuSolver {
   //@include
 
   public static boolean isLegalSolution( String solution, String initialConfig ) {
+
     int [][] solutionmatrix = readInput( solution );
     int [][] initialConfigMatrix = readInput( initialConfig );
-    if (!isValid (solutionmatrix)) {
+
+    if ( !isValid (solutionmatrix) ) {
       return false;
     }
+
     // check that it's fully filled in
     for (int i = 0; i < N; ++i) {
       for (int j = 0; j < N; ++j) {
-        if ( solutionmatrix[i][j] == 0 || solutionmatrix[i][j] < 0 || solutionmatrix[i][j] > 9 ) {
+        if ( solutionmatrix[i][j] == 0 
+                 || solutionmatrix[i][j] < 0 
+                 || solutionmatrix[i][j] > 9 ) {
           return false;
         }
         // check that it matches with initialConfigMatrix

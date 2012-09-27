@@ -9,6 +9,8 @@ import java.lang.reflect.*;
 
 public class SudokuServer {
   static int PORT = -1;
+  // EE422C: no matter how many concurrent requests you get,
+  // do not have more than three solvers running concurrently
   final static int MAXPARALLELTHREADS = 3;
 
   public static void start(int portNumber ) throws IOException {

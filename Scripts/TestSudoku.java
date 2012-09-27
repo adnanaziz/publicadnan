@@ -71,14 +71,14 @@ public class TestSudoku {
    // System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
 
-  @Ignore @Test(timeout=20000) 
+  @Test(timeout=20000) 
   public void testTcEasy() {
     String result = SudokuSolver.solve( easyTc );
     assertTrue( SudokuSolver.isLegalSolution( result, easyTc ));
     score += 5;
   }
 
-  @Ignore @Test(timeout=20000) 
+  @Test(timeout=20000) 
   public void testTcHard() {
     String result = SudokuSolver.solve( hardTc );
     assertTrue( SudokuSolver.isLegalSolution( result,  hardTc ));
@@ -86,7 +86,7 @@ public class TestSudoku {
   }
 
 
-  @Ignore @Test(timeout=20000) 
+  @Test(timeout=20000) 
   public void basicServerTest() {
     try {
       SudokuServer.start(16789);
@@ -100,7 +100,7 @@ public class TestSudoku {
     }
   }
 
-  @Ignore @Test
+  @Tes(timeout=1000)
   public void testServerCachedHardInstance() {
     try {
       SudokuServer.start(16790);
@@ -123,7 +123,7 @@ public class TestSudoku {
       score += 10;
   }
 
-  @Test 
+  @Test(timeout=60000)
   public void twoNonConcurrentServerTest() {
     try {
       SudokuServer.start(16791);
@@ -148,7 +148,7 @@ public class TestSudoku {
     }
   }
 
-  @Test 
+  @Tes(timeout=60000) 
   public void twoConcurrentServerTest() {
     try {
       SudokuServer.start(16792);

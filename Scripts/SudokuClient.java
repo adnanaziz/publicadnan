@@ -1,6 +1,3 @@
-// Example 156 from page 133 of Java Precisely second edition (The MIT Press 2005)
-// Author: Peter Sestoft (sestoft@itu.dk)
-
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
@@ -26,7 +23,7 @@ class ThreadedSudokuClient implements Runnable {
   }
 
   public void run() {
-    System.out.println("starting " + threadname + " run method");
+    // System.out.println("starting " + threadname + " run method");
     System.out.flush();
     try {
       Socket sock = new Socket(hostname, SudokuServer.PORT);
@@ -36,14 +33,15 @@ class ThreadedSudokuClient implements Runnable {
       dos.flush();
       String response = dis.readLine(); 
       // System.out.println("Client " + threadname + " sent: " + testcase + " received response:" + response);
-      dos.close(); dis.close();
+      dos.close(); 
+      dis.close();
       synchronized (sc) {
         sc.result = response;
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
-    System.out.println("finishing " + threadname + " run method");
+    // System.out.println("finishing " + threadname + " run method");
   }
 }
 
@@ -67,16 +65,14 @@ public class SudokuClient {
   
   void solve() {
     Thread tcThread = new Thread( tc );
-    System.out.println("starting client thread");
+    // System.out.println("starting client thread");
     tcThread.start();
     try {
       tcThread.join();
     } catch (Exception e) {
       e.printStackTrace();
     }
-    System.out.println("joined client thread");
+    // System.out.println("joined client thread");
     success = SudokuSolver.isLegalSolution( result, tc.testcase );
   }
 }
-
-
