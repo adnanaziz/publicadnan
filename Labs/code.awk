@@ -10,7 +10,7 @@ BEGIN {
     inStudentToWriteBlock = 0;
     print "\n\t//TODOEND(EE422C)";
   }
-  if ( !inStudentToWriteBlock ) {
+  if ( !inStudentToWriteBlock && !/.\@include/) {
     print $0;
   }
 }
