@@ -19,6 +19,7 @@ public class SudokuSolver {
     boolean correct = isLegalSolution( result, testCaseString );
       System.out.println("Your solver ouput is " + (correct ? "right" : "wrong"));
   }
+    
 
   public static String solve( String s ) {
 	//TODOBEGIN(EE422C)
