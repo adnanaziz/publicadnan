@@ -17,7 +17,7 @@ public class SudokuSolver {
   public static void main(String[] args) {
     String result = solve( testCaseString );
     boolean correct = isLegalSolution( result, testCaseString );
-    System.out.println("Your solver ouput is " + (correct ? "wrong" : "right"));
+      System.out.println("Your solver ouput is " + (correct ? "right" : "wrong"));
   }
 
   public static String solve( String s ) {
