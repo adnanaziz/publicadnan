@@ -133,7 +133,7 @@ public class TestSudoku {
     long startTime = System.nanoTime();
     SudokuClient c1 = new SudokuClient(hardTc, "nonconc1");
     SudokuClient c2 = new SudokuClient(hardTc2, "nonconc2");
-    SudokuClient c3 = new SudokuClient(hardTc2, "nonconc3");
+    SudokuClient c3 = new SudokuClient(hardTc3, "nonconc3");
     System.out.println( new Date() );
     c1.solve();
     System.out.println( new Date() );

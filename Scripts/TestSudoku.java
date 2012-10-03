@@ -64,11 +64,9 @@ public class TestSudoku {
 
   @AfterClass
   public static void oneTimeTearDown() {
-    // String name = getClassAnnotationValue(CLASSUNDERTEST,
-    //                                       Author.class, "name");
-    // String uteid = getClassAnnotationValue(CLASSUNDERTEST,
-    //                                        Author.class, "uteid");
-   // System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
+     String name = getClassAnnotationValue(CLASSUNDERTEST, Author.class, "name");
+     String uteid = getClassAnnotationValue(CLASSUNDERTEST, Author.class, "uteid");
+    System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
 
   @Test(timeout=20000) 
@@ -100,7 +98,7 @@ public class TestSudoku {
     }
   }
 
-  @Tes(timeout=1000)
+  @Test(timeout=20000)
   public void testServerCachedHardInstance() {
     try {
       SudokuServer.start(16790);
@@ -133,7 +131,7 @@ public class TestSudoku {
     long startTime = System.nanoTime();
     SudokuClient c1 = new SudokuClient(hardTc, "nonconc1");
     SudokuClient c2 = new SudokuClient(hardTc2, "nonconc2");
-    SudokuClient c3 = new SudokuClient(hardTc2, "nonconc3");
+    SudokuClient c3 = new SudokuClient(hardTc3, "nonconc3");
     System.out.println( new Date() );
     c1.solve();
     System.out.println( new Date() );
@@ -148,7 +146,7 @@ public class TestSudoku {
     }
   }
 
-  @Tes(timeout=60000) 
+  @Test(timeout=60000) 
   public void twoConcurrentServerTest() {
     try {
       SudokuServer.start(16792);
