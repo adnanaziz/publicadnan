@@ -100,7 +100,7 @@ public class TestSudoku {
     }
   }
 
-  @Tes(timeout=20000)
+  @Test(timeout=20000)
   public void testServerCachedHardInstance() {
     try {
       SudokuServer.start(16790);
