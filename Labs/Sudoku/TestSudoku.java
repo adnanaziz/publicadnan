@@ -64,11 +64,9 @@ public class TestSudoku {
 
   @AfterClass
   public static void oneTimeTearDown() {
-    // String name = getClassAnnotationValue(CLASSUNDERTEST,
-    //                                       Author.class, "name");
-    // String uteid = getClassAnnotationValue(CLASSUNDERTEST,
-    //                                        Author.class, "uteid");
-   // System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
+   String name = getClassAnnotationValue(CLASSUNDERTEST, Author.class, "name");
+   String uteid = getClassAnnotationValue(CLASSUNDERTEST, Author.class, "uteid");
+   System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
 
   @Test(timeout=20000) 
@@ -148,7 +146,7 @@ public class TestSudoku {
     }
   }
 
-  @Tes(timeout=60000) 
+  @Test(timeout=60000)
   public void twoConcurrentServerTest() {
     try {
       SudokuServer.start(16792);
