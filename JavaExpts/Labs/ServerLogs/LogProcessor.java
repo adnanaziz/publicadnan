@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.List;
@@ -72,15 +73,24 @@ class Frequency implements Comparable {
       throw new ClassCastException("cannot compare " + o.getClass());
     }
     Frequency of = (Frequency) o;
-    long tmp = this.getFrequency() - of.getFrequency();
-    if ( tmp < 0 ) {
-      return -1;
-    } else if ( tmp > 0 ) {
-      return 1;
-    } else {
+    //long tmp = this.getFrequency() - of.getFrequency();
+    //if ( tmp < 0 ) {
+    //  return -1;
+    //} else if ( tmp > 0 ) {
+    //  return 1;
+    //} else {
       return this.getUrl().compareTo(of.getUrl());
-    }
+    //}
   }
+
+  //@Override
+  //public boolean equals( Object o ) {
+  //  if ( o.getClass() != Frequency.class ) {
+  //    throw new ClassCastException("cannot do equals on " + o.getClass());
+  //  }
+  //  Frequency of = (Frequency) o;
+  //  return (this.getUrl().equals(of.getUrl())) && (this.getFrequency() == of.getFrequency());
+  //}
 }
 
 public class LogProcessor {
@@ -128,11 +138,26 @@ public class LogProcessor {
 
   List<Frequency> getWindow() {
     long startTime = -1;
+    Set<String> processedUrls = new TreeSet<String>();
     List<Frequency> windowListRecords = new ArrayList<Frequency>();
     for (Record r : timeOrderedRecords) {
-      Frequency f = urlToFrequencyEntry.get(r.getUrl());
-      windowListRecords.add( f );
+      if ( !processedUrls.contains(r.getUrl()) ) {
+        Frequency f = urlToFrequencyEntry.get(r.getUrl());
+        windowListRecords.add( f );
+        processedUrls.add( r.getUrl() );
+      }
     }
+    Collections.sort( windowListRecords, new Comparator() {
+      @Override 
+      public int compare(Object o1, Object o2) {
+        Frequency r1 = (Frequency) o1;
+        Frequency r2 = (Frequency) o2;
+        long tmp = r1.getFrequency() - r2.getFrequency();
+        int tmpCast = (int) tmp;
+        return tmpCast;
+      }
+    }
+    );
     return windowListRecords;
   }
 
@@ -153,10 +178,10 @@ public class LogProcessor {
 
   public void printWindow() {
      List<Frequency> window = this.getWindow();
-     System.out.println("---begin window");
+     System.out.println("---begin urls in current window sorted by increasing frequency");
      for ( Frequency f : window ) 
        System.out.print(f + "," );
-     System.out.println("\n---end window");
+     System.out.println("\n---end");
   }
 
   @Override
@@ -185,7 +210,7 @@ public class LogProcessor {
   }
 
   private static String[] sites = {
-    "google.com", "yahoo.com", "facebook.com", 
+    "google.com", "google.com", "yahoo.com", "facebook.com", 
     "cnn.com", "cricinfo.org", "rediff.com", "abcnews.com"
   };
 
@@ -194,23 +219,25 @@ public class LogProcessor {
 
   private static Record randomRecord() {
     Record result = new Record( sites[ r.nextInt( sites.length )], timeStamp );
-    timeStamp += r.nextInt(10);
+    timeStamp += r.nextInt(2);
     return result;
   }
 
   public static void test2() {
-    LogProcessor lp = new LogProcessor(100);
-    for ( int i = 0; i < 10000; i++ ) {
+    LogProcessor lp = new LogProcessor(1000);
+    for ( int i = 0; i < 100000000; i++ ) {
        lp.add( randomRecord() );
-       if ( i % 1000 == 0 ) {
-         lp.printWindow();
-	 lp.print();
-       }
+       //if ( i % 100 == 0 ) {
+         // lp.printWindow();
+         // lp.print();
+       //}
     }
+    lp.print();
+    lp.printWindow();
   }
 
   public static void main(String [] args) {
-    test3();
+    test2();
   }
 
   public static void test3() {
