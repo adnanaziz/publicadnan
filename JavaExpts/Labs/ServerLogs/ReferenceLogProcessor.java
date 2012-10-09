@@ -1,3 +1,5 @@
+package ee422C;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
@@ -21,8 +23,8 @@ class Record implements Comparable {
     this.url = url;
     this.time = time;
   }
-  private String getUrl() { return url; }
-  private long getTime() { return time; }
+  String getUrl() { return url; }
+  long getTime() { return time; }
   @Override 
   public String toString() {
     return url + ":" + time;
@@ -63,10 +65,10 @@ class Frequency implements Comparable {
     this.frequency = frequency;
   }
 
-  private String getUrl() { return url; }
-  private long getFrequency() { return frequency; }
-  private void incrementFreq() { frequency++; return; }
-  private void decrementFreq() { frequency--; return; }
+  String getUrl() { return url; }
+  long getFrequency() { return frequency; }
+  void incrementFreq() { frequency++; return; }
+  void decrementFreq() { frequency--; return; }
 
   public int compareTo( Object o ) {
     if ( o.getClass() != Frequency.class ) {
@@ -108,7 +110,11 @@ public class ReferenceLogProcessor {
     urlToFrequencyEntry = new TreeMap<String,Frequency>();
   }
 
-  public void add(Record r) {
+  public void add( String url, int timestamp ) {
+    this.add( new Record( url, timestamp ) );
+  }
+
+  private void add(Record r) {
     timeOrderedRecords.add( r );
     if ( newestTime < r.getTime() ) {
       newestTime = r.getTime();
@@ -183,15 +189,15 @@ public class ReferenceLogProcessor {
   }
 
   private void printWindow() {
-     List<Frequency> window = this.getWindow();
+     List<String> window = this.getOrderedUrlsInWindow();
      System.out.println("---begin urls in current window sorted by increasing frequency");
-     for ( Frequency f : window ) 
+     for ( String f : window ) 
        System.out.print(f + "," );
      System.out.println("\n---end");
   }
 
   @Override
-  private String toString() {
+  public String toString() {
     // Set<Record> timeOrderedRecords;
     // Set<Frequency> frequencyUrlSet;
     // Map<String,Frequency> urlToFrequencyEntry;
