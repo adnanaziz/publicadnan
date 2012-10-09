@@ -21,8 +21,8 @@ class Record implements Comparable {
     this.url = url;
     this.time = time;
   }
-  public String getUrl() { return url; }
-  public long getTime() { return time; }
+  private String getUrl() { return url; }
+  private long getTime() { return time; }
   @Override 
   public String toString() {
     return url + ":" + time;
@@ -63,10 +63,10 @@ class Frequency implements Comparable {
     this.frequency = frequency;
   }
 
-  public String getUrl() { return url; }
-  public long getFrequency() { return frequency; }
-  public void incrementFreq() { frequency++; return; }
-  public void decrementFreq() { frequency--; return; }
+  private String getUrl() { return url; }
+  private long getFrequency() { return frequency; }
+  private void incrementFreq() { frequency++; return; }
+  private void decrementFreq() { frequency--; return; }
 
   public int compareTo( Object o ) {
     if ( o.getClass() != Frequency.class ) {
@@ -93,23 +93,22 @@ class Frequency implements Comparable {
   //}
 }
 
-public class LogProcessor {
-  Multiset<Record> timeOrderedRecords;
-  Set<Frequency> frequencyUrlSet;
-  Map<String,Frequency> urlToFrequencyEntry;
+public class ReferenceLogProcessor {
+  private Multiset<Record> timeOrderedRecords;
+  private Set<Frequency> frequencyUrlSet;
+  private Map<String,Frequency> urlToFrequencyEntry;
 
-  final int WINDOWSIZE;
-  int getWindowSize() { return WINDOWSIZE; }
+  private final int WINDOWSIZE;
   long newestTime = 0;
 
-  LogProcessor(int windowSize) {
+  public ReferenceLogProcessor(int windowSize) {
     this.WINDOWSIZE = windowSize;
     timeOrderedRecords = TreeMultiset.create(); 
     frequencyUrlSet = new TreeSet<Frequency>();
     urlToFrequencyEntry = new TreeMap<String,Frequency>();
   }
 
-  void add(Record r) {
+  public void add(Record r) {
     timeOrderedRecords.add( r );
     if ( newestTime < r.getTime() ) {
       newestTime = r.getTime();
@@ -136,7 +135,11 @@ public class LogProcessor {
     // print();
   }
 
-  List<Frequency> getWindow() {
+  public int getWindowSize() {
+    return timeOrderedRecords.size();
+  }
+
+  public List<String> getOrderedUrlsInWindow() {
     long startTime = -1;
     Set<String> processedUrls = new TreeSet<String>();
     List<Frequency> windowListRecords = new ArrayList<Frequency>();
@@ -158,10 +161,13 @@ public class LogProcessor {
       }
     }
     );
-    return windowListRecords;
+    List<String> result = new ArrayList<String>();
+    for ( Frequency f : windowListRecords )
+      result.add( f.getUrl() );
+    return result;
   }
 
-  void removeRecords( List<Record> removeList ) {
+  private void removeRecords( List<Record> removeList ) {
     for (Record delRecord : removeList ) {
       timeOrderedRecords.remove( delRecord );
       String url = delRecord.getUrl();
@@ -176,7 +182,7 @@ public class LogProcessor {
     }
   }
 
-  public void printWindow() {
+  private void printWindow() {
      List<Frequency> window = this.getWindow();
      System.out.println("---begin urls in current window sorted by increasing frequency");
      for ( Frequency f : window ) 
@@ -185,7 +191,7 @@ public class LogProcessor {
   }
 
   @Override
-  public String toString() {
+  private String toString() {
     // Set<Record> timeOrderedRecords;
     // Set<Frequency> frequencyUrlSet;
     // Map<String,Frequency> urlToFrequencyEntry;
@@ -205,74 +211,8 @@ public class LogProcessor {
     return sb.toString();
   }
 
-  public void print() {
-    System.out.println("Current LogProcessor is " + this.toString() );
+  private void print() {
+    System.out.println("Current ReferenceLogProcessor is " + this.toString() );
   }
 
-  private static String[] sites = {
-    "google.com", "google.com", "yahoo.com", "facebook.com", 
-    "cnn.com", "cricinfo.org", "rediff.com", "abcnews.com"
-  };
-
-  private static Random r = new Random();
-  private static long timeStamp = 0;
-
-  private static Record randomRecord() {
-    Record result = new Record( sites[ r.nextInt( sites.length )], timeStamp );
-    timeStamp += r.nextInt(2);
-    return result;
-  }
-
-  public static void test2() {
-    LogProcessor lp = new LogProcessor(1000);
-    for ( int i = 0; i < 100000000; i++ ) {
-       lp.add( randomRecord() );
-       //if ( i % 100 == 0 ) {
-         // lp.printWindow();
-         // lp.print();
-       //}
-    }
-    lp.print();
-    lp.printWindow();
-  }
-
-  public static void main(String [] args) {
-    test2();
-  }
-
-  public static void test3() {
-     LogProcessor lp = new LogProcessor(5);
-     lp.add( new Record( "google.com", 0 ) );
-     lp.add( new Record( "yahoo.com", 1 ) );
-     lp.add( new Record( "google.com", 2 ) );
-     lp.add( new Record( "google.com", 10 ) );
-     lp.add( new Record( "yahoo.com", 11 ) );
-     // lp.printWindow();
-     lp.add( new Record( "google.com", 100 ) );
-     lp.add( new Record( "yahoo.com", 101 ) );
-     lp.add( new Record( "google.com", 100 ) );
-     lp.add( new Record( "google.com", 100 ) );
-     lp.add( new Record( "google.com", 100 ) );
-     lp.add( new Record( "google.com", 102 ) );
-     lp.add( new Record( "yahoo.com", 200 ));
-     lp.print();
-  }
-
-  public static void test1() {
-     LogProcessor lp = new LogProcessor(1000);
-     lp.add( new Record( "google.com", 0 ) );
-     lp.add( new Record( "yahoo.com", 1 ) );
-     // lp.printWindow();
-     lp.add( new Record( "google.com", 0 ) );
-     lp.add( new Record( "yahoo.com", 7 ) );
-     lp.add( new Record( "abc.com", 9 ) );
-     lp.add( new Record( "cbs.com", 8 ) );
-      //lp.print();
-     // lp.printWindow();
-     // lp.printWindow();
-     lp.add( new Record( "cricket.com", 20 ) );
-     lp.print();
-     lp.printWindow();
-     //lp.print();
-  }
 }
