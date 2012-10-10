@@ -90,7 +90,45 @@ public class TestLogProcessor {
     lp.add( "c.com", 5 );
     assertTrue( 6 == lp.getWindowSize());
     score += 5;
+    List<String> rlpWindow = new ArrayList<String>();
+    rlpWindow.add("a"); // most common
+    rlpWindow.add("b");
+    rlpWindow.add("c"); // least common
+    List<String> lpWindow = lp.getOrderedUrlsInWindow();
+    Iterator<String> rlpWindowIterator = rlpWindow.iterator();
+    Iterator<String> lpWindowIterator = lpWindow.iterator();
+    while ( !rlpWindowIterator.hasNext() ) {
+      assertTrue( !lpWindowIterator.hasNext() );
+      assertTrue( rlpWindowIterator.next().equals( lpWindowIterator.next() ) );
+    }
+    score +=5;
   }
+
+  @Test(timeout=2000) 
+  public void testBasicDups3() {
+    LogProcessor lp = new LogProcessor(10);
+    lp.add( "a.com", 0 );
+    lp.add( "b.com", 1 );
+    lp.add( "b.com", 2 );
+    lp.add( "a.com", 3 );
+    lp.add( "b.com", 4 );
+    lp.add( "c.com", 5 );
+    lp.add( "a.com", 1 );
+    List<String> rlpWindow = new ArrayList<String>();
+    rlpWindow.add("a"); // a and b are most common, break times lexico
+    rlpWindow.add("b");
+    rlpWindow.add("c"); // least common
+    List<String> lpWindow = lp.getOrderedUrlsInWindow();
+    Iterator<String> rlpWindowIterator = rlpWindow.iterator();
+    Iterator<String> lpWindowIterator = lpWindow.iterator();
+    while ( !rlpWindowIterator.hasNext() ) {
+      assertTrue( !lpWindowIterator.hasNext() );
+      assertTrue( rlpWindowIterator.next().equals( lpWindowIterator.next() ) );
+    }
+    score +=5;
+  }
+
+
 
   @Test(timeout=2000) 
   public void testOutOfOrderNoDupTimes1() {
@@ -135,7 +173,7 @@ public class TestLogProcessor {
     stressTest( 100000, 1000, 5 );
   }
 
-  @Test(timeout=500000) 
+  @Ignore @Test(timeout=500000) 
   public void testStressLarge() {
     stressTest( 100000000, 10000, 20 );
   }
@@ -174,8 +212,8 @@ public class TestLogProcessor {
     }
     score +=pointsToAdd;
     
-    if ( ( finishTimeReference - startTimeReference) 
-             < 2 * ( finishTime - startTime ) ) {
+    if ( 2*( finishTimeReference - startTimeReference) 
+             > ( finishTime - startTime ) ) {
       score += 2*pointsToAdd;
     }
   }

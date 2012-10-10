@@ -10,6 +10,7 @@
   public String uteid() default  "js123" ;
 }
 
+@Author(name="Sachin Tendulkar", uteid="st100")
 public class LogProcessor {
   // EE422C: define the appropriate collections here
 	//TODOBEGIN(EE422C)
