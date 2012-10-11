@@ -1,18 +1,14 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.*;
-import java.util.zip.DataFormatException;
-
 import java.lang.annotation.*;
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
-import java.lang.reflect.*;
+
 
 import ee422C.ReferenceLogProcessor;
 
 public class TestLogProcessor {
 
-  public static final Class CLASSUNDERTEST = LogProcessor.class;
+  public static final Class<LogProcessor> CLASSUNDERTEST = LogProcessor.class;
 
   public static int score = 0;
 
@@ -22,9 +18,9 @@ public class TestLogProcessor {
   }
 
   // Ang's suggestion on getting annotation values
-  public static String getClassAnnotationValue(Class classType, 
-                                               Class annotationType, 
-                                               String attributeName) {
+  public static String getClassAnnotationValue(Class<LogProcessor> classType, 
+          Class<Author> annotationType, 
+          String attributeName) {
     String value = null;
     Annotation annotation = classType.getAnnotation(annotationType);
     if (annotation != null) {

@@ -1,3 +1,9 @@
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+import java.util.List;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.*;
+
 // import the collections/libraries you are using
 	//TODOBEGIN(EE422C)
 
@@ -10,7 +16,7 @@
   public String uteid() default  "js123" ;
 }
 
-@Author(name="Sachin Tendulkar", uteid="st100")
+@Author(name="Barack H Obama", uteid="HBO")
 public class LogProcessor {
   // EE422C: define the appropriate collections here
 	//TODOBEGIN(EE422C)
