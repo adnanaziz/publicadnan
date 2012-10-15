@@ -87,14 +87,14 @@ public class TestLogProcessor {
     assertTrue( 6 == lp.getWindowSize());
     score += 5;
     List<String> rlpWindow = new ArrayList<String>();
-    rlpWindow.add("a"); // most common
-    rlpWindow.add("b");
-    rlpWindow.add("c"); // least common
+    rlpWindow.add("a.com"); // most common
+    rlpWindow.add("b.com");
+    rlpWindow.add("c.com"); // least common
     List<String> lpWindow = lp.getOrderedUrlsInWindow();
     Iterator<String> rlpWindowIterator = rlpWindow.iterator();
     Iterator<String> lpWindowIterator = lpWindow.iterator();
-    while ( !rlpWindowIterator.hasNext() ) {
-      assertTrue( !lpWindowIterator.hasNext() );
+    while ( rlpWindowIterator.hasNext() ) {
+      assertTrue( lpWindowIterator.hasNext() );
       assertTrue( rlpWindowIterator.next().equals( lpWindowIterator.next() ) );
     }
     score +=5;
@@ -111,14 +111,14 @@ public class TestLogProcessor {
     lp.add( "c.com", 5 );
     lp.add( "a.com", 1 );
     List<String> rlpWindow = new ArrayList<String>();
-    rlpWindow.add("a"); // a and b are most common, break times lexico
-    rlpWindow.add("b");
-    rlpWindow.add("c"); // least common
+    rlpWindow.add("a.com"); // a and b are most common, break times lexico
+    rlpWindow.add("b.com");
+    rlpWindow.add("c.com"); // least common
     List<String> lpWindow = lp.getOrderedUrlsInWindow();
     Iterator<String> rlpWindowIterator = rlpWindow.iterator();
     Iterator<String> lpWindowIterator = lpWindow.iterator();
-    while ( !rlpWindowIterator.hasNext() ) {
-      assertTrue( !lpWindowIterator.hasNext() );
+    while ( rlpWindowIterator.hasNext() ) {
+      assertTrue( lpWindowIterator.hasNext() );
       assertTrue( rlpWindowIterator.next().equals( lpWindowIterator.next() ) );
     }
     score +=5;
@@ -202,8 +202,8 @@ public class TestLogProcessor {
     List<String> lpWindow = lp.getOrderedUrlsInWindow();
     Iterator<String> rlpWindowIterator = rlpWindow.iterator();
     Iterator<String> lpWindowIterator = lpWindow.iterator();
-    while ( !rlpWindowIterator.hasNext() ) {
-      assertTrue( !lpWindowIterator.hasNext() );
+    while ( rlpWindowIterator.hasNext() ) {
+      assertTrue( lpWindowIterator.hasNext() );
       assertTrue( rlpWindowIterator.next().equals( lpWindowIterator.next() ) );
     }
     score +=pointsToAdd;
