@@ -8,17 +8,18 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 import java.lang.reflect.*;
 
-import ee422C.ReferenceLogProcessor;
+import java.util.List;
+import java.util.ArrayList;
 
-public class TestLogProcessor {
+public class TestLab {
 
-  public static final Class CLASSUNDERTEST = LogProcessor.class;
+  public static final Class CLASSUNDERTEST = RegExp.class;
 
   public static int score = 0;
 
   @Before
   public void setUp() {
-    // System.out.println("Setting up");
+    // System.out.println("Setting up")); score += 5;}
   }
 
   // Ang's suggestion on getting annotation values
@@ -47,174 +48,41 @@ public class TestLogProcessor {
     System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
 
-  @Test(timeout=2000) 
-  public void testBasicNoDups1() {
-    LogProcessor lp = new LogProcessor(5);
-    lp.add( "a.com", 0  );
-    lp.add( "b.com", 1  );
-    lp.add( "c.com", 2  );
-    assertTrue( 3 == lp.getWindowSize());
-    score += 5;
-  }
+  @Test public void testRegExp1() { assertTrue( RegExp.match( ".", "a")); score += 5;}
+  @Test public void testRegExp2() { assertTrue( RegExp.match( "a", "a")); score += 5;}
+  @Test public void testRegExp3() { assertFalse( RegExp.match( "a", "b")); score += 5;}
+  @Test public void testRegExp4() { assertTrue( RegExp.match( "a.9", "aW9")); score += 5;}
+  @Test public void testRegExp5() { assertFalse( RegExp.match( "a.9", "aW19")); score += 5;}
+  @Test public void testRegExp6() { assertTrue( RegExp.match( "^a.9", "aW9")); score += 5;}
+  @Test public void testRegExp7() { assertFalse( RegExp.match( "^a.9", "baW19")); score += 5;}
+  @Test public void testRegExp8() { assertTrue( RegExp.match( ".*", "a")); score += 5;}
+  @Test public void testRegExp9() { assertTrue( RegExp.match( ".*", "")); score += 5;}
+  @Test public void testRegExp10() { assertTrue( RegExp.match( ".*",  "asdsdsa")); score += 5;}
+  @Test public void testRegExp11() { assertTrue( RegExp.match( "9$" , "xxxxW19")); score += 5;}
+  @Test public void testRegExp12() { assertTrue( RegExp.match( ".*a", "ba")); score += 5;}
+  @Test public void testRegExp13() { assertTrue( RegExp.match( ".*a", "ba")); score += 5;}
+  @Test public void testRegExp14() { assertTrue( RegExp.match( "^a.*9$", "axxxxW19")); score += 5;}
+  @Test public void testRegExp15() { assertTrue( RegExp.match( "^a.*W19$", "axxxxW19")); score += 5;}
+  @Test public void testRegExp16() { assertTrue( RegExp.match( ".*a.*W19", "axxxxW19123")); score += 5;}
+  @Test public void testRegExp17() { assertFalse( RegExp.match( ".*b.*W19", "axxxxW19123")); score += 5;}
+  @Test public void testRegExp18() { assertTrue( RegExp.match( "n.*", "n")); score += 5;}
+  @Test public void testRegExp19() { assertTrue( RegExp.match( "a*n.*", "an")); score += 5;}
+  @Test public void testRegExp20() { assertTrue( RegExp.match( "a*n.*", "ana")); score += 5;}
+  @Test public void testRegExp21() { assertTrue( RegExp.match( "a*n.*W19", "anaxxxxW19123")); score += 5;}
+  @Test public void testRegExp22() { assertTrue( RegExp.match( ".*a*n.*W19", "asdaaadnanaxxxxW19123")); score += 5;}
+  @Test public void testRegExp23() { assertTrue( RegExp.match( ".*.*.a*n.*W19", "asdaaadnanaxxxxW19123")); score += 5;}
 
-  @Test(timeout=2000) 
-  public void testBasicNoDups2() {
-    LogProcessor lp = new LogProcessor(5);
-    lp.add( "a.com", 0  );
-    lp.add( "b.com", 1 );
-    lp.add( "c.com", 2 );
-    lp.add( "d.com", 20 );
-    lp.add( "e.com", 22 );
-    assertTrue( 2 == lp.getWindowSize());
-    score += 5;
-  }
-
-  @Test(timeout=2000) 
-  public void testBasicDups1() {
-    LogProcessor lp = new LogProcessor(5);
-    lp.add( "a.com", 0 );
-    lp.add( "b.com", 1 );
-    lp.add( "a.com", 2 );
-    assertTrue( 3 == lp.getWindowSize());
-    score += 5;
-  }
-
-  @Test(timeout=2000) 
-  public void testBasicDups2() {
-    LogProcessor lp = new LogProcessor(10);
-    lp.add( "a.com", 0 );
-    lp.add( "b.com", 1 );
-    lp.add( "a.com", 2 );
-    lp.add( "a.com", 3 );
-    lp.add( "b.com", 4 );
-    lp.add( "c.com", 5 );
-    assertTrue( 6 == lp.getWindowSize());
-    score += 5;
-    List<String> rlpWindow = new ArrayList<String>();
-    rlpWindow.add("a"); // most common
-    rlpWindow.add("b");
-    rlpWindow.add("c"); // least common
-    List<String> lpWindow = lp.getOrderedUrlsInWindow();
-    Iterator<String> rlpWindowIterator = rlpWindow.iterator();
-    Iterator<String> lpWindowIterator = lpWindow.iterator();
-    while ( !rlpWindowIterator.hasNext() ) {
-      assertTrue( !lpWindowIterator.hasNext() );
-      assertTrue( rlpWindowIterator.next().equals( lpWindowIterator.next() ) );
-    }
-    score +=5;
-  }
-
-  @Test(timeout=2000) 
-  public void testBasicDups3() {
-    LogProcessor lp = new LogProcessor(10);
-    lp.add( "a.com", 0 );
-    lp.add( "b.com", 1 );
-    lp.add( "b.com", 2 );
-    lp.add( "a.com", 3 );
-    lp.add( "b.com", 4 );
-    lp.add( "c.com", 5 );
-    lp.add( "a.com", 1 );
-    List<String> rlpWindow = new ArrayList<String>();
-    rlpWindow.add("a"); // a and b are most common, break times lexico
-    rlpWindow.add("b");
-    rlpWindow.add("c"); // least common
-    List<String> lpWindow = lp.getOrderedUrlsInWindow();
-    Iterator<String> rlpWindowIterator = rlpWindow.iterator();
-    Iterator<String> lpWindowIterator = lpWindow.iterator();
-    while ( !rlpWindowIterator.hasNext() ) {
-      assertTrue( !lpWindowIterator.hasNext() );
-      assertTrue( rlpWindowIterator.next().equals( lpWindowIterator.next() ) );
-    }
-    score +=5;
-  }
-
-
-
-  @Test(timeout=2000) 
-  public void testOutOfOrderNoDupTimes1() {
-    LogProcessor lp = new LogProcessor(8);
-    lp.add( "a.com", 0 );
-    lp.add( "b.com", 2 );
-    lp.add( "a.com", 3 );
-    lp.add( "a.com", 4 );
-    lp.add( "b.com", 5 );
-    lp.add( "a.com", 1 );
-    assertTrue( 6 == lp.getWindowSize());
-    score += 5;
-  }
-
-  @Test(timeout=2000) 
-  public void testOutOfOrderDupTimes1() {
-    LogProcessor lp = new LogProcessor(2);
-    lp.add( "a.com", 0 );
-    lp.add( "b.com", 1 );
-    lp.add( "a.com", 3 );
-    lp.add( "a.com", 4 );
-    lp.add( "b.com", 4 );
-    lp.add( "a.com", 3 );
-    assertTrue( 4 == lp.getWindowSize());
-    score += 5;
-  }
-
-
-  private static String[] sites = {
-    "google.com", "google.com", "yahoo.com", "facebook.com",
-    "cnn.com", "cricinfo.org", "rediff.com", "abcnews.com"
-  };
-
-
-  @Test(timeout=1000) 
-  public void testStressSmall() {
-    stressTest( 1000, 10, 5 );
-  }
-
-  @Test(timeout=10000) 
-  public void testStressMedium() {
-    stressTest( 100000, 1000, 5 );
-  }
-
-  @Ignore @Test(timeout=500000) 
-  public void testStressLarge() {
-    stressTest( 100000000, 10000, 20 );
-  }
-
-  public static void stressTest( int numTrials, int windowWidth, int pointsToAdd ) {
-    Random r;
-    int timeStamp;
-
-    timeStamp = 0;
-    r = new Random(0);
-    ReferenceLogProcessor rlp = new ReferenceLogProcessor(windowWidth);
-    long startTimeReference = System.nanoTime();
-    for ( int i = 0 ; i < numTrials; i++ ) {
-      rlp.add( sites[ r.nextInt( sites.length )], timeStamp );
-      timeStamp += r.nextInt(windowWidth);
-    }
-    long finishTimeReference = System.nanoTime(); 
-
-    timeStamp = 0;
-    r = new Random(0);
-    long startTime = System.nanoTime();
-    LogProcessor lp = new LogProcessor(windowWidth);
-    for ( int i = 0 ; i < numTrials; i++ ) {
-      lp.add( sites[ r.nextInt( sites.length )], timeStamp );
-      timeStamp += r.nextInt(windowWidth);
-    }
-    long finishTime = System.nanoTime(); 
-    assert( lp.getWindowSize() == rlp.getWindowSize() );
-    List<String> rlpWindow = rlp.getOrderedUrlsInWindow();
-    List<String> lpWindow = lp.getOrderedUrlsInWindow();
-    Iterator<String> rlpWindowIterator = rlpWindow.iterator();
-    Iterator<String> lpWindowIterator = lpWindow.iterator();
-    while ( !rlpWindowIterator.hasNext() ) {
-      assertTrue( !lpWindowIterator.hasNext() );
-      assertTrue( rlpWindowIterator.next().equals( lpWindowIterator.next() ) );
-    }
-    score +=pointsToAdd;
-    
-    if ( 2*( finishTimeReference - startTimeReference) 
-             > ( finishTime - startTime ) ) {
-      score += 2*pointsToAdd;
-    }
+  @Test 
+  public void testSkyline1() {
+    List<Building> lb = new ArrayList<Building>();
+    lb.add( new Building( 0,1,1) );
+    lb.add( new Building( 1,1,1) );
+    lb.add( new Building( 2,1,1) );
+    List<Point> expectedSkyline = new ArrayList<Point>();
+    expectedSkyline.add( new Point(0,1) );
+    expectedSkyline.add( new Point(3,1) );
+    List<Point> skyline = Skyline.computeSkyline( lb );
+    assertEquals( skyline, expectedSkyline );
+    score += 10;
   }
 }
