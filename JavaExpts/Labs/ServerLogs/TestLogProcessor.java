@@ -47,19 +47,17 @@ public class TestLogProcessor {
     System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
 
-  @Ignore @Test(timeout=2000) 
+   @Test(timeout=2000) 
   public void testBasicNoDups1() {
     LogProcessor lp = new LogProcessor(5);
     lp.add( "a.com", 0  );
     lp.add( "b.com", 1  );
     lp.add( "c.com", 2  );
     assertTrue( 3 == lp.getWindowSize());
-    for ( String s : lp.getOrderedUrlsInWindow() ) 
-       System.out.println(s);
     score += 5;
   }
 
-  @Ignore @Test(timeout=2000) 
+   @Test(timeout=2000) 
   public void testBasicNoDups2() {
     LogProcessor lp = new LogProcessor(5);
     lp.add( "a.com", 0  );
@@ -71,7 +69,7 @@ public class TestLogProcessor {
     score += 5;
   }
 
-  @Ignore @Test(timeout=2000) 
+   @Test(timeout=2000) 
   public void testBasicDups1() {
     LogProcessor lp = new LogProcessor(5);
     lp.add( "a.com", 0 );
@@ -81,7 +79,7 @@ public class TestLogProcessor {
     score += 5;
   }
 
-  @Ignore @Test(timeout=2000) 
+   @Test(timeout=2000) 
   public void testBasicDups2() {
     LogProcessor lp = new LogProcessor(10);
     lp.add( "a.com", 0 );
@@ -106,7 +104,7 @@ public class TestLogProcessor {
     score +=5;
   }
 
-  @Ignore @Test(timeout=2000) 
+   @Test(timeout=2000) 
   public void testBasicDups3() {
     LogProcessor lp = new LogProcessor(10);
     lp.add( "a.com", 0 );
@@ -132,7 +130,7 @@ public class TestLogProcessor {
 
 
 
-  @Ignore @Test(timeout=2000) 
+   @Test(timeout=2000) 
   public void testOutOfOrderNoDupTimes1() {
     LogProcessor lp = new LogProcessor(8);
     lp.add( "a.com", 0 );
@@ -145,7 +143,7 @@ public class TestLogProcessor {
     score += 5;
   }
 
-  @Ignore @Test(timeout=2000) 
+   @Test(timeout=2000) 
   public void testOutOfOrderDupTimes1() {
     LogProcessor lp = new LogProcessor(2);
     lp.add( "a.com", 0 );
@@ -164,7 +162,7 @@ public class TestLogProcessor {
     "cnn.com", "cricinfo.org", "rediff.com", "abcnews.com"
   };
 
-  @Ignore @Test(timeout=1000) 
+   @Test(timeout=1000) 
   public void testDirected1() {
     LogProcessor lp = new LogProcessor(3);
     lp.add( "b_3.com", 0 );
@@ -174,11 +172,9 @@ public class TestLogProcessor {
     lp.add( "z_1.com", 2 );
     lp.add( "b_3.com", 0 );
     List<String> lpWindow = lp.getOrderedUrlsInWindow();
-    for ( String s : lpWindow ) 
-      System.out.println(s);
   }
 
-  @Ignore @Test(timeout=1000) 
+   @Test(timeout=1000) 
   public void testDirectedBugReport() {
     LogProcessor lp = new LogProcessor(3);
     LogProcessor rlp = new LogProcessor(3);
@@ -190,15 +186,12 @@ public class TestLogProcessor {
     List<String> lpWindow = lp.getOrderedUrlsInWindow();
     Iterator<String> rlpWindowIterator = rlpWindow.iterator();
     Iterator<String> lpWindowIterator = lpWindow.iterator();
-    System.out.println("rlpWindow.size() = " + rlpWindow.size() );
-    System.out.println("lpWindow.size() = " + lpWindow.size() );
 
     while ( rlpWindowIterator.hasNext() ) {
       assertTrue( lpWindowIterator.hasNext() );
       String s = rlpWindowIterator.next();
       String t = lpWindowIterator.next();
-      System.out.println(s + ":" + t );
-      // assertTrue( s.equals( t ) );
+      assertTrue( s.equals( t ) );
     }
   }
 
@@ -208,14 +201,14 @@ public class TestLogProcessor {
     stressTest( 1000, 10, 5 );
   }
 
-  @Ignore @Test(timeout=10000) 
+   @Test(timeout=10000) 
   public void testStressMedium() {
     stressTest( 100000, 1000, 5 );
   }
 
-  @Ignore @Test(timeout=500000) 
+   @Test(timeout=500000) 
   public void testStressLarge() {
-    stressTest( 100000000, 10000, 20 );
+    stressTest( 10000000, 10000, 20 );
   }
 
   public static void stressTest( int numTrials, int windowWidth, int pointsToAdd ) {
@@ -248,14 +241,11 @@ public class TestLogProcessor {
     Iterator<String> rlpWindowIterator = rlpWindow.iterator();
     Iterator<String> lpWindowIterator = lpWindow.iterator();
 
-    System.out.println("rlpWindow.size() = " + rlpWindow.size() );
-
     while ( rlpWindowIterator.hasNext() ) {
       assertTrue( lpWindowIterator.hasNext() );
       String s = rlpWindowIterator.next();
       String t = lpWindowIterator.next();
-      System.out.println(s + ":" + t );
-      // assertTrue( s.equals( t ) );
+      assertTrue( s.equals( t ) );
     }
     score +=pointsToAdd;
     
