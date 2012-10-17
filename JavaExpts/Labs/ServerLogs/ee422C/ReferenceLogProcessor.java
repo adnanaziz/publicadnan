@@ -75,14 +75,14 @@ class Frequency implements Comparable {
       throw new ClassCastException("cannot compare " + o.getClass());
     }
     Frequency of = (Frequency) o;
-    //long tmp = this.getFrequency() - of.getFrequency();
-    //if ( tmp < 0 ) {
-    //  return -1;
-    //} else if ( tmp > 0 ) {
-    //  return 1;
-    //} else {
+    long tmp = this.getFrequency() - of.getFrequency();
+    if ( tmp < 0 ) {
+      return -1;
+    } else if ( tmp > 0 ) {
+      return 1;
+    } else {
       return this.getUrl().compareTo(of.getUrl());
-    //}
+    }
   }
 
   //@Override
@@ -163,7 +163,11 @@ public class ReferenceLogProcessor {
         Frequency r2 = (Frequency) o2;
         long tmp = r1.getFrequency() - r2.getFrequency();
         int tmpCast = (int) tmp;
-        return tmpCast;
+        if ( tmpCast != 0 ) {
+          return tmpCast;
+        } else {
+          return r1.getUrl().compareTo( r2.getUrl() );
+        }
       }
     }
     );
