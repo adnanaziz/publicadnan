@@ -176,7 +176,7 @@ public class TestLogProcessor {
 
   public static void stressTest( int numTrials, int windowWidth, int pointsToAdd ) {
     Random r;
-    int timeStamp;
+    long timeStamp;
 
     timeStamp = 0;
     r = new Random(0);
