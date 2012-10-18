@@ -37,7 +37,7 @@ public class LogProcessor {
   // the window for which the separation of timestamp
   // and maximum timestamp seen so far exceeds
   // the window size
-  public void add( String url, int timestamp ) {
+  public void add( String url, long timeStamp ) {
 	//TODOBEGIN(EE422C)
 
 	//TODOEND(EE422C)
@@ -46,6 +46,7 @@ public class LogProcessor {
 
 	//TODOEND(EE422C)
   public int getWindowSize() {
+	return 0;
 	//TODOBEGIN(EE422C)
 
 	//TODOEND(EE422C)
@@ -58,6 +59,7 @@ public class LogProcessor {
   // i.e., if abc.com  and xy.com both appear 10 times
   // in the window, put abc.com first
   public List<String> getOrderedUrlsInWindow() {
+	return null;
 	//TODOBEGIN(EE422C)
 
 	//TODOEND(EE422C)
