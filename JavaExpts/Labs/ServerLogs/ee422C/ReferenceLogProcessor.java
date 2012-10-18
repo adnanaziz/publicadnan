@@ -77,9 +77,9 @@ class Frequency implements Comparable {
     Frequency of = (Frequency) o;
     long tmp = this.getFrequency() - of.getFrequency();
     if ( tmp < 0 ) {
-      return -1;
-    } else if ( tmp > 0 ) {
       return 1;
+    } else if ( tmp > 0 ) {
+      return -1;
     } else {
       return this.getUrl().compareTo(of.getUrl());
     }
@@ -110,8 +110,8 @@ public class ReferenceLogProcessor {
     urlToFrequencyEntry = new TreeMap<String,Frequency>();
   }
 
-  public void add( String url, int timestamp ) {
-    this.add( new Record( url, timestamp ) );
+  public void add( String url, long timeStamp ) {
+    this.add( new Record( url, timeStamp ) );
   }
 
   private void add(Record r) {
@@ -164,7 +164,7 @@ public class ReferenceLogProcessor {
         long tmp = r1.getFrequency() - r2.getFrequency();
         int tmpCast = (int) tmp;
         if ( tmpCast != 0 ) {
-          return tmpCast;
+          return -tmpCast;
         } else {
           return r1.getUrl().compareTo( r2.getUrl() );
         }
