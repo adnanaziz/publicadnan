@@ -69,13 +69,13 @@ public class TestLab {
   public void testSkyline1() {
     List<Building> lb = new ArrayList<Building>();
     lb.add( new Building( 0,1,1) );
-    lb.add( new Building( 1,1,1) );
-    lb.add( new Building( 2,1,1) );
+    lb.add( new Building( 1,1,2) );
+    lb.add( new Building( 2,1,3) );
     List<Integer> expectedSkyline = new ArrayList<Integer>();
     expectedSkyline.add( 0 );
     expectedSkyline.add( 1 );
     expectedSkyline.add( 3 );
-    expectedSkyline.add( 1 );
+    expectedSkyline.add( 0 );
     List<Integer> skyline = Skyline.computeSkyline( lb );
     assertEquals( skyline, expectedSkyline );
     score += 10;

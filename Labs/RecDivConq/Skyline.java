@@ -18,13 +18,13 @@ public class Skyline {
 class Building {
   private int left;
   private int height;
-  private int width;
-  Building(int left, int height, int width) {
+  private int right;
+  Building(int left, int height, int right) {
     this.left = left;
     this.height = height;
-    this.width = width;
+    this.right = right;
   }
   public int left() { return left; }
   public int height() { return height; }
-  public int width() { return width; }
+  public int width() { return right; }
 }
