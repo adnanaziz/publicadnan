@@ -1,19 +1,12 @@
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.util.*;
-import java.util.zip.DataFormatException;
-
 import java.lang.annotation.*;
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
-import java.lang.reflect.*;
-
 import java.util.List;
 import java.util.ArrayList;
 
 public class TestLab {
 
-  public static final Class CLASSUNDERTEST = RegExp.class;
+  public static final Class<RegExp> CLASSUNDERTEST = RegExp.class;
 
   public static int score = 0;
 
@@ -23,8 +16,8 @@ public class TestLab {
   }
 
   // Ang's suggestion on getting annotation values
-  public static String getClassAnnotationValue(Class classType, 
-                                               Class annotationType, 
+  public static String getClassAnnotationValue(Class<RegExp> classType, 
+                                               Class<Author> annotationType, 
                                                String attributeName) {
     String value = null;
     Annotation annotation = classType.getAnnotation(annotationType);
@@ -78,10 +71,12 @@ public class TestLab {
     lb.add( new Building( 0,1,1) );
     lb.add( new Building( 1,1,1) );
     lb.add( new Building( 2,1,1) );
-    List<Point> expectedSkyline = new ArrayList<Point>();
-    expectedSkyline.add( new Point(0,1) );
-    expectedSkyline.add( new Point(3,1) );
-    List<Point> skyline = Skyline.computeSkyline( lb );
+    List<Integer> expectedSkyline = new ArrayList<Integer>();
+    expectedSkyline.add( 0 );
+    expectedSkyline.add( 1 );
+    expectedSkyline.add( 3 );
+    expectedSkyline.add( 1 );
+    List<Integer> skyline = Skyline.computeSkyline( lb );
     assertEquals( skyline, expectedSkyline );
     score += 10;
   }

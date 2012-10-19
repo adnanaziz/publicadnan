@@ -5,7 +5,7 @@ import java.util.List;
 //TODOEND(EE422C)
 
 public class Skyline {
-  public static List<Point> computeSkyline(List<Building> bldgList) {
+  public static List<Integer> computeSkyline(List<Building> bldgList) {
     //TODOBEGIN(EE422C)
     return null;
     //TODOEND(EE422C)
@@ -13,17 +13,6 @@ public class Skyline {
     //TODOBEGIN(EE422C)
     // add your helper functions here
     //TODOEND(EE422C)
-}
-
-class Point {
-  private int x;
-  private int y;
-  Point(int x, int y) {
-    this.x = x;
-    this.y = y;
-  }
-  public int X() { return x; }
-  public int Y() { return y; }
 }
 
 class Building {
