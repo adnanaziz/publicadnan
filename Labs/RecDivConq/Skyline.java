@@ -26,5 +26,5 @@ class Building {
   }
   public int left() { return left; }
   public int height() { return height; }
-  public int width() { return right; }
+  public int right() { return right; }
 }
