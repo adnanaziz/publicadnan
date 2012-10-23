@@ -363,7 +363,7 @@ public class TestLab {
 	@Test
 	public void testSkyline_stressTest6() {
 		List<Building> lb = new ArrayList<Building>();
-		int MAX_NUMBER = 200000;
+		int MAX_NUMBER = 1000000;
 
 		for (int left = -1, right = 1, height = 1; right <= MAX_NUMBER; left--, right++) {
 			lb.add(new Building(left, height, right));
