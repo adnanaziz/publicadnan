@@ -1,0 +1,77 @@
+Labs:
+
+Unit 1: General Programming
+
+Lab 1: Constraint solving with Java
+       - Beap pairing problem
+       - illustrates the basic constructs, some tricky conditionals, string manipulation
+
+Lab 2: Java Collections, Data Structures
+       - most common web pages
+       - illustrates nontrivial design of data structures and use of Java libraries
+
+Lab 3: Web app
+       - Stock alerts app hosted on Google Appengine
+       - illustrates HTML forms, server side programming, chron functionality, cloud computing
+         database usage, graphical charting
+
+Unit 2: Big Data
+
+Lab 4: A multithreaded server
+       - Online Sudoku solver
+       - illustrates concurrent programming, locking, networking API
+
+Lab 5: map reduce
+       - sorting a huge array using Hadoop
+       - illustrates basic large scale computing
+
+Lab 6: large scale data mining
+       - logistic regression over the TAQ using Hadoop
+       - illustrates a real-world data mining application (predicting stock movements) which operates at a huge scale
+
+Homework
+
+Hw 1: Java basics (particularly pitfalls)
+Hw 2: OO Java (class design and pitfalls of inheritance)
+Hw 3: Data structures and combinatorial algorithms ( 
+Hw 4: Distributed computing (locks, thread pools)
+Hw 5: Map reduce (descriptive/survey paper)
+
+Bootcamp:
+
+    Elementary Java
+    Lab: Hello World (SVN, Java devel environment) and Stack Calculator
+    Elementary Python
+    Lab: 
+
+Topic 1: Nonobject oriented programming
+Topic 2: Object-oriented programming
+Topic 2.1: Classes, Objects
+Topic 2.2: Inheritance
+Topic 2.3: Constructing objects (static factories, builders), singletons
+Topic 2: Data structures and algorithms in Java
+Topic 2.1: Asymptotic analysis
+Topic 2.2: Stacks, queues, lists, resizable arrays, sets & maps (trees, hashes), multiset & multimap
+Topic 2.3: The libraries: JDK, Guava, Apache commons
+Topic 2.4: Algorithm design - divide-and-conquer, dynamic programming, greedy, backtracking
+Topic 3: Web application programming
+Topic 3.1: Client-side: HTML, Javascript and the DOM
+Topic 3.2: Server-side: HTTP, the servlet standard, relational databases, 
+
+Topic 4: Concurrency, key primitives
+Topic 5: Hadoop and the map-reduce framework
+
+Topic 6: Guest speakers, e.g., Reul Nash from Google
+Topic 7: How to get a job at Google
+
+Resources: 
+   - Adnan's ECE undergrad and grad programming classes
+   - Sestoft's Java precisely
+   - Big Data at Twitter course at UC Berkeley (in the business school)
+   - Adnan's book on interviewing
+
+TODO: 
+  o where to get cluster?
+  o anything around random number generation, applications of randomness?
+  o how much treatment of combinatorial algorithms?
+
