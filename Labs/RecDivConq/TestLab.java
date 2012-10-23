@@ -104,26 +104,9 @@ public class TestLab {
 		lb.add(new Building(15, 10, 21));
 
 		List<Integer> expectedSkyline = new ArrayList<Integer>();
-		expectedSkyline.add(0);
-		expectedSkyline.add(3);
-		expectedSkyline.add(3);
-		expectedSkyline.add(17);
-		expectedSkyline.add(4);
-		expectedSkyline.add(71);
-		expectedSkyline.add(8);
-		expectedSkyline.add(0);
-		expectedSkyline.add(9);
-		expectedSkyline.add(35);
-		expectedSkyline.add(11);
-		expectedSkyline.add(7);
-		expectedSkyline.add(12);
-		expectedSkyline.add(0);
-		expectedSkyline.add(13);
-		expectedSkyline.add(21);
-		expectedSkyline.add(19);
-		expectedSkyline.add(10);
-		expectedSkyline.add(21);
-		expectedSkyline.add(0);
+		int[] expectedArray = {0,3,3,17,4,71,8,0,9,35,11,7,12,0,13,21,19,10,21,0};
+		for (int i = 0;i<expectedArray.length;i++)
+			expectedSkyline.add(expectedArray[i]);
 
 		List<Integer> skyline = Skyline.computeSkyline(lb);
 		assertEquals(skyline, expectedSkyline);
@@ -142,32 +125,9 @@ public class TestLab {
 		lb.add(new Building(24, 14, 35));
 
 		List<Integer> expectedSkyline = new ArrayList<Integer>();
-		expectedSkyline.add(2);
-		expectedSkyline.add(13);
-		expectedSkyline.add(3);
-		expectedSkyline.add(35);
-		expectedSkyline.add(5);
-		expectedSkyline.add(13);
-		expectedSkyline.add(7);
-		expectedSkyline.add(71);
-		expectedSkyline.add(10);
-		expectedSkyline.add(13);
-		expectedSkyline.add(11);
-		expectedSkyline.add(0);
-		expectedSkyline.add(12);
-		expectedSkyline.add(17);
-		expectedSkyline.add(19);
-		expectedSkyline.add(0);
-		expectedSkyline.add(21);
-		expectedSkyline.add(7);
-		expectedSkyline.add(24);
-		expectedSkyline.add(14);
-		expectedSkyline.add(31);
-		expectedSkyline.add(23);
-		expectedSkyline.add(33);
-		expectedSkyline.add(14);
-		expectedSkyline.add(35);
-		expectedSkyline.add(0);
+		int[] expectedArray = {2,13,3,35,5,13,7,71,10,13,11,0,12,17,19,0,21,7,24,14,31,23,33,14,35,0};
+		for (int i = 0;i<expectedArray.length;i++)
+			expectedSkyline.add(expectedArray[i]);
 
 		List<Integer> skyline = Skyline.computeSkyline(lb);
 		assertEquals(skyline, expectedSkyline);
@@ -186,32 +146,9 @@ public class TestLab {
 		lb.add(new Building(35, 14, 37));
 
 		List<Integer> expectedSkyline = new ArrayList<Integer>();
-		expectedSkyline.add(3);
-		expectedSkyline.add(4);
-		expectedSkyline.add(7);
-		expectedSkyline.add(12);
-		expectedSkyline.add(10);
-		expectedSkyline.add(25);
-		expectedSkyline.add(17);
-		expectedSkyline.add(4);
-		expectedSkyline.add(23);
-		expectedSkyline.add(0);
-		expectedSkyline.add(27);
-		expectedSkyline.add(13);
-		expectedSkyline.add(29);
-		expectedSkyline.add(0);
-		expectedSkyline.add(31);
-		expectedSkyline.add(5);
-		expectedSkyline.add(33);
-		expectedSkyline.add(7);
-		expectedSkyline.add(35);
-		expectedSkyline.add(14);
-		expectedSkyline.add(37);
-		expectedSkyline.add(7);
-		expectedSkyline.add(39);
-		expectedSkyline.add(5);
-		expectedSkyline.add(41);
-		expectedSkyline.add(0);
+		int[] expectedArray = {3,4,7,12,10,25,17,4,23,0,27,13,29,0,31,5,33,7,35,14,37,7,39,5,41,0};
+		for (int i = 0;i<expectedArray.length;i++)
+			expectedSkyline.add(expectedArray[i]);
 
 		List<Integer> skyline = Skyline.computeSkyline(lb);
 		assertEquals(skyline, expectedSkyline);
@@ -230,26 +167,9 @@ public class TestLab {
 		lb.add(new Building(22, 7, 34));
 
 		List<Integer> expectedSkyline = new ArrayList<Integer>();
-		expectedSkyline.add(2);
-		expectedSkyline.add(3);
-		expectedSkyline.add(3);
-		expectedSkyline.add(35);
-		expectedSkyline.add(7);
-		expectedSkyline.add(3);
-		expectedSkyline.add(11);
-		expectedSkyline.add(10);
-		expectedSkyline.add(13);
-		expectedSkyline.add(12);
-		expectedSkyline.add(23);
-		expectedSkyline.add(7);
-		expectedSkyline.add(27);
-		expectedSkyline.add(23);
-		expectedSkyline.add(31);
-		expectedSkyline.add(7);
-		expectedSkyline.add(34);
-		expectedSkyline.add(3);
-		expectedSkyline.add(38);
-		expectedSkyline.add(0);
+		int[] expectedArray = {2,3,3,35,7,3,11,10,13,12,23,7,27,23,31,7,34,3,38,0};
+		for (int i = 0;i<expectedArray.length;i++)
+			expectedSkyline.add(expectedArray[i]);
 
 		List<Integer> skyline = Skyline.computeSkyline(lb);
 		assertEquals(skyline, expectedSkyline);
