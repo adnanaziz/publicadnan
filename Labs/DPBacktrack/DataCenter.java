@@ -13,13 +13,19 @@ import java.util.Map;
   public String name() default  "John Snow" ;
   public String uteid() default  "js123" ;
 }
-
 @Author(name="Gary Sobers", uteid="gs365")
 public class DataCenter {
-  // solve takes a list of machines and a list of tasks
-  // and returns a mapping of tasks to machines which satisfies
-  // the constraint that no machine is assigned a collection
-  // of tasks whose aggregate mips and ram exceeds those of the machine
+
+/**
+ * Takes a list of machines and a list of tasks and returns a mapping of tasks to machines.
+ * The the sum of mips and rams of each machine's tasks can not exceed that machine's total mips and rams
+ * @param machines
+ * 		a list of available machines
+ * @param tasks
+ * 		a list of tasks 
+ * @return
+ * 		a Map specifying the list of tasks that is assigned to each machine
+ */
   public static Map<Machine,List<Task>> solve(List<Machine> machines, List<Task> tasks) {
   //TODO(EE422C): implement this function
     return null;

@@ -15,7 +15,6 @@ public class TestLab {
 
   @Before
   public void setUp() {
-    // System.out.println("Setting up")); score += 5;}
   }
 
   // Ang's suggestion on getting annotation values
