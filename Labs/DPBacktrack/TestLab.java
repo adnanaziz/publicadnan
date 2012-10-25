@@ -1,12 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.util.*;
-import java.util.zip.DataFormatException;
 
 import java.lang.annotation.*;
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
-import java.lang.reflect.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -14,7 +9,7 @@ import java.util.Map;
 
 public class TestLab {
 
-  public static final Class CLASSUNDERTEST = DataCenter.class;
+  public static final Class<DataCenter> CLASSUNDERTEST = DataCenter.class;
 
   public static int score = 0;
 
@@ -24,8 +19,8 @@ public class TestLab {
   }
 
   // Ang's suggestion on getting annotation values
-  public static String getClassAnnotationValue(Class classType, 
-                                               Class annotationType, 
+  public static String getClassAnnotationValue(Class<DataCenter> classType, 
+                                               Class<Author> annotationType, 
                                                String attributeName) {
     String value = null;
     Annotation annotation = classType.getAnnotation(annotationType);

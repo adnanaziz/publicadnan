@@ -5,7 +5,6 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
 import java.util.Map;
-import java.util.List;
 
 @Target(TYPE)
 @Retention(RUNTIME)

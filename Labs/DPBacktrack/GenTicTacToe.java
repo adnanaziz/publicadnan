@@ -1,8 +1,3 @@
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-import java.util.List;
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
 
 public class GenTicTacToe {
   // L is the length of the line that X or O have to make to win
@@ -17,6 +12,7 @@ public class GenTicTacToe {
   // You can assume that the number of entries per row equals
   // the number of rows
   public static boolean winnable(int L, String S, String... rows ) {
+	
   //TODO(EE422C): implement this function
     return false;
   }

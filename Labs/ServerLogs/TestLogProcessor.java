@@ -45,7 +45,7 @@ public class TestLogProcessor {
 
   @Test(timeout=2000) 
   public void testBasicNoDups1() {
-    LogProcessor lp = new LogProcessor(5);
+	  ReferenceLogProcessor lp = new ReferenceLogProcessor(5);
     lp.add( "a.com", 0  );
     lp.add( "b.com", 1  );
     lp.add( "c.com", 2  );
@@ -55,7 +55,7 @@ public class TestLogProcessor {
 
   @Test(timeout=2000) 
   public void testBasicNoDups2() {
-    LogProcessor lp = new LogProcessor(5);
+	  ReferenceLogProcessor lp = new ReferenceLogProcessor(5);
     lp.add( "a.com", 0  );
     lp.add( "b.com", 1 );
     lp.add( "c.com", 2 );
@@ -67,7 +67,7 @@ public class TestLogProcessor {
 
   @Test(timeout=2000) 
   public void testBasicDups1() {
-    LogProcessor lp = new LogProcessor(5);
+	  ReferenceLogProcessor lp = new ReferenceLogProcessor(5);
     lp.add( "a.com", 0 );
     lp.add( "b.com", 1 );
     lp.add( "a.com", 2 );
@@ -75,9 +75,9 @@ public class TestLogProcessor {
     score += 5;
   }
 
-  @Test(timeout=2000) 
+  @Test
   public void testBasicDups2() {
-    LogProcessor lp = new LogProcessor(10);
+    ReferenceLogProcessor lp = new ReferenceLogProcessor(10);
     lp.add( "a.com", 0 );
     lp.add( "b.com", 1 );
     lp.add( "a.com", 2 );
@@ -102,7 +102,7 @@ public class TestLogProcessor {
 
   @Test(timeout=2000) 
   public void testBasicDups3() {
-    LogProcessor lp = new LogProcessor(10);
+    ReferenceLogProcessor lp = new ReferenceLogProcessor(10);
     lp.add( "a.com", 0 );
     lp.add( "b.com", 1 );
     lp.add( "b.com", 2 );
@@ -128,7 +128,7 @@ public class TestLogProcessor {
 
   @Test(timeout=2000) 
   public void testOutOfOrderNoDupTimes1() {
-    LogProcessor lp = new LogProcessor(8);
+	  ReferenceLogProcessor lp = new ReferenceLogProcessor(8);
     lp.add( "a.com", 0 );
     lp.add( "b.com", 2 );
     lp.add( "a.com", 3 );
@@ -141,7 +141,7 @@ public class TestLogProcessor {
 
   @Test(timeout=2000) 
   public void testOutOfOrderDupTimes1() {
-    LogProcessor lp = new LogProcessor(2);
+	  ReferenceLogProcessor lp = new ReferenceLogProcessor(2);
     lp.add( "a.com", 0 );
     lp.add( "b.com", 1 );
     lp.add( "a.com", 3 );
@@ -169,7 +169,7 @@ public class TestLogProcessor {
     stressTest( 100000, 1000, 5 );
   }
 
-  @Ignore @Test(timeout=500000) 
+  @Test
   public void testStressLarge() {
     stressTest( 100000000, 10000, 20 );
   }
@@ -191,7 +191,7 @@ public class TestLogProcessor {
     timeStamp = 0;
     r = new Random(0);
     long startTime = System.nanoTime();
-    LogProcessor lp = new LogProcessor(windowWidth);
+    ReferenceLogProcessor lp = new ReferenceLogProcessor(windowWidth);
     for ( int i = 0 ; i < numTrials; i++ ) {
       lp.add( sites[ r.nextInt( sites.length )], timeStamp );
       timeStamp += r.nextInt(windowWidth);
