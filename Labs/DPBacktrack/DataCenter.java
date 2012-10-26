@@ -4,7 +4,7 @@ import java.util.List;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
-import java.util.Map;
+import java.util.ArrayList;
 
 @Target(TYPE)
 @Retention(RUNTIME)
@@ -15,20 +15,15 @@ import java.util.Map;
 }
 @Author(name="Gary Sobers", uteid="gs365")
 public class DataCenter {
-
-/**
- * Takes a list of machines and a list of tasks and returns a mapping of tasks to machines.
- * The the sum of mips and rams of each machine's tasks can not exceed that machine's total mips and rams
- * @param machines
- * 		a list of available machines
- * @param tasks
- * 		a list of tasks 
- * @return
- * 		a Map specifying the list of tasks that is assigned to each machine
- */
-  public static Map<Machine,List<Task>> solve(List<Machine> machines, List<Task> tasks) {
+  // solve takes machine and a list of tasks
+  // and returns a list of tasks that satisifies
+  // the constraint that the aggregate mips and ram 
+  // does not exceed those of the machine
+  public static List<Task> solve(Machine machine, List<Task> tasks) {
   //TODO(EE422C): implement this function
-    return null;
+    List<Task> result = new ArrayList<Task>();
+    result.add( tasks.get(0) );
+    return result;
   }
 }
 
@@ -45,9 +40,26 @@ class Machine {
 class Task {
   int mips;
   int ram;
+  int price;
 
-  public Task( int mips, int ram ) {
+  public Task( int mips, int ram, int price ) {
     this.mips = mips;
     this.ram = ram;
+    this.price = price;
+  }
+
+  @Override
+  public boolean equals( Object o ) {
+    if ( (o == null) || !(o instanceof Task) ) {
+      return false;
+    }
+    Task ot = (Task) o;
+    return ( (this.mips == ot.mips) 
+                && (this.ram == ot.ram) 
+                && (this.price == ot.price) );
+  }
+  @Override
+  public int hashCode() {
+    return 137*(mips*137+ price) + ram;
   }
 }

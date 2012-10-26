@@ -45,33 +45,30 @@ public class TestLab {
 
   @Test 
   public void testDcSimple() {
-    List<Machine> machines = new ArrayList<Machine>();
-    machines.add( new Machine( 3, 3) );
-    machines.add( new Machine( 3, 3) );
+    Machine machine = new Machine( 2, 2 );
     List<Task> tasks = new ArrayList<Task>();
-    tasks.add( new Task( 2, 2) );
-    tasks.add( new Task( 2, 1) );
-    tasks.add( new Task( 1, 2) );
-    tasks.add( new Task( 1, 1) );
-    Map<Machine,List<Task>> result = DataCenter.solve( machines, tasks );
-    assertTrue( result != null );
+    tasks.add( new Task( 2, 1, 3 ) );
+    tasks.add( new Task( 1, 1, 1 ) );
+    tasks.add( new Task( 1, 1, 1 ) );
+    List<Task> result = DataCenter.solve( machine, tasks );
+    assertTrue( result.size() == 1 );
+    assertTrue( result.get(0).equals( new Task(2, 1, 3) ) );
     score += 5;
   }
 
   @Test 
   public void testDcComplexDirected() {
-    List<Machine> machines = new ArrayList<Machine>();
-    machines.add( new Machine( 1179, 1000 ) );
-    machines.add( new Machine( 1180, 1000 ) );
+    Machine machine = new Machine( 1179, 1000 );
 
     List<Task> tasks = new ArrayList<Task>();
-    int[] taskCpuArray = {65, 35, 245, 195, 65, 150, 275, 155, 120, 320, 75, 40, 200, 100, 220, 99};
-    int[] taskRamArray = {12, 13, 11,  8,   3,  14,  7,   2,   1,   5,   15, 12, 4,   9,   1,   12};
+    int[] taskCpuArray =   {65, 35, 245, 195, 65, 150, 275, 155, 120, 320, 75, 40, 200, 100, 220, 99};
+    int[] taskRamArray =   {12, 13, 11,  8,   3,  14,  7,   2,   1,   5,   15, 12, 4,   9,   1,   12};
+    int[] taskPriceArray = {1,  1,  1,   1,   1,  1,   1,   1,   1,   1,   1,  1,  1,   1,   1,   1};
     for ( int i = 0 ; i < taskCpuArray.length; i++ ) {
-      tasks.add( new Task( taskCpuArray[i], taskRamArray[i] ) );
+      tasks.add( new Task( taskCpuArray[i], taskRamArray[i], taskPriceArray[i] ) );
     }
 
-    Map<Machine,List<Task>> result = DataCenter.solve( machines, tasks );
+    List<Task> result = DataCenter.solve( machine, tasks );
     assertTrue( result != null );
     score += 10;
   }
