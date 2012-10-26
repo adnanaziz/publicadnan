@@ -38,11 +38,47 @@ class Machine {
 }
 
 class Task {
-  int mips;
-  int ram;
-  int price;
+  private final int mips;
+  private final int ram;
+  private final int price;
 
-  public Task( int mips, int ram, int price ) {
+  public int getMips() { return mips; }
+  public int getRam() { return ram; }
+  public int getPrice() { return price; }
+
+  static class TaskBuilder {
+
+    private int mips;
+    private int ram;
+    private int price;
+
+    public TaskBuilder() {
+      return;
+    }
+
+    public TaskBuilder setMips( int mips ) {
+      this.mips = mips;
+      return this;
+    }
+
+    public TaskBuilder setRam( int ram ) {
+      this.ram = ram;
+      return this;
+    }
+
+    public TaskBuilder setPrice( int price ) {
+      this.price = price;
+      return this;
+    }
+
+    public Task build() {
+      return new Task( mips, ram, price );
+    }
+
+  }
+
+
+  private Task( int mips, int ram, int price ) {
     this.mips = mips;
     this.ram = ram;
     this.price = price;

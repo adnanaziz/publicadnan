@@ -47,12 +47,12 @@ public class TestLab {
   public void testDcSimple() {
     Machine machine = new Machine( 2, 2 );
     List<Task> tasks = new ArrayList<Task>();
-    tasks.add( new Task( 2, 1, 3 ) );
-    tasks.add( new Task( 1, 1, 1 ) );
-    tasks.add( new Task( 1, 1, 1 ) );
+    tasks.add( new Task.TaskBuilder().setMips(2).setRam(1).setPrice(3).build());
+    tasks.add( new Task.TaskBuilder().setMips(1).setRam(1).setPrice(1).build());
+    tasks.add( new Task.TaskBuilder().setMips(1).setRam(1).setPrice(1).build());
     List<Task> result = DataCenter.solve( machine, tasks );
     assertTrue( result.size() == 1 );
-    assertTrue( result.get(0).equals( new Task(2, 1, 3) ) );
+    assertTrue( result.get(0).equals( new Task.TaskBuilder().setMips(2).setRam(1).setPrice(3).build() ) );
     score += 5;
   }
 
@@ -65,7 +65,10 @@ public class TestLab {
     int[] taskRamArray =   {12, 13, 11,  8,   3,  14,  7,   2,   1,   5,   15, 12, 4,   9,   1,   12};
     int[] taskPriceArray = {1,  1,  1,   1,   1,  1,   1,   1,   1,   1,   1,  1,  1,   1,   1,   1};
     for ( int i = 0 ; i < taskCpuArray.length; i++ ) {
-      tasks.add( new Task( taskCpuArray[i], taskRamArray[i], taskPriceArray[i] ) );
+      tasks.add( new Task.TaskBuilder()
+                            .setMips(taskCpuArray[i])
+                            .setRam( taskRamArray[i])
+                            .setPrice(taskPriceArray[i] ).build() );
     }
 
     List<Task> result = DataCenter.solve( machine, tasks );
