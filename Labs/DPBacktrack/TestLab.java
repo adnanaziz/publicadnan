@@ -6,6 +6,7 @@ import java.lang.annotation.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 public class TestLab {
 
@@ -77,7 +78,68 @@ public class TestLab {
     assertEquals( 7, tasksValue(result) );
     score += 10;
   }
+  @Test 
+  public void testDcComplex_2() {
+    Machine machine = new Machine( 11, 14 );
 
+    List<Task> tasks = new ArrayList<Task>();
+    int[] taskCpuArray =   {1,3,2,7,5};
+    int[] taskRamArray =   {4,1,6,3,8};
+    int[] taskPriceArray = {5,2,7,3,1};
+    for ( int i = 0 ; i < taskCpuArray.length; i++ ) {
+      tasks.add( new Task.TaskBuilder()
+                            .setMips(taskCpuArray[i])
+                            .setRam( taskRamArray[i])
+                            .setPrice(taskPriceArray[i] ).build() );
+    }
+
+    List<Task> result = DataCenter.solve( machine, tasks );
+    System.out.println("result = " + result.toString() );
+    assertEquals( 14, tasksValue(result) );
+    score += 10;
+  }
+  
+  @Test 
+  public void testDcComplex_3() {
+    Machine machine = new Machine( 16, 14 );
+
+    List<Task> tasks = new ArrayList<Task>();
+    int[] taskCpuArray =   {2,4,1,9,6,3,8};
+    int[] taskRamArray =   {1,3,2,5,9,4,7};
+    int[] taskPriceArray = {5,2,3,4,1,6,9};
+    for ( int i = 0 ; i < taskCpuArray.length; i++ ) {
+      tasks.add( new Task.TaskBuilder()
+                            .setMips(taskCpuArray[i])
+                            .setRam( taskRamArray[i])
+                            .setPrice(taskPriceArray[i] ).build() );
+    }
+
+    List<Task> result = DataCenter.solve( machine, tasks );
+    System.out.println("result = " + result.toString() );
+    assertEquals( 16, tasksValue(result) );
+    score += 10;
+  }
+
+  @Test
+  public void testDcStress_1() {
+    Machine machine = new Machine( 300, 300 );
+
+    List<Task> tasks = new ArrayList<Task>();
+    Random r = new Random(0L);
+    for ( int i = 0 ; i < 300; i++ ) {
+      tasks.add( new Task.TaskBuilder()
+                            .setMips( 1+r.nextInt(2) )
+                            .setRam( 1+r.nextInt(2) )
+                            .setPrice(1+r.nextInt(20) )
+                            .build() );
+    }
+    List<Task> result = DataCenter.solve( machine, tasks );
+    System.out.println("result = " + result.toString() );
+    assertEquals( 204, result.size() );
+    score += 20;
+  }
+
+  
   static String tasksToString(List<Task> list) {
     StringBuilder result = new StringBuilder();
     for ( Task t : list )
@@ -92,21 +154,50 @@ public class TestLab {
     return result;
   }
 
-  @Ignore @Test 
-  public void testTicTacToeSimple() {
+   @Test 
+  public void testTicTacToeSimple_0() {
     assertTrue( GenTicTacToe.winnable(3, "X", "E,E,E", "O,X,E", "E,E,E") ); 
     score += 5;
   }
-
-  @Ignore @Test 
-  public void testTicTacToeLimitedMovesSimple1() {
-    assertFalse( GenTicTacToe.winnable(3, "X", 2, "E,E,E", "O,X,E", "E,E,E") ); 
+   @Test 
+   public void testTicTacToeSimple_1() {
+     assertTrue( GenTicTacToe.winnable(3, "X", "E,E,E", "O,X,E", "E,E,E") ); 
+     score += 5;
+   }
+   @Test 
+   public void testTicTacToeSimple_2() {
+     assertTrue( GenTicTacToe.winnable(4, "X","E,E,O,E", "O,X,E,O", "X,O,X,E","E,E,O,X") ); 
+     score += 5;
+   }
+   @Test 
+   public void testTicTacToeSimple_3() {
+     assertFalse( GenTicTacToe.winnable(3, "X","O,E,E", "X,O,O", "X,O,X") ); 
+     score += 5;
+   }
+   @Test 
+   public void testTicTacToeSimple_4() {
+     assertTrue( GenTicTacToe.winnable(3, "O","O,E,E", "X,O,O", "X,O,X") ); 
+     score += 5;
+   }
+  @Test 
+  public void testTicTacToeLimitedMoves_1() {
+    assertFalse( GenTicTacToe.winnable(3, "X", 1, "E,E,E", "O,X,E", "E,E,E") ); 
     score += 5;
   }
 
-  @Ignore @Test 
-  public void testTicTacToeLimitedMovesSimple2() {
-    assertFalse( GenTicTacToe.winnable(3, "X", 3, "E,E,E", "O,X,E", "E,E,E") ); 
+    @Test 
+  public void testTicTacToeLimitedMoves_2() {
+    assertFalse( GenTicTacToe.winnable(3, "X", 2, "E,E,O", "O,X,E", "E,E,E") ); 
     score += 5;
   }
+   @Test 
+   public void testTicTacToeLimitedMoves_3() {
+     assertTrue( GenTicTacToe.winnable(4, "O", 2, "O,E,E,E", "O,X,E,E", "O,O,X,X","E,E,X,E") ); 
+     score += 5;
+   }
+   @Test 
+   public void testTicTacToeLimitedMoves_4() {
+     assertTrue( GenTicTacToe.winnable(4, "O", 2, "X,E,E,O", "E,X,E,E", "E,X,E,O","O,E,X,O") ); 
+     score += 5;
+   }
 }
