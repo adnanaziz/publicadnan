@@ -176,7 +176,7 @@ public class TestLab {
 
 	@Test
 	public void testTicTacToeSimple_1() {
-		assertTrue(GenTicTacToe.winnable(3, "X", "E,E,E", "O,X,E", "E,E,E"));
+		assertFalse(GenTicTacToe.winnable(3, "X", "O,O,E", "E,X,E", "O,X,X"));
 		score += 5;
 	}
 
@@ -214,15 +214,15 @@ public class TestLab {
 
 	@Test
 	public void testTicTacToeLimitedMoves_3() {
-		assertTrue(GenTicTacToe.winnable(4, "O", 2, "O,E,E,E", "O,X,E,E",
+		assertTrue(GenTicTacToe.winnable(4, "O", 1, "O,E,E,E", "O,X,E,E",
 				"O,O,X,X", "E,E,X,E"));
 		score += 5;
 	}
 
 	@Test
 	public void testTicTacToeLimitedMoves_4() {
-		assertTrue(GenTicTacToe.winnable(4, "O", 2, "X,E,E,O", "E,X,E,E",
-				"E,X,E,O", "O,E,X,O"));
+		assertTrue(GenTicTacToe.winnable(4, "O", 2, "E,E,E,E", "X,E,X,O",
+				"X,X,O,O", "X,O,O,X"));
 		score += 5;
 	}
 }
