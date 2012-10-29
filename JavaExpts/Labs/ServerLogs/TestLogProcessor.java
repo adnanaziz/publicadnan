@@ -162,7 +162,7 @@ public class TestLogProcessor {
     "cnn.com", "cricinfo.org", "rediff.com", "abcnews.com"
   };
 
-   @Test(timeout=1000) 
+  @Test(timeout=1000) 
   public void testDirected1() {
     LogProcessor lp = new LogProcessor(3);
     lp.add( "b_3.com", 0 );
@@ -172,6 +172,59 @@ public class TestLogProcessor {
     lp.add( "z_1.com", 2 );
     lp.add( "b_3.com", 0 );
     List<String> lpWindow = lp.getOrderedUrlsInWindow();
+    List<String> expected = new ArrayList<String>();
+    expected.add( "b_3.com" );
+    expected.add( "a_2.com" );
+    expected.add( "z_1.com" );
+    assertEquals( expected, lpWindow );
+  }
+
+  @Test(timeout=1000) 
+  public void testDirected2() {
+    LogProcessor lp = new LogProcessor(3);
+    lp.add( "b_2.com", 0 );
+    lp.add( "b_2.com", 0 );
+    lp.add( "a_2.com", 2 );
+    lp.add( "a_2.com", 1 );
+    lp.add( "z_2.com", 2 );
+    lp.add( "z_2.com", 0 );
+    List<String> lpWindow = lp.getOrderedUrlsInWindow();
+    List<String> expected = new ArrayList<String>();
+    expected.add( "a_2.com" );
+    expected.add( "b_2.com" );
+    expected.add( "z_2.com" );
+    assertEquals( expected, lpWindow );
+  }
+
+  @Test(timeout=1000) 
+  public void testDirected3() {
+    LogProcessor lp = new LogProcessor(3);
+    lp.add( "b.com", 0 );
+    lp.add( "b.com", 0 );
+    lp.add( "a.com", 2 );
+    lp.add( "z.com", 2 );
+    lp.add( "z.com", 0 );
+    lp.add( "b.com", 0 );
+    lp.add( "b.com", 0 );
+    lp.add( "a.com", 2 );
+    lp.add( "a.com", 1 );
+    lp.add( "z.com", 2 );
+    lp.add( "z.com", 4 );
+    // window = 3 z, 0 b, 3 a
+    List<String> lpWindow = lp.getOrderedUrlsInWindow();
+    assertEquals(6, lp.getWindowSize());
+    List<String> expected = new ArrayList<String>();
+    expected.add( "a.com" );
+    expected.add( "z.com" );
+    assertEquals( expected, lpWindow );
+    lp.add("z.com", 4);
+    // window = 4 z, 0 b, 3 a
+    assertEquals(7, lp.getWindowSize());
+    expected = new ArrayList<String>();
+    expected.add( "z.com" );
+    expected.add( "a.com" );
+    lpWindow = lp.getOrderedUrlsInWindow();
+    assertEquals( expected, lpWindow );
   }
 
    @Test(timeout=1000) 
@@ -201,14 +254,14 @@ public class TestLogProcessor {
     stressTest( 1000, 10, 5 );
   }
 
-   @Test(timeout=10000) 
+  @Test(timeout=10000) 
   public void testStressMedium() {
     stressTest( 100000, 1000, 5 );
   }
 
-   @Test(timeout=500000) 
+  @Test(timeout=500000) 
   public void testStressLarge() {
-    stressTest( 10000000, 10000, 20 );
+    stressTest( 100000000, 10000, 20 );
   }
 
   public static void stressTest( int numTrials, int windowWidth, int pointsToAdd ) {

@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.lang.ClassCastException;
 
-
 import com.google.common.collect.Multiset;
 import com.google.common.collect.TreeMultiset;
 
@@ -76,7 +75,7 @@ class Frequency implements Comparable {
     }
     Frequency of = (Frequency) o;
     long tmp = this.getFrequency() - of.getFrequency();
-    if ( tmp < 0 ) {
+    if ( tmp > 0 ) {
       return 1;
     } else if ( tmp > 0 ) {
       return -1;
@@ -134,11 +133,11 @@ public class ReferenceLogProcessor {
       Record tmp = iter.next();
       if ( newestTime - tmp.getTime() <= WINDOWSIZE ) {
         break;
+      } else {
+        delList.add( tmp );
       }
-      delList.add( tmp );
     }
     this.removeRecords( delList );
-    // print();
   }
 
   public int getWindowSize() {
