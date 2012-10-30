@@ -46,9 +46,10 @@ public class TestMicroBlogger {
     System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
 
-   @Test(timeout=2000) 
+  @Test(timeout=2000) 
   public void testBasicNoDups1() {
-    ClientMessage cm = new ClientMessage().setType(ClientMessage.Type.CREATE)
+    ClientMessage cm = new ClientMessage();
+    cm.setType(ClientMessage.Type.CREATE)
                                .setAuthor("AdnanAziz1968")
                                .setSubject("Hello World")
                                .setBody("My first posting!");
@@ -58,6 +59,23 @@ public class TestMicroBlogger {
     score += 5;
   }
 
+  @Test(timeout=2000) 
+  public void testBasicClientServer() {
+    ClientMessage cm = new ClientMessage();
+    cm.setType(ClientMessage.Type.CREATE)
+                               .setAuthor("AdnanAziz1968")
+                               .setSubject("Hello World")
+                               .setBody("My first posting!");
 
+    try {
+      MicroBlogServer ms = new MicroBlogServer();
+      ms.start(16666);
+      MicroBlogClient mc = new MicroBlogClient( cm );
+      mc.solve();
+      score += 5;
+    } catch (java.io.IOException e) {
+      e.printStackTrace();
+    }
+  }
 
 }

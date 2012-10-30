@@ -7,14 +7,14 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 import java.lang.reflect.*;
 
-class ThreadedMicroblogClient implements Runnable {
+class ThreadedMicroBlogClient implements Runnable {
 
   String hostname = "localhost";
   String threadname = "X";
-  String testcase;
-  MicroblogClient sc;
+  ClientMessage testcase;
+  MicroBlogClient sc;
 
-  public ThreadedMicroblogClient( MicroblogClient sc, ClientMessage testcase, 
+  public ThreadedMicroBlogClient( MicroBlogClient sc, ClientMessage testcase, 
                                String hostname, String threadname ) {
     this.sc = sc;
     this.testcase = testcase;
@@ -25,7 +25,7 @@ class ThreadedMicroblogClient implements Runnable {
   public void run() {
     System.out.flush();
     try {
-      Socket sock = new Socket(hostname, MicroblogServer.PORT);
+      Socket sock = new Socket(hostname, MicroBlogServer.PORT);
       PrintWriter dos = new PrintWriter(sock.getOutputStream());
       BufferedReader dis = new BufferedReader( new InputStreamReader(sock.getInputStream()) );
       dos.println(testcase);
@@ -45,20 +45,20 @@ class ThreadedMicroblogClient implements Runnable {
 }
 
 
-public class SudokuClient {
-  ThreadedSudokuClient tc; 
+public class MicroBlogClient {
+  ThreadedMicroBlogClient tc; 
   String result = "dummy";
   public boolean success;
 
-  SudokuClient( String testcase, String hostname, String threadname ) {
-    tc = new ThreadedSudokuClient( this, testcase, hostname, threadname );
+  MicroBlogClient( ClientMessage testcase, String hostname, String threadname ) {
+    tc = new ThreadedMicroBlogClient( this, testcase, hostname, threadname );
   }
 
-  SudokuClient( String testcase, String name ) {
+  MicroBlogClient( ClientMessage testcase, String name ) {
     this( testcase, "localhost", name );
   }
 
-  SudokuClient( String testcase ) {
+  MicroBlogClient( ClientMessage testcase ) {
     this( testcase, "localhost", "unnamed client" );
   }
   
@@ -72,6 +72,5 @@ public class SudokuClient {
       e.printStackTrace();
     }
     // System.out.println("joined client thread");
-    success = SudokuSolver.isLegalSolution( result, tc.testcase );
   }
 }

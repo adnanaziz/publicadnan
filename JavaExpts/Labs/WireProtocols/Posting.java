@@ -17,7 +17,7 @@ public class Posting {
     this.postingVotes = postingVotes;
   }
 
-  public void setAuthor(String author) { this.author = author; }
+  public Posting setAuthor(String author) { this.author = author; return this; }
 
   @Override
   public boolean equals(Object o) {

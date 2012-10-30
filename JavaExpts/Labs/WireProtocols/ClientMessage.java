@@ -12,6 +12,8 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import com.google.gson.*;
+
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
@@ -32,6 +34,8 @@ public class ClientMessage {
   }
 
   private Type type;
+  // fill in fields needed to support operations
+  private String author;
 
   ClientMessage() {
     // no argument constructor used by GSON
@@ -39,17 +43,19 @@ public class ClientMessage {
 
   // serialize this to a json string
   public String toJson() {
-    return null;
+    Gson gson = new Gson();
+    String result = gson.toJson(this);
+    return result;
   }
 
   // create a ClientMessage object from the Json string
   public static ClientMessage fromJson( String s ) {
-    return null;
+    return new Gson().fromJson(s, ClientMessage.class); 
   }
 
   // all of the setter methods should return this so that calls can be cascaded
   public ClientMessage setType(Type type){ return this; }
-  public ClientMessage setAuthor(String author){ return this; }
+  public ClientMessage setAuthor(String author){ this.author = author; return this; }
   public ClientMessage setDate(long date){ return this; }
   public ClientMessage setDateStart(long date){ return this; }
   public ClientMessage setDateEnd(long date){ return this; }
@@ -62,5 +68,16 @@ public class ClientMessage {
   public ClientMessage setPageOffset(long pageOffset) { return this; }
   
   // add getter methods for all fields
-  public String setAuthor(){ return author; }
+  public String getAuthor(){ return author; }
+
+  @Override 
+  public boolean equals(Object o) {
+    if ( !(o instanceof ClientMessage)){
+      return false;
+    }
+    ClientMessage co = (ClientMessage) o;
+    System.out.println( "co.author = " + co.author );
+    return (co.author.equals(author));
+    // add remaining checks
+  }
 }
