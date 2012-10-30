@@ -54,7 +54,7 @@ public class ClientMessage {
   }
 
   // all of the setter methods should return this so that calls can be cascaded
-  public ClientMessage setType(Type type){ return this; }
+  public ClientMessage setType(Type type){ this.type = type; return this; }
   public ClientMessage setAuthor(String author){ this.author = author; return this; }
   public ClientMessage setDate(long date){ return this; }
   public ClientMessage setDateStart(long date){ return this; }
@@ -69,6 +69,7 @@ public class ClientMessage {
   
   // add getter methods for all fields
   public String getAuthor(){ return author; }
+  public Type getType(){ return type; }
 
   @Override 
   public boolean equals(Object o) {

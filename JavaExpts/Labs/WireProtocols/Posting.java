@@ -18,6 +18,10 @@ public class Posting {
   }
 
   public Posting setAuthor(String author) { this.author = author; return this; }
+  public Posting setId(long id) { this.id = id; return this; }
+
+  public String getAuthor() { return author; }
+  public long getId() { return id; }
 
   @Override
   public boolean equals(Object o) {

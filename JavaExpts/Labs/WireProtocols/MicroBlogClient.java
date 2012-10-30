@@ -7,6 +7,8 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 import java.lang.reflect.*;
 
+import com.google.gson.*;
+
 class ThreadedMicroBlogClient implements Runnable {
 
   String hostname = "localhost";
@@ -28,14 +30,16 @@ class ThreadedMicroBlogClient implements Runnable {
       Socket sock = new Socket(hostname, MicroBlogServer.PORT);
       PrintWriter dos = new PrintWriter(sock.getOutputStream());
       BufferedReader dis = new BufferedReader( new InputStreamReader(sock.getInputStream()) );
-      dos.println(testcase);
+      dos.println(testcase.toJson());
       dos.flush();
+      // System.out.println("Client " + threadname + " sent: " + testcase );
       String response = dis.readLine(); 
-      // System.out.println("Client " + threadname + " sent: " + testcase + " received response:" + response);
+      // System.out.println("Client " + threadname + " sent: " + testcase.toJson() + " received response:" + response);
       dos.close(); 
       dis.close();
       synchronized (sc) {
-        sc.result = response;
+        ServerMessage serverResponse = new Gson().fromJson(response, ServerMessage.class);
+        sc.result = serverResponse;
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -47,7 +51,7 @@ class ThreadedMicroBlogClient implements Runnable {
 
 public class MicroBlogClient {
   ThreadedMicroBlogClient tc; 
-  String result = "dummy";
+  ServerMessage result = null;
   public boolean success;
 
   MicroBlogClient( ClientMessage testcase, String hostname, String threadname ) {
@@ -62,7 +66,7 @@ public class MicroBlogClient {
     this( testcase, "localhost", "unnamed client" );
   }
   
-  void solve() {
+  void transmit() {
     Thread tcThread = new Thread( tc );
     // System.out.println("starting client thread");
     tcThread.start();

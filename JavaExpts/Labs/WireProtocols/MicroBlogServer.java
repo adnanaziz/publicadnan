@@ -8,18 +8,24 @@ public class MicroBlogServer{
   static int PORT = -1;
   final static int MAXPARALLELTHREADS = 3;
 
-  public static void start(int portNumber ) throws IOException {
+  List<Posting> postingList = new ArrayList<Posting>();
+
+  public void start(int portNumber ) throws IOException {
     PORT = portNumber;
-    Runnable serverThread = new ThreadedMicroBlogServer();
+    Runnable serverThread = new ThreadedMicroBlogServer( this );
     Thread t = new Thread( serverThread );
     t.start();
   }
 
-  static List<Posting> postingList = new ArrayList<Posting>();
-
 }
 
 class ThreadedMicroBlogServer implements Runnable {
+
+  MicroBlogServer ms;
+
+  ThreadedMicroBlogServer( MicroBlogServer ms ) {
+    this.ms = ms;
+  }
 
   public static ExecutorService threadpool = Executors.newFixedThreadPool(MicroBlogServer.MAXPARALLELTHREADS);
 
@@ -28,7 +34,7 @@ class ThreadedMicroBlogServer implements Runnable {
       ServerSocket serversock = new ServerSocket(MicroBlogServer.PORT);
       while (true) {
         Socket sock = serversock.accept();
-        ThreadedServer ts = new ThreadedServer(sock);
+        ThreadedServer ts = new ThreadedServer(ms, sock);
         synchronized (threadpool) {
           threadpool.execute( ts );
         }
@@ -42,7 +48,10 @@ class ThreadedMicroBlogServer implements Runnable {
 class ThreadedServer implements Runnable {
 
   private Socket sock;
-  public ThreadedServer( Socket sock ) {
+  private MicroBlogServer ms;
+
+  public ThreadedServer( MicroBlogServer ms, Socket sock ) {
+    this.ms = ms;
     this.sock = sock;
   }
   
@@ -53,14 +62,28 @@ class ThreadedServer implements Runnable {
       PrintWriter dos = new PrintWriter(sock.getOutputStream());
 
       String cmJsonString = dis.readLine();
-      System.out.println("cmJsonString:" + cmJsonString);
       ClientMessage cm = ClientMessage.fromJson( cmJsonString );
-      Posting p = new Posting().setAuthor(cm.getAuthor());
+      ServerMessage sm = null;
+      if ( cm.getType() == ClientMessage.Type.CREATE ) {
+        long id = ms.postingList.size();
+        Posting p = new Posting().setAuthor(cm.getAuthor()).setId( id );
+        ms.postingList.add( p );
+        sm = new ServerMessage().setId(id);
+      } else if ( cm.getType() == ClientMessage.Type.QUERY ) {
+        sm = new ServerMessage().setPostings( new ArrayList<Posting>() );
+        String [] authors = cm.getAuthor().split("\\s+");
+        for ( Posting p : ms.postingList ) {
+          for ( String queryAuthor : authors ) {
+            if ( queryAuthor.equals( p.getAuthor() ) ) {
+             sm.postings.add( p );
+            }
+          }
+        }
+      }
 
-      ServerMessage sm = new ServerMessage().setId(MicroBlogServer.postingList.size());    
-      String smJsonString = sm.toString();
-
+      String smJsonString = sm.toJson();
       dos.println(smJsonString);
+      
       dos.flush();
       dis.close(); 
       dos.close();
