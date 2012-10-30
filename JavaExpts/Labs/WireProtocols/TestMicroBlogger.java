@@ -74,9 +74,10 @@ public class TestMicroBlogger {
     MicroBlogClient mc = null;
     try {
       ms = new MicroBlogServer();
-      ms.start(STARTPORT + portOffset++);
+      ms.start(STARTPORT);
       mc = new MicroBlogClient( cm );
       mc.transmit();
+      ms.stop();
       score += 5;
     } catch (java.io.IOException e) {
       e.printStackTrace();
@@ -97,11 +98,12 @@ public class TestMicroBlogger {
     MicroBlogClient mc = null;
     try {
       ms = new MicroBlogServer();
-      ms.start(STARTPORT + portOffset++);
+      ms.start(STARTPORT);
       mc = new MicroBlogClient( cm );
       mc.transmit();
       mc.transmit();
       mc.transmit();
+      ms.stop();
       score += 5;
     } catch (java.io.IOException e) {
       e.printStackTrace();
@@ -139,7 +141,7 @@ public class TestMicroBlogger {
     mc1 = mc2 = mc3 = mc4 = null;
     try {
       ms = new MicroBlogServer();
-      ms.start(STARTPORT + portOffset++);
+      ms.start(STARTPORT);
 
       mc1 = new MicroBlogClient( cmAdd1 );
       mc1.transmit();
@@ -150,6 +152,7 @@ public class TestMicroBlogger {
       System.out.println("cmQuery = " + cmQuery );
       mc4 = new MicroBlogClient( cmQuery );
       mc4.transmit();
+      ms.stop();
       score += 5;
     } catch (java.io.IOException e) {
       e.printStackTrace();

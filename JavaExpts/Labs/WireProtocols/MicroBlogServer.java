@@ -10,11 +10,17 @@ public class MicroBlogServer{
 
   List<Posting> postingList = new ArrayList<Posting>();
 
+  ThreadedMicroBlogServer serverThread = null;
+
   public void start(int portNumber ) throws IOException {
     PORT = portNumber;
-    Runnable serverThread = new ThreadedMicroBlogServer( this );
+    serverThread = new ThreadedMicroBlogServer( this );
     Thread t = new Thread( serverThread );
     t.start();
+  }
+
+  public void stop() {
+    serverThread.shutdownRequested = true;
   }
 
 }
@@ -22,6 +28,7 @@ public class MicroBlogServer{
 class ThreadedMicroBlogServer implements Runnable {
 
   MicroBlogServer ms;
+  boolean shutdownRequested = false;
 
   ThreadedMicroBlogServer( MicroBlogServer ms ) {
     this.ms = ms;
@@ -30,15 +37,17 @@ class ThreadedMicroBlogServer implements Runnable {
   public static ExecutorService threadpool = Executors.newFixedThreadPool(MicroBlogServer.MAXPARALLELTHREADS);
 
   public void run() {
+    ServerSocket serversock = null;
     try {
-      ServerSocket serversock = new ServerSocket(MicroBlogServer.PORT);
-      while (true) {
+      serversock = new ServerSocket(MicroBlogServer.PORT);
+      while (!shutdownRequested) {
         Socket sock = serversock.accept();
         ThreadedServer ts = new ThreadedServer(ms, sock);
         synchronized (threadpool) {
           threadpool.execute( ts );
         }
       }
+      serversock.close();
     } catch (Exception e) {
       e.printStackTrace();
     }
