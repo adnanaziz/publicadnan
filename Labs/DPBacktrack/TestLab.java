@@ -96,7 +96,7 @@ public class TestLab {
 
 		List<Task> result = DataCenter.solve(machine, tasks);
 		System.out.println("result = " + result.toString());
-		assertEquals(16, tasksValue(result));
+		assertEquals(15, tasksValue(result));
 		score += 10;
 	}
 
@@ -221,7 +221,7 @@ public class TestLab {
 
 	@Test
 	public void testTicTacToeLimitedMoves_4() {
-		assertTrue(GenTicTacToe.winnable(4, "O", 2, "E,E,E,E", "X,E,X,O",
+		assertTrue(GenTicTacToe.winnable(4, "X", 1, "E,E,E,E", "X,E,X,O",
 				"X,X,O,O", "X,O,O,X"));
 		score += 5;
 	}
