@@ -18,6 +18,7 @@
 
 import com.google.caliper.Param;
 import com.google.caliper.SimpleBenchmark;
+import com.google.gson.*;
 
 /**
  * Caliper tutorial. To run the example benchmarks in this file:
@@ -183,5 +184,34 @@ public class Tutorial {
       }
       return dummy;
     }
+  }
+
+  public static class Benchmark6 extends SimpleBenchmark {
+    @Override protected void setUp() {
+      // @Param values are guaranteed to have been injected by now
+    }
+
+    public void timeArrayIteration(int reps) {
+      BagOfPrimitives obj1 = new BagOfPrimitives();
+      Gson gson = new Gson();
+      for ( int i = 0; i < reps; i++ ) {
+        String s = gson.toJson(obj1);
+        // System.out.println(s);
+        BagOfPrimitives obj2 = gson.fromJson(s, BagOfPrimitives.class);
+        // System.out.println(obj2.toString());
+      }
+    }
+  }
+}
+
+class BagOfPrimitives {
+  private int value1 = 1;
+  private String value2 = "abc";
+  private transient int value3 = 3;
+  @Override public String toString() {
+    return "" + value1 + ":" + value2 + ":" + value3;
+  }
+  BagOfPrimitives() {
+    // no-args constructor
   }
 }
