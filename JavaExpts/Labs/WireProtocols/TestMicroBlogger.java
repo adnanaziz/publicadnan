@@ -74,7 +74,7 @@ public class TestMicroBlogger {
     MicroBlogClient mc = null;
     try {
       ms = new MicroBlogServer();
-      ms.start(STARTPORT);
+      ms.start(STARTPORT + portOffset++);
       mc = new MicroBlogClient( cm );
       mc.transmit();
       ms.stop();
@@ -98,7 +98,7 @@ public class TestMicroBlogger {
     MicroBlogClient mc = null;
     try {
       ms = new MicroBlogServer();
-      ms.start(STARTPORT);
+      ms.start(STARTPORT + portOffset++);
       mc = new MicroBlogClient( cm );
       mc.transmit();
       mc.transmit();
@@ -141,7 +141,7 @@ public class TestMicroBlogger {
     mc1 = mc2 = mc3 = mc4 = null;
     try {
       ms = new MicroBlogServer();
-      ms.start(STARTPORT);
+      ms.start(STARTPORT + portOffset++);
 
       mc1 = new MicroBlogClient( cmAdd1 );
       mc1.transmit();
@@ -164,4 +164,69 @@ public class TestMicroBlogger {
     }
     score += 15;
   }
+
+  @Test(timeout=10000) 
+  public void testStress1() {
+    ClientMessage cm = new ClientMessage();
+    cm.setType(ClientMessage.Type.CREATE)
+                               .setAuthor("AdnanAziz1968")
+                               .setSubject("Hello World");
+
+    ClientMessage cmQuery = new ClientMessage()
+                                .setType(ClientMessage.Type.QUERY)
+                                .setAuthor("AdnanAziz1968");
+
+    MicroBlogServer ms = null;
+    MicroBlogClient mc = null;
+    try {
+      ms = new MicroBlogServer();
+      ms.start(STARTPORT + portOffset++);
+      for ( int i = 0 ; i < 1000; i++ ) {
+        mc = new MicroBlogClient( cm.setBody("Msg id: "  + i ));
+        mc.transmit();
+      }
+      mc = new MicroBlogClient( cmQuery );
+      mc.transmit();
+      ms.stop();
+      score += 5;
+    } catch (java.io.IOException e) {
+      e.printStackTrace();
+    }
+    assertEquals( 1000, mc.result.getPostings().size() );
+    score += 5;
+  }
+
+  @Test(timeout=10000) 
+  public void testDistance1() {
+    ClientMessage cm = new ClientMessage();
+    cm.setType(ClientMessage.Type.CREATE)
+                               .setAuthor("AdnanAziz1968")
+                               .setSubject("Hello World");
+
+    ClientMessage cmQuery = new ClientMessage()
+                                .setType(ClientMessage.Type.QUERY)
+                                .setLongitude(50.0)
+				.setLatitude(50.0)
+				.setDistance(1);
+
+    MicroBlogServer ms = null;
+    MicroBlogClient mc = null;
+    try {
+      ms = new MicroBlogServer();
+      ms.start(STARTPORT + portOffset++);
+      for ( int i = 0 ; i < 100; i++ ) {
+        mc = new MicroBlogClient( cm.setLatitude((double) i).setLongitude(( double) i) );
+        mc.transmit();
+      }
+      mc = new MicroBlogClient( cmQuery );
+      mc.transmit();
+      ms.stop();
+      score += 5;
+    } catch (java.io.IOException e) {
+      e.printStackTrace();
+    }
+    assertEquals( 3, mc.result.getPostings().size() );
+    score += 5;
+  }
+
 }

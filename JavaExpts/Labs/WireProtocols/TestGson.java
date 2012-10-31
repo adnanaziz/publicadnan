@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 import com.google.gson.reflect.TypeToken;
 
 class BagOfPrimitives {
@@ -44,10 +45,15 @@ public class TestGson {
     } 
     BagOfPrimitives obj = new BagOfPrimitives();
     gson = new Gson();
-    s = gson.toJson(obj);  
-    System.out.println(s);
-    BagOfPrimitives obj2 = gson.fromJson(s, BagOfPrimitives.class);  
-    System.out.println(obj2.toString());
+    int N = 10000000;
+    System.out.println("Start: " + N + "" + new Date());
+    for ( int i = 0; i < N; i++ ) {
+      s = gson.toJson(obj);  
+      // System.out.println(s);
+      BagOfPrimitives obj2 = gson.fromJson(s, BagOfPrimitives.class);  
+      // System.out.println(obj2.toString());
+    }
+    System.out.println("End: " + new Date());
 
     gson = new GsonBuilder().setPrettyPrinting().create();
     // Collection<Integer> ints = Lists.ImmutableList(1,2,3,4,5);
