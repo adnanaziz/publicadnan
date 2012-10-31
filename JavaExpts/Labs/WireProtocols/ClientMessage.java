@@ -30,12 +30,15 @@ import static java.lang.annotation.RetentionPolicy.*;
 public class ClientMessage {
 
   public enum Type {
-    CREATE, UPDATE, UPVOTE, LIKE, DELETE, QUERY, TRENDING;
+    CREATE, UPDATE, LIKE, UPVOTE, DELETE, QUERY, QUERYBYID, TRENDING;
   }
 
   private Type type;
   // fill in fields needed to support operations
   private String author;
+  private long id;
+  private long time;
+  private String body;
 
   ClientMessage() {
     // no argument constructor used by GSON
@@ -56,6 +59,7 @@ public class ClientMessage {
   // all of the setter methods should return this so that calls can be cascaded
   public ClientMessage setType(Type type){ this.type = type; return this; }
   public ClientMessage setAuthor(String author){ this.author = author; return this; }
+  public ClientMessage setTime(long time){ this.time = time; return this; }
   public ClientMessage setDate(long date){ return this; }
   public ClientMessage setDateStart(long date){ return this; }
   public ClientMessage setDateEnd(long date){ return this; }
@@ -66,10 +70,12 @@ public class ClientMessage {
   public ClientMessage setDistance(double distance) { return this; }
   public ClientMessage setPageSize(long pageSize) { return this; }
   public ClientMessage setPageOffset(long pageOffset) { return this; }
+  public ClientMessage setId(long id){ this.id = id; return this; } // use for updates
   
   // add getter methods for all fields
   public String getAuthor(){ return author; }
   public Type getType(){ return type; }
+  public String getBody(){ return body; }
 
   @Override 
   public boolean equals(Object o) {
@@ -77,7 +83,6 @@ public class ClientMessage {
       return false;
     }
     ClientMessage co = (ClientMessage) o;
-    System.out.println( "co.author = " + co.author );
     return (co.author.equals(author));
     // add remaining checks
   }

@@ -4,17 +4,17 @@ public class Posting {
   private String subject;
   private String body;
   private long authorLikes;
-  private long postingVotes;
+  private long postingUpvotes;
   public Posting() {
     // no argument constructor
   }
-  public Posting( long id, String author, String subject, String body, long authorLikes, long postingVotes ) {
+  public Posting( long id, String author, String subject, String body, long authorLikes, long postingUpvotes ) {
     this.id = id;
     this.author = author;
     this.subject = subject;
     this.body = body;
     this.authorLikes = authorLikes;
-    this.postingVotes = postingVotes;
+    this.postingUpvotes = postingUpvotes;
   }
 
   public Posting setAuthor(String author) { this.author = author; return this; }
@@ -22,6 +22,10 @@ public class Posting {
 
   public String getAuthor() { return author; }
   public long getId() { return id; }
+  public long getAuthorLikes() { return authorLikes; }
+  public long getUpvotes() { return postingUpvotes; }
+  public String getSubject() { return subject; }
+  public String getBody() { return body; }
 
   @Override
   public boolean equals(Object o) {
@@ -30,7 +34,7 @@ public class Posting {
     }
     Posting po = (Posting) o;
     return ( po.id == id && po.author.equals(author) && po.subject.equals(subject) 
-                   && po.body.equals(body) && po.authorLikes == authorLikes && po.postingVotes == postingVotes );
+                   && po.body.equals(body) && po.authorLikes == authorLikes && po.postingUpvotes == postingUpvotes );
   }
 
   @Override public int hashCode() {
