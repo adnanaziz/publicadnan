@@ -94,7 +94,7 @@ public class TestLab {
 
     List<Task> result = DataCenter.solve( machine, tasks );
     System.out.println("result = " + result.toString() );
-    assertEquals( 14, tasksValue(result) );
+    assertEquals( 15, tasksValue(result) );
     score += 10;
   }
   
@@ -115,7 +115,7 @@ public class TestLab {
 
     List<Task> result = DataCenter.solve( machine, tasks );
     System.out.println("result = " + result.toString() );
-    assertEquals( 16, tasksValue(result) );
+    assertEquals( 23, tasksValue(result) );
     score += 10;
   }
   
