@@ -141,7 +141,7 @@ public class TestLab {
   }
    @Test 
    public void testTicTacToeSimple_1() {
-     assertTrue( GenTicTacToe.winnable(3, "O", "E,E,E", "O,X,E", "E,E,E") ); 
+     assertFalse( GenTicTacToe.winnable(3, "O", "E,E,E", "O,X,E", "E,E,E") ); 
      score += 5;
    }
    @Test 
