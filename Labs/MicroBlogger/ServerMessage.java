@@ -20,7 +20,10 @@ public class ServerMessage {
   public long getId() { return id; }
   public List<Posting> getPostings() { return postings; }
 
-  // serialize to json string
+  /**
+   * Serialize to json string
+   * @return serialized ServerMessage object
+   */
   public String toJson() {
     String result = null;
 	//TODOBEGIN(EE422C)
@@ -29,7 +32,13 @@ public class ServerMessage {
     return result;
   }
 
-  // create from a json string
+  /**
+   *  create from a json string
+   * @param s
+   * 	input json string
+   * @return
+   * 	ServerMessage object
+   */
   public static ServerMessage fromJson( String s ) {
     ServerMessage result = null;
 	//TODOBEGIN(EE422C)
