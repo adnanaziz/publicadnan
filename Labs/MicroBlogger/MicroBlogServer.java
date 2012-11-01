@@ -4,8 +4,10 @@ import java.util.concurrent.*;
 import java.util.List;
 import java.util.ArrayList;
 
-// largely based on the Sudoku server. you do not need 
-// to change anything here
+/**
+ *  largely based on the Sudoku server.
+ *  You need to write the method 'msgProcessor' that processes messages from clients
+ */
 public class MicroBlogServer{
 
   static int PORT = 0;
@@ -67,15 +69,17 @@ class ThreadedServer implements Runnable {
     this.sock = sock;
   }
   
-  public void run() {
-    try {
-      BufferedReader dis  = new BufferedReader( 
-                                new InputStreamReader(sock.getInputStream()) );
-      PrintWriter dos = new PrintWriter(sock.getOutputStream());
+  /**
+   * Some useful hints for msgProcessor.
+   * This is NOT a solution
+   * @param cm
+   * 	ClinetMessage to be processed
+   * @return
+   * 	ServerMessage to be sent to the client
+   */
+  private ServerMessage msgProcessorSample (ClientMessage cm) {
+	  ServerMessage sm = null;
 
-      String cmJsonString = dis.readLine();
-      ClientMessage cm = ClientMessage.fromJson( cmJsonString );
-      ServerMessage sm = null;
       if ( cm.getType() == ClientMessage.Type.CREATE ) {
         long id = ms.postingList.size();
         Posting p = new Posting().setAuthor(cm.getAuthor()).setId( id );
@@ -92,7 +96,33 @@ class ThreadedServer implements Runnable {
           }
         }
       }
+      
+	  return sm;
+  }
+  
+  /**
+   * Processes a message from client and returns the proper server message
+   * @param cm
+   * 	ClinetMessage to be processed
+   * @return
+   * 	ServerMessage to be sent to the client
+   */
+  private ServerMessage msgProcessor (ClientMessage cm) {
+	  ServerMessage sm = null;
+	  //TODO: complete this method
+	  
+	  return sm;
+  }
+  
+  public void run() {
+    try {
+      BufferedReader dis  = new BufferedReader( 
+                                new InputStreamReader(sock.getInputStream()) );
+      PrintWriter dos = new PrintWriter(sock.getOutputStream());
 
+      String cmJsonString = dis.readLine();
+      ClientMessage cm = ClientMessage.fromJson( cmJsonString );
+      ServerMessage sm = msgProcessor(cm);
       String smJsonString = sm.toJson();
       dos.println(smJsonString);
       
