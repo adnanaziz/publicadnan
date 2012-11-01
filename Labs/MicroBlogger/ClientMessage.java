@@ -1,21 +1,9 @@
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
-
-import com.google.gson.*;
-
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
+
+import com.google.gson.*;
 
 @Target(TYPE)
 @Retention(RUNTIME)
@@ -43,20 +31,27 @@ public class ClientMessage {
     // no argument constructor used by GSON
   }
 
-  // serialize this to a json string
+  /**
+   * Serialize this to a json string
+   * @return the serialized client message object
+   */
   public String toJson() {
     String result = null;
 	//TODOBEGIN(EE422C)
-
+    
 	//TODOEND(EE422C)
     return result;
   }
 
-  // create a ClientMessage object from the Json string
+  /**
+   * Create a ClientMessage object from the Json string
+   * @param s
+   * @return
+   */
   public static ClientMessage fromJson( String s ) {
     ClientMessage result = null;
 	//TODOBEGIN(EE422C)
-
+    
 	//TODOEND(EE422C)
     return result;
   }

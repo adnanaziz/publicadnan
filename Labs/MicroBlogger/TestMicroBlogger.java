@@ -1,17 +1,12 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.*;
-import java.util.zip.DataFormatException;
-
 import java.lang.annotation.*;
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
-import java.lang.reflect.*;
 
 
 public class TestMicroBlogger {
 
-  public static final Class CLASSUNDERTEST = ClientMessage.class;
+  public static final Class<ClientMessage> CLASSUNDERTEST = ClientMessage.class;
 
   public static int score = 0;
 
@@ -24,8 +19,8 @@ public class TestMicroBlogger {
   }
 
   // Ang's suggestion on getting annotation values
-  public static String getClassAnnotationValue(Class classType, 
-                                               Class annotationType, 
+  public static String getClassAnnotationValue(Class<ClientMessage> classType, 
+                                               Class<Author> annotationType, 
                                                String attributeName) {
     String value = null;
     Annotation annotation = classType.getAnnotation(annotationType);

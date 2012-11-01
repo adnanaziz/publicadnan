@@ -12,6 +12,7 @@ import java.lang.reflect.*;
 import java.util.List;
 import java.util.ArrayList;
 
+
 public class TestLab {
 
 	public static final Class<RegExp> CLASSUNDERTEST = RegExp.class;

@@ -1,12 +1,5 @@
 import java.io.*;
 import java.net.*;
-import java.util.concurrent.*;
-
-import java.lang.annotation.*;
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
-import java.lang.reflect.*;
-
 import com.google.gson.*;
 
 // largely based on the Sudokuk client, nothing to change in here
