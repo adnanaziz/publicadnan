@@ -6,6 +6,7 @@ import java.lang.annotation.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 public class TestLab {
 
@@ -118,7 +119,39 @@ public class TestLab {
     assertEquals( 23, tasksValue(result) );
     score += 10;
   }
-  
+   @Test
+   public void testDcStress_1() {
+       Machine machine = new Machine(300, 300);
+
+       List<Task> tasks = new ArrayList<Task>();
+       Random r = new Random(0L);
+       for (int i = 0; i < 300; i++) {
+           tasks.add(new Task.TaskBuilder().setMips(1 + r.nextInt(2))
+                   .setRam(1 + r.nextInt(2)).setPrice(1 + r.nextInt(20))
+                   .build());
+       }
+       List<Task> result = DataCenter.solve(machine, tasks);
+       System.out.println("result = " + result.toString());
+       assertFalse(225 == result.size());
+       score += 20;
+   }
+
+   @Test
+   public void testDcStress_2() {
+       Machine machine = new Machine(400, 400);
+
+       List<Task> tasks = new ArrayList<Task>();
+       Random r = new Random(0L);
+       for (int i = 0; i < 200; i++) {
+           tasks.add(new Task.TaskBuilder().setMips(1 + r.nextInt(4))
+                   .setRam(1 + r.nextInt(5)).setPrice(1 + r.nextInt(20))
+                   .build());
+       }
+       List<Task> result = DataCenter.solve(machine, tasks);
+       System.out.println("result = " + result.toString());
+       assertFalse(250 == result.size());
+       score += 20;
+   }
   
   static String tasksToString(List<Task> list) {
     StringBuilder result = new StringBuilder();
