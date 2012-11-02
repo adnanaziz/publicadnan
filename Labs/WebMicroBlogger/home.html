@@ -45,10 +45,10 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
   $("#btn3").click(function(){
-    var airports = $.get("http://adnan.appspot.com/autocompleteexample?queryString=c", 
+    var airports = $.get("http://adnan.appspot.com/autocompleteexample?queryString=d", 
       function(data) {
        alert("success:" + JSON.stringify(data));
-       // $("#submitresults").html(data);
+       $("#submitresults").html(data);
      })
     .success(function() { alert("second success"); })
     // .error(function() { alert("error:" ); })
