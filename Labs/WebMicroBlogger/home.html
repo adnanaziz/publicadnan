@@ -51,12 +51,14 @@ function submitposting()
  var jsonreqstring = JSON.stringify(jsonreq);
  alert("jsonreqstring stringified:" + JSON.stringify(jsonreq));
 
- var airports = $.get("http://localhost:16667/queryServlet?queryString=" + jsonreqstring, 
+ var airports = $.getJSON("http://localhost:16667/queryServlet?queryString=" + jsonreqstring, 
       function(data) {
        // alert("success:" + JSON.stringify(data));
-       alert("inspecting returned json:" + data.id);
+       alert("inspecting returned json:" );
+       console.log(data);
        //var postingList = data.postings;
        //$("#submitresults").html(postingList[0].value);
+       $("#submitresults").html(data);
      })
     //.success(function() { alert("second success"); })
     .error(function() { alert("error in btnname handler" ); })
@@ -77,11 +79,11 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
   $("#btn3").click(function(){
-    // var airports = $.get("http://adnan.appspot.com/autocompleteexample?queryString=d", 
-    var airports = $.get("http://localhost:16667/queryServlet?queryString=d", 
+   // var airports = $.get("http://adnan.appspot.com/autocompleteexample?queryString=d", 
+   var airports = $.get("http://localhost:16667/queryServlet?queryString=d", 
       function(data) {
-       alert("success:" + JSON.stringify(data));
-       $("#submitresults").html(data);
+       alert("success: " );
+       //$("#submitresults").html(data);
      })
     .success(function() { alert("second success"); })
     .error(function() { alert("error:" ); })
