@@ -32,7 +32,34 @@ td+td {
 }
 </style>
 
+
 <script src="jquery.min.js"></script>
+
+<script>
+function submitnameform() 
+{
+ alert("document.nameform.firstname:" + document.nameform.elements["firstname"].value);
+ //$("#submitresults").html(document.nameform.elements["firstname"].value);
+ var jsonreq = {};
+ jsonreq["type"] = "CREATE";
+ jsonreq["author"] = "AdnanAziz1968";
+ jsonreq["id"] = "123";
+ // {"type":"CREATE","author":"AdnanAziz1968","id":0,"time":0}
+ var jsonreqstring = JSON.stringify(jsonreq);
+ alert("jsonreqstring stringified:" + JSON.stringify(jsonreq));
+
+ var airports = $.get("http://localhost:16667/queryServlet?queryString=" + jsonreqstring, 
+      function(data) {
+       alert("success:" + JSON.stringify(data));
+       $("#submitresults").html(data);
+     })
+    //.success(function() { alert("second success"); })
+    .error(function() { alert("error in btnname handler" ); })
+    //.complete(function() { alert("complete" + data); })
+    ;
+};
+</script>
+
 <script>
 $(document).ready(function(){
   $("#btn1").click(function(){
@@ -45,17 +72,20 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
   $("#btn3").click(function(){
-    var airports = $.get("http://adnan.appspot.com/autocompleteexample?queryString=d", 
+    // var airports = $.get("http://adnan.appspot.com/autocompleteexample?queryString=d", 
+    var airports = $.get("http://localhost:16667/queryServlet?queryString=d", 
       function(data) {
        alert("success:" + JSON.stringify(data));
        $("#submitresults").html(data);
      })
     .success(function() { alert("second success"); })
-    // .error(function() { alert("error:" ); })
+    .error(function() { alert("error:" ); })
     .complete(function() { alert("complete" + data); });
   });
 });
 </script>
+
+
 
 <script>
 $(document).ready(function(){
@@ -87,6 +117,14 @@ $(document).ready(function(){
 
 <body>
 
+<form name="nameform">
+First name: <input type="text" name="firstname"><br>
+Last name: <input type="text" name="lastname">
+<a href="javascript: submitnameform()">Submit</a>
+</form> 
+
+
+<p>
 <p id="submitresults"></p>
 
 <button id="btn3">Get postings remotely</button> 
