@@ -103,7 +103,8 @@ public class TestMicroBlogger {
                                .setSubject("Hello World")
                                .setBody("My first posting!");
     ServerMessage result = doTxRx( cm, cm, cm );
-    assertEquals( result.getId(), 2 );
+    
+    assertEquals( result.getPostings().get(0).getId(), 2 );
     score += 5;
   }
 
@@ -166,14 +167,14 @@ public class TestMicroBlogger {
                                .setBody("My second posting!");
     ClientMessage cm3 = new ClientMessage()
                                .setType(ClientMessage.Type.CREATE)
-                               .setDate(250L)
+                               .setDate(150L)
                                .setAuthor("AdnanAziz1968")
                                .setSubject("Goodbye Wonderful World")
                                .setBody("My third posting!");
     ClientMessage cm4 = new ClientMessage()
                                .setType(ClientMessage.Type.CREATE)
                                .setDate(200L)
-                               .setAuthor("AdnanAziz1968")
+                               .setAuthor("LisaHua")
                                .setSubject("Goodbye Cruel World")
                                .setBody("My fourth posting!");
     ClientMessage cm5 = new ClientMessage()
@@ -188,9 +189,9 @@ public class TestMicroBlogger {
                                  .setDateEnd(200L);
     ServerMessage result = doTxRx( cm1, cm2, cm3, cm4, cm5, cmTimeQuery );
     assertEquals( 3, result.getPostings().size());
-    assertEquals( "My third posting", result.getPostings().get(0));
-    assertEquals( "My middle posting", result.getPostings().get(1));
-    assertEquals( "My second posting", result.getPostings().get(2));
+    assertEquals( 3, result.getPostings().get(0).getId());
+    assertEquals( "My third posting!", result.getPostings().get(1).getBody());
+    assertEquals( "Hello Cruel World", result.getPostings().get(2).getSubject());
 
     ClientMessage cmTimeAndSubjectQuery = new ClientMessage()
                                  .setType(ClientMessage.Type.QUERY)
@@ -200,8 +201,8 @@ public class TestMicroBlogger {
     
     result = doTxRx( cm1, cm2, cm3, cm4, cm5, cmTimeAndSubjectQuery );
     assertEquals( 2, result.getPostings().size());
-    assertEquals( "My third posting", result.getPostings().get(0));
-    assertEquals( "My second posting", result.getPostings().get(1));
+    assertEquals( "LisaHua", result.getPostings().get(0).getAuthor());
+    assertEquals( 1, result.getPostings().get(1).getId());
   }
 
 
@@ -241,7 +242,7 @@ public class TestMicroBlogger {
                               .setLongitude( 50.0d ) 
                               .setDistance( 2.0d ) );
     ServerMessage result = doTxRx( cmArray );
-    assertEquals( 2, result.getPostings() );
+    assertEquals( 3, result.getPostings() );
     score += 10;
   }
 
@@ -285,7 +286,7 @@ public class TestMicroBlogger {
                               .setSubject("Third");
     ClientMessage cm4 = new ClientMessage()
                               .setType(ClientMessage.Type.LIKE)
-                              .setId( 0 );
+                              .setId( 2 );
     ServerMessage result = doTxRx( cm1, cm2, cm3, cm4 );
     assertEquals(1, result.getPostings().get(0).getAuthorLikes() );
     score += 10;
@@ -337,27 +338,27 @@ public class TestMicroBlogger {
   public void testDelete1() {
     ClientMessage cm1 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
-                              .setAuthor("AdnanAziz")
+                              .setAuthor("LisaHua")
                               .setSubject("First")
                               .setTime(100);
     ClientMessage cm2 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("AdnanAziz")
-                              .setSubject("First")
+                              .setSubject("Second")
                               .setTime(200);
     ClientMessage cm3 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
-                              .setAuthor("AdnanAziz")
-                              .setSubject("First")
+                              .setAuthor("AngLi")
+                              .setSubject("Third")
                               .setTime(300);
     ClientMessage cm4 =  new ClientMessage()
                               .setType(ClientMessage.Type.DELETE)
                               .setId(1);
     ClientMessage cmQuery = new ClientMessage()
                                 .setType(ClientMessage.Type.QUERY);
-    ServerMessage result = doTxRx( cm1, cm2, cm4, cmQuery );
-    assertEquals( "LisaHua", result.getPostings().get(0).getAuthor() );
-    assertEquals( "AdnanAziz", result.getPostings().get(1).getAuthor() );
+    ServerMessage result = doTxRx( cm1, cm2,cm3, cm4, cmQuery );
+    assertEquals( "AngLi", result.getPostings().get(0).getAuthor() );
+    assertEquals( "First", result.getPostings().get(1).getSubject() );
   }
 
   @Test(timeout=2000)
@@ -369,23 +370,23 @@ public class TestMicroBlogger {
                               .setTime(100);
     ClientMessage cm2 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
-                              .setAuthor("AdnanAziz")
+                              .setAuthor("AngLi")
                               .setSubject("Second")
-                              .setSubject("Random body")
+                              .setBody("Random body")
                               .setTime(200);
     ClientMessage cm3 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
-                              .setAuthor("AdnanAziz")
+                              .setAuthor("LisaHua")
                               .setSubject("Third")
                               .setTime(300);
     ClientMessage cmQuery = new ClientMessage()
                               .setType(ClientMessage.Type.QUERY)
                               .setPageSize(2);
-    ServerMessage result = doTxRx( cm1, cm2, cm2, cmQuery );
+    ServerMessage result = doTxRx( cm1, cm2, cm3, cmQuery );
 
     assertEquals(2, result.getPostings().size());
-    assertEquals("Third", result.getPostings().get(0).getSubject() );
-    assertEquals("Second", result.getPostings().get(1).getSubject() );
+    assertEquals("AngLi", result.getPostings().get(0).getAuthor() );
+    assertEquals("First", result.getPostings().get(1).getSubject() );
     score += 5;
 
     cmQuery = new ClientMessage().setType(ClientMessage.Type.QUERY)
@@ -394,8 +395,8 @@ public class TestMicroBlogger {
 
     result = doTxRx( cm1, cm2, cm3, cmQuery );
     assertEquals(2, result.getPostings().size());
-    assertEquals("Second", result.getPostings().get(0).getSubject() );
-    assertEquals("First", result.getPostings().get(1).getSubject() );
+    assertEquals("Third", result.getPostings().get(0).getSubject() );
+    assertEquals("Random body", result.getPostings().get(1).getBody() );
     score += 5;
 
     cmQuery = new ClientMessage().setType(ClientMessage.Type.QUERY)
