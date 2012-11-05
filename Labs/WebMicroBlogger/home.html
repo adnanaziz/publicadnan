@@ -36,22 +36,27 @@ td+td {
 <script src="jquery.min.js"></script>
 
 <script>
-function submitnameform() 
+function submitposting() 
 {
- alert("document.nameform.firstname:" + document.nameform.elements["firstname"].value);
+ // alert("document.nameform.firstname:" + document.postingform.elements["firstname"].value);
  //$("#submitresults").html(document.nameform.elements["firstname"].value);
  var jsonreq = {};
  jsonreq["type"] = "CREATE";
- jsonreq["author"] = "AdnanAziz1968";
- jsonreq["id"] = "123";
+ jsonreq["author"] = document.postingform.elements["name"].value;
+ jsonreq["subject"] = document.postingform.elements["subject"].value;
+ jsonreq["body"] = document.postingform.elements["body"].value;
+ jsonreq["latitude"] = document.postingform.elements["latitude"].value;
+ jsonreq["longitude"] = document.postingform.elements["longitude"].value;
  // {"type":"CREATE","author":"AdnanAziz1968","id":0,"time":0}
  var jsonreqstring = JSON.stringify(jsonreq);
  alert("jsonreqstring stringified:" + JSON.stringify(jsonreq));
 
  var airports = $.get("http://localhost:16667/queryServlet?queryString=" + jsonreqstring, 
       function(data) {
-       alert("success:" + JSON.stringify(data));
-       $("#submitresults").html(data);
+       // alert("success:" + JSON.stringify(data));
+       alert("inspecting returned json:" + data.id);
+       //var postingList = data.postings;
+       //$("#submitresults").html(postingList[0].value);
      })
     //.success(function() { alert("second success"); })
     .error(function() { alert("error in btnname handler" ); })
@@ -117,10 +122,14 @@ $(document).ready(function(){
 
 <body>
 
-<form name="nameform">
-First name: <input type="text" name="firstname"><br>
-Last name: <input type="text" name="lastname">
-<a href="javascript: submitnameform()">Submit</a>
+Create a posting
+<form name="postingform">
+Name <input type="text" name="name"><br>
+Subject <input type="text" name="subject"><br>
+Body <input type="text" name="body"><br>
+Latitude <input type="text" name="latitude"><br>
+Longitude <input type="text" name="longitude"><br>
+<a href="javascript: submitposting()">Submit</a>
 </form> 
 
 

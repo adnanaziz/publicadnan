@@ -38,6 +38,8 @@ public class ClientMessage {
   private long id;
   private long time;
   private String body;
+  private double longitude;
+  private double latitude;
 
   ClientMessage() {
     // no argument constructor used by GSON

@@ -24,7 +24,7 @@ public class ServerMessage {
   public String toJson() {
     String result = null;
 	//TODOBEGIN(EE422C)
-
+   result = new Gson().toJson( this );
 	//TODOEND(EE422C)
     return result;
   }
