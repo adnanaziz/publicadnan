@@ -103,12 +103,12 @@ class ThreadedServer implements Runnable {
       System.out.println("cmJsonReqSer = " + cmJsonReqSer);
       */
 
-      String body;
+      //String body;
       //if ( firstTime ) {
       //   body = Files.toString( new File("home.html"), Charsets.UTF_8 );
       //   firstTime = false;
       //} else {
-         body = "<h1>Happy New Millennium!</h1>";
+      //   body = "<h1>Happy New Millennium!</h1>";
       //}
 
 ServerMessage sm = new ServerMessage().setPostings( new ArrayList<Posting>() );
@@ -136,6 +136,8 @@ for ( String line : lines ) {
   dos.println(line);
   System.out.println("Printing line:" + line);
 }
+//dos.println(sb.toString());
+//System.out.println(sb.toString());
 // for whatever reason, the call below does not work, but the 
 // one above (within the loop) does...
 //dos.println(smJsonString);
