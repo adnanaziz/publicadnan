@@ -244,7 +244,7 @@ public class TestMicroBlogger {
                               .setLongitude( 50.0d ) 
                               .setDistance( 2.0d ) );
     ServerMessage result = doTxRx( cmArray );
-    assertEquals( 3, result.getPostings() );
+    assertEquals( 3, result.getPostings().size() );
     score += 10;
   }
 
