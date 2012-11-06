@@ -104,34 +104,41 @@ class ThreadedServer implements Runnable {
       */
 
       String body;
-      if ( firstTime ) {
-         body = Files.toString( new File("home.html"), Charsets.UTF_8 );
-         firstTime = false;
-      } else {
+      //if ( firstTime ) {
+      //   body = Files.toString( new File("home.html"), Charsets.UTF_8 );
+      //   firstTime = false;
+      //} else {
          body = "<h1>Happy New Millennium!</h1>";
-      }
+      //}
 
 ServerMessage sm = new ServerMessage().setPostings( new ArrayList<Posting>() );
 sm.postings.add( new Posting(123L, "Adnan Aziz", "HW!", "Adnan Body text", 2000L, 20L) );
-sm.postings.add( new Posting(456L, "Don Bradman", "29", "Don Body text", 2000L, 20L) );
-// String smJsonString = sm.toJson();
-String smJsonString = body;
-System.out.println("smJsonString:" + smJsonString);
+sm.postings.add( new Posting(456L, "Don Bradman", "1", "Don Body text", 2000L, 20L) );
+sm.postings.add( new Posting(456L, "Don Bradman", "2", "Don Body text", 2000L, 20L) );
+sm.postings.add( new Posting(456L, "Don Bradman", "3", "Don Body text", 2000L, 20L) );
+sm.postings.add( new Posting(456L, "Don Bradman", "4", "Don Body text", 2000L, 20L) );
+sm.postings.add( new Posting(456L, "Don Bradman", "5", "Don Body text", 2000L, 20L) );
+String smJsonString = sm.toJson();
+//String smJsonString = body;
+//System.out.println("smJsonString:" + smJsonString);
 
 
 StringBuffer sb = new StringBuffer();
 sb.append("HTTP/1.0 200 OK\n");
 sb.append("Date: Fri, 31 Dec 1999 23:59:59 GMT\n");
 //sb.append("Access-Control-Allow-Origin: *\n");
-sb.append("Content-Type: text/html\n");
-//sb.append("Content-Type: application/json\n");
+//sb.append("Content-Type: text/html\n");
+sb.append("Content-Type: application/json\n");
 sb.append("Content-Length: " +  smJsonString.length() +"\n\n" );
 sb.append(smJsonString);
 String [] lines = sb.toString().split("\n");
 for ( String line : lines ) {
-  // dos.println(line);
+  dos.println(line);
   System.out.println("Printing line:" + line);
 }
+// for whatever reason, the call below does not work, but the 
+// one above (within the loop) does...
+//dos.println(smJsonString);
 
       //ServerMessage sm = new ServerMessage().setPostings( new ArrayList<Posting>() );
       //sm.postings.add( new Posting(123L, "Adnan Aziz", "HW!", "Body text", 1000L, 10L) );
