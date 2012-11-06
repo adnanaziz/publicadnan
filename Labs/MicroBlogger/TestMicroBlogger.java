@@ -142,6 +142,8 @@ public class TestMicroBlogger {
     ClientMessage cmBodyQuery = new ClientMessage()
                                 .setType(ClientMessage.Type.QUERY)
                                 .setBody("posting My");
+    result = doTxRx( cmAdd1, cmAdd2, cmAdd3, cmBodyQuery );
+    
     assertEquals( 2, result.getPostings().size() );
     for ( Posting p : result.getPostings() ) {
       assertTrue( p.getBody().contains("My") );
