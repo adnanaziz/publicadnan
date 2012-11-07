@@ -356,9 +356,8 @@ public class TestMicroBlogger {
     ClientMessage cm4 =  new ClientMessage()
                               .setType(ClientMessage.Type.DELETE)
                               .setId(1);
-    ClientMessage cmQuery = new ClientMessage()
-                                .setType(ClientMessage.Type.QUERY);
-    ServerMessage result = doTxRx( cm1, cm2,cm3, cm4, cmQuery );
+    
+    ServerMessage result = doTxRx( cm1, cm2,cm3, cm4);
     assertEquals( "AngLi", result.getPostings().get(0).getAuthor() );
     assertEquals( "First", result.getPostings().get(1).getSubject() );
   }
