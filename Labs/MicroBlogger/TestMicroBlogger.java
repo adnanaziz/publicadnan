@@ -300,17 +300,17 @@ public class TestMicroBlogger {
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("AdnanAziz")
                               .setSubject("First")
-                              .setTime(100);
+                              .setDate(100);
     ClientMessage cm2 = new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("AngLi")
                               .setSubject("Second")
-                              .setTime(200+3600*1000);
+                              .setDate(200+3600*1000);
     ClientMessage cm3 = new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("LisaHua")
                               .setSubject("Third")
-                              .setTime(300+3600*1000);
+                              .setDate(300+3600*1000);
     ClientMessage cm4 = new ClientMessage()
                               .setType(ClientMessage.Type.UPVOTE)
                               .setId( 2 );
@@ -342,17 +342,17 @@ public class TestMicroBlogger {
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("LisaHua")
                               .setSubject("First")
-                              .setTime(100);
+                              .setDate(100);
     ClientMessage cm2 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("AdnanAziz")
                               .setSubject("Second")
-                              .setTime(200);
+                              .setDate(200);
     ClientMessage cm3 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("AngLi")
                               .setSubject("Third")
-                              .setTime(300);
+                              .setDate(300);
     ClientMessage cm4 =  new ClientMessage()
                               .setType(ClientMessage.Type.DELETE)
                               .setId(1);
@@ -368,18 +368,18 @@ public class TestMicroBlogger {
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("AdnanAziz")
                               .setSubject("First")
-                              .setTime(100);
+                              .setDate(100);
     ClientMessage cm2 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("AngLi")
                               .setSubject("Second")
                               .setBody("Random body")
-                              .setTime(200);
+                              .setDate(200);
     ClientMessage cm3 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("LisaHua")
                               .setSubject("Third")
-                              .setTime(300);
+                              .setDate(300);
     ClientMessage cmQuery = new ClientMessage()
                               .setType(ClientMessage.Type.QUERY)
                               .setPageSize(2);

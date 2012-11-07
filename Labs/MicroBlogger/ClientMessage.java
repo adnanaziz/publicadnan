@@ -24,7 +24,7 @@ public class ClientMessage {
   // TODO: fill in fields needed to support operations
   private String author;
   private long id;
-  private long time;
+//  private long time;
   private String body;
 
   ClientMessage() {
@@ -59,7 +59,7 @@ public class ClientMessage {
   // TODO: all setter methods should return this so that calls can be chained
   public ClientMessage setType(Type type){ this.type = type; return this; }
   public ClientMessage setAuthor(String author){ this.author = author; return this; }
-  public ClientMessage setTime(long time){ this.time = time; return this; }
+//  public ClientMessage setTime(long time){ this.time = time; return this; }
 
   public ClientMessage setDate(long date){ return this; }
   public ClientMessage setDateStart(long date){ return this; }
