@@ -34,33 +34,8 @@ function gettrendingpostings()
 </script>
 
 <script>
-function queryposting() 
-{
- var jsonreq = {};
- jsonreq["type"] = "QUERY";
- jsonreq["author"] = document.queryform.elements["name"].value;
- jsonreq["subject"] = document.queryform.elements["subject"].value;
- jsonreq["body"] = document.queryform.elements["body"].value;
- jsonreq["latitude"] = document.queryform.elements["latitude"].value;
- jsonreq["longitude"] = document.queryform.elements["longitude"].value;
- jsonreq["distance"] = document.queryform.elements["distance"].value;
- jsonreq["pageoffset"] = document.queryform.elements["pageoffset"].value;
- jsonreq["pagesize"] = document.queryform.elements["pagesize"].value;
- var jsonreqstring = JSON.stringify(jsonreq);
-
- // use getJSON for json return case
- var tmp = $.getJSON(URLPATH + jsonreqstring, 
-     function(data) {
-        // TODO(CLEANUP): make this update into a function
-        $("#ulpostinglist").children().remove();
-        for (var i = 0, len = data.postings.length; i < len && i < 4; i++) {
-          $("#ulpostinglist").append('<li>' + data.postings[i].author + ', ' 
-                                   + data.postings[i].subject + ', '
-                                   + data.postings[i].body + '</li>');
-        }
-     })
-    .error(function() { alert("error in btnname handler" ); })
-    ;
+function queryposting() { 
+  alert("queryposting is to implemented by student"); 
 };
 </script>
 
