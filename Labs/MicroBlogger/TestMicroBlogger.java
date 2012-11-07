@@ -19,8 +19,8 @@ public class TestMicroBlogger {
   }
 
   // Ang's suggestion on getting annotation values
-  public static String getClassAnnotationValue(Class<ClientMessage> classType, 
-                                               Class<Author> annotationType, 
+  public static String getClassAnnotationValue(Class<ClientMessage> classType,
+                                               Class<Author> annotationType,
                                                String attributeName) {
     String value = null;
     Annotation annotation = classType.getAnnotation(annotationType);
@@ -44,7 +44,7 @@ public class TestMicroBlogger {
     System.out.println("\n@score" + "," + name + "," + uteid + "," + score);
   }
 
-   @Test(timeout=2000) 
+   @Test(timeout=2000)
   public void testSerDeser1() {
     ClientMessage cm = new ClientMessage();
     cm.setType(ClientMessage.Type.CREATE)
@@ -70,7 +70,7 @@ public class TestMicroBlogger {
     MicroBlogServer ms = new MicroBlogServer();
     ServerMessage result = null;
     try {
-      ms.start(STARTPORT + portOffset++); 
+      ms.start(STARTPORT + portOffset++);
       for ( ClientMessage cm : cmArray ) {
         MicroBlogClient mc = new MicroBlogClient( cm );
         mc.transmit();
@@ -83,7 +83,7 @@ public class TestMicroBlogger {
     return result;
   }
 
-   @Test(timeout=2000) 
+   @Test(timeout=2000)
   public void testAdd1() {
     ClientMessage cm = new ClientMessage()
                                .setType(ClientMessage.Type.CREATE)
@@ -95,7 +95,7 @@ public class TestMicroBlogger {
     score += 5;
   }
 
-   @Test(timeout=2000) 
+   @Test(timeout=2000)
   public void testAdd2() {
     ClientMessage cm = new ClientMessage()
                                .setType(ClientMessage.Type.CREATE)
@@ -103,12 +103,12 @@ public class TestMicroBlogger {
                                .setSubject("Hello World")
                                .setBody("My first posting!");
     ServerMessage result = doTxRx( cm, cm, cm );
-    
+
     assertEquals( result.getPostings().get(0).getId(), 2 );
     score += 5;
   }
 
-  @Test(timeout=5000) 
+  @Test(timeout=5000)
   public void testQuery1() {
     ClientMessage cmAdd1 = new ClientMessage()
                                .setType(ClientMessage.Type.CREATE)
@@ -143,7 +143,7 @@ public class TestMicroBlogger {
                                 .setType(ClientMessage.Type.QUERY)
                                 .setBody("posting My");
     result = doTxRx( cmAdd1, cmAdd2, cmAdd3, cmBodyQuery );
-    
+
     assertEquals( 2, result.getPostings().size() );
     for ( Posting p : result.getPostings() ) {
       assertTrue( p.getBody().contains("My") );
@@ -200,7 +200,7 @@ public class TestMicroBlogger {
                                  .setDateStart(100L)
                                  .setDateEnd(200L)
                                  .setSubject("Cruel");
-    
+
     result = doTxRx( cm1, cm2, cm3, cm4, cm5, cmTimeAndSubjectQuery );
     assertEquals( 2, result.getPostings().size());
     assertEquals( "LisaHua", result.getPostings().get(0).getAuthor());
@@ -208,7 +208,7 @@ public class TestMicroBlogger {
   }
 
 
-  @Test(timeout=5000) 
+  @Test(timeout=5000)
   public void testStress1() {
     List<ClientMessage> cmArray = new ArrayList<ClientMessage>();
     int N = 1000;
@@ -225,7 +225,7 @@ public class TestMicroBlogger {
     score += 5;
   }
 
-  @Test(timeout=2000) 
+  @Test(timeout=2000)
   public void testDistanceQuery1() {
     List<ClientMessage> cmArray = new ArrayList<ClientMessage>();
     int N = 100;
@@ -241,14 +241,14 @@ public class TestMicroBlogger {
     cmArray.add( new ClientMessage()
                               .setType(ClientMessage.Type.QUERY)
                               .setLatitude( 50.0d )
-                              .setLongitude( 50.0d ) 
+                              .setLongitude( 50.0d )
                               .setDistance( 2.0d ) );
     ServerMessage result = doTxRx( cmArray );
     assertEquals( 3, result.getPostings().size() );
     score += 10;
   }
 
-  @Test(timeout=2000) 
+  @Test(timeout=2000)
   public void testUpdate1() {
 
     ClientMessage cm1 =  new ClientMessage()
@@ -259,7 +259,7 @@ public class TestMicroBlogger {
                               .setType(ClientMessage.Type.CREATE)
                               .setAuthor("AdnanAziz1968")
                               .setSubject("Second");
-    ClientMessage cm3 = new ClientMessage() 
+    ClientMessage cm3 = new ClientMessage()
                               .setType(ClientMessage.Type.UPDATE)
                               .setId(0)
                               .setSubject("New First");
@@ -271,7 +271,7 @@ public class TestMicroBlogger {
     score += 10;
   }
 
-  @Test(timeout=2000) 
+  @Test(timeout=2000)
   public void testLikes1() {
 
     ClientMessage cm1 =  new ClientMessage()
@@ -294,7 +294,7 @@ public class TestMicroBlogger {
     score += 10;
   }
 
-  @Test(timeout=2000) 
+  @Test(timeout=2000)
   public void testUpvotesAndTrending1() {
     ClientMessage cm1 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
@@ -322,9 +322,9 @@ public class TestMicroBlogger {
                               .setId( 2 );
     ServerMessage result = doTxRx( cm1, cm2, cm3, cm4, cm5, cm6 );
     // postings are ordered by decreasing posting time
-    assertEquals(2, result.getPostings().get(0).getAuthorLikes() );
-    assertEquals(1, result.getPostings().get(1).getAuthorLikes() );
-    assertEquals(0, result.getPostings().get(2).getAuthorLikes() );
+    assertEquals(2, result.getPostings().get(0).getUpvotes() );
+    assertEquals(1, result.getPostings().get(1).getUpvotes()  );
+    assertEquals(0, result.getPostings().get(2).getUpvotes()  );
     ClientMessage cm7 = new ClientMessage()
                               .setType(ClientMessage.Type.TRENDING);
     score += 10;
@@ -336,7 +336,7 @@ public class TestMicroBlogger {
     score += 10;
   }
 
-  @Test(timeout=2000) 
+  @Test(timeout=2000)
   public void testDelete1() {
     ClientMessage cm1 =  new ClientMessage()
                               .setType(ClientMessage.Type.CREATE)
