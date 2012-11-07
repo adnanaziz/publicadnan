@@ -104,7 +104,7 @@ public class TestMicroBlogger {
                                .setBody("My first posting!");
     ServerMessage result = doTxRx( cm, cm, cm );
 
-    assertEquals( result.getPostings().get(0).getId(), 2 );
+    assertEquals( result.getId(), 2 );
     score += 5;
   }
 
@@ -356,7 +356,7 @@ public class TestMicroBlogger {
     ClientMessage cm4 =  new ClientMessage()
                               .setType(ClientMessage.Type.DELETE)
                               .setId(1);
-    
+
     ServerMessage result = doTxRx( cm1, cm2,cm3, cm4);
     assertEquals( "AngLi", result.getPostings().get(0).getAuthor() );
     assertEquals( "First", result.getPostings().get(1).getSubject() );
