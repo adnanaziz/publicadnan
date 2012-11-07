@@ -87,7 +87,6 @@ class ThreadedServer implements Runnable {
                                 new InputStreamReader(sock.getInputStream()) );
       PrintWriter dos = new PrintWriter(sock.getOutputStream());
 
-      /*
       String cmJsonStringQuery = dis.readLine();
       // String cmJsonString = "{\"type\":\"CREATE\",\"author\":\"AdnanAziz1968\",\"id\":0,\"time\":0}";
       System.out.println("Server received: " + cmJsonStringQuery );
@@ -98,10 +97,10 @@ class ThreadedServer implements Runnable {
       System.out.println("cmJsonStringNoEscape = " + cmJsonStringNoEscape);
 
       ClientMessage jsonreq = ClientMessage.fromJson(cmJsonStringNoEscape);
+      System.out.println("Deserialized string passed in is: " + jsonreq.toString() );
       // String cmJsonReqSer = jsonreq.toJson();
       String cmJsonReqSer = jsonreq.toJson();
       System.out.println("cmJsonReqSer = " + cmJsonReqSer);
-      */
 
       //String body;
       //if ( firstTime ) {

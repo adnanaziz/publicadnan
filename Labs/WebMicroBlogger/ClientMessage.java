@@ -17,6 +17,8 @@ import com.google.gson.*;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
+import com.google.common.base.Joiner;
+
 @Target(TYPE)
 @Retention(RUNTIME)
 //TODO(EE422C): update these to your name and eid
@@ -32,14 +34,23 @@ public class ClientMessage {
     CREATE, UPDATE, LIKE, UPVOTE, DELETE, QUERY, QUERYBYID, TRENDING;
   }
 
+
   private Type type;
   // TODO: fill in fields needed to support operations
   private String author;
+  private String subject;
+  private String body;
   private long id;
   private long time;
-  private String body;
-  private double longitude;
   private double latitude;
+  private double longitude;
+
+  @Override 
+  public String toString() {
+    Joiner joiner = Joiner.on(" : ").useForNull("null");
+    return joiner.join( type.toString(), author, subject, body, String.valueOf(id), String.valueOf(time), 
+                         String.valueOf(latitude), String.valueOf(longitude) );
+  }
 
   ClientMessage() {
     // no argument constructor used by GSON
@@ -66,13 +77,13 @@ public class ClientMessage {
   // TODO: all setter methods should return this so that calls can be chained
   public ClientMessage setType(Type type){ this.type = type; return this; }
   public ClientMessage setAuthor(String author){ this.author = author; return this; }
+  public ClientMessage setSubject(String author){ this.subject = subject; return this; }
+  public ClientMessage setBody(String author){ this.body = body; return this; }
   public ClientMessage setTime(long time){ this.time = time; return this; }
 
   public ClientMessage setDate(long date){ return this; }
   public ClientMessage setDateStart(long date){ return this; }
   public ClientMessage setDateEnd(long date){ return this; }
-  public ClientMessage setSubject(String subject){ return this; }
-  public ClientMessage setBody(String body){ return this; }
   public ClientMessage setLatitude(double latitude) { return this; }
   public ClientMessage setLongitude(double longitude) { return this; }
   public ClientMessage setDistance(double distance) { return this; }

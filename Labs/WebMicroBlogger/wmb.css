@@ -4,26 +4,26 @@ body {
 
 
 #formwrapperdiv {
-  width: 800px;
-}
-
-tablediv.table.td {
-  valign:top;
 }
 
 #creatediv {
   font: Helvetica, sans-serif;
-  width: 300px;
+  width: 250px;
 }
 
 #querydiv {
   font: Helvetica, sans-serif;
-  width: 300px;
+  width: 250px;
+}
+
+#updatediv {
+  font: Helvetica, sans-serif;
+  width: 250px;
 }
 
 #actionsdiv {
   font: Helvetica, sans-serif;
-  width: 200px;
+  width: 250px;
 }
 
 /*

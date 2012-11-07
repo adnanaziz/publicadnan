@@ -1,18 +1,40 @@
 <head>
-<title> UTweeter home page </title>
+<title>UTweeter</title>
+
 <link rel="stylesheet type="text/css" href="wmb.css">
+
+<!-- 
+use following enum for message type: CREATE, UPDATE, LIKE, UPVOTE, DELETE, QUERY, QUERYBYID, TRENDING 
+-->
 
 <script src="jquery.min.js"></script>
 
 <script>
-function getpostings() 
-{
-  alert("getpostings is not implemented");
-}
+var URLPATH = "http://localhost:16667/queryServlet?queryString=";
 </script>
 
 <script>
-function querypostings() 
+function likeposting() 
+{ alert("likeposting is not implemented"); }
+</script>
+<script>
+
+function likepostingauthor() 
+{ alert("likepostingauthor is not implemented"); }
+</script>
+
+<script>
+function deleteposting() 
+{ alert("deleteposting is not implemented"); }
+</script>
+
+<script>
+function gettrendingpostings() 
+{ alert("gettrendingpostings is not implemented"); }
+</script>
+
+<script>
+function queryposting() 
 {
  var jsonreq = {};
  jsonreq["type"] = "QUERY";
@@ -26,19 +48,18 @@ function querypostings()
  jsonreq["pagesize"] = document.queryform.elements["pagesize"].value;
  var jsonreqstring = JSON.stringify(jsonreq);
 
- // change to getJSON for json return case
- var tmp = $.getJSON("http://localhost:16667/queryServlet?queryString=" + jsonreqstring, 
-      function(data) {
-       console.log(data);
-       var postingList = data.postings;
-       for ( i = 0 ; i < data.postings.length && i < 4; i++ ) {
-         $("#para" + i + "auth").html(postingList[i].author);
-         $("#para" + i + "subject").html(postingList[i].subject);
-         $("#para" + i + "body").html(postingList[i].body);
-       }
+ // use getJSON for json return case
+ var tmp = $.getJSON(URLPATH + jsonreqstring, 
+     function(data) {
+        // TODO(CLEANUP): make this update into a function
+        $("#ulpostinglist").children().remove();
+        for (var i = 0, len = data.postings.length; i < len && i < 4; i++) {
+          $("#ulpostinglist").append('<li>' + data.postings[i].author + ', ' 
+                                   + data.postings[i].subject + ', '
+                                   + data.postings[i].body + '</li>');
+        }
      })
     .error(function() { alert("error in btnname handler" ); })
-    //.complete(function() { alert("complete" + data); })
     ;
 };
 </script>
@@ -46,8 +67,6 @@ function querypostings()
 <script>
 function submitposting() 
 {
- // alert("document.nameform.firstname:" + document.queryform.elements["firstname"].value);
- //$("#submitresults").html(document.nameform.elements["firstname"].value);
  var jsonreq = {};
  jsonreq["type"] = "CREATE";
  jsonreq["author"] = document.createform.elements["name"].value;
@@ -55,31 +74,49 @@ function submitposting()
  jsonreq["body"] = document.createform.elements["body"].value;
  jsonreq["latitude"] = document.createform.elements["latitude"].value;
  jsonreq["longitude"] = document.createform.elements["longitude"].value;
- // {"type":"CREATE","author":"AdnanAziz1968","id":0,"time":0}
+ jsonreq["date"] = document.createform.elements["date"].value;
  var jsonreqstring = JSON.stringify(jsonreq);
- alert("jsonreqstring stringified:" + JSON.stringify(jsonreq));
 
-  // change to getJSON for json return case
- var airports = $.getJSON("http://localhost:16667/queryServlet?queryString=" + jsonreqstring, 
+ $.getJSON(URLPATH + jsonreqstring, 
       function(data) {
-       // alert("success:" + JSON.stringify(data));
-       console.log(data);
-       var postingList = data.postings;
-       //alert("data.postings[0].value = " + data.postings[0].author);
-       for ( i = 0 ; i < data.postings.length && i < 4; i++ ) {
-         $("#para" + i + "auth").html(postingList[i].author);
-         $("#para" + i + "subject").html(postingList[i].subject);
-         $("#para" + i + "body").html(postingList[i].body);
-         //$("#submitresults").html(data);
+       $("#ulpostinglist").children().remove();
+       for (var i = 0, len = data.postings.length; i < len && i < 4; i++) {
+         $("#ulpostinglist").append('<li>' + data.postings[i].author + ', ' 
+                                  + data.postings[i].subject + ', '
+                                  + data.postings[i].body + '</li>');
        }
-     })
-    //.success(function() { alert("second success"); })
-    .error(function() { alert("error in btnname handler" ); })
-    //.complete(function() { alert("complete" + data); })
-    ;
+     }
+    )
+    .error(function() { alert("error in submitposting" ); });
 };
 </script>
 
+<script>
+$(document).ready(function(){
+  $("#btntest").click(function(){
+    var serverMsg = {
+      "id":0,
+      "postings":[
+          {"id":0,"date":"12/3/2012","latitude":"123.4","longitude":"34.41","body":"A random posting.","subject":"Hello World!","author":"Adnan Aziz","authorLikes":123,"postingUpvotes":12},
+          {"id":0,"date":"12/2/2012","latitude":"123.4","longitude":"34.41","body":"My first posting","subject":"99.97!","author":"Don Bradman","authorLikes":123,"postingUpvotes":12},
+          {"id":0,"date":"11/3/2012","latitude":"123.4","longitude":"34.41","body":"Why do I always lose the big games?","subject":"Number 1","author":"Graham Smith","authorLikes":123,"postingUpvotes":12},
+          {"id":0,"date":"11/2/2012","latitude":"123.4","longitude":"34.41","body":"365 wickets, best in the world","subject":"All rounder!","author":"Ian Botham","authorLikes":939,"postingUpvotes":12},
+          {"id":0,"date":"11/2/2012","latitude":"123.4","longitude":"34.41","body":"DSFD FDSF KFD.","subject":"Old timer","author":"Everton Weekes","authorLikes":13,"postingUpvotes":12},
+          {"id":0,"date":"11/1/2012","latitude":"123.4","longitude":"34.41","body":"Empty.","subject":"Boring...","author":"Sunny Gavaskar","authorLikes":3443,"postingUpvotes":12}
+      ]
+    };
+    // first clear the list 
+    $("#ulpostinglist").children().remove();
+    for (var i = 0, len = serverMsg.postings.length; i < len && i < 4; i++) {
+      $("#ulpostinglist").append('<li>' + serverMsg.postings[i].author + ', ' 
+                                  + serverMsg.postings[i].subject + ', '
+                                  + serverMsg.postings[i].body + '</li>');
+    }
+  });
+});
+</script>
+
+<!-- TODO(CLEANUP): refactor these repeated calls -->
 <script>
 $(document).ready(function(){
   $("#btn0").click(function(){
@@ -96,27 +133,10 @@ $(document).ready(function(){
 });
 </script>
 
-
 <script>
 $(document).ready(function(){
   $("#btn2").click(function(){
-    var serverMsg = {
-      "id":0,
-      "postings":[
-          {"id":0,"date":"12/3/2012","latitude":"123.4","longitude":"34.41","body":"A random posting.","subject":"Hello World!","author":"Adnan Aziz","authorLikes":123,"postingUpvotes":12},
-          {"id":0,"date":"12/2/2012","latitude":"123.4","longitude":"34.41","body":"My first posting.","subject":"99.97!","author":"Don Bradman","authorLikes":123,"postingUpvotes":12},
-          {"id":0,"date":"11/3/2012","latitude":"123.4","longitude":"34.41","body":"Why do I always lose the big games?","subject":"Number 1","author":"Graham Smith","authorLikes":123,"postingUpvotes":12},
-          {"id":0,"date":"11/2/2012","latitude":"123.4","longitude":"34.41","body":"365 wickets, best in the world","subject":"All rounder!","author":"Ian Botham","authorLikes":939,"postingUpvotes":12},
-          {"id":0,"date":"11/2/2012","latitude":"123.4","longitude":"34.41","body":"DSFD FDSF KFD.","subject":"Old timer","author":"Everton Weekes","authorLikes":13,"postingUpvotes":12},
-          {"id":0,"date":"11/1/2012","latitude":"123.4","longitude":"34.41","body":"Empty.","subject":"Boring...","author":"Sunny Gavaskar","authorLikes":3443,"postingUpvotes":12}
-      ]
-    };
-    for (var i = 0, len = serverMsg.postings.length; i < len && i < 4; i++) {
-     $("#para" + i + "auth").html(serverMsg.postings[i].author);
-     $("#para" + i + "subject").html(serverMsg.postings[i].subject);
-     $("#para" + i + "body").html(serverMsg.postings[i].body);
-     $("#para" + i + "date").html(serverMsg.postings[i].date);
-    }
+    deleteposting();
   });
 });
 </script>
@@ -124,16 +144,32 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
   $("#btn3").click(function(){
-    getpostings();
+    likeposting();
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#btn4").click(function(){
+    likepostingauthor();
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#btn5").click(function(){
+    gettrendingpostings();
   });
 });
 </script>
 
 
-
 </head>
 
 <body>
+<h2>Welcome to UTweeter!</h2>
 
 <div id="formwrapperdiv">
 <table>
@@ -148,6 +184,7 @@ $(document).ready(function(){
 <tr><td>Body</td><td> <input type="text" name="body" value="Default body"></td></tr>
 <tr><td>Latitude</td><td> <input type="text" name="latitude" value="0.00"></td></tr>
 <tr><td>Longitude</td><td> <input type="text" name="longitude" value="0.00"></td></tr>
+<tr><td>Date</td><td> <input type="text" name="date" value="13:54:11 11/7/2012"></td></tr>
 </table>
 </form> 
 </div>
@@ -166,27 +203,42 @@ $(document).ready(function(){
 <tr><td>Distance</td> <td>  <input type="text" name="distance" value="0.00"></tr>
 <tr><td>Page size </td> <td> <input type="text" name="pagesize" value="5"></tr>
 <tr><td>Page offset</td> <td> <input type="text" name="pageoffset" value="0"></tr>
+<tr><td>Start time</td> <td> <input type="text" name="dateStart" value="0"></tr>
+<tr><td>End time</td> <td> <input type="text" name="dateEnd" value="0"></tr>
 </table>
 </form> 
 </div>
 </td>
 
 <td valign="top">
+<div id="updatediv">
+<h3>Delete/like/upvote posting</h3>
+<form>
+<table>
+<tr><td> Id of posting </td></tr>
+<tr><td><input type="text" name="postingid" value="0"></td></tr>
+</table>
+</form>
+</div>
+</td>
+
+<td valign="top">
 <div id="actionsdiv">
 <h3>Perform actions</h3>
-<!-- 
-<a href="javascript: submitposting()">Submit posting</a>
-<br>
-<a href="javascript: querypostings()">Query postings</a>
-<br>
--->
 <button id="btn0">Submit posting</button> 
 <p>
 <button id="btn1">Query postings</button> 
 <p>
-<button id="btn2">Test get postings locally</button> 
+<button id="btn2">Delete posting</button> 
 <p>
-<button id="btn3">Update postings</button> 
+<button id="btn3">Like posting</button> 
+<p>
+<button id="btn4">Like posting author</button> 
+<p>
+<button id="btn5">Get trending postings</button> 
+<p>
+<button id="btntest"><em>Test get postings locally</em></button> 
+<p>
 </div>
 </td>
 </tr>
@@ -196,14 +248,10 @@ $(document).ready(function(){
 
 <div id="postingslist">
 <h3>List of postings</h3>
-<table>
-<tr><td id="para0auth"> </td> <td id="para0subject"> </td> <td id="para0body"></td> <td id="para0date"></td> </tr>
-<tr><td id="para1auth"> </td> <td id="para1subject"> </td> <td id="para1body"></td> <td id="para1date"></td> </tr>
-<tr><td id="para2auth"> </td> <td id="para2subject"> </td> <td id="para2body"></td> <td id="para2date"></td> </tr>
-<tr><td id="para3auth"> </td> <td id="para3subject"> </td> <td id="para3body"></td> <td id="para3date"></td> </tr>
-</table>
-</div>
+<ul id="ulpostinglist">
+</ul>
 
+</div>
 
 <p id="testingarea"></p>
 
