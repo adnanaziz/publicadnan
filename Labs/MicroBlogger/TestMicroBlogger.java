@@ -386,8 +386,8 @@ public class TestMicroBlogger {
     ServerMessage result = doTxRx( cm1, cm2, cm3, cmQuery );
 
     assertEquals(2, result.getPostings().size());
-    assertEquals("AngLi", result.getPostings().get(0).getAuthor() );
-    assertEquals("First", result.getPostings().get(1).getSubject() );
+    assertEquals("LisaHua", result.getPostings().get(0).getAuthor() );
+    assertEquals("Second", result.getPostings().get(1).getSubject() );
     score += 5;
 
     cmQuery = new ClientMessage().setType(ClientMessage.Type.QUERY)
@@ -396,8 +396,8 @@ public class TestMicroBlogger {
 
     result = doTxRx( cm1, cm2, cm3, cmQuery );
     assertEquals(2, result.getPostings().size());
-    assertEquals("Third", result.getPostings().get(0).getSubject() );
-    assertEquals("Random body", result.getPostings().get(1).getBody() );
+    assertEquals("AdnanAziz", result.getPostings().get(1).getSubject() );
+    assertEquals("Random body", result.getPostings().get(0).getBody() );
     score += 5;
 
     cmQuery = new ClientMessage().setType(ClientMessage.Type.QUERY)
@@ -406,8 +406,7 @@ public class TestMicroBlogger {
                               .setPageOffset(1);
 
     result = doTxRx( cm1, cm2, cm3, cmQuery );
-    assertEquals(1, result.getPostings().size());
-    assertEquals("Second", result.getPostings().get(0).getSubject() );
+    assertEquals(0, result.getPostings().size());
     score += 5;
   }
 
