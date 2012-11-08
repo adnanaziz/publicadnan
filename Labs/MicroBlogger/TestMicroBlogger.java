@@ -321,7 +321,7 @@ public class TestMicroBlogger {
                               .setType(ClientMessage.Type.UPVOTE)
                               .setId( 2 );
     ServerMessage result = doTxRx( cm1, cm2, cm3, cm4, cm5, cm6 );
-    // postings are ordered by decreasing posting time
+    // postings are ordered by decreasing id
     assertEquals(2, result.getPostings().get(0).getUpvotes() );
     assertEquals(1, result.getPostings().get(1).getUpvotes()  );
     assertEquals(0, result.getPostings().get(2).getUpvotes()  );
