@@ -396,7 +396,7 @@ public class TestMicroBlogger {
 
     result = doTxRx( cm1, cm2, cm3, cmQuery );
     assertEquals(2, result.getPostings().size());
-    assertEquals("AdnanAziz", result.getPostings().get(1).getSubject() );
+    assertEquals("First", result.getPostings().get(1).getSubject() );
     assertEquals("Random body", result.getPostings().get(0).getBody() );
     score += 5;
 
