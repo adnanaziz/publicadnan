@@ -37,7 +37,7 @@ use following enum for message type: CREATE, UPDATE, LIKE, UPVOTE, DELETE, QUERY
 
 <td valign="top">
 <div id="querydiv">
-<h3>Query postings</h3>
+<h3>Query/Trending/Update</h3>
 <form name="queryform">
 <table>
 <tr> <td>Name</td> <td>  <input type="text" name="name" value="Default name"></tr>
@@ -57,8 +57,8 @@ use following enum for message type: CREATE, UPDATE, LIKE, UPVOTE, DELETE, QUERY
 
 <td valign="top">
 <div id="updatediv">
-<h3>Delete/like/upvote posting</h3>
-<form>
+<h3>Delete/Like/Upvote/QueryByID</h3>
+<form name="idform">
 <table>
 <tr><td> Id of posting </td></tr>
 <tr><td><input type="text" name="postingid" value="0"></td></tr>
@@ -81,6 +81,10 @@ use following enum for message type: CREATE, UPDATE, LIKE, UPVOTE, DELETE, QUERY
 <button id="btn4">Like posting author</button> 
 <p>
 <button id="btn5">Get trending postings</button> 
+<p>
+<button id="btn6">Update</button>
+<p>
+<button id="btn7">QueryByID</button>
 <p>
 <button id="btntest"><em>Test get postings locally</em></button> 
 <p>

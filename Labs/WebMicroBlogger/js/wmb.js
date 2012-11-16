@@ -1,23 +1,35 @@
 var URLPATH = "http://localhost:16667/queryServlet?queryString=";
 
-function likeposting() 
-{ alert("likeposting is not implemented"); }
+function id_form(op){
+    //EE422C TODO
+}
 
-function likepostingauthor() 
-{ alert("likepostingauthor is not implemented"); }
-
-function deleteposting() 
-{ alert("deleteposting is not implemented"); }
-
-function gettrendingpostings() 
-{ alert("gettrendingpostings is not implemented"); }
-
-function queryposting() { 
-  alert("queryposting is to implemented by student"); 
+function query_form(op){
+    var jsonreq = {};
+    jsonreq["type"] = op;
+    jsonreq["author"] = document.queryform.elements["name"].value;
+    jsonreq["subject"] = document.queryform.elements["subject"].value;
+    jsonreq["body"] = document.queryform.elements["body"].value;
+    jsonreq["latitude"] = document.queryform.elements["latitude"].value;
+    jsonreq["longitude"] = document.queryform.elements["longitude"].value;
+    jsonreq["distance"] = document.queryform.elements["distance"].value;
+    jsonreq["pagesize"] = document.queryform.elements["pagesize"].value;
+    jsonreq["pageoffset"] = document.queryform.elements["pageoffset"].value;
+    jsonreq["dateStart"] = document.queryform.elements["dateStart"].value;
+    jsonreq["dateEnd"] = document.queryform.elements["dateEnd"].value;
+    
+    $.getJSON(URLPATH + JSON.stringify(jsonreq),
+              function(data) {
+              $("#ulpostinglist").children().remove();
+              for (var i = 0, len = data.postings.length; i < len && i < 4; i++) {
+              $("#ulpostinglist").append('<li>' + data.postings[i].author + ', '
+                                         + data.postings[i].subject + ', '
+                                         + data.postings[i].body + '</li>');
+              }
+              }).error(function(){ alert("error in submitposting" );});
 };
     
-function submitposting() 
-{
+function submitposting(){
  var jsonreq = {};
  jsonreq["type"] = "CREATE";
  jsonreq["author"] = document.createform.elements["name"].value;
@@ -26,19 +38,16 @@ function submitposting()
  jsonreq["latitude"] = document.createform.elements["latitude"].value;
  jsonreq["longitude"] = document.createform.elements["longitude"].value;
  jsonreq["date"] = document.createform.elements["date"].value;
- var jsonreqstring = JSON.stringify(jsonreq);
 
- $.getJSON(URLPATH + jsonreqstring, 
-      function(data) {
-       $("#ulpostinglist").children().remove();
-       for (var i = 0, len = data.postings.length; i < len && i < 4; i++) {
-         $("#ulpostinglist").append('<li>' + data.postings[i].author + ', ' 
+ $.getJSON(URLPATH + JSON.stringify(jsonreq), 
+    function(data) {
+           $("#ulpostinglist").children().remove();
+           for (var i = 0, len = data.postings.length; i < len && i < 4; i++) {
+                $("#ulpostinglist").append('<li>' + data.postings[i].author + ', '
                                   + data.postings[i].subject + ', '
                                   + data.postings[i].body + '</li>');
-       }
-     }
-    )
-    .error(function() { alert("error in submitposting" ); });
+           }
+     }).error(function(){ alert("error in submitposting" );});
 };
     
 $(document).ready(function(){
@@ -63,7 +72,8 @@ $(document).ready(function(){
     }
   });
 });
-    
+
+
 $(document).ready(function(){
   $("#btn0").click(function(){
     submitposting();
@@ -72,30 +82,41 @@ $(document).ready(function(){
     
 $(document).ready(function(){
   $("#btn1").click(function(){
-    queryposting();
+      query_form("QUERY");
   });
 });
     
 $(document).ready(function(){
   $("#btn2").click(function(){
-    deleteposting();
+     id_form("DELETE");
   });
 });
     
 $(document).ready(function(){
   $("#btn3").click(function(){
-    likeposting();
+    id_form("UPVOTE");
   });
 });
     
 $(document).ready(function(){
   $("#btn4").click(function(){
-    likepostingauthor();
+    id_form("LIKE");
   });
 });
     
 $(document).ready(function(){
   $("#btn5").click(function(){
-    gettrendingpostings();
+    query_form("TRENDING");
   });
+});
+
+$(document).ready(function(){
+  $("#btn6").click(function(){
+    query_form("UPDATE");
+  });
+});
+$(document).ready(function(){
+   $("#btn7").click(function(){
+      id_form("QUERYBYID");
+   });
 });
