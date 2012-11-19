@@ -114,7 +114,7 @@ public class TestMicroBlogger {
 	            writer.flush();  
 			}
 			StringBuilder sb = new StringBuilder();
-			try {
+			
 				String str = null;
 				BufferedReader in = new BufferedReader(new InputStreamReader(
 						kUrl.openStream()));
@@ -122,10 +122,7 @@ public class TestMicroBlogger {
 					sb.append(str);
 				}
 				in.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 			String sm_json = sb.toString().trim();
 			result = ServerMessage.fromJson(sm_json);
 		} catch (Exception e) {
