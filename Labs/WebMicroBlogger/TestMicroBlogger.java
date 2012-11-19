@@ -1,3 +1,4 @@
+package utweeter;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -5,9 +6,12 @@ import static org.junit.Assert.assertTrue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.lang.annotation.Annotation;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,44 +93,45 @@ public class TestMicroBlogger {
 		ServerMessage result = null;
 		try {
 			URL kUrl = new URL(siteURL + queryURL);
-			String cm_json = "";
 			for (ClientMessage cm : cmArray) {
-				cm_json = cm.toJson();
+				String cm_json = cm.toJson();
 				kUrl = new URL(siteURL + queryURL + cm_json);
+				HttpURLConnection connection = (HttpURLConnection) kUrl.openConnection();           
+			    connection.setDoOutput(true); 
+			    connection.setInstanceFollowRedirects(false); 
+			    connection.setRequestMethod("GET"); 
+			    connection.setRequestProperty("Content-Type", "text/plain"); 
+			    connection.setRequestProperty("charset", "utf-8");
+			    connection.connect();
+			    
+			 // Send the request
+//	            URLConnection conn = kUrl.openConnection();
+//	            conn.setDoOutput(true);
+	           
+	            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+	            //write parameters
+	            writer.write(cm_json);
+	            writer.flush();  
 			}
-			result = getServerMsg(kUrl);
-
-		} catch (MalformedURLException e) {
+			StringBuilder sb = new StringBuilder();
+			try {
+				String str = null;
+				BufferedReader in = new BufferedReader(new InputStreamReader(
+						kUrl.openStream()));
+				while ((str = in.readLine()) != null) {
+					sb.append(str);
+				}
+				in.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String sm_json = sb.toString().trim();
+			result = ServerMessage.fromJson(sm_json);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return result;
-	}
-
-	/**
-	 * 
-	 * @param url
-	 *            : parse the HTML codes and get the result
-	 * @return ServerMessage result
-	 */
-	static ServerMessage getServerMsg(URL url) {
-		ServerMessage result = new ServerMessage();
-		StringBuilder sb = new StringBuilder();
-		try {
-			String str = null;
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-					url.openStream()));
-
-			while ((str = in.readLine()) != null) {
-				sb.append(str);
-			}
-			in.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String sm_json = sb.toString().trim();
-		result = ServerMessage.fromJson(sm_json);
 		return result;
 	}
 
