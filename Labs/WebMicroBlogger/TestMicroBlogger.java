@@ -4,14 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.annotation.Annotation;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,7 +93,7 @@ public class TestMicroBlogger {
 			URL kUrl = new URL(siteURL + queryURL);
 			for (ClientMessage cm : cmArray) {
 				String cm_json = cm.toJson();
-				kUrl = new URL(siteURL + queryURL + cm_json);
+				kUrl = new URL(siteURL + queryURL + URLEncoder.encode(cm_json));
 				HttpURLConnection connection = (HttpURLConnection) kUrl.openConnection();           
 			    connection.setDoOutput(true); 
 			    connection.setInstanceFollowRedirects(false); 
