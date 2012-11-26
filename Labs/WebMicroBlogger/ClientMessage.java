@@ -33,7 +33,7 @@ public class ClientMessage {
   private long time;
   private double latitude;
   private double longitude;
-  //The date format is "MM/DD/YYYY", say "1/1/2000"
+  //The date format is "HH:MM:SS MM/DD/YYYY", say "13:54:11 1/1/2000"
 private String date;
   @Override 
   public String toString() {
