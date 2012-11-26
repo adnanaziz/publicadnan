@@ -392,48 +392,47 @@ public class TestMicroBlogger {
 		assertEquals("First", result.getPostings().get(1).getSubject());
 	}
 
-	@Test
-	// (timeout = 2000)
-	public void testPagination1() {
-		cleanDataStore();
-		ClientMessage cm1 = new ClientMessage()
-				.setType(ClientMessage.Type.CREATE).setAuthor("AdnanAziz")
-				.setSubject("First");
-		ClientMessage cm2 = new ClientMessage()
-				.setType(ClientMessage.Type.CREATE).setAuthor("AngLi")
-				.setSubject("Second").setBody("Random body");
-		ClientMessage cm3 = new ClientMessage()
-				.setType(ClientMessage.Type.CREATE).setAuthor("LisaHua")
-				.setSubject("Third");
-		ClientMessage cm4 = new ClientMessage()
-				.setType(ClientMessage.Type.CREATE).setAuthor("AdnanAziz")
-				.setSubject("Fourth").setBody("Random body");
+	
+	@Test//(timeout = 2000)
+    public void testPagination1() {
+        cleanDataStore();
+        ClientMessage cm1 = new ClientMessage()
+                .setType(ClientMessage.Type.CREATE).setAuthor("AdnanAziz")
+                .setSubject("First");
+        ClientMessage cm2 = new ClientMessage()
+                .setType(ClientMessage.Type.CREATE).setAuthor("AngLi")
+                .setSubject("Second").setBody("Random body");
+        ClientMessage cm3 = new ClientMessage()
+                .setType(ClientMessage.Type.CREATE).setAuthor("LisaHua")
+                .setSubject("Third");
+        ClientMessage cm4 = new ClientMessage()
+                .setType(ClientMessage.Type.CREATE).setAuthor("AdnanAziz")
+                .setSubject("Fourth").setBody("Random body");
 
-		ClientMessage cmQuery = new ClientMessage().setType(
-				ClientMessage.Type.QUERY).setPageSize(2);
-		ServerMessage result = doTxRx(cm1, cm2, cm3, cmQuery);
+        ClientMessage cmQuery = new ClientMessage().setType(
+                ClientMessage.Type.QUERY).setPageSize(2);
+        ServerMessage result = doTxRx(cm1, cm2, cm3, cmQuery);
 
-		assertEquals(2, result.getPostings().size());
-		assertEquals("AngLi", result.getPostings().get(0).getAuthor());
-		assertEquals("First", result.getPostings().get(1).getSubject());
-		score += 5;
+        assertEquals(2, result.getPostings().size());
+        assertEquals("LisaHua", result.getPostings().get(0).getAuthor());
+        assertEquals("Second", result.getPostings().get(1).getSubject());
+        score += 5;
 
-		cmQuery = new ClientMessage().setType(ClientMessage.Type.QUERY)
-				.setPageSize(2).setPageOffset(1);
+        cmQuery = new ClientMessage().setType(ClientMessage.Type.QUERY)
+                .setPageSize(2).setPageOffset(1);
 
-		result = doTxRx(cm1, cm2, cm3, cmQuery);
-		assertEquals(2, result.getPostings().size());
-		assertEquals("Third", result.getPostings().get(0).getSubject());
-		assertEquals("Random body", result.getPostings().get(1).getBody());
-		score += 5;
+        result = doTxRx(cmQuery);
+        assertEquals(2, result.getPostings().size());
+        assertEquals("Second", result.getPostings().get(0).getSubject());
+        assertEquals("AdnanAziz", result.getPostings().get(1).getAuthor());
+        score += 5;
 
-		cmQuery = new ClientMessage().setType(ClientMessage.Type.QUERY)
-				.setPageSize(2).setAuthor("AdnanAziz").setPageOffset(1);
+        cmQuery = new ClientMessage().setType(ClientMessage.Type.QUERY)
+                .setPageSize(2).setAuthor("AdnanAziz").setPageOffset(1);
 
-		result = doTxRx(cm1, cm2, cm3, cm4, cmQuery);
-		assertEquals(1, result.getPostings().size());
-		assertEquals("Second", result.getPostings().get(0).getSubject());
-		score += 5;
-	}
-
+        result = doTxRx(cm4, cmQuery);
+        assertEquals(1, result.getPostings().size());
+        assertEquals("First", result.getPostings().get(0).getSubject());
+        score += 5;
+    }
 }
