@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.Test;
 
 public class TestMicroBlogger {
 
@@ -26,8 +27,8 @@ public class TestMicroBlogger {
 	public static int portOffset = 0;
 
 	// added
-	public static String siteURL = "http://localhost:8888";
-	public static String queryURL = "/utweeter?arg=";
+	public static String siteURL = "http://localhost:8888/utweeter";
+	public static String queryURL = "?arg=";
 
 	@Before
 	public void setUp() {
@@ -89,11 +90,13 @@ public class TestMicroBlogger {
 	 */
 	static ServerMessage doTxRx(List<ClientMessage> cmArray) {
 		ServerMessage result = null;
+		BufferedReader in = null;
 		try {
 			URL kUrl = new URL(siteURL + queryURL);
 			for (ClientMessage cm : cmArray) {
 				String cm_json = cm.toJson();
-				kUrl = new URL(siteURL + queryURL + URLEncoder.encode(cm_json));
+				kUrl = new URL(siteURL + queryURL
+						+ URLEncoder.encode(cm_json, "utf-8"));
 				HttpURLConnection connection = (HttpURLConnection) kUrl
 						.openConnection();
 				connection.setDoOutput(true);
@@ -108,19 +111,22 @@ public class TestMicroBlogger {
 				// write parameters
 				writer.write(cm_json);
 				writer.flush();
+
+				in = new BufferedReader(
+						new InputStreamReader(kUrl.openStream()));
 			}
 			StringBuilder sb = new StringBuilder();
 
 			String str = null;
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-					kUrl.openStream()));
-			while ((str = in.readLine()) != null) {
-				sb.append(str);
-			}
-			in.close();
+			if (in != null) {
+				while ( (str = in.readLine()) != null) {
+					sb.append(str);
+				}
+				in.close();
 
-			String sm_json = sb.toString().trim();
-			result = ServerMessage.fromJson(sm_json);
+				String sm_json = sb.toString().trim();
+				result = ServerMessage.fromJson(sm_json);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,7 +139,7 @@ public class TestMicroBlogger {
 		ClientMessage cmBodyQuery = new ClientMessage()
 				.setType(ClientMessage.Type.QUERY);
 		ServerMessage result = doTxRx(cmBodyQuery);
-		
+
 		ArrayList<ClientMessage> cmList = new ArrayList<ClientMessage>();
 		for (Posting p : result.getPostings()) {
 			ClientMessage cm = new ClientMessage().setType(
@@ -143,7 +149,8 @@ public class TestMicroBlogger {
 		doTxRx(cmList);
 	}
 
-	// @Test(timeout = 2000)
+	@Test
+	// (timeout = 2000)
 	public void testAdd1() {
 		cleanDataStore();
 		ClientMessage cm = new ClientMessage()
@@ -154,7 +161,8 @@ public class TestMicroBlogger {
 		score += 5;
 	}
 
-	// @Test(timeout = 2000)
+	@Test
+	// (timeout = 2000)
 	public void testAdd2() {
 		cleanDataStore();
 		ClientMessage cm = new ClientMessage()
@@ -166,7 +174,8 @@ public class TestMicroBlogger {
 		score += 5;
 	}
 
-	// @Test(timeout = 5000)
+	@Test
+	// (timeout = 5000)
 	public void testQuery1() {
 		cleanDataStore();
 		ClientMessage cmAdd1 = new ClientMessage()
@@ -203,33 +212,36 @@ public class TestMicroBlogger {
 		score += 15;
 	}
 
-	// @Test(timeout = 1000)
+	@Test
+	// (timeout = 1000)
 	public void testTimeRangeQuery1() {
 		cleanDataStore();
 		ClientMessage cm1 = new ClientMessage()
-				.setType(ClientMessage.Type.CREATE).setDate("1/1/2000")
-				.setAuthor("AdnanAziz1968").setSubject("Hello World")
-				.setBody("My first posting!");
+				.setType(ClientMessage.Type.CREATE)
+				.setDate("00:00:00 1/1/2000").setAuthor("AdnanAziz1968")
+				.setSubject("Hello World").setBody("My first posting!");
 		ClientMessage cm2 = new ClientMessage()
-				.setType(ClientMessage.Type.CREATE).setDate("2/1/2000")
-				.setAuthor("AdnanAziz1968").setSubject("Hello Cruel World")
-				.setBody("My second posting!");
+				.setType(ClientMessage.Type.CREATE)
+				.setDate("00:00:00 2/1/2000").setAuthor("AdnanAziz1968")
+				.setSubject("Hello Cruel World").setBody("My second posting!");
 		ClientMessage cm3 = new ClientMessage()
-				.setType(ClientMessage.Type.CREATE).setDate("2/2/2000")
-				.setAuthor("AdnanAziz1968")
+				.setType(ClientMessage.Type.CREATE)
+				.setDate("00:00:00 2/2/2000").setAuthor("AdnanAziz1968")
 				.setSubject("Goodbye Wonderful World")
 				.setBody("My third posting!");
 		ClientMessage cm4 = new ClientMessage()
-				.setType(ClientMessage.Type.CREATE).setDate("2/3/2000")
-				.setAuthor("LisaHua").setSubject("Goodbye Cruel World")
+				.setType(ClientMessage.Type.CREATE)
+				.setDate("00:00:00 2/3/2000").setAuthor("LisaHua")
+				.setSubject("Goodbye Cruel World")
 				.setBody("My fourth posting!");
 		ClientMessage cm5 = new ClientMessage()
-				.setType(ClientMessage.Type.CREATE).setDate("3/5/2000")
-				.setAuthor("AdnanAziz1968").setSubject("Hello World")
-				.setBody("My fifth posting!");
+				.setType(ClientMessage.Type.CREATE)
+				.setDate("00:00:00 3/5/2000").setAuthor("AdnanAziz1968")
+				.setSubject("Hello World").setBody("My fifth posting!");
 		ClientMessage cmTimeQuery = new ClientMessage()
-				.setType(ClientMessage.Type.QUERY).setDateStart("1/2/2000")
-				.setDateEnd("2/28/2000");
+				.setType(ClientMessage.Type.QUERY)
+				.setDateStart("00:00:00 1/2/2000")
+				.setDateEnd("00:00:00 2/28/2000");
 		ServerMessage result = doTxRx(cm1, cm2, cm3, cm4, cm5, cmTimeQuery);
 		assertEquals(3, result.getPostings().size());
 		assertEquals(3, result.getPostings().get(0).getId());
@@ -238,8 +250,9 @@ public class TestMicroBlogger {
 				.getSubject());
 
 		ClientMessage cmTimeAndSubjectQuery = new ClientMessage()
-				.setType(ClientMessage.Type.QUERY).setDateStart("1/2/2000")
-				.setDateEnd("2/28/2000").setSubject("Cruel");
+				.setType(ClientMessage.Type.QUERY)
+				.setDateStart("00:00:00 1/2/2000")
+				.setDateEnd("00:00:00 2/28/2000").setSubject("Cruel");
 
 		result = doTxRx(cm1, cm2, cm3, cm4, cm5, cmTimeAndSubjectQuery);
 		assertEquals(2, result.getPostings().size());
@@ -247,7 +260,8 @@ public class TestMicroBlogger {
 		assertEquals(1, result.getPostings().get(1).getId());
 	}
 
-	// @Test(timeout = 5000)
+	@Test
+	// (timeout = 5000)
 	public void testStress1() {
 		cleanDataStore();
 		List<ClientMessage> cmArray = new ArrayList<ClientMessage>();
@@ -263,7 +277,8 @@ public class TestMicroBlogger {
 		score += 5;
 	}
 
-	// @Test(timeout = 2000)
+	@Test
+	// (timeout = 2000)
 	public void testDistanceQuery1() {
 		cleanDataStore();
 		List<ClientMessage> cmArray = new ArrayList<ClientMessage>();
@@ -281,7 +296,8 @@ public class TestMicroBlogger {
 		score += 10;
 	}
 
-	// @Test(timeout = 2000)
+	@Test
+	// (timeout = 2000)
 	public void testUpdate1() {
 		cleanDataStore();
 		ClientMessage cm1 = new ClientMessage()
@@ -300,7 +316,8 @@ public class TestMicroBlogger {
 		score += 10;
 	}
 
-	// @Test(timeout = 2000)
+	@Test
+	// (timeout = 2000)
 	public void testLikes1() {
 		cleanDataStore();
 		ClientMessage cm1 = new ClientMessage()
@@ -319,7 +336,8 @@ public class TestMicroBlogger {
 		score += 10;
 	}
 
-	// @Test(timeout = 2000)
+	@Test
+	// (timeout = 2000)
 	public void testUpvotesAndTrending1() {
 		cleanDataStore();
 		ClientMessage cm1 = new ClientMessage()
@@ -353,7 +371,8 @@ public class TestMicroBlogger {
 		score += 10;
 	}
 
-	// @Test(timeout = 2000)
+	@Test
+	// (timeout = 2000)
 	public void testDelete1() {
 		cleanDataStore();
 		ClientMessage cm1 = new ClientMessage()
@@ -373,7 +392,8 @@ public class TestMicroBlogger {
 		assertEquals("First", result.getPostings().get(1).getSubject());
 	}
 
-	// @Test(timeout = 2000)
+	@Test
+	// (timeout = 2000)
 	public void testPagination1() {
 		cleanDataStore();
 		ClientMessage cm1 = new ClientMessage()
