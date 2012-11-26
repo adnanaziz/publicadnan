@@ -1,23 +1,12 @@
+package utweeter;
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
-
-import com.google.gson.*;
-
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
 
 import com.google.common.base.Joiner;
+import com.google.gson.Gson;
 
 @Target(TYPE)
 @Retention(RUNTIME)
@@ -44,7 +33,8 @@ public class ClientMessage {
   private long time;
   private double latitude;
   private double longitude;
-
+  //The date format is "MM/DD/YYYY", say "1/1/2000"
+private String date;
   @Override 
   public String toString() {
     Joiner joiner = Joiner.on(" : ").useForNull("null");
@@ -81,9 +71,9 @@ public class ClientMessage {
   public ClientMessage setBody(String author){ this.body = body; return this; }
   public ClientMessage setTime(long time){ this.time = time; return this; }
 
-  public ClientMessage setDate(long date){ return this; }
-  public ClientMessage setDateStart(long date){ return this; }
-  public ClientMessage setDateEnd(long date){ return this; }
+  public ClientMessage setDate(String date){ this.date = date;return this; }
+  public ClientMessage setDateStart(String date){ return this; }
+  public ClientMessage setDateEnd(String date){ return this; }
   public ClientMessage setLatitude(double latitude) { return this; }
   public ClientMessage setLongitude(double longitude) { return this; }
   public ClientMessage setDistance(double distance) { return this; }
@@ -95,5 +85,6 @@ public class ClientMessage {
   public String getAuthor(){ return author; }
   public Type getType(){ return type; }
   public String getBody(){ return body; }
+  public String getDate() {return date;}
 
 }
