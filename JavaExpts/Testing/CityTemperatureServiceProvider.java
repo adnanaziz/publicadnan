@@ -8,7 +8,7 @@ import com.google.common.io.Resources;
 
 public class CityTemperatureServiceProvider {
 
-	static boolean doMock = false;
+	static boolean doMock = true;
 
 	public static void turnOnMockMode() {
 		doMock = true;
