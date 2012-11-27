@@ -101,6 +101,48 @@ use following enum for message type: CREATE, UPDATE, LIKE, UPVOTE, DELETE, QUERY
 </table>
 </div>
 
+<h3>Regular Email Digests</h3>
+<div id="regulardigests">
+<form name="regulardigestsform">
+<table>
+<tr> 
+<td>Email address</td> 
+<td> 
+<input type="text" size="40" name="emailaddress" value="TAaddress+yourEID@gmail.com"></td></tr>
+</td>
+</tr>
+<tr> 
+<td>Frequency</td> 
+<td>  
+<select name="emailfrequency">
+<option value="0" selected="selected">5 mins</option>
+<option value="1">60 mins</option>
+<option value="2">1 day</option>
+</select/>
+</td>
+</tr>
+<tr>
+<td>Max Number of Emails</td>
+<td>
+<table>
+<tr>
+<td><input type="radio" name="emailmaxnum" checked = "checked" value="1" /></td>
+<td><input type="radio" name="emailmaxnum" value="2" /></td>
+<td><input type="radio" name="emailmaxnum" value="3" /></td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</form> 
+
+</div>
+
 
 <div id="postingslist">
 <h3>List of postings</h3>
