@@ -168,8 +168,15 @@ $(document).ready(function () {
         query_form("UPDATE");
     });
 });
+
 $(document).ready(function () {
     $("#btn7").click(function () {
         id_form("QUERYBYID");
+    });
+});
+
+$(document).ready(function () {
+    $("#btnregulardigests").click(function () {
+        alert("Your servlet should back this call up!");
     });
 });
