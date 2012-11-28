@@ -13,10 +13,11 @@ function query_form(op) {
     jsonreq["latitude"] = document.queryform.elements["latitude"].value;
     jsonreq["longitude"] = document.queryform.elements["longitude"].value;
     jsonreq["distance"] = document.queryform.elements["distance"].value;
-    jsonreq["pagesize"] = document.queryform.elements["pagesize"].value;
-    jsonreq["pageoffset"] = document.queryform.elements["pageoffset"].value;
+    jsonreq["pageSize"] = document.queryform.elements["pagesize"].value;
+    jsonreq["pageOffset"] = document.queryform.elements["pageoffset"].value;
     jsonreq["dateStart"] = document.queryform.elements["dateStart"].value;
     jsonreq["dateEnd"] = document.queryform.elements["dateEnd"].value;
+    jsonreq["postingId"] = document.queryform.elements["postingId"].value;
 
     $.getJSON(URLPATH + JSON.stringify(jsonreq),
 
