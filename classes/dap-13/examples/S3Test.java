@@ -9,7 +9,7 @@ public class S3Test {
 	public void test1() {
 		String s  ="ab cd";
 		int result = S3.wc(s);
-		assertEquals(result,2);
+		assertEquals(2, result);
 	}
 
 	
@@ -52,7 +52,7 @@ public class S3Test {
 	public void test7() {
 		String s  ="";
 		int result = S3.wc(s);
-		assertEquals(result,0);
+		assertEquals(0, result);
 	}
 	
 	@Test
@@ -62,7 +62,7 @@ public class S3Test {
 		assertEquals(result,1);
 	}
 	
-	@Test
+	// @Test
 	public void test9() {
 		String s  = "";
 		for ( int i = 0 ; i < 10000; i++ ) {
@@ -70,5 +70,19 @@ public class S3Test {
 		}
 		int result = S3.wc(s);
 		assertEquals(result,10000);
+	}
+	
+	@Test
+	public void test10() {
+		String s  ="ab\tcd";
+		int result = S3.wc(s);
+		assertEquals(result,1);
+	}
+	
+	@Test
+	public void test11() {
+		String s  ="  ab ";
+		int result = S3.wc(s);
+		assertEquals(result,1);
 	}
 }
