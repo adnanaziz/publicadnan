@@ -249,5 +249,41 @@ public class Poker5CardTest {
     int cmp = new Hand5Comparator().compare(h0,h1);
     assertEquals(0,cmp);
   }
+
+  @Test
+  public void t15() {
+    Card[] community = new Card[]{ new Card(Suit.CLUB, Value.ACE), new Card(Suit.HEART, Value.ACE)};
+    Card[] p0 = new Card[]{ new Card(Suit.SPADE, Value.ACE), new Card(Suit.DIAMOND, Value.ACE)};
+    Card[] p1 = new Card[]{ new Card(Suit.SPADE, Value.TWO), new Card(Suit.DIAMOND, Value.THREE)};
+    Card[][] players = new Card[2][];
+    players[0] = p0;
+    players[1] = p1;
+    double[] result = Hand5Comparator.probabilities( community, players);
+    assertEquals( result[0], 1.0, 0.001);
+  }
+  
+  @Test
+  public void t16() {
+    Card[] community = new Card[]{ new Card(Suit.CLUB, Value.ACE), new Card(Suit.HEART, Value.ACE)};
+    Card[] p0 = new Card[]{ new Card(Suit.SPADE, Value.ACE), new Card(Suit.DIAMOND, Value.KING)};
+    Card[] p1 = new Card[]{ new Card(Suit.DIAMOND, Value.ACE), new Card(Suit.CLUB, Value.KING)};
+    Card[][] players = new Card[2][];
+    players[0] = p0;
+    players[1] = p1;
+    double[] result = Hand5Comparator.probabilities( community, players);
+    assertEquals( 0.5, result[0], 0.1);
+  }
+
+  @Test
+  public void t17() {
+    Card[] community = new Card[]{ new Card(Suit.CLUB, Value.TWO), new Card(Suit.HEART, Value.TWO)};
+    Card[] p0 = new Card[]{ new Card(Suit.SPADE, Value.ACE), new Card(Suit.DIAMOND, Value.ACE)};
+    Card[] p1 = new Card[]{ new Card(Suit.DIAMOND, Value.FIVE), new Card(Suit.CLUB, Value.FIVE)};
+    Card[][] players = new Card[2][];
+    players[0] = p0;
+    players[1] = p1;
+    double[] result = Hand5Comparator.probabilities( community, players);
+    assertEquals( 1.0 - (2.0*3.0/46), result[0], 0.1);
+  }
 }
 
