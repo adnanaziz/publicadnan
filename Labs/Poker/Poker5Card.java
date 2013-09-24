@@ -1,5 +1,8 @@
 import java.util.Comparator;
 import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Random;
 
 class Hand5 {
   Card cards[] = new Card[5];
@@ -11,6 +14,10 @@ class Hand5 {
    // TODO
   }
 
+}
+
+
+class Hand5Comparator implements Comparator<Hand5> {
 
   //TODO: implement to return negative, 0, or positive if h1 is less than, 
   // equal to, or greater than h0. (This is the reverse of the 
@@ -53,6 +60,13 @@ class Hand5 {
     return all5Hands[0];
   }
 
+  public final static int NUMTRIALS = 10000;
+  // returns the winner using a random deal for the remaining cards
+  public static int simulate( Card[] community, Card[][] players ) {
+    int result = -1;
+    return result;
+  }
+
   // TODO: for students with more sophisticated programming skills
   // assume there are 0 -- 5 community cards. Each player has 2 cards
   // in the hand. return the probability of each player winning, using
@@ -60,6 +74,14 @@ class Hand5 {
   public static double[] probabilities( Card[] community, Card[]... players) {
     double[] result = new double[players.length];
     // TODO:writeme
+    for ( int i = 0 ; i < NUMTRIALS; i++ ) {
+      int winner = simulate( community, players );
+      // TODO: biased to earlier players, does not take into account ties
+      result[winner] += 1.0;
+    }
+    for ( int i = 0 ; i < result.length; i++ ) {
+      result[i] /= ((double) NUMTRIALS);
+    }
     return result;
   }
 }
