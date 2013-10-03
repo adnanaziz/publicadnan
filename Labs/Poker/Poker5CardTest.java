@@ -4,6 +4,24 @@ import static org.junit.Assert.*;
 public class Poker5CardTest {
 
   @Test
+  // A-5 straight flush vs 2-6 straight flush
+  public void tnew0() {
+    Hand5 h0 = new Hand5( new Card(Suit.CLUB, Value.TWO),
+                        new Card(Suit.CLUB, Value.THREE),
+                        new Card(Suit.CLUB, Value.FIVE),
+                        new Card(Suit.CLUB, Value.ACE),
+                        new Card(Suit.CLUB, Value.FOUR) );
+    Hand5 h1 = new Hand5( new Card(Suit.HEART, Value.SIX),
+                        new Card(Suit.HEART, Value.FOUR),
+                        new Card(Suit.HEART, Value.THREE),
+                        new Card(Suit.HEART, Value.FIVE),
+                        new Card(Suit.HEART, Value.TWO) );
+    int cmp = new Hand5Comparator().compare(h0,h1);
+    assertTrue(cmp<0);
+  }
+
+
+  @Test
   // 3 Aces v. 3 Kings
   public void t1() {
     Hand5 h0 = new Hand5( new Card(Suit.CLUB, Value.ACE),
@@ -189,6 +207,7 @@ public class Poker5CardTest {
     int cmp = new Hand5Comparator().compare(h0,h1);
     assertTrue(cmp<0);
   }
+
   @Test
   // Two Pair Queens and 5s v. Two Pair Queens 8s
   public void t12() {
@@ -205,6 +224,7 @@ public class Poker5CardTest {
     int cmp = new Hand5Comparator().compare(h0,h1);
     assertTrue(cmp>0);
   }
+
   @Test
   public void t13() {
     Hand5 h0 = Hand5Comparator.best5OutOf7( 
@@ -285,5 +305,21 @@ public class Poker5CardTest {
     double[] result = Hand5Comparator.probabilities( community, players);
     assertEquals( 1.0 - (2.0*3.0/46), result[0], 0.1);
   }
+
+  @Test
+  public void t18() {
+        Hand5 h1 = new Hand5(new Card(Suit.CLUB,Value.ACE),
+                  new Card(Suit.CLUB, Value.ACE),
+                  new Card(Suit.CLUB, Value.ACE),
+                  new Card(Suit.CLUB, Value.KING),
+                  new Card(Suit.CLUB, Value.FOUR));
+        Hand5 h0 = new Hand5(new Card(Suit.CLUB,Value.KING),
+                  new Card(Suit.CLUB, Value.KING),
+                  new Card(Suit.CLUB, Value.KING),
+                  new Card(Suit.CLUB, Value.KING),
+                  new Card(Suit.CLUB, Value.FOUR));
+        assertTrue(new Hand5Comparator().compare3OfAKind(h0,h1) > 0);
+  }
+
 }
 

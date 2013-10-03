@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.Arrays;
+import java.util.Random;
 
 enum Suit {
   HEART, CLUB, SPADE, DIAMOND
@@ -12,15 +13,47 @@ enum Value {
 class Card {
   Suit suit;
   Value value;
+
   Card( Suit s, Value v) {
     suit = s;
     value = v;
   }
+
+  @Override
+  public String toString() {
+    return suit.toString() + value.toString();
+  }
+
+  @Override
+  public int hashCode() {
+    int code = 0;
+    code = 2*value.hashCode() + 3 * suit.hashCode();
+    return code;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if ( o == null || !(o instanceof Card) ) {
+      return false;
+    }
+    Card oc = (Card) o;
+    return oc.suit == suit && oc.value == value;
+ }
+
+ private static final Random r = new Random(0);
+
+ public static Card randomCard() {
+   Suit s = Suit.values()[r.nextInt( Suit.values().length )];
+   Value v = Value.values()[r.nextInt( Value.values().length )];
+   return new Card( s, v );
+ }
+
 }
 
 class CardCompare implements Comparator<Card> {
   private CardCompare() { };
   static public final CardCompare compareObject = new CardCompare();
+  // returns negative if s1 < s2, positive if s1 > s2
   public int compare(Card s1, Card s2) {
     return s1.value.ordinal() - s2.value.ordinal();
   }
@@ -34,7 +67,6 @@ class Hand {
     cards[1] = b;
     cards[2] = c;
     Arrays.sort(cards, 
-        // descending sort
         CardCompare.compareObject
     );
   }
