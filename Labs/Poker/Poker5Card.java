@@ -95,9 +95,6 @@ class Hand5Comparator implements Comparator<Hand5> {
     } else if (b0 && b1) {
       int v0 = h0.cards[0].value.ordinal();
       int v1 = h1.cards[0].value.ordinal();
-      // Used to debug:
-      // System.out.println(h0);
-      // System.out.println(h1);
       return v1 - v0;
     }
     return 0;
@@ -121,7 +118,16 @@ class Hand5Comparator implements Comparator<Hand5> {
   public static int compareStraightFlush(Hand5 h0, Hand5 h1) {
     boolean b0 = h0.isStraightFlush();
     boolean b1 = h1.isStraightFlush();
-    return highCheck( b0, b1, h0, h1 );
+    // return compareStraight( h0, h1 );
+    if ( !b0 && b1 ) {
+      return 1;
+    } else if ( b0 && !b1 ) {
+      return -1;
+    } else if ( b0 && b1 ) {
+      return compareStraightUtility( h0, h1 );
+    } else {
+      return 0;
+    }
   }
 
   public static int compareFlush(Hand5 h0, Hand5 h1) {
@@ -138,29 +144,33 @@ class Hand5Comparator implements Comparator<Hand5> {
      }
    }
 
+  public static int compareStraightUtility(Hand5 h0, Hand5 h1) {
+    int v0 = h0.cards[0].value.ordinal();
+    int v1 = h1.cards[0].value.ordinal();
+    // special ace, 2, 3 straight; watch out for confusion with 2,3,4
+    if ( v0 == Value.TWO.ordinal() && h0.cards[4].value.ordinal() == Value.ACE.ordinal() ) {
+      if ( v1 == Value.TWO.ordinal() && h1.cards[4].value.ordinal() == Value.ACE.ordinal() ) {
+        return 0;
+      } else {
+        return 1;
+      }
+    } else if ( v1 == Value.TWO.ordinal() && h1.cards[4].value.ordinal() == Value.ACE.ordinal() ) {
+      return -1;
+    }
+    return h1.cards[4].value.ordinal() - h0.cards[4].value.ordinal();
+  }
+
   public static int compareStraight(Hand5 h0, Hand5 h1) {
-     boolean b0 = h0.isStraight();
-     boolean b1 = h1.isStraight();
-     if ( !b0 && b1 ) {
-       return 1;
-     } else if ( b0 && !b1 ) {
-       return -1;
-     } else if ( b0 && b1 ) {
-       int v0 = h0.cards[0].value.ordinal();
-       int v1 = h1.cards[0].value.ordinal();
-       // special ace, 2, 3 straight; watch out for confusion with 2,3,4
-       if ( v0 == Value.TWO.ordinal() && h0.cards[4].value.ordinal() == Value.ACE.ordinal() ) {
-         if ( v1 == Value.TWO.ordinal() && h1.cards[4].value.ordinal() == Value.ACE.ordinal() ) {
-           return 0;
-         } else {
-           return 1;
-         }
-       } else if ( v1 == Value.TWO.ordinal() && h1.cards[4].value.ordinal() == Value.ACE.ordinal() ) {
-         return -1;
-       }
-       return h1.cards[4].value.ordinal() - h0.cards[4].value.ordinal();
-     }
-     return 0;
+   boolean b0 = h0.isStraight();
+   boolean b1 = h1.isStraight();
+   if ( !b0 && b1 ) {
+     return 1;
+   } else if ( b0 && !b1 ) {
+     return -1;
+   } else if ( b0 && b1 ) {
+     return compareStraightUtility(h0, h1);
+   }
+   return 0;
  }
 
   public static int compareTwo(Hand5 h0, Hand5 h1) {

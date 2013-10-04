@@ -120,7 +120,15 @@ class HandComparator {
   private static int compareStraightFlush(Hand h0, Hand h1) {
     boolean b0 = h0.isStraightFlush();
     boolean b1 = h1.isStraightFlush();
-    return highCheck( b0, b1, h0, h1 );
+    if ( !b0 && b1 ) {
+      return 1;
+    } else if ( b0 && !b1 ) {
+       return -1;
+    } else if ( b0 && b1 ) {
+      return compareStraightUtility(h0, h1 );
+    } else {
+      return 0;
+    }
   }
 
   private static int compareFlush(Hand h0, Hand h1) {
@@ -137,6 +145,22 @@ class HandComparator {
      }
    }
 
+  private static int compareStraightUtility(Hand h0, Hand h1) {
+    int v0 = h0.cards[0].value.ordinal();
+    int v1 = h1.cards[0].value.ordinal();
+    // special ace, 2, 3 straight; watch out for confusion with 2,3,4
+    if ( v0 == Value.TWO.ordinal() && h0.cards[2].value.ordinal() == Value.ACE.ordinal() ) {
+      if ( v1 == Value.TWO.ordinal() && h1.cards[2].value.ordinal() == Value.ACE.ordinal() ) {
+        return 0;
+      } else {
+        return 1;
+      }
+    } else if ( v1 == Value.TWO.ordinal() && h1.cards[2].value.ordinal() == Value.ACE.ordinal() ) {
+     return -1;
+    }
+    return h1.cards[2].value.ordinal() - h0.cards[2].value.ordinal();
+  }
+
   private static int compareStraight(Hand h0, Hand h1) {
      boolean b0 = h0.isStraight();
      boolean b1 = h1.isStraight();
@@ -145,19 +169,7 @@ class HandComparator {
      } else if ( b0 && !b1 ) {
        return -1;
      } else if ( b0 && b1 ) {
-       int v0 = h0.cards[0].value.ordinal();
-       int v1 = h1.cards[0].value.ordinal();
-       // special ace, 2, 3 straight; watch out for confusion with 2,3,4
-       if ( v0 == Value.TWO.ordinal() && h0.cards[2].value.ordinal() == Value.ACE.ordinal() ) {
-         if ( v1 == Value.TWO.ordinal() && h1.cards[2].value.ordinal() == Value.ACE.ordinal() ) {
-           return 0;
-         } else {
-           return 1;
-         }
-       } else if ( v1 == Value.TWO.ordinal() && h1.cards[2].value.ordinal() == Value.ACE.ordinal() ) {
-         return -1;
-       }
-       return h1.cards[2].value.ordinal() - h0.cards[2].value.ordinal();
+       return compareStraightUtility(h0, h1);
      }
      return 0;
  }

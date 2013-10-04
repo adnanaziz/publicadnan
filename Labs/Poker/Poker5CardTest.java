@@ -128,7 +128,7 @@ public class Poker5CardTest {
                         new Card(Suit.HEART, Value.FIVE),
                         new Card(Suit.HEART, Value.TWO) );
     int cmp = new Hand5Comparator().compare(h0,h1);
-    assertTrue(cmp<0);
+    assertTrue(cmp>0);
   }
 
 
@@ -182,10 +182,28 @@ public class Poker5CardTest {
     int cmp = new Hand5Comparator().compare(h0,h1);
     assertTrue(cmp<0);
   }
+
+  @Test
+  // Straight Flush v. Straight
+  public void t4_a() {
+    Hand5 h0 = new Hand5( new Card(Suit.CLUB, Value.ACE),
+                        new Card(Suit.CLUB, Value.TWO),
+                        new Card(Suit.CLUB, Value.THREE),
+                        new Card(Suit.CLUB, Value.FOUR),
+                        new Card(Suit.CLUB, Value.FIVE) );
+    Hand5 h1 = new Hand5( new Card(Suit.DIAMOND, Value.SIX),
+                        new Card(Suit.DIAMOND, Value.TWO),
+                        new Card(Suit.DIAMOND, Value.THREE), 
+                        new Card(Suit.DIAMOND, Value.FOUR),
+                        new Card(Suit.DIAMOND, Value.FIVE) );
+    int cmp = new Hand5Comparator().compare(h0,h1);
+    assertTrue(cmp>0);
+  }
+
   
   @Test
   // Straight Flush v. Straight
-  public void t4() {
+  public void t4_b() {
     Hand5 h0 = new Hand5( new Card(Suit.CLUB, Value.ACE),
                         new Card(Suit.CLUB, Value.TWO),
                         new Card(Suit.CLUB, Value.THREE),
