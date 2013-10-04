@@ -4,6 +4,58 @@ import static org.junit.Assert.*;
 public class Poker5CardTest {
 
   @Test 
+  public void straightCoverage1() {
+    Hand5 h0 = new Hand5(new Card(Suit.CLUB, Value.ACE), 
+        new Card(Suit.HEART, Value.TWO), 
+        new Card(Suit.DIAMOND, Value.THREE),
+        new Card(Suit.SPADE, Value.FOUR), 
+        new Card(Suit.CLUB, Value.FIVE));
+
+    Hand5 h1 = new Hand5(new Card(Suit.CLUB, Value.TWO), 
+        new Card(Suit.HEART, Value.THREE),
+        new Card(Suit.DIAMOND, Value.FOUR),
+        new Card(Suit.SPADE, Value.FIVE), 
+        new Card(Suit.SPADE, Value.SIX));
+    int cmp = new Hand5Comparator().compare(h0, h1);
+    assertTrue(cmp>0);
+  }
+
+  @Test 
+  public void straightCoverage2() {
+    Hand5 h0 = new Hand5(new Card(Suit.CLUB, Value.ACE), 
+        new Card(Suit.HEART, Value.TWO), 
+        new Card(Suit.DIAMOND, Value.THREE),
+        new Card(Suit.SPADE, Value.FOUR), 
+        new Card(Suit.CLUB, Value.FIVE));
+
+    Hand5 h1 = new Hand5(new Card(Suit.CLUB, Value.TEN), 
+        new Card(Suit.HEART, Value.JACK),
+        new Card(Suit.DIAMOND, Value.QUEEN),
+        new Card(Suit.SPADE, Value.KING), 
+        new Card(Suit.SPADE, Value.ACE));
+    int cmp = new Hand5Comparator().compare(h0, h1);
+    assertTrue(cmp>0);
+  }
+
+  @Test 
+  public void straightCoverage3() {
+    Hand5 h0 = new Hand5(
+        new Card(Suit.CLUB, Value.TEN), 
+        new Card(Suit.HEART, Value.JACK),
+        new Card(Suit.DIAMOND, Value.QUEEN),
+        new Card(Suit.SPADE, Value.KING), 
+        new Card(Suit.SPADE, Value.NINE));
+    Hand5 h1 = new Hand5(
+        new Card(Suit.CLUB, Value.TEN), 
+        new Card(Suit.HEART, Value.JACK),
+        new Card(Suit.DIAMOND, Value.QUEEN),
+        new Card(Suit.SPADE, Value.KING), 
+        new Card(Suit.SPADE, Value.ACE));
+    int cmp = new Hand5Comparator().compare(h0, h1);
+    assertTrue(cmp>0);
+  }
+
+  @Test 
   public void tbugLR1() {
     //compare4 vs compare4
     Hand5 h0 = new Hand5(new Card(Suit.CLUB, Value.KING), 
