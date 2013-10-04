@@ -4,6 +4,43 @@ import static org.junit.Assert.*;
 public class Poker5CardTest {
 
   @Test 
+  public void straightNonStraight0() {
+    Hand5 h0 = new Hand5(new Card(Suit.CLUB, Value.ACE), 
+        new Card(Suit.HEART, Value.TWO), 
+        new Card(Suit.DIAMOND, Value.THREE),
+        new Card(Suit.SPADE, Value.FOUR), 
+        new Card(Suit.CLUB, Value.FIVE));
+
+    Hand5 h1 = new Hand5(new Card(Suit.CLUB, Value.TWO), 
+        new Card(Suit.HEART, Value.THREE),
+        new Card(Suit.DIAMOND, Value.FIVE),
+        new Card(Suit.SPADE, Value.FIVE), 
+        new Card(Suit.SPADE, Value.SIX));
+    int cmp = new Hand5Comparator().compare(h0, h1);
+    assertTrue(cmp<0);
+    cmp = new Hand5Comparator().compare(h1, h0);
+    assertTrue(cmp>0);
+  }
+
+  @Test 
+  public void straightCoverage0() {
+    Hand5 h0 = new Hand5(new Card(Suit.CLUB, Value.ACE), 
+        new Card(Suit.HEART, Value.TWO), 
+        new Card(Suit.DIAMOND, Value.THREE),
+        new Card(Suit.SPADE, Value.FOUR), 
+        new Card(Suit.CLUB, Value.FIVE));
+
+    Hand5 h1 = new Hand5(new Card(Suit.CLUB, Value.TWO), 
+        new Card(Suit.HEART, Value.THREE),
+        new Card(Suit.DIAMOND, Value.FOUR),
+        new Card(Suit.SPADE, Value.FIVE), 
+        new Card(Suit.SPADE, Value.ACE));
+    int cmp = new Hand5Comparator().compare(h0, h1);
+    assertTrue(cmp==0);
+  }
+
+
+  @Test 
   public void straightCoverage1() {
     Hand5 h0 = new Hand5(new Card(Suit.CLUB, Value.ACE), 
         new Card(Suit.HEART, Value.TWO), 
@@ -18,6 +55,8 @@ public class Poker5CardTest {
         new Card(Suit.SPADE, Value.SIX));
     int cmp = new Hand5Comparator().compare(h0, h1);
     assertTrue(cmp>0);
+    cmp = new Hand5Comparator().compare(h1, h0);
+    assertTrue(cmp<0);
   }
 
   @Test 
@@ -71,6 +110,8 @@ public class Poker5CardTest {
         new Card(Suit.SPADE, Value.TEN));
     int cmp = new Hand5Comparator().compare(h0, h1);
     assertTrue(cmp<0);
+    cmp = new Hand5Comparator().compare(h1, h0);
+    assertTrue(cmp>0);
   }
 
   @Test
@@ -177,8 +218,27 @@ public class Poker5CardTest {
   }
 
   @Test
+  // Full House v. Full House
+  public void t6_a() {
+    Hand5 h0 = new Hand5( new Card(Suit.DIAMOND, Value.FIVE),
+                        new Card(Suit.CLUB, Value.TWO),
+                        new Card(Suit.SPADE, Value.TWO),
+                        new Card(Suit.DIAMOND, Value.TWO),
+                        new Card(Suit.CLUB, Value.FIVE) );
+    Hand5 h1 = new Hand5( new Card(Suit.CLUB, Value.ACE),
+                        new Card(Suit.HEART, Value.ACE),
+                        new Card(Suit.SPADE, Value.THREE),
+                        new Card(Suit.CLUB, Value.THREE),
+                        new Card(Suit.DIAMOND, Value.THREE) );
+    int cmp = new Hand5Comparator().compare(h0,h1);
+    assertTrue(cmp>0);
+    cmp = new Hand5Comparator().compare(h1,h0);
+    assertTrue(cmp<0);
+  }
+
+  @Test
   // Full House v. 4 of a Kind
-  public void t6() {
+  public void t6_b() {
     Hand5 h0 = new Hand5( new Card(Suit.DIAMOND, Value.FIVE),
                         new Card(Suit.CLUB, Value.TWO),
                         new Card(Suit.SPADE, Value.TWO),
@@ -191,6 +251,8 @@ public class Poker5CardTest {
                         new Card(Suit.DIAMOND, Value.THREE) );
     int cmp = new Hand5Comparator().compare(h0,h1);
     assertTrue(cmp>0);
+    cmp = new Hand5Comparator().compare(h1,h0);
+    assertTrue(cmp<0);
   }
 
   @Test
@@ -208,6 +270,8 @@ public class Poker5CardTest {
                         new Card(Suit.CLUB, Value.JACK) );
     int cmp = new Hand5Comparator().compare(h0,h1);
     assertTrue(cmp>0);
+    cmp = new Hand5Comparator().compare(h1,h0);
+    assertTrue(cmp<0);
   }
 
   @Test
@@ -279,8 +343,28 @@ public class Poker5CardTest {
   }
 
   @Test
+  // One Pair Queens and 5s v. Two Pair Queens 8s
+  public void t12_a() {
+    Hand5 h0 = new Hand5( new Card(Suit.CLUB, Value.QUEEN),
+                        new Card(Suit.SPADE, Value.JACK),
+                        new Card(Suit.DIAMOND, Value.FIVE),
+                        new Card(Suit.HEART, Value.TWO),
+                        new Card(Suit.HEART, Value.QUEEN) );
+    Hand5 h1 = new Hand5( new Card(Suit.CLUB, Value.EIGHT),
+                        new Card(Suit.SPADE, Value.QUEEN),
+                        new Card(Suit.DIAMOND, Value.QUEEN),
+                        new Card(Suit.HEART, Value.EIGHT),
+                        new Card(Suit.CLUB, Value.TWO) );
+    int cmp = new Hand5Comparator().compare(h0,h1);
+    assertTrue(cmp>0);
+    cmp = new Hand5Comparator().compare(h1,h0);
+    assertTrue(cmp<0);
+  }
+
+
+  @Test
   // Two Pair Queens and 5s v. Two Pair Queens 8s
-  public void t12() {
+  public void t12_b() {
     Hand5 h0 = new Hand5( new Card(Suit.CLUB, Value.QUEEN),
                         new Card(Suit.SPADE, Value.JACK),
                         new Card(Suit.DIAMOND, Value.FIVE),
@@ -293,8 +377,64 @@ public class Poker5CardTest {
                         new Card(Suit.CLUB, Value.TWO) );
     int cmp = new Hand5Comparator().compare(h0,h1);
     assertTrue(cmp>0);
+    cmp = new Hand5Comparator().compare(h1,h0);
+    assertTrue(cmp<0);
   }
 
+  @Test
+  public void t12_d() {
+    Hand5 h0 = new Hand5( new Card(Suit.CLUB, Value.KING),
+                        new Card(Suit.HEART, Value.KING),
+                        new Card(Suit.DIAMOND, Value.FIVE),
+                        new Card(Suit.CLUB, Value.SEVEN),
+                        new Card(Suit.HEART, Value.QUEEN) );
+    Hand5 h1 = new Hand5( new Card(Suit.CLUB, Value.EIGHT),
+                        new Card(Suit.SPADE, Value.KING),
+                        new Card(Suit.DIAMOND, Value.THREE),
+                        new Card(Suit.HEART, Value.TWO),
+                        new Card(Suit.CLUB, Value.TWO) );
+    int cmp = new Hand5Comparator().compare(h0,h1);
+    assertTrue(cmp<0);
+    cmp = new Hand5Comparator().compare(h1,h0);
+    assertTrue(cmp>0);
+  }
+
+  @Test
+  public void t12_e() {
+    Hand5 h0 = new Hand5( new Card(Suit.CLUB, Value.JACK),
+                        new Card(Suit.HEART, Value.JACK),
+                        new Card(Suit.DIAMOND, Value.FIVE),
+                        new Card(Suit.CLUB, Value.KING),
+                        new Card(Suit.HEART, Value.ACE) );
+    Hand5 h1 = new Hand5( new Card(Suit.CLUB, Value.EIGHT),
+                        new Card(Suit.SPADE, Value.KING),
+                        new Card(Suit.DIAMOND, Value.THREE),
+                        new Card(Suit.HEART, Value.TWO),
+                        new Card(Suit.CLUB, Value.TWO) );
+    int cmp = new Hand5Comparator().compare(h0,h1);
+    assertTrue(cmp<0);
+    cmp = new Hand5Comparator().compare(h1,h0);
+    assertTrue(cmp>0);
+  }
+
+  @Test
+  // Two Pair Queens and 5s v. Two Pair Kings 8s
+  public void t12_c() {
+    Hand5 h0 = new Hand5( new Card(Suit.CLUB, Value.QUEEN),
+                        new Card(Suit.SPADE, Value.JACK),
+                        new Card(Suit.DIAMOND, Value.FIVE),
+                        new Card(Suit.CLUB, Value.FIVE),
+                        new Card(Suit.HEART, Value.QUEEN) );
+    Hand5 h1 = new Hand5( new Card(Suit.CLUB, Value.EIGHT),
+                        new Card(Suit.SPADE, Value.KING),
+                        new Card(Suit.DIAMOND, Value.KING),
+                        new Card(Suit.HEART, Value.EIGHT),
+                        new Card(Suit.CLUB, Value.TWO) );
+    int cmp = new Hand5Comparator().compare(h0,h1);
+    assertTrue(cmp>0);
+    cmp = new Hand5Comparator().compare(h1,h0);
+    assertTrue(cmp<0);
+  }
   @Test
   public void t13() {
     Hand5 h0 = Hand5Comparator.best5OutOf7( 
