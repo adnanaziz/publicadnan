@@ -3,6 +3,24 @@ import static org.junit.Assert.*;
 
 public class Poker5CardTest {
 
+  @Test 
+  public void tbugLR1() {
+    //compare4 vs compare4
+    Hand5 h0 = new Hand5(new Card(Suit.CLUB, Value.KING), 
+        new Card(Suit.HEART, Value.KING), 
+        new Card(Suit.DIAMOND, Value.KING),
+        new Card(Suit.SPADE, Value.KING), 
+        new Card(Suit.CLUB, Value.ACE));
+
+    Hand5 h1 = new Hand5(new Card(Suit.CLUB, Value.KING), 
+        new Card(Suit.HEART, Value.KING), 
+        new Card(Suit.DIAMOND, Value.KING),
+        new Card(Suit.SPADE, Value.KING), 
+        new Card(Suit.SPADE, Value.TEN));
+    int cmp = new Hand5Comparator().compare(h0, h1);
+    assertTrue(cmp<0);
+  }
+
   @Test
   // A-5 straight flush vs 2-6 straight flush
   public void tnew0() {

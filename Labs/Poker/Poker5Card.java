@@ -245,14 +245,14 @@ class Hand5Comparator implements Comparator<Hand5> {
 	      int high1;
 	      int low1;
 	      if(h1.cards[0].value == h1.cards[1].value && h1.cards[2].value == h1.cards[3].value) {
-	    	  high1 = h0.cards[3].value.ordinal();
-	    	  low1 = h0.cards[1].value.ordinal();
+	    	  high1 = h1.cards[3].value.ordinal();
+	    	  low1 = h1.cards[1].value.ordinal();
 	      } else if(h1.cards[1].value == h1.cards[2].value && h1.cards[3].value == h1.cards[4].value) {
-	    	  high1 = h0.cards[4].value.ordinal();
-	    	  low1 = h0.cards[2].value.ordinal();
+	    	  high1 = h1.cards[4].value.ordinal();
+	    	  low1 = h1.cards[2].value.ordinal();
 	      } else {
-	    	  high1 = h0.cards[4].value.ordinal();
-	    	  low1 = h0.cards[1].value.ordinal();
+	    	  high1 = h1.cards[4].value.ordinal();
+	    	  low1 = h1.cards[1].value.ordinal();
 	      }
 	    	
 	      // check if tied on the high pair
