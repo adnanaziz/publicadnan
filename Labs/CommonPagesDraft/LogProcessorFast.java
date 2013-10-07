@@ -114,7 +114,6 @@ class LogProcessorSlow implements LogProcessor {
 class PageTime implements Comparable {
   String url;
   int time;
-
   public int compareTo(Object o) {
     PageTime pt = (PageTime) o;
     int diff = time - pt.time;
@@ -124,7 +123,6 @@ class PageTime implements Comparable {
       return url.compareTo( pt.url );
     }
   }
-
   @Override 
   public String toString() {
     return url + ":" + time;
@@ -174,6 +172,15 @@ class LogProcessorFast implements LogProcessor {
   HashMap<String,PageCount> urlToCount;
   int W;
 
+  @Override
+  public String toString() {
+    String result = "";
+    for ( PageTime pt : queue ) {
+      result += pt.toString();
+    }
+    return result;
+  }
+
   public LogProcessorFast(int W) {
     queue = TreeMultiset.create();
     counts = new TreeSet<PageCount>();
@@ -182,10 +189,56 @@ class LogProcessorFast implements LogProcessor {
   }
 
   public void add(String url, int time) {
-    throw new UnsupportedOperationException("You need to write the add method!");
+    PageTime pt = new PageTime( url, time );
+    queue.add( pt );
+    PageCount pc = urlToCount.get( url );
+    if ( pc != null ) {
+      counts.remove( pc );
+      pc.count++;
+      counts.add( pc );
+    } else {
+      PageCount newPc = new PageCount( url, 1  );
+      counts.add( newPc );
+      urlToCount.put( url, newPc );
+    }
+
+    Multiset.Entry<PageTime> e = queue.lastEntry();
+    int mostRecentTime = e.getElement().time; // element that's most recently arrived
+    Iterator<PageTime> liIter = queue.iterator();
+    while ( liIter.hasNext() ) {
+      pt = liIter.next();
+      if ( mostRecentTime - pt.time > W ) {
+        pc = urlToCount.get( pt.url );
+        counts.remove( pc );
+        pc.count--;
+        if (pc.count != 0 ) {
+          counts.add( pc );
+        } else {
+          urlToCount.remove( pc.url );
+        }
+        liIter.remove();        
+      } else {
+        break;
+      }
+    }
+
   }
 
   public List<String> getOrderedUrlsInWindow(int K) {
-    throw new UnsupportedOperationException("You need to write the getOrderedUrlsInWindow!");
+    List<String> result = new ArrayList<String>();
+    if ( counts.size() == 0 ) {
+      return result;
+    } 
+    Iterator<PageCount> iter = counts.iterator();
+    int numProcessed = 0;
+    while ( iter.hasNext() ) {
+      PageCount pc = iter.next();
+      result.add( pc.url + ":" + pc.count );
+      numProcessed++;
+      if ( numProcessed == K ) {
+        break;
+      }
+    }
+    return result;
   }
 }
