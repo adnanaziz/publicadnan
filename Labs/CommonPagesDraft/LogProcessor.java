@@ -183,6 +183,9 @@ class LogProcessorFast implements LogProcessor {
 
   public void add(String url, int time) {
     throw new UnsupportedOperationException("You need to write the add method!");
+    // Read the Guava documentation for these functions in the Multiset class
+    //   Multiset.Entry<PageTime> 
+    //   lastEntry(); 
   }
 
   public List<String> getOrderedUrlsInWindow(int K) {
