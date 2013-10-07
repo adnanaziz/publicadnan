@@ -1,3 +1,5 @@
+import java.lang.StringBuffer;
+import java.util.Iterator;
 import java.util.Comparator;
 import java.util.Queue;
 import java.util.List;
@@ -29,6 +31,10 @@ class LogItem {
   public int compareTo(LogItem li) {
     return time - li.getTime();
   }
+  @Override
+  public String toString() {
+    return url + ", time = " + time;
+  }
 }
 
 class LogProcessorSlow implements LogProcessor {
@@ -40,7 +46,17 @@ class LogProcessorSlow implements LogProcessor {
     this.liQueue = new LinkedList<LogItem>();
   }
 
+  @Override
+  public String toString() {
+    StringBuffer result = new StringBuffer("window size = " + W + "\n");
+    for ( LogItem li : liQueue ) {
+      result.append( li.toString() + "\n" );
+    }
+    return result.toString();
+  }
+
   public void add(String url, int time) {
+    // System.out.println("before add:" + this.toString() );
     LogItem anItem = new LogItem(url, time);
     liQueue.add( anItem );
     int mostRecentTime = -1;
@@ -49,11 +65,13 @@ class LogProcessorSlow implements LogProcessor {
         mostRecentTime = li.getTime();
       }
     }
-    for ( LogItem li : liQueue ) {
-      if (mostRecentTime - li.getTime() > W ) { 
-        liQueue.remove(li);
+    Iterator<LogItem> liIter = liQueue.iterator();
+    while ( liIter.hasNext() ) {
+      if (mostRecentTime - liIter.next().getTime() > W ) { 
+        liIter.remove();
       }
     }
+    // System.out.println("after add:" + this.toString() );
   }
 
   public List<String> getOrderedUrlsInWindow(int K) {
@@ -71,26 +89,20 @@ class LogProcessorSlow implements LogProcessor {
       new Comparator<String>() {
         @Override
         public int compare(String s0, String s1) {
-          return urlCountMap.get( s0 ) - urlCountMap.get( s1 );
+          int tmp = urlCountMap.get( s0 ) - urlCountMap.get( s1 );
+          if ( tmp != 0 ) {
+            return tmp;
+          } else {
+            // want lexicographically first strings to appear first when tied
+            return -s0.compareTo(s1);
+          }
         }
       });
     List<String> result = new ArrayList<String>();
-    for ( int i = countArray.size()  - 1; i >= max(countArray.size() - W, 0 ); i-- ) {
+    for ( int i = countArray.size()  - 1; i >= max(countArray.size() - K, 0 ); i-- ) {
       result.add( countArray.get(i) + ":" + urlCountMap.get( countArray.get(i) ) );
     }
     return result;
-  }
-
-  public static void main(String[] args) {
-    LogProcessor lp = new LogProcessorSlow(3);
-    lp.add( "foo", 1 );
-    lp.add( "bar", 2 );
-    lp.add( "foo", 3 );
-    lp.add( "widget", 4 );
-    List<String> r0 = lp.getOrderedUrlsInWindow(2);
-    for ( String s : r0 ) {
-      System.out.println(s);
-    }
   }
 
 }
