@@ -106,4 +106,71 @@ public class LogProcessorTest  {
     long t1 = new Date().getTime();
     System.out.println("t3 with fast processor takes " + (t1-t0) + " ms" );
   }
+
+  public void util3(LogProcessor lp) {
+    String[] urls = {"a","b","c","d","d","d","d","d","e","b","b"};
+    Random rnd = new Random(0);
+    for ( int i = 0 ; i < 1000; i++ ) {
+      lp.add( urls[ i % urls.length ], rnd.nextInt(1000));
+    }
+    List<String> r1 = lp.getOrderedUrlsInWindow(3);
+    assertEquals(r1.get(0).substring(0,1), "d");
+    assertEquals(r1.get(1).substring(0,1), "b");
+  }
+
+  @Test(timeout=10000)
+  public void t5() {
+    LogProcessor lp = new LogProcessorFast(500);
+    long t0 = new Date().getTime();
+    util3(lp);
+    long t1 = new Date().getTime();
+    System.out.println("t5 with fast processor takes " + (t1-t0) + " ms" );
+  }
+
+  public static void util4(LogProcessor lp) {
+    String[] urls = {"a","b","c","d"};
+    for ( int i = 0 ; i < 1000; i++ ) {
+      lp.add( urls[ i % urls.length ], i);
+    }
+    lp.add( "foo", 2000 );
+    lp.add( "bar", 2002 );
+    lp.add( "foo", 2003 );
+    List<String> r0 = lp.getOrderedUrlsInWindow(2);
+    assertEquals(r0.get(0), "foo:2");
+    assertEquals(r0.get(1), "bar:1");
+    urls = new String[]{"a","b","c","d","d","d","d","d","e","b","b"};
+    for ( int i = 2000 ; i < 3000; i++ ) {
+      lp.add( urls[ i % urls.length ], i);
+    }
+    List<String> r1 = lp.getOrderedUrlsInWindow(2);
+    assertEquals(r1.get(0).substring(0,1), "d");
+    assertEquals(r1.get(1).substring(0,1), "b");
+  }
+
+  @Test(timeout=10000)
+  public void t6() {
+    LogProcessor lp = new LogProcessorFast(500);
+    long t0 = new Date().getTime();
+    util4(lp);
+    long t1 = new Date().getTime();
+    System.out.println("t6 with fast processor takes " + (t1-t0) + " ms" );
+  }
+
+  @Test(timeout=10000)
+  public void t7() {
+    LogProcessor lp = new LogProcessorFast(1000);
+    long t0 = new Date().getTime();
+    String[] urls = {"a","b","c","d"};
+    for ( int i = 0 ; i < 10000; i++ ) {
+      lp.add( urls[ i % urls.length ], i);
+    }
+    lp.add( "foo", 9500 );
+    lp.add( "bar", 9500 );
+    lp.add( "foo", 9500 );
+    List<String> r0 = lp.getOrderedUrlsInWindow(6);
+    assertEquals(r0.get(4), "foo:2");
+    assertEquals(r0.get(5), "bar:1");
+    long t1 = new Date().getTime();
+    System.out.println("t7 with fast processor takes " + (t1-t0) + " ms" );
+  }
 }
