@@ -1,0 +1,332 @@
+\documentclass[11pt]{exam}
+\boxedpoints
+
+\usepackage{xcolor}
+\definecolor{very-light-gray}{gray}{0.97}
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{dark-gray}{gray}{0.50}
+
+\usepackage{listings}
+\lstset{linewidth=1.0\textwidth}
+\lstset{xleftmargin=0.20in}
+\lstset{xrightmargin=0.20in}
+\lstset{frame=tlrb}
+\lstset{framexleftmargin=0mm}
+\lstset{rulesepcolor=\color{dark-gray}}
+\lstset{rulecolor=\color{dark-gray}}
+\lstset{fillcolor=\color{very-light-gray}}
+\lstset{numbers=left}
+\lstset{stringstyle=\ttfamily}
+\lstset{showstringspaces=false}
+\lstset{numbersep=5pt}
+\lstset{stepnumber=1}
+\lstset{firstnumber=1}
+\lstset{tabsize=4}
+\lstset{keywordstyle=\color{black}\bfseries}
+\lstset{breakatwhitespace=true}
+\lstset{numberstyle=\tiny\color{black}}
+\lstset{columns=fullflexible}
+\lstset{breaklines=true}
+\lstset{basicstyle=\footnotesize\ttfamily}
+\lstset{backgroundcolor=\color{light-gray}}
+
+\title{}
+
+\author{}
+\date{}
+\addpoints
+\pointsinmargin
+\marginpointname{ marks}
+
+\begin{document}
+
+\maketitle
+
+\large
+
+{\bf Name and UTEID:}
+\vfill
+
+% \begin{center}
+\begin{itemize}
+% \item This exam has \numquestions\ questions for a total of \numpoints\ points. 
+\item You are allowed 75 mins.
+\item Closed everything.
+\item Write your answers on the exam. 
+\item Show your work and give explanations. 
+\item No questions will be entertained---if you feel
+a question is ambiguous or incomplete, make and state
+reasonable assumptions. 
+\end{itemize}
+
+\vfill
+\begin{center}
+\pointtable[h][questions]
+\end{center}
+
+\vfill
+
+\newpage
+
+\begin{questions}
+
+\question[16] {\bf Queue from two stacks}
+
+Implement the {\tt Queue} class using the given {\tt Stack} class.
+You must use the {\tt Stack} class only, specifically
+the API that it exports. You cannot declare arrays
+or linked lists in your code. Your code should not set
+an upper bound on the number of elements in the queue.
+Assume the {\tt EmptyException} class subclasses {\tt Eception}
+and is already written.
+
+Big hint: read the title of this problem
+
+\begin{lstlisting}[language=Java]
+class Stack {
+  // various internal fields that are not shown
+  // Public API - these are implemented as documented, and work correctly
+  Stack() { ... } // constructor, returns a new, empty, Stack object
+  Object pop() { ... } // returns most recently added element, throws
+                         // EmptyException if the stack is empty
+  void push(Object o) { ... } // add o to the stack
+  boolean isEmpty() { ... } // returns true if the stack doesn not
+                              // contain any elements
+}
+
+class Queue {
+  // You have to implement this class. Specifically,
+  // choose the right fields, and member functions (if any)
+
+  // Public API - you have to implement these functions
+  Queue() { ... } // constructor, returns a new, empty, Queue object
+  Object dequeue() { ... } // returns least recently added element, throws
+                             // EmptyException if the queue is empty
+  void enqueue(Object o) { ... } // add o to the queue
+  boolean isEmpty() { ... } // returns true if the queue doesn not
+                              // contain any elements
+}
+\end{lstlisting}
+
+%The queue should implement a no argument constructor,
+%a nonstatic enque method (which takes an integer as an argument and adds it
+%to the queue), and a nonstatic dequeue method (which takes no arguments,
+%removes the integer which was enqueued earliest, and returns that integer).
+
+%The stack library is just like in Lab~2, i.e., a constructor, a push method,
+%and a pop method. 
+
+%All you can do with a stack once its created is push, pop it.
+
+%Write actual Java code, i.e., a class declaration, internal fields (if any), 
+%the two methods (enque and dequeue), and the constructor.
+
+\newpage
+Overflow page.
+
+\newpage
+\question {\bf Java Puzzlers}
+
+\begin{parts}
+\part[4] Explain why the program below prints {\tt Za187}.
+
+\begin{lstlisting}[language=Java]
+class CharStringDiff {
+  public static void main(String args[]) {
+      System.out.print("Z" + "a");
+      System.out.print('Z' + 'a');
+  }
+}
+\end{lstlisting}
+\vfill
+
+\part[3] What does the following program print? Explain your answer.
+
+\begin{lstlisting}[language=Java]
+public class Animals {
+  public static void main(String args[]) {
+      final String pig = "length: 10";
+      final String dog = "length: " + pig.length();
+      System.out.println("Animals are equal: " + pig == dog);
+  }
+}
+\end{lstlisting}
+\vfill
+\newpage
+
+\part[3] Provide a declaration for {\tt i} that make this loop into an infinite loop.
+
+\begin{lstlisting}[language=Java]
+while (i != i) {
+}
+\end{lstlisting}
+\vfill
+
+\part[4]  What does this program print? Explain your answer.
+
+\begin{lstlisting}[language=Java]
+class Dog{
+  public static void bark() {
+      System.out.print("woof ");
+  }
+}
+
+class Basenji extends Dog {
+  public static void bark() { }
+}
+
+public class Bark {
+  public static void main(String args[]) {
+      Dog woofer = new Dog();
+      Dog nipper = new Basenji();
+      woofer.bark();
+      nipper.bark();
+  }
+}
+\end{lstlisting}
+\vfill
+
+\end{parts}
+
+\newpage
+
+\question {\bf Design a class}
+
+In this problem you are to implement a simple date class. 
+You should be able to 
+represent any date from 1/1/1970  to 12/31/2500.
+Internally, your representation should be the number
+of days since 1/1/1970. 
+
+A year is a leap year if it is divisible by 4 and not by 100
+unless it is also divisible by 400. E.g., 2100 is not
+a leap year, but 2000 is.
+
+\begin{parts}
+
+\part[7]
+Write a constructor which takes as an argument three
+ints (month, day, year), and returns a date object.
+Throw a {\tt BadDateException} exception if the date is out of range.
+(Assume the {\tt BadDateException} class already exists.)
+
+\part[6]
+Write a nonstatic method which increments the date object
+by a specified number of days.
+Throw a BadDateException exception if it result
+in the date being out of range.
+
+\part[8]
+Override {\tt toString()} so that the date is printed
+in the form {\tt 3/14/1997}.
+
+\end{parts}
+
+\newpage
+
+Overflow page
+
+\newpage
+
+
+\question[16] {\bf Concurrency}
+
+Consider an object $s$ which is read from and written to by many threads.
+(For example, $s$ could be a cache similar to Lab~5.)
+You need to ensure that no thread may access $s$
+for reading or writing while another thread is writing to $s$.
+(Two or more readers may access $s$ at the same time.)
+
+One way to achieve this is by
+protecting $s$ with a lock that ensures that no thread can access $s$ at the same
+time as another writer.
+However this solution is suboptimal because it is possible that a reader $R1$ has
+locked $s$ and another reader $R2$ wants to access $s$.
+Reader $R2$ does not have to wait until $R1$ is done reading; instead, $R2$
+should start reading right away.
+
+This motivates the first readers-writers problem:
+protect $s$ with the added constraint that no reader is to be kept waiting if
+$s$ is currently opened for reading.
+
+Describe how you would solve the first readers-writers problem. Use actual Java
+code, pseudo-code, figures and/or text, to describe your solution.
+
+Hint: the number of readers is important.
+
+Here is code for the suboptimal solution that is referred to in Paragraph 2 of
+this problem.
+
+\begin{lstlisting}[language=Java]
+  // RW.s is a static field in the RW class.
+  // It is the shared object s referred to in the problem text.
+  // RW.lock is a static field in the RW class.
+  // Its type is Object, and the only purpose it serves is to lock s.
+  class Reader extends Thread {
+    public void run() {
+      while (true) {
+        // Yuck - no other thread can read RW.s even though it's not being changed
+        synchronized (RW.lock) {
+          System.out.println(RW.s);
+        }
+        Task.doSomeThingElse();
+      }
+    }
+  }
+
+  class Writer extends Thread {
+    public void run() {
+      while (true) {
+        synchronized (RW.lock) {
+          RW.s = new Date().toString();
+        }
+        Task.doSomeThingElse();
+      }
+    }
+  }
+
+\end{lstlisting}
+
+\newpage
+
+Overflow page
+
+\newpage
+
+\question {\bf Anonymous classes}
+
+Use the code snippet from Lab~3 below to 
+answer the following: 
+\begin{parts}
+
+\part[2] What is an anonymous class?
+\part[2] Why is an anonymous class useful?
+\part[2] How can use of an anonymous class lead to wasted calls to object creation?
+\end{parts}
+
+\begin{lstlisting}[language=Java]
+  interface StudentPredicate {
+    boolean check( Student s );
+  }
+
+  Student [] filteredTestCase =  apply( testCase, new StudentPredicate() {
+    public boolean check( Student s ) {
+      return (s.GPA >= lowRange && s.GPA <= highRange );
+    }
+  });
+
+  public static Student [] apply( Student [] input, StudentPredicate predicate ) {
+    Student [] result = new Student[input.length];
+    int i = 0;
+    for ( Student s : input ) {
+      if ( predicate.check( s ) ) {
+        result[i++] = s;
+      }
+    }
+    return result;
+  }
+\end{lstlisting}
+\end{questions}
+
+
+\end{document}
