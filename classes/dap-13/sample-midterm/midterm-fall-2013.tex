@@ -51,7 +51,7 @@
 \begin{itemize}
 % \item This exam has \numquestions\ questions for a total of \numpoints\ points. 
 \item You are allowed 75 mins.
-\item Closed everything.
+\item Open book/notes/web---you cannot message anyone in any form.
 \item Write your answers on the exam. 
 \item Show your work and give explanations. 
 \item No questions will be entertained---if you feel
@@ -69,6 +69,94 @@ reasonable assumptions.
 \newpage
 
 \begin{questions}
+
+\question[3] Add left and right parens to \texttt{x = 2 + 3 * 5 - 4;} so that \texttt{x} is assigned 
+$5$ after the assignment.
+
+\question[4] What is the difference between {\tt break} and {\tt continue}? Suppose you were trying to find
+if a negative number  is present in an array of integers---would {\tt break} or {\tt continue} be more appropriate?
+
+\question[7] Show representative in-memory representation of $x$ and $y$ for the code below:
+\begin{verbatim}
+String x = "1234";
+int y    = 123;
+\end{verbatim}
+
+\question[6] What is a reference type? Give two differences between reference types and primitive types.
+
+\question[6] Explain the output of the code below.
+\begin{verbatim}
+  // swaps the contents of the two arguments
+  public static void swap(int x, int y) {
+    int tmp = x;
+    x = y;
+    y = tmp;
+  }
+  ...
+  int x = 2;
+  int y = 4;
+  swap(x, y);
+  System.out.println("x, y = " + x + ", " y );
+  ...
+\end{verbatim}
+
+\question[6] Suggest a change to the {\tt Point} class by which both {\tt lat} and {\tt lng} can be set in a single 
+expression, as shown.
+\begin{verbatim}
+class Point {
+  private double lat;
+  private double lng;
+  public void setLat(double x) {
+    lat = x;
+  }
+  public void setLong(double y) {
+    lng = y;
+  }
+}
+...
+
+Point foo;
+foo.setLat(12.3).setLong(45.6); // this code should not be changed
+\end{verbatim}
+
+\question[12] Design a class suitable for images in the context of a social network.
+
+The actual image exists in the class {\tt PNG} which is already written and available to you. 
+
+The class you design should include
+the actual image as well as the following meta-data: a comment (of type String), GPS coordinates
+(lat and long, both doubles), and a creation time (a Date object). 
+
+Use best practices around information hiding.
+Give signatures for the constructor and for what you believe to be appropriate getter methods.
+(You do not need to implement any methods.)
+
+\question[5] What is polymorphism and how does it help recycle code? (Be specific.)
+
+\question[6] Give 3 reasons why an $O(N^3)$ algorithm for a given problem 
+might in practise run faster than and $O(N^2)$ algorithm for the same problem.
+
+\question[6] Suppose you were required to write a web service to which a city is passed
+in and a state is returned. For example, the input might be {\tt Austin}, in which case
+your service should return {\tt Texas}.
+
+What would be an appropriate data structure to back the web service with if fast lookup times
+are required?
+
+\question[6] Suppose you were required to write a web service to which a city is passed
+in and the city with the closest latitude to it is to be returned.
+
+What would be an appropriate data structure to back the web service with if fast lookup times
+are required?
+
+\question[4] Give two key differences between the {\tt Set} type and the {\tt List} type.
+
+\question[4] Describe how the code for the highest affinity pages lab naturally decomposes
+into three parts.
+
+\end{questions}
+
+\end{document}
 
 \question[16] {\bf Queue from two stacks}
 
