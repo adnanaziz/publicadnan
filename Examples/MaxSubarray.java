@@ -1,50 +1,55 @@
+
 public class MaxSubarray {
+	
+	public static int maxsubarray(int[] A) {
+		if ( A.length == 0 ) {
+			return 0;
+		} else {
+			return maxsubarray(A, 0, A.length-1);
+		}
+	}
+	
+	// L is the index of the start of the subarray to search in,
+	// H s the index of the end of the subarray. (both are inclusive)
+	public static int maxsubarray(int[] A, int L, int H) {
+		if ( L == H ) {
+			return (A[L]) > 0 ? A[L] : 0;
+		}
+		
+		int midIndex = (L+H)/2;
+		
+		int bestLeft = maxsubarray( A, L, midIndex );
+		int bestRight = maxsubarray( A, midIndex + 1, H);
+		
+		int maxRight = 0;
+		int tmp = 0;
+		for ( int i = midIndex + 1; i <= H; i++ ) {
+			tmp += A[i];
+			if ( maxRight < tmp) {
+				maxRight = tmp;
+			}
+		}
+		
+		int maxLeft = 0;
+		tmp = 0;
+		for ( int i = midIndex; i >= L; i-- ) {
+			tmp += A[i];
+			if ( maxLeft < tmp) {
+				maxLeft = tmp;
+			}
+		}
+		
+		return max(bestLeft, bestRight, maxLeft + maxRight);
+	}
+	
+	public static int max( int... T) {
+		int result = Integer.MIN_VALUE;
+		for ( int tmp : T) {
+			if ( result < tmp) {
+				result = tmp;
+			}
+		}
+		return result;
+	}
 
-  public static int max( int... A ) {
-    int result = Integer.MIN_VALUE;
-    for ( int tmp : A ) {
-      if ( result < tmp ) {
-        result = tmp;
-      }
-    }
-    return result;
-  }
-
-  public static int maxsubarray(int[] A) {
-    return maxsubarray(A, 0, A.length-1);
-  }
-
-  public static int maxsubarray(int[] A, int S, int F) {
-    if ( S == F ) {
-      return A[S] > 0 ? A[S] : 0;
-    }
-
-    int midIndex = (S+F)/2;
-
-    int maxLeft = maxsubarray( A, S, midIndex );
-    int maxRight = maxsubarray( A, midIndex + 1, F );
-
-    int maxBeforeMid = 0;
-    int tmpSum = 0;
-    for ( int i = midIndex; i >= S; i-- ) {
-      tmpSum += A[i];
-      System.out.println("\ni = " + i + " down tmpSum = " + tmpSum );
-      if ( tmpSum > maxBeforeMid ) {
-        maxBeforeMid = tmpSum;
-      }
-    }
-    int maxAfterMid = 0;
-    tmpSum = 0;
-    for ( int i = midIndex + 1; i <= F; i++ ) {
-      tmpSum += A[i];
-      System.out.println("\ni = " + i + " up tmpSum = " + tmpSum );
-      if ( tmpSum > maxAfterMid ) {
-        maxAfterMid = tmpSum;
-      }
-    }
-    int result =  max( maxLeft, maxRight, maxBeforeMid + maxAfterMid );
-    System.out.println("Recur call, " + S + ":" + F + " max of " + maxLeft + " " + maxRight + " " + maxAfterMid );
-    System.out.println("Recur call, " + S + ":" + F + " = " + result );
-    return result;
-  }
 }
