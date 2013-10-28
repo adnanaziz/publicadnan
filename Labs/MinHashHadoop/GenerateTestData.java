@@ -19,9 +19,9 @@ public class GenerateTestData {
 
   public String randomString(int prefixLength, int id, int suffixLength ) {
     StringBuffer sb = new StringBuffer();
-    sb.append(RandomStringUtils.random(prefixLength))
-      .append(fixedStrings[id])
-      .append(RandomStringUtils.random(suffixLength));
+    sb.append(RandomStringUtils.random(prefixLength, DNA))
+      .append(fixedStrings[id % fixedStrings.length])
+      .append(RandomStringUtils.random(suffixLength, DNA));
     return sb.toString();
   }
 
@@ -40,5 +40,7 @@ public class GenerateTestData {
     System.out.println("t1 = " + t1);
     GenerateTestData td = new GenerateTestData(2,4, DNA);
     System.out.println("td = \n" + td);
+    String rs = td.randomString(10,10,10);
+    System.out.println("random string = " + rs);
   }
 }
