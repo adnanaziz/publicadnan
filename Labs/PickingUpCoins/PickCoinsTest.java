@@ -16,7 +16,7 @@ public class PickCoinsTest {
     assertEquals(4, PickCoins.maxVictory(A) );
   }
 
-  @Test
+  @Test(timeout=1000)
   public void complex1() {
     int A[] = new int[]{25,5,10,5,10,5,10,25,1,25,1,25,1,25,5,10};
     assertEquals(140, PickCoins.maxVictory(A) );
@@ -31,7 +31,7 @@ public class PickCoinsTest {
     return A;
   }
 
-  @Test
+  @Test(timeout=1000)
   public void random1() {
     int A[] = random_driver(100);
     assertEquals(255, PickCoins.maxVictory(A) );
