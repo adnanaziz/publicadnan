@@ -46,11 +46,11 @@ public class Signature {
 	}
 
 	public int minHash(String s) {
-    	  int[] signature = signature(s);
-	  List<Integer> li = Ints.asList( signature );
- 	  int result = Collections.min( li );
-	  return result;
-        }
+		int[] signature = signature(s);
+		List<Integer> li = Ints.asList(signature);
+		int result = Collections.min(li);
+		return result;
+	}
 
 	public int[] signature(String s) {
 		int[] result = new int[N];
@@ -88,7 +88,8 @@ public class Signature {
 		for (int hc : sig2) {
 			System.out.print(hc + " ");
 		}
-		System.out.println("\nmin hash for " + test2 + " = " + sigObj.minHash(test2));
+		System.out.println("\nmin hash for " + test2 + " = "
+				+ sigObj.minHash(test2));
 		System.out.println();
 	}
 
