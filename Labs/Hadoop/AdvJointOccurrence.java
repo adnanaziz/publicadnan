@@ -36,8 +36,21 @@ import java.util.HashMap;
 public class JointOccurrence {
 
 	public static class TokenizerMapper extends
-			Mapper<Object, Text, Text, MapWritable> {
+			Mapper<Object, Text, Text, MapWritable> { 
 
+    @Override
+    protected void setup(Context context) throws IOException,
+      InterruptedException {
+        System.out.println("in mapper setup");
+    }
+
+    @Override
+    protected void cleanup(Context context) throws IOException,
+            InterruptedException {
+        System.out.println("in mapper cleanup");
+    }
+
+    @Override
 		public void map(Object key, Text value, Context context)
 				throws IOException, InterruptedException {
 			StringTokenizer itr = new StringTokenizer(value.toString());
@@ -84,10 +97,10 @@ public class JointOccurrence {
 			// System.out.println("reduce: " + key.toString());
 			MapWritable result = new MapWritable();
 			for (MapWritable val : values) {
-				// System.out.println("in outer iteration");
+				System.out.println("in outer iteration");
 				for (java.util.Map.Entry<Writable, Writable> tmp : val
 						.entrySet()) {
-					// System.out.println("in inner iteration");
+					System.out.println("in inner iteration");
 					IntWritable count = null;
 					if (((count = (IntWritable) result.get(tmp.getKey())) == null)) {
 						result.put(tmp.getKey(), tmp.getValue());
@@ -98,7 +111,7 @@ public class JointOccurrence {
 					}
 				}
 			}
-			// System.out.println("writing " + key + " " + result);
+			System.out.println("writing " + key + " " + result);
 			for (java.util.Map.Entry<Writable, Writable> cotextToCount : result
 					.entrySet()) {
 				String keyValPair = key + "," + (Text) cotextToCount.getKey();
