@@ -32,8 +32,14 @@ import org.apache.hadoop.util.GenericOptionsParser;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
 
-public class JointOccurrence {
+import org.apache.hadoop.io.RawComparator;
+import org.apache.hadoop.mapreduce.Partitioner;
+
+public class AdvJointOccurrence {
 
 	public static class TokenizerMapper extends
 			Mapper<Object, Text, Text, MapWritable> { 
@@ -60,6 +66,10 @@ public class JointOccurrence {
 			MapWritable resultMap = new MapWritable();
 			while (itr.hasMoreTokens()) {
 				current = itr.nextToken();
+        String s = current.toLowerCase();
+        if ( Helper.isStopWord( s ) || Helper.isPunctuated( s ) ) {
+          continue;
+        }
 				if (prev != null) {
 					// System.out.println("mapper processing " + current );
 					MapWritable map = (MapWritable) resultMap
@@ -130,15 +140,95 @@ public class JointOccurrence {
 			System.exit(2);
 		}
 		Job job = new Job(conf, "joint occ");
-		job.setJarByClass(JointOccurrence.class);
+		job.setJarByClass(AdvJointOccurrence.class);
 		job.setMapperClass(TokenizerMapper.class);
 		// job.setCombinerClass(IntSumReducer.class);
 		job.setReducerClass(IntSumReducer.class);
+		job.setPartitionerClass(FirstCharTextPartitioner.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(MapWritable.class);
+
+    // http://riccomini.name/posts/hadoop/2009-11-13-sort-reducer-input-value-hadoop/
+    job.setOutputKeyComparatorClass(SortReducerByValuesKeyComparator.class);
+    job.setOutputValueGroupingComparator(SortReducerByValuesValueGroupingComparator.class);
+    // job.setPartitionerClass(SortReducerByValuesPartitioner.class);
+
 		FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
 		FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
+}
 
+class FirstCharTextPartitioner extends Partitioner<Text, MapWritable> {
+  public int getPartition(Text key, MapWritable value, int numReduceTasks) {
+    System.out.println("in partitioner");
+    return Math.abs((key.toString().charAt(0))) % numReduceTasks; 
+  }
+}
+
+class SortReducerByValuesKeyComparator implements RawComparator {
+    public int compare(byte[] text1, int start1, int length1, byte[] text2, int start2, int length2) {
+      // hadoop gives you an extra byte before text data. get rid of it.
+      byte[] trimmed1 = new byte[2];
+      byte[] trimmed2 = new byte[2];
+      System.arraycopy(text1, start1+1, trimmed1, 0, 2);
+      System.arraycopy(text2, start2+1, trimmed2, 0, 2);
+      
+      char char10 = (char)trimmed1[0];
+      char char20 = (char)trimmed2[0];
+      char char11 = (char)trimmed1[1];
+      char char21 = (char)trimmed2[1];
+      
+      // first enforce the same rules as the value grouping comparator
+      // (first letter of key)
+      int compare = new Character(char10).compareTo(char20);
+      
+      if(compare == 0) {
+        // ONLY if we're in the same reduce aggregate should we try and
+        // sort by value (second letter of key)
+        return -1 * new Character(char11).compareTo(char21);
+      }
+      
+      return compare;
+    }
+ 
+    public int compare(Text o1, Text o2) {
+      // reverse the +1 since the extra text byte is not passed into
+      // compare() from this function
+      return compare(o1.getBytes(), 0, o1.getLength() - 1, o2.getBytes(), 0, o2.getLength() - 1);
+    }
+}
+
+
+class SortReducerByValuesValueGroupingComparator implements RawComparator {
+    public int compare(byte[] text1, int start1, int length1, byte[] text2, int start2, int length2) {
+      // look at first character of each text byte array
+      return new Character((char)text1[0]).compareTo((char)text2[0]);
+    }
+ 
+    public int compare(Text o1, Text o2) {
+      return compare(o1.getBytes(), 0, o1.getLength(), o2.getBytes(), 0, o2.getLength());
+    }
+}
+
+  
+
+class Helper {
+    private static Set<String> stopWords = new HashSet<String>( 
+                                                  Arrays.asList(
+"a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by", "can't", "cannot", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't", "down", "during", "each", "few", "for", "from", "further", "had", "hadn't", "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "isn't", "it", "it's", "its", "itself", "let's", "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "once", "only", "or", "other", "ought", "our", "ours ", "ourselves", "out", "over", "own", "same", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "wasn't", "we", "we'd", "we'll", "we're", "we've", "were", "weren't", "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "won't", "would", "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves" ) );
+   public static boolean isStopWord(String s) {
+     return stopWords.contains(s);
+   }
+   public static boolean isPunctuated(String s) {
+     return 
+      s.contains("\"") || s.contains("'") || s.contains(",") || s.contains(".") || 
+      s.contains("0") || s.contains("1") || s.contains("2") || s.contains("3") || 
+      s.contains("4") || s.contains("5") || s.contains("6") || s.contains("7") || 
+      s.contains("8") || s.contains("9") || s.contains("*") || s.contains("(") || 
+      s.contains(")") || s.contains("[") || s.contains("]") || s.contains(".") ||
+      s.contains("&") || s.contains("-") || s.contains("=") || s.contains("_") ||
+      s.contains("+") || s.contains("%") || s.contains("!") || s.contains("/") ||
+      s.contains("|");
+   }
 }

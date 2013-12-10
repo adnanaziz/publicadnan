@@ -4,9 +4,15 @@ import com.google.common.base.Charsets;
 
 class Scraper {
   public static String scrape(String urlString) throws Exception {
-    String serverString = "http://ec2-54-200-126-181.us-west-2.compute.amazonaws.com:16791";
-    String raw = Resources.toString( new URL(serverString + "/?url=" + urlString), Charsets.UTF_8);
-    System.out.println(raw);
+    String raw = null;
+    try {
+      String serverString = "http://ec2-54-200-126-181.us-west-2.compute.amazonaws.com:16791";
+      URL serviceUrl = new URL(serverString + "/?url=" + urlString);
+      raw = Resources.toString( serviceUrl, Charsets.UTF_8);
+      System.out.println(raw);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     return raw;
   }
   public static void main(String[] args) throws Exception {
