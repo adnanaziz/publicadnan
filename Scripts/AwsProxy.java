@@ -41,6 +41,10 @@ class ThreadedProxy implements Runnable {
     String query = rawquery.substring(start, end);
     System.out.println("query = " + query);
     String result = Resources.toString( new URL(query), Charsets.UTF_8);
+
+    // needed for some clients?! aron's experience maybe need for 1.7
+    dos.println("HTTP/1.0 200 OK\n"); 
+
     dos.println(result);
     dos.flush();
     dis.close(); 
