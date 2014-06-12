@@ -8,20 +8,19 @@ class Example105 {
     ArrayList<Person> cool = new ArrayList<Person>();
     cool.add(new Person("Kristen"));
     cool.add(new Person("Bjarne"));
-    //   cool.add(new Exception("Larry"));   // Wrong, detected at compile-time
+    // cool.add(new Exception("Larry")); // Wrong, detected at compile-time
     cool.add(new Person("Anders"));
-    Person p = cool.get(2);                  // No explicit cast or check needed
+    Person p = cool.get(2); // No explicit cast or check needed
   }
 
   private static class Person {
     private static int counter = 0;
     private final String name;
     private final int serialNumber;
-    
+
     public Person(String name) {
       this.name = name;
       this.serialNumber = counter++;
     }
   }
 }
-

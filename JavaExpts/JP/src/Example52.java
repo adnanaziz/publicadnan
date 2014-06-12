@@ -1,7 +1,6 @@
 // Example 52 from page 39 of Java Precisely second edition (The MIT Press 2005)
 // Author: Peter Sestoft (sestoft@itu.dk)
 
-
 class Example52 {
   public static void main(String[] args) {
     // Instance test
@@ -14,4 +13,3 @@ class Example52 {
     System.out.println("n2   is a Number: " + (n2 instanceof Number));
   }
 }
-

@@ -3,7 +3,8 @@
 
 import java.util.*;
 
-class G<T> { }
+class G<T> {
+}
 
 class Example120 {
   public static void main(String[] args) {
@@ -13,21 +14,20 @@ class Example120 {
 
 class F<T> {
   public void M() {
-    T[] tarr;                              // Legal declaration 
-    G<T>[] ctarr;                          // Legal declaration
-    G<Integer>[] ciarr;                    // Legal declaration
+    T[] tarr; // Legal declaration
+    G<T>[] ctarr; // Legal declaration
+    G<Integer>[] ciarr; // Legal declaration
 
-    // tarr = new T[5];                    // Illegal generic array creation
-    // ctarr = new G<T>[5];                // Illegal generic array creation
-    // ciarr = new G<Integer>[5];          // Illegal generic array creation
+    // tarr = new T[5]; // Illegal generic array creation
+    // ctarr = new G<T>[5]; // Illegal generic array creation
+    // ciarr = new G<Integer>[5]; // Illegal generic array creation
 
-    ArrayList<T> tlist;                    // Legal declaration
-    ArrayList<G<T>> ctlist;                // Legal declaration
-    ArrayList<G<Integer>> cilist;          // Legal declaration
+    ArrayList<T> tlist; // Legal declaration
+    ArrayList<G<T>> ctlist; // Legal declaration
+    ArrayList<G<Integer>> cilist; // Legal declaration
 
-    tlist = new ArrayList<T>();            // Legal arraylist creation
-    ctlist = new ArrayList<G<T>>();        // Legal arraylist creation
-    cilist = new ArrayList<G<Integer>>();  // Legal arraylist creation
+    tlist = new ArrayList<T>(); // Legal arraylist creation
+    ctlist = new ArrayList<G<T>>(); // Legal arraylist creation
+    cilist = new ArrayList<G<Integer>>(); // Legal arraylist creation
   }
 }
-

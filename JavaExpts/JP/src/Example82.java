@@ -4,14 +4,14 @@
 import java.io.*;
 
 class Example82 {
-  public static void main(String[] args) throws IOException { 
+  public static void main(String[] args) throws IOException {
     double[] xs = readRecord("foo");
-    for (int i=0; i<xs.length; i++)
+    for (int i = 0; i < xs.length; i++)
       System.out.println(xs[i]);
   }
 
   static double[] readRecord(String filename) throws IOException {
-    Reader freader         = new FileReader(filename); 
+    Reader freader = new FileReader(filename);
     BufferedReader breader = new BufferedReader(freader);
     double[] res = new double[3];
     try {
@@ -24,4 +24,3 @@ class Example82 {
     return res;
   }
 }
-

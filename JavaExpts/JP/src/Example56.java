@@ -1,7 +1,6 @@
 // Example 56 from page 43 of Java Precisely second edition (The MIT Press 2005)
 // Author: Peter Sestoft (sestoft@itu.dk)
 
-
 class Example56 {
   public static void main(String[] args) {
     System.out.println("Number of points created: " + SPoint.getSize());
@@ -13,8 +12,7 @@ class Example56 {
     System.out.println("Number of points created: " + SPoint.getSize());
     System.out.println("Number of points created: " + q.getSize());
     System.out.println("r is point number " + r.getIndex());
-    for (int i=0; i<SPoint.getSize(); i++)
+    for (int i = 0; i < SPoint.getSize(); i++)
       System.out.println("SPoint number " + i + " is " + SPoint.getPoint(i));
   }
 }
-

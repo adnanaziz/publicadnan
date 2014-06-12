@@ -3,11 +3,18 @@ public class SwitchString {
     String s = "foo";
     int i;
     switch (s) {
-      case "bar": i = 1; break;
-      case "foo": i = 2; break;
-      case "widget": i = 3; break;
-      default: i = -1;
+    case "bar":
+      i = 1;
+      break;
+    case "foo":
+      i = 2;
+      break;
+    case "widget":
+      i = 3;
+      break;
+    default:
+      i = -1;
     }
-    System.out.println("i = " + i );
+    System.out.println("i = " + i);
   }
 }

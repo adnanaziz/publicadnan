@@ -8,7 +8,6 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 import java.lang.reflect.*;
 
-
 public class TestTicTacToe {
 
   @Before
@@ -19,10 +18,10 @@ public class TestTicTacToe {
   public static void oneTimeTearDown() {
   }
 
-  @Test(timeout=20000) 
+  @Test(timeout = 20000)
   public void test2D1() {
     Board b = new Board("X,X", "X,X");
-    assertTrue( b.winFor(SquareState.X));
+    assertTrue(b.winFor(SquareState.X));
   }
 
 }

@@ -9,4 +9,3 @@ class Example15 {
     System.out.format("%1$tF %1$tR%n", date);
   }
 }
-

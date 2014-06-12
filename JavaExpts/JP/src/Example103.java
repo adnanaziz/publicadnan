@@ -8,17 +8,17 @@ class Example103 {
     System.out.println("Printing temperature table");
     DecimalFormat ff = new DecimalFormat("#0"), cf = new DecimalFormat("0.0");
     System.out.println("Fahrenheit   Celsius");
-    for (double f=100; f<=400; f+=10) {
+    for (double f = 100; f <= 400; f += 10) {
       double c = 5 * (f - 32) / 9;
-      System.out.println(padLeft(ff.format(f), 10) + padLeft(cf.format(c), 10));
+      System.out.println(padLeft(ff.format(f), 10)
+          + padLeft(cf.format(c), 10));
     }
   }
 
   static String padLeft(String s, int width) {
     StringBuilder res = new StringBuilder();
-    for (int i=width-s.length(); i>0; i--)
+    for (int i = width - s.length(); i > 0; i--)
       res.append(' ');
     return res.append(s).toString();
   }
 }
-

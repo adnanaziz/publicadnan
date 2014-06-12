@@ -18,25 +18,30 @@ class Example155 {
       public void run() {
         try {
           outds.writeInt(2);
-          for (int p=3; true; p+=2) {
-            int q=3;
-            while (q*q <= p && p%q != 0)
-              q+=2;
-            if (q*q > p) 
-              { outds.writeInt(p); System.out.print("."); }
+          for (int p = 3; true; p += 2) {
+            int q = 3;
+            while (q * q <= p && p % q != 0)
+              q += 2;
+            if (q * q > p)
+            {
+              outds.writeInt(p);
+              System.out.print(".");
+            }
           }
-        } catch (IOException e) { System.out.println("<terminated>: " + e); }
+        } catch (IOException e) {
+          System.out.println("<terminated>: " + e);
+        }
       }
     }
 
     new Producer().start();
     System.out.println("Press Enter for more primes, or ctrl-C to stop");
     System.out.println("Each dot represents the production of one prime");
-    for (;;) {                                    // forever
-      for (int n=0; n<10; n++)                    //   output 10 primes
-        System.out.print(inds.readInt() + " ");   //   and 
-      System.in.read();                           //   wait for Enter
+    for (;;) { // forever
+      for (int n = 0; n < 10; n++)
+        // output 10 primes
+        System.out.print(inds.readInt() + " "); // and
+      System.in.read(); // wait for Enter
     }
   }
 }
-

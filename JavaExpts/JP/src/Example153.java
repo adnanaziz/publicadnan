@@ -7,13 +7,16 @@ import java.util.Random;
 class Example153 {
   public static void main(String[] args) throws IOException {
     final int count = 20;
-    System.out.println("Reading " + count + " random strings from string array file");
+    System.out.println("Reading " + count
+        + " random strings from string array file");
     Random rnd = new Random();
-    for (int i=0; i<count; i++) {
+    for (int i = 0; i < count; i++) {
       int j = rnd.nextInt(10000);
       try {
         System.out.println(j + ": " + readOneString("saf.dat", j));
-      } catch (IOException e) { throw e; }
+      } catch (IOException e) {
+        throw e;
+      }
     }
   }
 
@@ -25,9 +28,8 @@ class Example153 {
     raf.seek(raf.length() - INTSIZE - LONGSIZE * N + LONGSIZE * i);
     long si = raf.readLong();
     raf.seek(si);
-    String s = raf.readUTF();    
+    String s = raf.readUTF();
     raf.close();
     return s;
   }
 }
-

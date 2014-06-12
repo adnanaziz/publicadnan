@@ -19,39 +19,40 @@ class IgnoreCaseComparator implements Comparator<String> {
 
 class Example135 {
   public static void main(String[] args) throws IOException {
-    if (args.length != 1) 
-      System.out.println("Usage: java Example135 <filename>");
+    if (args.length != 1) System.out
+        .println("Usage: java Example135 <filename>");
     else {
-      SortedMap<String,SortedSet<Integer>> index = buildIndex(args[0]);
+      SortedMap<String, SortedSet<Integer>> index = buildIndex(args[0]);
       printIndex(index);
-    }  
+    }
   }
 
   // Parse alphanumeric words from the given file, and record them in
-  // the index.  The resulting index is a SortedMap from String to
+  // the index. The resulting index is a SortedMap from String to
   // SortedSet of Integer (the line numbers).
 
-  static SortedMap<String,SortedSet<Integer>> buildIndex(String filename) 
-    throws IOException 
+  static SortedMap<String, SortedSet<Integer>> buildIndex(String filename)
+      throws IOException
   {
     Reader r = new BufferedReader(new FileReader(filename));
     StreamTokenizer stok = new StreamTokenizer(r);
-    stok.quoteChar('"'); stok.ordinaryChars('!', '/');
+    stok.quoteChar('"');
+    stok.ordinaryChars('!', '/');
     stok.nextToken();
-    SortedMap<String,SortedSet<Integer>> index 
-      = new TreeMap<String,SortedSet<Integer>>(new IgnoreCaseComparator());
+    SortedMap<String, SortedSet<Integer>> index = new TreeMap<String, SortedSet<Integer>>(
+        new IgnoreCaseComparator());
     while (stok.ttype != StreamTokenizer.TT_EOF) {
       if (stok.ttype == StreamTokenizer.TT_WORD) {
         SortedSet<Integer> ts;
-        if (index.containsKey(stok.sval))       // If word has a set, get it
-          ts = index.get(stok.sval);
+        if (index.containsKey(stok.sval)) // If word has a set, get it
+        ts = index.get(stok.sval);
         else {
-          ts = new TreeSet<Integer>();          // Otherwise create one
+          ts = new TreeSet<Integer>(); // Otherwise create one
           index.put(stok.sval, ts);
         }
         ts.add(stok.lineno());
       }
-      stok.nextToken();                              
+      stok.nextToken();
     }
     return index;
   }
@@ -59,14 +60,13 @@ class Example135 {
   // Print the concordance index by iterating over its entries, and
   // for each entry, iterate over the value which is a set.
 
-  static void printIndex(SortedMap<String,SortedSet<Integer>> index) {
-    for (Map.Entry<String,SortedSet<Integer>> entry : index.entrySet()) {
+  static void printIndex(SortedMap<String, SortedSet<Integer>> index) {
+    for (Map.Entry<String, SortedSet<Integer>> entry : index.entrySet()) {
       System.out.print(entry.getKey() + ": ");
       SortedSet<Integer> lineNoSet = entry.getValue();
-      for (int lineno : lineNoSet) 
+      for (int lineno : lineNoSet)
         System.out.print(lineno + " ");
       System.out.println();
     }
   }
 }
-

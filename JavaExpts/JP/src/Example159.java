@@ -10,11 +10,11 @@ public class Example159 {
     } catch (IllegalAccessException e) {
       System.out.println("IllegalAccessException should never happen");
     }
-    if ( c2o.isInstance(o12)) {
-       System.out.println("o12 is instance of C2");
+    if (c2o.isInstance(o12)) {
+      System.out.println("o12 is instance of C2");
     }
-    if ( !c2o.isInstance(o11)) {
-       System.out.println("o11 is not instance of C2");
+    if (!c2o.isInstance(o11)) {
+      System.out.println("o11 is not instance of C2");
     }
     C2 c22 = c2o.cast(o12); // succeeds at runtime since o12 can be cast to C2
     try {

@@ -16,4 +16,3 @@ class Example140 {
     System.out.println("You entered " + count + " non-empty lines");
   }
 }
-

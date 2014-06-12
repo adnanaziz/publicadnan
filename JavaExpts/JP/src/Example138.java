@@ -6,9 +6,9 @@ import java.util.*;
 class Example138 {
   public static void main(String[] args) {
     Set<Set<Integer>> ss = new HashSet<Set<Integer>>();
-    ss.add(mkIntegerSet(new int[] { 2, 3 }));
-    ss.add(mkIntegerSet(new int[] { 1, 3 }));
-    ss.add(mkIntegerSet(new int[] { 1, 2 }));
+    ss.add(mkIntegerSet(new int[]{2, 3}));
+    ss.add(mkIntegerSet(new int[]{1, 3}));
+    ss.add(mkIntegerSet(new int[]{1, 2}));
     System.out.println("ss = " + ss);
     Set<Set<Integer>> tt = intersectionClose(ss);
     System.out.println("tt = " + tt);
@@ -16,7 +16,7 @@ class Example138 {
 
   static Set<Integer> mkIntegerSet(int[] a) {
     TreeSet<Integer> ts = new TreeSet<Integer>();
-    for (int i=0; i<a.length; i++)
+    for (int i = 0; i < a.length; i++)
       ts.add(a[i]);
     return ts;
   }
@@ -24,9 +24,9 @@ class Example138 {
   // Given a set ss of sets of T, compute its intersection
   // closure, that is, the least set tt such that ss is a subset of tt
   // and such that for any two sets t1 and t2 in tt, their
-  // intersection is also in tt.  
+  // intersection is also in tt.
 
-  // For instance, if ss is {{2,3}, {1,3}, {1,2}}, 
+  // For instance, if ss is {{2,3}, {1,3}, {1,2}},
   // then tt is {{2,3}, {1,3}, {1,2}, {3}, {2}, {1}, {}}.
 
   // Both the argument and the result is a Set of Set of T.
@@ -38,13 +38,11 @@ class Example138 {
       Set<T> s = worklist.removeLast();
       for (Set<T> t : tt) {
         Set<T> ts = new TreeSet<T>(t);
-        ts.retainAll(s);                // ts is the intersection of t and s
-        if (!tt.contains(ts)) 
-          worklist.add(ts);
+        ts.retainAll(s); // ts is the intersection of t and s
+        if (!tt.contains(ts)) worklist.add(ts);
       }
       tt.add(s);
     }
     return tt;
   }
 }
-

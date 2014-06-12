@@ -5,10 +5,9 @@ import java.io.*;
 
 class Example146 {
   public static void main(String[] args) throws IOException {
-    if (args.length != 1) 
-      System.out.println("Usage: java Example146 <filename>");
-    else
-      sumlines(args[0]);
+    if (args.length != 1) System.out
+        .println("Usage: java Example146 <filename>");
+    else sumlines(args[0]);
   }
 
   static void sumlines(String filename) throws IOException {
@@ -19,16 +18,14 @@ class Example146 {
     stok.nextToken();
     while (stok.ttype != StreamTokenizer.TT_EOF) {
       int lineno = lnr.getLineNumber();
-      //      System.out.println(stok.lineno() + " " + lineno);
+      // System.out.println(stok.lineno() + " " + lineno);
       double sum = 0;
       while (stok.ttype != StreamTokenizer.TT_EOL) {
-        if (stok.ttype == StreamTokenizer.TT_NUMBER)
-          sum += stok.nval;
+        if (stok.ttype == StreamTokenizer.TT_NUMBER) sum += stok.nval;
         stok.nextToken();
       }
       System.out.println("Sum of line " + lineno + " is " + sum);
-      stok.nextToken();                                
+      stok.nextToken();
     }
   }
 }
-

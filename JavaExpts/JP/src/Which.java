@@ -1,12 +1,21 @@
 class A {
-  String x =  "A";
-  String foo() { return("A.foo"); }
+  String x = "A";
+
+  String foo() {
+    return ("A.foo");
+  }
 }
 
 class B extends A {
-  String x =  "B";
-  String foo() { return("B.foo"); }
-  String superx() { return("super.x = " + super.x + ", this.x = " + this.x); }
+  String x = "B";
+
+  String foo() {
+    return ("B.foo");
+  }
+
+  String superx() {
+    return ("super.x = " + super.x + ", this.x = " + this.x);
+  }
 }
 
 public class Which {

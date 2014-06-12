@@ -5,8 +5,8 @@ import java.util.Iterator;
 
 class Example41 {
   public static void main(String[] args) {
-    if (args.length != 1) 
-      System.out.println("Usage: java Example41 <string>\n");
+    if (args.length != 1) System.out
+        .println("Usage: java Example41 <string>\n");
     else {
       Iterator<String> seq = suffixes(args[0]);
       while (seq.hasNext())
@@ -16,13 +16,20 @@ class Example41 {
 
   // Create and return an iterator over all non-empty suffixes of s
   static Iterator<String> suffixes(final String s) {
-    return 
-      new Iterator<String>() {
-          int startindex=0;
-          public boolean hasNext() { return startindex < s.length(); }
-          public String next() { return s.substring(startindex++); }
-          public void remove() { throw new UnsupportedOperationException(); }
-        };
+    return new Iterator<String>() {
+      int startindex = 0;
+
+      public boolean hasNext() {
+        return startindex < s.length();
+      }
+
+      public String next() {
+        return s.substring(startindex++);
+      }
+
+      public void remove() {
+        throw new UnsupportedOperationException();
+      }
+    };
   }
 }
-

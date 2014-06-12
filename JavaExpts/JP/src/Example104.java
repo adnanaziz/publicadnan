@@ -8,20 +8,19 @@ class Example104 {
     ArrayList cool = new ArrayList();
     cool.add(new Person("Kristen"));
     cool.add(new Person("Bjarne"));
-    cool.add(new Exception("Larry"));   // Wrong, but no compiletime check
+    cool.add(new Exception("Larry")); // Wrong, but no compiletime check
     cool.add(new Person("Anders"));
-    Person p = (Person)(cool.get(2));   // Compiles OK, but fails at runtime
+    Person p = (Person) (cool.get(2)); // Compiles OK, but fails at runtime
   }
 
   private static class Person {
     private static int counter = 0;
     private final String name;
     private final int serialNumber;
-    
+
     public Person(String name) {
       this.name = name;
       this.serialNumber = counter++;
     }
   }
 }
-

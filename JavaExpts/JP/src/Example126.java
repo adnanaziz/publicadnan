@@ -4,13 +4,14 @@
 import java.util.*;
 
 class Example126 {
-  private static final HashMap<String,Integer> wdayNumber = new HashMap<String,Integer>();
+  private static final HashMap<String, Integer> wdayNumber = new HashMap<String, Integer>();
 
   static { // Static initializer block, executed once
     int wdayno = 0;
-    String[] wdays = 
-      { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-    for (String wday : wdays) 
+    String[] wdays =
+    {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+        "Sunday"};
+    for (String wday : wdays)
       wdayNumber.put(wday, wdayno++);
   }
 
@@ -23,5 +24,3 @@ class Example126 {
     System.out.println("Thursday is " + wdayno5("Thursday"));
   }
 }
-
-
