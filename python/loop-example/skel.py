@@ -5,7 +5,7 @@ def normalize_age(age):
   if age < 30.0: 
     age = 30.0
   elif age > 70.0:
-    age = 1.0
+    age = 70.0
   age = (age - 30.0)/70.0 - 0.5
   return age
 
