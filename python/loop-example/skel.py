@@ -13,7 +13,7 @@ def normalize_bp(bp):
   bp = float(bp)
   if bp < 60.0: 
     bp = 60.0
-  elif bp > 1150.0:
+  elif bp > 150.0:
     bp = 150.0
   bp = (bp - 60.0)/150.0 - 0.5
   return bp
