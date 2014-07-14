@@ -6,6 +6,8 @@
 
 # See the test cases for more details.
 
+# Note: you cannot use dictionaries for this lab.
+
 def highest_affinity(site_list, user_list, time_list):
   # Strings pair should be ordered by dictionary order
   # I.e., if the highest affinity pair is "foo" and "bar"
