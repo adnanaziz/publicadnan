@@ -1,8 +1,8 @@
 import randomized_input
 import compute_highest_affinity
 
-num_lines = 100000
-num_users = 10000
+num_lines = 10000
+num_users = 1000
 
 site_list = randomized_input.randomized_site_list(num_lines)
 user_list = randomized_input.randomized_user_list(num_lines, num_users)
