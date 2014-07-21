@@ -7,3 +7,4 @@ computed_result.sort()
 expected_result.sort()
 
 assert computed_result == expected_result
+print "Successfully passed test3!"
