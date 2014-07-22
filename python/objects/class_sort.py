@@ -1,3 +1,6 @@
+# shows how to define your own class and define an ordering on it,
+# which is used by the built is sort for lists of objects of this class
+
 class MyClass:
     'Example of a class'
     first = ""

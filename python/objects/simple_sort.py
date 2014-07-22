@@ -1,3 +1,6 @@
+# basic sort, note use of reverse and itemgetter to select ordering
+# and key to sort on
+
 import operator
 
 A = [(1,2), (2,0), (3,1)]
