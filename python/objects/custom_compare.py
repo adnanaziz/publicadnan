@@ -13,8 +13,9 @@
 # use build in cmp with y[0] as first argument, x[0] as second.
 
 def custom_compare(x,y):
+    print "in custom_compare with ", x, " ", y
     if (x[1] != y[1]): 
-        return x[1] - y[1]
+        result = x[1] - y[1]
     else:
         return cmp(y[0], x[0]) 
   
