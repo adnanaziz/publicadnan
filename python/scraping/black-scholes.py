@@ -49,3 +49,7 @@ print ImpliedVolatility('c', 110.0, 110.0, 1.0, 0.0, p)
 
 p = BlackSholes('c', 100.0, 150.0, 1.0, 0.0, 1.00)
 print ImpliedVolatility('c', 100.0, 150.0, 1.0, 0.0, p)
+
+print BlackSholes('c', 100.0, 100.0, 1.0, 0.0, 0.25)
+print BlackSholes('c', 100.0, 100.0, 1.0, 0.1, 0.25)
+print BlackSholes('c', 110.0, 100.0, 1.0, 0.0, 0.25)
