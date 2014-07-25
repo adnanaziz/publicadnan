@@ -1,3 +1,5 @@
+import json
+import sys
 from urllib import urlopen
  
 #optionsUrl = 'http://finance.yahoo.com/q/op?s=AAPL+Options'
@@ -21,13 +23,29 @@ from bs4 import BeautifulSoup
 soupText = BeautifulSoup(optionsPageText)
 
 import re
-curr_price = soupText.findAll(attrs={'class':'time_rtq_ticker'})
-print "curr_price:", str(curr_price)
-for kid in curr_price[0]:
-  print "kid = ", kid
+# select vs findall???
+strike_dates = soupText.select('a')  # re.compile('.*')})
+#print "strike_dates", str(strike_dates)
+dateUrls = []
+#print "start dates"
+for kid in strike_dates:
+  # print "kid:", kid
+  if re.search(r"m=", str(kid)):
+    aDate = re.findall("[\"](.*)[\"]", str(kid))
+    dateUrls.append("http://finance.yahoo.com" + aDate[0])
+#print "end dates"
+#print dateUrls
+
+
+curr_price_bs = soupText.findAll(attrs={'class':'time_rtq_ticker'})
+currPrice = 0.0
+#print "curr_price:", str(curr_price_bs)
+for kid in curr_price_bs[0]:
+  #print "kid = ", kid
   price = re.findall("\d+\.\d+", str(kid))
-  print "current price:", float(price[0])
- 
+  #print "current price:", float(price[0])
+  currPrice = float(price[0])
+
 
 #print soup.prettify()
 #print soup.find_all('<a>')
@@ -60,19 +78,20 @@ import re
 # AAPL140725C00080000
 def contract(item):
   item_string = str(item)
-  print "item_string", item_string
+  #print "item_string", item_string
   contract_symbol = re.findall(r"([A-Z]+)\d.*[CP]", item_string)
-  print "contract_symbol", contract_symbol
+  #print "contract_symbol", contract_symbol
   if len(contract_symbol) == 0:
-    print "empty contract_symbol, item is ", item_string
-  print "contract_symbol", contract_symbol[0]
+    #print "empty contract_symbol, item is ", item_string
+    1 + 1 # to indent
+  # print "contract_symbol", contract_symbol[0]
   # 140725
   contract_date = re.findall("[A-Z]+(\d+)[CP]", item_string )
-  print "contract_date", contract_date[0]
+  #print "contract_date", contract_date[0]
   contract_type =  re.findall("[A-Z]+\d+([CP])", item_string)
-  print "contract_type", contract_type[0]
+  #print "contract_type", contract_type[0]
   constract_price = re.findall("[A-Z]+\d+[CP](\d+)", item_string)
-  print "constract_price", float(int(constract_price[0]))/10.0
+  #print "constract_price", float(int(constract_price[0]))/10.0
   return {"Symbol":contract_symbol[0], \
           "Date": contract_date[0], \
           "Type": contract_type[0], \
@@ -80,8 +99,9 @@ def contract(item):
 
 
 # item is [u'81.43', u'AAPL140725C00081430', u'13.17', u' 0.00', u'12.70', u'14.40', u'2', u'72']
+optionQuotes = []
 for item in optionsTable:
-  print item
+  #print "an item:", item
   if len(item) == 8:
     data = contract(item)
     data["Strike"] = item[0]
@@ -91,6 +111,13 @@ for item in optionsTable:
     data["Ask"] = item[5]
     data["Vol"] = item[6]
     data["Open"] = item[7]
-    print data
+    #print data
+    #print "adding data:", data
+    optionQuotes.append(data)
     # print item
     # print float(float(item[5]) - float(item[4]))/(float(item[5]) + float(item[4])), item[0], item [1], item[4], item[5]
+
+json = json.dumps({"currPrice":currPrice, "dateUrls":dateUrls, "optionQuotes":optionQuotes}, sort_keys=True, indent=4, separators=(',', ': '))
+print json
+sys.exit()
+
