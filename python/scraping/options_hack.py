@@ -1,79 +1,17 @@
 import json
 import sys
+import re
 from urllib import urlopen
- 
+
+# to get data programmatically:
 #optionsUrl = 'http://finance.yahoo.com/q/op?s=AAPL+Options'
 #optionsPage = urlopen(optionsUrl)
-
 #s = optionsPage.read()
 #print s
 #
-#AAPLhandle = open("aapl.dat", "w")
+#fhandle = open("aapl.dat", "w")
 #
-#AAPLhandle.write(s)
-
-AAPLhandle = open("aapl.dat")
-optionsPageText = AAPLhandle.read()
-
-#print optionsPageText
-
-from bs4 import BeautifulSoup
-
-#soup = BeautifulSoup(optionsPage)
-soupText = BeautifulSoup(optionsPageText)
-
-import re
-# select vs findall???
-strike_dates = soupText.select('a')  # re.compile('.*')})
-#print "strike_dates", str(strike_dates)
-dateUrls = []
-#print "start dates"
-for kid in strike_dates:
-  # print "kid:", kid
-  if re.search(r"m=", str(kid)):
-    aDate = re.findall("[\"](.*)[\"]", str(kid))
-    dateUrls.append("http://finance.yahoo.com" + aDate[0])
-#print "end dates"
-#print dateUrls
-
-
-curr_price_bs = soupText.findAll(attrs={'class':'time_rtq_ticker'})
-currPrice = 0.0
-#print "curr_price:", str(curr_price_bs)
-for kid in curr_price_bs[0]:
-  #print "kid = ", kid
-  price = re.findall("\d+\.\d+", str(kid))
-  #print "current price:", float(price[0])
-  currPrice = float(price[0])
-
-
-#print soup.prettify()
-#print soup.find_all('<a>')
-
-anchor = "AAPL140725C00086430"
-
-#print soup.findAll(text=anchor)
-#print soupText.findAll(text=anchor)
-#print soupText.findAll(text=anchor)[0].parent
-#print soupText.findAll(text=anchor)[0].parent.parent
-#print soupText.findAll(text=anchor)[0].parent.parent.parent
-
-
-#optionsTable = [
-#    [x.text for x in y.parent.contents]
-#    for y in soupText.findAll('td', attrs={'class': 'yfnc_h', 'nowrap': ''})
-#]
-
-#for y in soupText.findAll('td', attrs={'class': "yfnc_h", 'nowrap':""}):
-optionsTable = []
-for y in soupText.findAll( attrs={'class': "yfnc_h", 'nowrap': ''}):
-    if ( "nowrap" in str(y) ):
-      # print "y = ", y
-      optionsTable.append( [x.text for x in y.parent.contents] )
-#     for x in y.parent.contents:
-#         print "x.text = ", x.text
-
-import re
+#fhandle.write(s)
 
 # AAPL140725C00080000
 def contract(item):
@@ -98,26 +36,98 @@ def contract(item):
           "Strike": float(int(constract_price[0]))/10.0 }
 
 
-# item is [u'81.43', u'AAPL140725C00081430', u'13.17', u' 0.00', u'12.70', u'14.40', u'2', u'72']
-optionQuotes = []
-for item in optionsTable:
-  #print "an item:", item
-  if len(item) == 8:
-    data = contract(item)
-    data["Strike"] = item[0]
-    data["Last"] = item[2]
-    data["Change"] = item[3]
-    data["Bid"] = item[4]
-    data["Ask"] = item[5]
-    data["Vol"] = item[6]
-    data["Open"] = item[7]
-    #print data
-    #print "adding data:", data
-    optionQuotes.append(data)
-    # print item
-    # print float(float(item[5]) - float(item[4]))/(float(item[5]) + float(item[4])), item[0], item [1], item[4], item[5]
+def getQuoteAsJson(filename):
 
-json = json.dumps({"currPrice":currPrice, "dateUrls":dateUrls, "optionQuotes":optionQuotes}, sort_keys=True, indent=4, separators=(',', ': '))
-print json
-sys.exit()
+  AAPLhandle = open("f.html")
+  optionsPageText = AAPLhandle.read()
+  
+  #print optionsPageText
+  
+  from bs4 import BeautifulSoup
+  
+  #soup = BeautifulSoup(optionsPage)
+  soupText = BeautifulSoup(optionsPageText)
+  
+  import re
+  # select vs findall???
+  strike_dates = soupText.select('a')  # re.compile('.*')})
+  #print "strike_dates", str(strike_dates)
+  dateUrls = []
+  #print "start dates"
+  for kid in strike_dates:
+    #print "kid:", kid
+    if re.search(r"m=", str(kid)):
+      aDate = re.findall("[\"](.*)[\"]", str(kid))
+      dateUrls.append("http://finance.yahoo.com" + aDate[0])
+  #print "end dates"
+  #print dateUrls
+  
+  
+  curr_price_bs = soupText.findAll(attrs={'class':'time_rtq_ticker'})
+  currPrice = 0.0
+  #print "curr_price:", str(curr_price_bs)
+  for kid in curr_price_bs[0]:
+    #print "kid = ", kid
+    price = re.findall("\d+\.\d+", str(kid))
+    #print "current price:", float(price[0])
+    currPrice = float(price[0])
+  
+  
+  #print soup.prettify()
+  #print soup.find_all('<a>')
+  
+  anchor = "AAPL140725C00086430"
+  
+  #print soup.findAll(text=anchor)
+  #print soupText.findAll(text=anchor)
+  #print soupText.findAll(text=anchor)[0].parent
+  #print soupText.findAll(text=anchor)[0].parent.parent
+  #print soupText.findAll(text=anchor)[0].parent.parent.parent
+  
+  
+  #optionsTable = [
+  #    [x.text for x in y.parent.contents]
+  #    for y in soupText.findAll('td', attrs={'class': 'yfnc_h', 'nowrap': ''})
+  #]
+  
+  #for y in soupText.findAll('td', attrs={'class': "yfnc_h", 'nowrap':""}):
+  optionsTable = []
+  for y in soupText.findAll( attrs={'class': "yfnc_h", 'nowrap': ''}):
+      if ( "nowrap" in str(y) ):
+        # print "y = ", y
+        optionsTable.append( [x.text for x in y.parent.contents] )
+  #     for x in y.parent.contents:
+  #         print "x.text = ", x.text
+  
 
+
+  # item is [u'81.43', u'AAPL140725C00081430', u'13.17', u' 0.00', u'12.70', u'14.40', u'2', u'72']
+  optionQuotes = []
+  for item in optionsTable:
+    #print "an item:", item
+    if len(item) == 8:
+      data = contract(item)
+      data["Strike"] = item[0]
+      data["Last"] = item[2]
+      data["Change"] = item[3]
+      data["Bid"] = item[4]
+      data["Ask"] = item[5]
+      data["Vol"] = item[6]
+      data["Open"] = item[7]
+      #data["ImpliedVolatility"] = ImpliedVolatility(CallPutFlag,S,X,T,r,p)
+
+      #print data
+      #print "adding data:", data
+      optionQuotes.append(data)
+      # print item
+      # print float(float(item[5]) - float(item[4]))/(float(item[5]) + float(item[4])), item[0], item [1], item[4], item[5]
+
+  optionQuotes.sort(lambda x, y: -1 if (int(x["Open"].replace(",", "")) < int(y["Open"].replace(",", "" ))) else 1)
+  
+  jsonQuoteData = json.dumps({"currPrice":currPrice, "dateUrls":dateUrls, "optionQuotes":optionQuotes}, sort_keys=True, indent=4, separators=(',', ': '))
+  
+  return jsonQuoteData
+
+print getQuoteAsJson("f.dat")
+
+#sys.exit()
