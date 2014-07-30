@@ -1,0 +1,7 @@
+Init line
+
+Preceding blank line
+@skip-begin
+skipping text
+@skip-end
+More text
