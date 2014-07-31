@@ -1,0 +1,14 @@
+GP1 : M : X : Y : 8.0
+GM2 : F : X : Y : 7.0
+Mother1 : F : GM1 : GP1 : 6.0
+Father1 : M : GM2 : GP2 : 6.0
+Child1 : M : Mother1 : Father1 : 3
+GP3 : M : X : Y : 8.0
+GM4 : F : X : Y : 7.0
+Mother3 : F : GM3 : GP3 : 6.0
+Father3 : M : GM4 : GP4 : 6.0
+Child2 : F : Mother3 : Father3 : 3
+Mother    3 : F : GM    3 : GP       3       : 6.0
+Father  3 : M : GM    4 : GP 4       : 6.0
+Child  2 : F : Mother   3 : Father         3          : 3
+Chil d2 : M : Mother          3 : Father             3          : 3
