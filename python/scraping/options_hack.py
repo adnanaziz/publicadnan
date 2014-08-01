@@ -36,10 +36,10 @@ def contract(item):
           "Strike": float(int(constract_price[0]))/10.0 }
 
 
-def getQuoteAsJson(filename):
+def contractAsJson(filename):
 
-  AAPLhandle = open("f.html")
-  optionsPageText = AAPLhandle.read()
+  filehandle = open(filename)
+  optionsPageText = filehandle.read()
   
   #print optionsPageText
   
@@ -122,12 +122,13 @@ def getQuoteAsJson(filename):
       # print item
       # print float(float(item[5]) - float(item[4]))/(float(item[5]) + float(item[4])), item[0], item [1], item[4], item[5]
 
-  optionQuotes.sort(lambda x, y: -1 if (int(x["Open"].replace(",", "")) < int(y["Open"].replace(",", "" ))) else 1)
+  optionQuotes.sort(lambda x, y: 1 if (int(x["Open"].replace(",", "")) < int(y["Open"].replace(",", "" ))) \
+                            else -11 if (int(x["Open"].replace(",", "")) > int(y["Open"].replace(",", "" ))) else 0 )
   
   jsonQuoteData = json.dumps({"currPrice":currPrice, "dateUrls":dateUrls, "optionQuotes":optionQuotes}, sort_keys=True, indent=4, separators=(',', ': '))
   
   return jsonQuoteData
 
-print getQuoteAsJson("f.dat")
+print contractAsJson(sys.argv[1])
 
 #sys.exit()
