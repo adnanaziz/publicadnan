@@ -93,22 +93,39 @@ def contractAsJson(filename):
   
   #for y in soupText.findAll('td', attrs={'class': "yfnc_h", 'nowrap':""}):
   optionsTable = []
+  # yfnc_h is in the money
+  # yfnc_tabledata1 is out of the money
+
+  # first, in the money calls  
   for y in soupText.findAll( attrs={'class': "yfnc_h", 'nowrap': ''}):
-      if ( "nowrap" in str(y) ):
-        # print "y = ", y
-        optionsTable.append( [x.text for x in y.parent.contents] )
+    if "nowrap" in str(y): #and re.match("[A-Z]+\d+([C])", str(y)):
+        if re.match("[A-Z]+\d+([C])", [x.text for x in y.parent.contents][1]):
+            optionsTable.append( [x.text for x in y.parent.contents] )
   #     for x in y.parent.contents:
   #         print "x.text = ", x.text
+
+  # now, out of the money calls
   for y in soupText.findAll( attrs={'class': "yfnc_tabledata1", 'nowrap': ''}):
-      if ( "nowrap" in str(y) ):
-        # print "y = ", y
-        optionsTable.append( [x.text for x in y.parent.contents] )
-  #     for x in y.parent.contents:
- 
+      if "nowrap" in str(y):
+        if re.match("[A-Z]+\d+([C])", [x.text for x in y.parent.contents][1]):
+            optionsTable.append( [x.text for x in y.parent.contents] )
+
+
+  # now, out of the money puts
+  for y in soupText.findAll( attrs={'class': "yfnc_tabledata1", 'nowrap': ''}):
+      if "nowrap" in str(y):
+        if re.match("[A-Z]+\d+([P])", [x.text for x in y.parent.contents][1]):
+            optionsTable.append( [x.text for x in y.parent.contents] )
+
+  # now, in the  money puts
+  for y in soupText.findAll( attrs={'class': "yfnc_h", 'nowrap': ''}):
+      if "nowrap" in str(y):
+        if re.match("[A-Z]+\d+([P])", [x.text for x in y.parent.contents][1]):
+            optionsTable.append( [x.text for x in y.parent.contents] )
 
   # bring calls together 
-  optionsTable.sort(lambda x, y: -1 if re.findall("[A-Z]+\d+([CP])", str(x))[0] == "C" and re.findall("[A-Z]+\d+([CP])", str(y))[0] == "P" \
-                            else 1 if re.findall("[A-Z]+\d+([CP])", str(x))[0] == "P" and re.findall("[A-Z]+\d+([CP])", str(y))[0] == "C" else 0)
+  #optionsTable.sort(lambda x, y: -1 if re.findall("[A-Z]+\d+([CP])", str(x))[0] == "C" and re.findall("[A-Z]+\d+([CP])", str(y))[0] == "P" \
+  #                          else 1 if re.findall("[A-Z]+\d+([CP])", str(x))[0] == "P" and re.findall("[A-Z]+\d+([CP])", str(y))[0] == "C" else 0)
 
   # item is [u'81.43', u'AAPL140725C00081430', u'13.17', u' 0.00', u'12.70', u'14.40', u'2', u'72']
   optionQuotes = []
