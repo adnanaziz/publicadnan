@@ -104,8 +104,11 @@ def contractAsJson(filename):
         # print "y = ", y
         optionsTable.append( [x.text for x in y.parent.contents] )
   #     for x in y.parent.contents:
-  
+ 
 
+  # bring calls together 
+  optionsTable.sort(lambda x, y: -1 if re.findall("[A-Z]+\d+([CP])", str(x))[0] == "C" and re.findall("[A-Z]+\d+([CP])", str(y))[0] == "P" \
+                            else 1 if re.findall("[A-Z]+\d+([CP])", str(x))[0] == "P" and re.findall("[A-Z]+\d+([CP])", str(y))[0] == "C" else 0)
 
   # item is [u'81.43', u'AAPL140725C00081430', u'13.17', u' 0.00', u'12.70', u'14.40', u'2', u'72']
   optionQuotes = []
@@ -129,7 +132,7 @@ def contractAsJson(filename):
       # print float(float(item[5]) - float(item[4]))/(float(item[5]) + float(item[4])), item[0], item [1], item[4], item[5]
 
   optionQuotes.sort(lambda x, y: 1 if (int(x["Open"].replace(",", "")) < int(y["Open"].replace(",", "" ))) \
-                            else -11 if (int(x["Open"].replace(",", "")) > int(y["Open"].replace(",", "" ))) else 0 )
+                            else -1 if (int(x["Open"].replace(",", "")) > int(y["Open"].replace(",", "" ))) else 0 )
   
   jsonQuoteData = json.dumps({"currPrice":currPrice, "dateUrls":dateUrls, "optionQuotes":optionQuotes}, sort_keys=True, indent=4, separators=(',', ': '))
   
