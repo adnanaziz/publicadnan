@@ -44,6 +44,7 @@ def contractAsJson(filename):
   #print optionsPageText
   
   from bs4 import BeautifulSoup
+  #print BeautifulSoup
   
   #soup = BeautifulSoup(optionsPage)
   soupText = BeautifulSoup(optionsPageText)
@@ -56,7 +57,7 @@ def contractAsJson(filename):
   #print "start dates"
   for kid in strike_dates:
     #print "kid:", kid
-    if re.search(r"m=", str(kid)):
+    if re.search(r"s=[A-Z]+&amp;m=", str(kid)):
       aDate = re.findall("[\"](.*)[\"]", str(kid))
       dateUrls.append("http://finance.yahoo.com" + aDate[0])
   #print "end dates"
@@ -98,6 +99,11 @@ def contractAsJson(filename):
         optionsTable.append( [x.text for x in y.parent.contents] )
   #     for x in y.parent.contents:
   #         print "x.text = ", x.text
+  for y in soupText.findAll( attrs={'class': "yfnc_tabledata1", 'nowrap': ''}):
+      if ( "nowrap" in str(y) ):
+        # print "y = ", y
+        optionsTable.append( [x.text for x in y.parent.contents] )
+  #     for x in y.parent.contents:
   
 
 
