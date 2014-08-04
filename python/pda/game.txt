@@ -1,0 +1,18 @@
+Use NumPy to efficiently solve the following problem. Do not use pure Python, instead mimic the approach 
+on Page TODO of the PDA text.
+
+You are playing the roulette wheel at the Mirage in Vegas. Your friend has rigged it so that the ball
+has a $\frac{19}{37}$ probability of landing in a red slot.  (Ordinarily, the odds are $\frac{18}{37}$.) 
+The payoff is twice your bet.
+
+You begin with $20. You can play only 100 times before the casino manager will catch on.
+Of course, you will bet on red, but the question is how much you should bet. If you bet
+the full amount, you have a $\frac{18}{37}$ of losing the very first time.
+
+Compute the average payoff when you play with a 1$, 2$, 3$, etc. bet each time. Compute the average
+by performing 10000 simulations. Remember, when you bust, you cannot continue. 
+
+The Mandelbrot set is the set of complex numbers c for which the sequence (c, c^2 + c, (C^2 + c)^2 + c, ... does not diverge.
+Use NumPy to compute the Mandelbrot set over real part in [-1.0, 2.0] and imaginary part in [-1.5, 1.5].
+Divide the region into a 1000x1000 grid, and perform 1000 iterations of the iteration for each point. Take
+points whose magnitude is less than 1.0 to be part of the set.
