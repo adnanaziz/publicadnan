@@ -1,8 +1,8 @@
 import json
-import yahoo_options_data
+import solution_yahoo_options_data
 
-computedJson = yahoo_options_data.contractAsJson("f.dat")
-expectedJson = open("f.json").read()
+computedJson = solution_yahoo_options_data.contractAsJson("aapl.dat")
+expectedJson = open("aapl.json").read()
 
 if json.loads(computedJson) != json.loads(expectedJson):
   print "Test failed!"
