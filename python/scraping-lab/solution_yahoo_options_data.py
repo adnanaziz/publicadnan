@@ -12,6 +12,9 @@ from urllib import urlopen
 #fhandle.write(s)
 #close(fhandle)
 
+# Extract the contract details from the "AAPL140905C00096000" field.
+# Does not assign the data correctly for mini options, i.e., adds
+# 7 in AAPL7140920C00095000 to the date
 def contract(item):
   item_string = str(item)
   contract_symbol = re.findall(r"([A-Z]+)\d.*[CP]", item_string)
