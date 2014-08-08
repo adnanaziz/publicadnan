@@ -1,17 +1,21 @@
 # use xlabel="Adnan" for adding external text
 digraph mygraph {
-    node [shape=record];
+    node [shape=none, label=""];
     edge [arrowhead=none,arrowtail=none]
-    a [shape=none, fontname="Arial", fontsize=8, image="adnan-icon-30.png"];
-    b [shape=none, fontname="Arial", fontsize=8,  image="adnan-icon-30.png"]; b [shape=none, fontname="Arial", fontsize=8,  image="adnan-icon-30.png"];
-    c [shape=none, fontname="Arial", fontsize=8,  image="adnan-icon-30.png"];
-    d [shape=none, fontname="Arial", fontsize=8,  image="adnan-icon-30.png"];
-    e [shape=none, fontname="Arial", fontsize=8,  image="adnan-icon-30.png"];
-    # f [shape=none, fontname="Arial", fontsize=8,  image="adnan-icon-30.png"];
-    a -> b [pos="0x0!", shape=none];
-    a -> c [shape=none];
-    a -> d [shape=none];
-    a -> e [shape=none];
-    b -> d [shape=none];
-    c -> e [shape=none];
+    a [pos="0x0!", shape=none, fontname="Arial", fontsize=8, xlabel="", image="adnan-icon-60.png"];
+    b [shape=none, fontname="Arial", label="", fontsize=8,  xlabel="", image="adnan-icon-30.png"]; 
+    c [shape=none, fontname="Arial", fontsize=8, xlabel="",  image="adnan-icon-30.png"];
+    d [shape=none, fontname="Arial", fontsize=8,  xlabel="", image="adnan-icon-30.png"];
+    e [shape=none, fontname="Arial", fontsize=8,   xlabel="", image="adnan-icon-30.png"];
+    f [shape=none, fontname="Arial", fontsize=8,   xlabel="", image="adnan-icon-30.png"];
+    g [shape=none, fontname="Arial", fontsize=8,   xlabel="", image="adnan-icon-30.png"];
+    a -> b [color=orange,shape=none];
+    a -> c [color=green,shape=none];
+    a -> d [color=blue,shape=none];
+    a -> e [color=green,shape=none];
+    b -> d [color=orange,shape=none];
+    c -> e [color=orange,shape=none];
+    f -> g [color=blue,shape=none];
+    a -> g [color=blue,shape=none];
+    c -> f [color=blue,shape=none];
 }
