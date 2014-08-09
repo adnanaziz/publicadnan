@@ -1,4 +1,5 @@
-dot -Kneato -v -Tpng graph.dot -o graph.png
+#dot test.dot -Tpng -o test.png -Tcmapx -o test.map
+dot -Tcmapx -ox.map -Tpng -ograph.png graph.dot
 #convert adnan-new-90.png -alpha set -gravity center -extent 120x120 \
 #          badge_mask.png -compose DstIn -composite \
 #          badge_shading.png -compose Over -composite \

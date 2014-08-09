@@ -2,8 +2,8 @@
 digraph mygraph {
     node [shape=none, label=""];
     edge [arrowhead=none,arrowtail=none]
-    a [pos="0x0!", shape=none, fontname="Arial", fontsize=8, xlabel="", image="adnan-icon-60.png"];
-    b [shape=none, fontname="Arial", label="", fontsize=8,  xlabel="", image="adnan-icon-30.png"]; 
+    a [URL="http://google.com", pos="0x0!", shape=none, fontname="Arial", fontsize=8, xlabel="", image="adnan-icon-60.png"];
+    b [URL="http://google.com", shape=none, fontname="Arial", label="", fontsize=8,  xlabel="", image="adnan-icon-30.png"]; 
     c [shape=none, fontname="Arial", fontsize=8, xlabel="",  image="adnan-icon-30.png"];
     d [shape=none, fontname="Arial", fontsize=8,  xlabel="", image="adnan-icon-30.png"];
     e [shape=none, fontname="Arial", fontsize=8,   xlabel="", image="adnan-icon-30.png"];
