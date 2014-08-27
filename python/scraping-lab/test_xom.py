@@ -1,10 +1,11 @@
 import json
-import solution_yahoo_options_data
+import yahoo_options_data
 
-computedJson = solution_yahoo_options_data.contractAsJson("xom.dat")
+computedJson = yahoo_options_data.contractAsJson("xom.dat")
 expectedJson = open("xom.json").read()
+expectedJson_changed = open("xom_changed.json").read()
 
-if json.loads(computedJson) != json.loads(expectedJson):
+if json.loads(computedJson) != json.loads(expectedJson) and json.loads(computedJson) != json.loads(expectedJson_changed):
   print "Test failed!"
   print "Expected output:", expectedJson
   print "Your output:", computedJson
