@@ -1,7 +1,7 @@
 import sys
 
 def largest(list):
-  max=sys.maxint # initialize max to the largest possible value
+  max=0# initialize max to 0
   for index in range(len(list)-1):
    if (list[index] > max):
      max = list[index]
