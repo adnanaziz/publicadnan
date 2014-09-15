@@ -1,21 +1,18 @@
 # use xlabel="Adnan" for adding external text
 digraph mygraph {
-    node [shape=none, label=""];
-    edge [arrowhead=none,arrowtail=none]
-    a [URL="http://google.com", pos="0x0!", shape=none, fontname="Arial", fontsize=8, xlabel="", image="adnan-icon-60.png"];
-    b [URL="http://google.com", shape=none, fontname="Arial", label="", fontsize=8,  xlabel="", image="adnan-icon-30.png"]; 
-    c [shape=none, fontname="Arial", fontsize=8, xlabel="",  image="adnan-icon-30.png"];
-    d [shape=none, fontname="Arial", fontsize=8,  xlabel="", image="adnan-icon-30.png"];
-    e [shape=none, fontname="Arial", fontsize=8,   xlabel="", image="adnan-icon-30.png"];
-    f [shape=none, fontname="Arial", fontsize=8,   xlabel="", image="adnan-icon-30.png"];
-    g [shape=none, fontname="Arial", fontsize=8,   xlabel="", image="adnan-icon-30.png"];
-    a -> b [color=orange,shape=none];
-    a -> c [color=green,shape=none];
-    a -> d [color=blue,shape=none];
-    a -> e [color=green,shape=none];
-    b -> d [color=orange,shape=none];
-    c -> e [color=orange,shape=none];
-    f -> g [color=blue,shape=none];
-    a -> g [color=blue,shape=none];
-    c -> f [color=blue,shape=none];
+    #node [margin=0, style=filled, color=yellow, shape=none, fillcolor=black]
+
+    node [shape=none, fillcolor=black]
+    edge [penwidth=1.5 arrowhead=none,arrowtail=none]
+
+    A [shape=none, image="images/32x32-A.png"];
+    B [shape=none, image="images/32x32-B.png"];
+    C [shape=none, image="images/32x32-C.png"];
+    D [shape=none, image="images/32x32-D.png"];
+    E [shape=none, image="images/32x32-E.png"];
+    A -> B [color=black,shape=none];
+    A -> C [color=black,shape=none];
+    B -> C [color=black,shape=none];
+    A -> D [color=black,shape=none];
+    A -> E [color=black,shape=none];
 }
