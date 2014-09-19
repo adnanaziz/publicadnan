@@ -1,8 +1,6 @@
-package com.epi;
-
 import java.util.LinkedList;
 
-public class RPN {
+public class RPNAddSub {
   // @include
   public static int eval(String RPNExpression) {
     LinkedList<Integer> intermediateResults = new LinkedList<>();

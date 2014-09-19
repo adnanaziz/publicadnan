@@ -1,5 +1,3 @@
-package com.epi;
-
 import java.util.LinkedList;
 
 public class RPN {
