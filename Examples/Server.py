@@ -1,7 +1,6 @@
 import SimpleHTTPServer
 import SocketServer
-import logging
-import cgi
+import json
 
 import sys
 
@@ -12,45 +11,50 @@ Content-Type: application/json
 Server: Custom Python Server
 Content-Length: '''
 
-
-if len(sys.argv) > 2:
-    PORT = int(sys.argv[2])
-    I = sys.argv[1]
-elif len(sys.argv) > 1:
+if len(sys.argv) > 1:
     PORT = int(sys.argv[1])
-    I = ""
 else:
     PORT = 8000
-    I = ""
 
+suggestions = []
+
+def loadSuggestions():
+    global suggestions
+    romeoAll = open("romeo-full.txt").read()
+    tmp1 = romeoAll.split(" ")
+    tmp2 = []
+    for t in tmp1:
+        if t.isalpha(): 
+            tmp2.append(t)
+    suggestions = list(set(tmp2))
+    suggestions.sort()
+    print suggestions
+
+def suggest(s):
+    result = []
+    for x in suggestions:
+        if (x.startswith(s)):
+            result.append(x)
+    return result
 
 class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
     def do_GET(self):
-        logging.warning("======= GET STARTED =======")
-        logging.warning(self.headers)
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 
     def do_POST(self):
-        logging.warning("======= POST STARTED =======")
-        logging.warning(self.headers)
-        logging.warning(self.rfile)
-        print self.headers.getheader('content-length')
-        s =  self.rfile.read(int(self.headers.getheader('content-length')))
-        print "s = " + s
-        import json
-        H = json.loads(s)
-        for key in H:
-            print "key = " + key
+        contentLength = int(self.headers.getheader('content-length'))
+        s =  self.rfile.read(contentLength)
+        S = json.loads(s)
+        R = suggest(S['prefix'])
+        r = json.dumps({"result": R})
 
-        # self.wfile.write(HEADER + str(len(s)) + "\n" + s)
-        print HEADER + str(len(s)) + "\r\n\r\n" + s
-        self.wfile.write(HEADER + str(len(s)) + "\n\n" + s)
+        self.wfile.write(HEADER + str(len(r)) + "\n\n" + r)
 
+loadSuggestions()
 Handler = ServerHandler
 
 httpd = SocketServer.TCPServer(("", PORT), Handler)
 
-print "@rochacbruno Python http server version 0.1 (for testing purposes only)"
-print "Serving at: http://%(interface)s:%(port)s" % dict(interface=I or "localhost", port=PORT)
+print "Serving at: http://localhost:%s" % (PORT,)
 httpd.serve_forever()
