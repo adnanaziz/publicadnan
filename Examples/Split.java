@@ -1,3 +1,4 @@
+import com.google.common.base.Strings;
 import com.google.common.base.Splitter;
 import com.google.common.base.Joiner;
 import com.google.common.base.Function;
@@ -35,7 +36,10 @@ public class Split {
           // Anonymous class in place of F above, does the same thing
           new Function<String,String>() { 
             public String apply(String x) { 
-              return x.equals("") ? null : x; 
+              // originally:
+              // return x.equals("") ? null : x; 
+              // better approach, courtesy zirui wang
+              return Strings.emptyToNull(x); 
             } 
           } ), 
         String.class );
