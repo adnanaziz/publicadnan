@@ -30,17 +30,15 @@ for (var i = 0; i < N; i++) {
 console.log("start async + anonymous function code" + new Date());
 final_result = 0;
 async.waterfall([
-    function(callback) {
+    function(outer_callback) {
         for (var i = 0; i < N; i++) {
-            async.waterfall([
-                function(callback) {
-                    for (var j = 0; j < N; j++) {
-                        final_result = (final_result + j + K) % N;
-                    }
+            (function() {
+                for (var j = 0; j < N; j++) {
+                    final_result = (final_result + j + K) % N;
                 }
-            ]);
+            })();
         }
-        callback("done" + new Date());
+        outer_callback("done" + new Date());
     }
     //TODO: get this call right, it's being called early
 ], console.log);

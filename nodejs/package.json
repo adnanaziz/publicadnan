@@ -1,0 +1,12 @@
+{
+  "name": "node_experiments",
+  "description": "A package with illustrative node examples",
+  "author": "Adnan Aziz <adnan.aziz@gmail.com>",
+  "dependencies": {
+    "express": "^4.9.7",
+    "async": "*"
+  },
+  "devDependencies": {
+  },
+  "engine": "node >= 0.10.26"
+}
