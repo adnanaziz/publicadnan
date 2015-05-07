@@ -1,7 +1,25 @@
-var express = require('express'); var app = express();
+var express = require('express'); 
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var flash = require('connect-flash');
+
+var app = express();
+ 
+app.use(cookieParser('secret'));
+app.use(session({cookie: { maxAge: 60000 }}));
+app.use(flash());
 
 app.get('/', function(req, res) {
     res.send('Hello World, redux!');
+});
+
+app.get('/uglyurl', function(req, res) {
+    req.flash("aField", "it worked!");
+    res.redirect('/niceurl');
+});
+
+app.get('/niceurl', function(req, res) {
+    res.send('Hello World, from niceurl!' + JSON.stringify(req.flash("aField")));
 });
 
 // nice way to debug routes:
