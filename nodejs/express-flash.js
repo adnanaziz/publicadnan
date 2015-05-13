@@ -14,6 +14,8 @@ app.all('/', function(req, res){
 });
  
 app.all('/test', function(req, res){
+  console.log("call to flash returns:" + req.flash('test'));
+  console.log("second call to flash returns:" + req.flash('test'));
   res.send(JSON.stringify(req.flash('test')));
 });
  

@@ -32,6 +32,8 @@ final_result = 0;
 async.waterfall([
     function(outer_callback) {
         for (var i = 0; i < N; i++) {
+            // create and call a function in one swoop, e.g., like
+            // (function (msg){console.log(msg)})('call anonymous function');
             (function() {
                 for (var j = 0; j < N; j++) {
                     final_result = (final_result + j + K) % N;
