@@ -3,9 +3,10 @@
   "description": "A package with illustrative node examples",
   "author": "Adnan Aziz <adnan.aziz@gmail.com>",
   "dependencies": {
-    "express": "^4.0.0",
     "async": "*",
     "slug": "*",
+    "body-parser": "*",
+    "express": "^4.0.0",
     "express-session": "^1.0.2",
     "cookie-parser": "^1.0.1",
     "connect-flash": "^0.1.1",

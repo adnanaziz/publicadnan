@@ -1,12 +1,25 @@
 var express = require('express');
 var app = express();
 
-// serve up static content from the public directory. use for e.g.,
-// images, html.
+var PORT_NUMBER = 3000;
+
+// Tell server to serve up static content from the directory ./public. 
+// use for images, html, css, javascript, etc.
 app.use(express.static('public'));
 
+// To process POST data, we need a body-parser
+
+// https://www.npmjs.com/package/body-parser
+var bodyParser = require('body-parser');
+
+// tell server to use bodyParser to parse application/json
+app.use(bodyParser.json())
+
 app.get('/', function(req, res) {
-    res.send('<h1>Hello World!</h1>Poor man\'s HTML.');
+    res.send('<h1>Hello World!</h1>Poor man\'s HTML. <p> An image served from local directory.<p> <img src="f1.png" alt="f1"></img>' +
+               '<p> An image with absolute URL path.<p>' +
+               '<img src="http://localhost:' + PORT_NUMBER + '/' + 'f2.png" alt="f2"></img>'
+               );
 });
 
 app.get('/api/ping', function(req, res) {
@@ -51,7 +64,7 @@ app.get('/api/place/:anId(\\d+)', function(req, res) {
 
 var loremIpsum = require('lorem-ipsum');
 
-var makePost = function(length) {
+var makePost = function(length, dictionary) {
     var title = loremIpsum();
     var args = {
         count: length, // Number of words, sentences, or paragraphs to generate.
@@ -64,6 +77,9 @@ var makePost = function(length) {
         // words: ['ad', 'dolor', ...], // Custom word dictionary. Uses dictionary.words (in lib/dictionary.js) by default.
         random: Math.random // A PRNG function. Uses Math.random by default
     };
+    if (dictionary !== undefined) {
+        args.words = dictionary;
+    }
 
     var body = loremIpsum(args);
     return ({
@@ -73,24 +89,19 @@ var makePost = function(length) {
 };
 
 var loremRoute = '/api/lorem/:textLength(\\d+)';
+// shows how we access JSON object sent to server.
+// req.body contains the JSON object.
+// body-parser needs to be enabled, see earlier remarks about it.
 app.post(loremRoute, function(req, res) {
 
-    // To process POST data, we need a body-parser
-    // https://www.npmjs.com/package/body-parser
-    // Code looks like this
-    // // parse application/x-www-form-urlencoded 
-    // app.use(bodyParser.urlencoded({ extended: false }))
-    // parse application/json 
-    // app.use(bodyParser.json())
-    // 
-    // Then req.body will hold json of incoming POST request
-    var aPost = makePost(req.params.textLength);
+    var aPost = makePost(req.params.textLength, req.body.dictionary);
     res.json({
         post: aPost
     });
 });
 
-var server = app.listen(3000, function() {
+
+var server = app.listen(PORT_NUMBER, function() {
 
     var host = server.address().address;
     var port = server.address().port;
