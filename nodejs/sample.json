@@ -1,0 +1,8 @@
+{
+    "name":"Adnan Aziz",
+    "degree":"PhD",
+    "year":1996,
+    "students":[
+        {"name":"Tai Liu", "year":1998}, {"name":"Imin Liu", "year":2000}
+    ]
+}
