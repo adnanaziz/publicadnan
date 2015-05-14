@@ -1,6 +1,10 @@
 var express = require('express');
 var app = express();
 
+// serve up static content from the public directory. use for e.g.,
+// images, html.
+app.use(express.static('public'));
+
 app.get('/', function(req, res) {
     res.send('<h1>Hello World!</h1>Poor man\'s HTML.');
 });
