@@ -49,7 +49,7 @@ var loremIpsum = require('lorem-ipsum');
 
 var makePost = function(length) {
     var title = loremIpsum();
-    var body = loremIpsum({
+    var args = {
         count: length, // Number of words, sentences, or paragraphs to generate.
         units: 'paragraphs', // Generate words, sentences, or paragraphs.
         sentenceLowerBound: 5, // Minimum words per sentence.
@@ -59,7 +59,9 @@ var makePost = function(length) {
         format: 'plain', // Plain text or html
         // words: ['ad', 'dolor', ...], // Custom word dictionary. Uses dictionary.words (in lib/dictionary.js) by default.
         random: Math.random // A PRNG function. Uses Math.random by default
-    });
+    };
+
+    var body = loremIpsum(args);
     return ({
         postTitle: title,
         postBody: body
@@ -68,6 +70,16 @@ var makePost = function(length) {
 
 var loremRoute = '/api/lorem/:textLength(\\d+)';
 app.post(loremRoute, function(req, res) {
+
+    // To process POST data, we need a body-parser
+    // https://www.npmjs.com/package/body-parser
+    // Code looks like this
+    // // parse application/x-www-form-urlencoded 
+    // app.use(bodyParser.urlencoded({ extended: false }))
+    // parse application/json 
+    // app.use(bodyParser.json())
+    // 
+    // Then req.body will hold json of incoming POST request
     var aPost = makePost(req.params.textLength);
     res.json({
         post: aPost
