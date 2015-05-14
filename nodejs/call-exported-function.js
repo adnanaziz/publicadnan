@@ -29,4 +29,4 @@
         return "wierd return string";
     };
     exps.wierdExport = wierdExport;
-})(module.exports);
+})(typeof window === 'undefined' ? module.exports : window);

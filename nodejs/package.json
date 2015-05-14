@@ -8,7 +8,9 @@
     "slug": "*",
     "express-session": "^1.0.2",
     "cookie-parser": "^1.0.1",
-    "connect-flash": "^0.1.1"
+    "connect-flash": "^0.1.1",
+    "lorem-ipsum": "*",
+    "mongoose": "*"
   },
   "devDependencies": {
   },

@@ -45,6 +45,35 @@ app.get('/api/place/:anId(\\d+)', function(req, res) {
     });
 });
 
+var loremIpsum = require('lorem-ipsum');
+
+var makePost = function(length) {
+    var title = loremIpsum();
+    var body = loremIpsum({
+        count: length, // Number of words, sentences, or paragraphs to generate.
+        units: 'paragraphs', // Generate words, sentences, or paragraphs.
+        sentenceLowerBound: 5, // Minimum words per sentence.
+        sentenceUpperBound: 15, // Maximum words per sentence.
+        paragraphLowerBound: 3, // Minimum sentences per paragraph.
+        paragraphUpperBound: 7, // Maximum sentences per paragraph.
+        format: 'plain', // Plain text or html
+        // words: ['ad', 'dolor', ...], // Custom word dictionary. Uses dictionary.words (in lib/dictionary.js) by default.
+        random: Math.random // A PRNG function. Uses Math.random by default
+    });
+    return ({
+        postTitle: title,
+        postBody: body
+    });
+};
+
+var loremRoute = '/api/lorem/:textLength(\\d+)';
+app.post(loremRoute, function(req, res) {
+    var aPost = makePost(req.params.textLength);
+    res.json({
+        post: aPost
+    });
+});
+
 var server = app.listen(3000, function() {
 
     var host = server.address().address;
