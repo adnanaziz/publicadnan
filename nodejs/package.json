@@ -11,7 +11,20 @@
     "cookie-parser": "^1.0.1",
     "connect-flash": "^0.1.1",
     "lorem-ipsum": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "passport": "*",
+    "passport-facebook": "*",
+    "mongoose-findorcreate": "*",
+    "bcrypt-nodejs": "*",
+    "crypto": "*",
+    "compression": "*",
+    "express-validator": "*",
+    "connect-assets": "*",
+    "multer": "*",
+    "method-override": "*",
+    "connect-mongo": "*",
+    "flash": "*",
+    "lusca": "*"
   },
   "devDependencies": {
   },

@@ -1,17 +1,31 @@
-var express = require('express'); 
+var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
 
 var app = express();
- 
+
 app.use(cookieParser('secret'));
-app.use(session({cookie: { maxAge: 60000 }}));
+app.use(session({
+    cookie: {
+        maxAge: 60000
+    }
+}));
 app.use(flash());
 
 app.get('/', function(req, res) {
     res.send('Hello World, redux!');
 });
+
+app.get('/t1', function(req, res, next) {
+        console.log("entered t1 route");
+        next();
+    },
+    function(req, res) {
+        res.json({
+            result: "it worked"
+        });
+    });
 
 app.get('/uglyurl', function(req, res) {
     req.flash("aField", "it worked!");
