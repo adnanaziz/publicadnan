@@ -119,16 +119,67 @@ var User = require('./User');
  * Login Required middleware.
  */
 exports.isAuthenticated = function(req, res, next) {
-    if (req.body !== undefined) {
+    console.log("in isAuthenticated()");
+
+    if (req.body !== undefined && (req.body.FBAppScopeId !== undefined && (req.body.loginCookie !== undefined || req.body.adminPassword !== undefined))) {
+        // it's an ios call
         console.log("isAuthenticated, body = " + JSON.stringify(req.body, null, 4));
         if (req.body.adminPassword !== undefined && req.body.adminPassword == "bathtub") {
             console.log("admin login");
             return next();
+        } else {
+            async.waterfall(
+                [function(cb1) {
+                        if (req.body !== undefined) {
+                            console.log("isAuthenticated, body = " + JSON.stringify(req.body, null, 4));
+                            if (req.body.adminPassword !== undefined && req.body.adminPassword == "bathtub") {
+                                console.log("admin login");
+                                return next();
+                            }
+                            cb1();
+                        }
+                    },
+                    function(cb2) {
+                        User.findOne({
+                                facebook: req.body.FBAppScopeId
+                            },
+                            function(err, user) {
+                                if (err) {
+                                    cb2(err);
+                                    return;
+                                }
+                                if (user === null) {
+                                    cb2("no user with given FBAppScopeId " + FBAppScopeId);
+                                    return;
+                                }
+                                if (user.loginCookie !== req.body.loginCookie) {
+                                    cb2("bad login credentials");
+                                    return;
+                                }
+                                // all checks pass
+                                cb2(null);
+                            });
+                    }
+                ],
+                function(err) {
+                    if (err) {
+                        res.json({
+                            code: 500,
+                            msg: err
+                        });
+                        return;
+                    }
+                    return next();
+                }
+            );
         }
+    } else {
+        // not an api request, coming from a browser, so let passport handle it
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/login.html');
     }
-    console.log("in isAuthenticated()");
-    if (req.isAuthenticated()) return next();
-    res.redirect('/login.html');
 };
 
 /**
@@ -141,8 +192,8 @@ exports.isAuthorized = function(req, res, next) {
     console.log("isAuthorized, provider = " + provider);
 
     if (_.find(req.user.tokens, {
-        kind: provider
-    })) {
+            kind: provider
+        })) {
         next();
     } else {
         res.redirect('/auth/' + provider);
@@ -268,7 +319,9 @@ app.get('/logout', exports.isAuthenticated, function(req, res) {
     res.redirect('logout.html');
 });
 
-var updateFbUser = function(res, err, facebookuser) {
+// err implies user did not have right accessToken
+var updateFbUser = function(res, err, existingFbUser, facebookuser) {
+    console.log("updateFbUser: " + existingFbUser + " " + err + " " + facebookuser);
     if (err) {
         res.json({
             code: 500,
@@ -276,22 +329,40 @@ var updateFbUser = function(res, err, facebookuser) {
         });
         return;
     }
-    var user = new User({
-        facebook: facebookuser.FBAppScopeId,
-        profile: {
-            picture: facebookuser.pictureUrl
-        }
-    });
+    var user;
+    // if we're here, he had a valid auth token/FBAppScopeId
+    // TODO: use crypto to create right cookie
+    var loginCookie = "cookie_" + facebookuser.FBAppScopeId;
+    if (existingFbUser !== null) {
+        // update the user
+        user = existingFbUser;
+        user.email = facebookuser.email;
+        user.profile = {
+            picture: facebookuser.pictureUrl,
+            name: facebookuser.name
+        };
+        user.loginCookie = loginCookie;
+    } else {
+        user = new User({
+            facebook: facebookuser.id,
+            email: facebookuser.email,
+            profile: {
+                picture: facebookuser.pictureUrl,
+                name: facebookuser.name,
+            }
+        });
+        user.loginCookie = loginCookie;
+    }
 
     user.save(function(err, storeduser) {
         if (err) {
+            console.log("updateFbUserRes err:" + err);
             res.json({
                 code: 500,
                 msg: err
             });
             return;
         }
-        var loginCookie = "cookie_" + facebookuser.FBAppScopeId;
         res.json({
             code: 200,
             loginCookie: loginCookie
@@ -310,12 +381,13 @@ var options = {
 };
 
 
-var getUserData = function(accessToken, updateFbUserRes) {
+var getUserData = function(accessToken, existingUser, updateFbUserRes) {
+    // idea: err automatically acts as an invalid login. we dont care
+    /// about the login cookie now, since accessToken trumps that
     async.waterfall(
         [
-
             function(cb1) {
-                var url = "me" + "?fields=name&access_token=" + accessToken;
+                var url = "me" + "?fields=name,email&access_token=" + accessToken;
                 graph.setOptions(options)
                     .get(url, cb1);
             },
@@ -329,9 +401,11 @@ var getUserData = function(accessToken, updateFbUserRes) {
                     }
                     var facebookuser = {
                         name: fbuser.name,
+                        email: fbuser.email,
+                        id: fbuser.id,
                         pictureUrl: profilepic.location
                     }
-                    cb2(null, facebookuser);
+                    cb2(null, existingUser, facebookuser);
                 });
             }
         ],
@@ -340,7 +414,50 @@ var getUserData = function(accessToken, updateFbUserRes) {
 
 };
 
-var createUser = function(req, res) {
+var logoutUser = function(req, res) {
+    console.log("logoutUser: 1");
+    var request = req.body;
+    if (request.FBAppScopeId === undefined) {
+        res.json({
+            code: 500,
+            msg: "no FBAppScopeId " + FBAppScopeId
+        });
+        return;
+    }
+    console.log("logoutUser: 2");
+    User.findOne({
+            facebook: request.FBAppScopeId
+        },
+        function(err, user) {
+            if (err) {
+                res.json({
+                    code: 500,
+                    msg: "logout user lookup error " + FBAppScopeId
+                });
+                return;
+            }
+            console.log("logoutUser, user = " + user);
+            user.loginCookie = "loggedOut";
+            user.save(function(err, saveduser) {
+                if (err) {
+                    res.json({
+                        code: 500,
+                        msg: "logout save error " + err
+                    });
+                    return
+                }
+                console.log("logoutUser, save, succ = " + user);
+                res.json({
+                    code: 200,
+                    msg: "succ logout"
+                });
+            });
+        }
+    );
+};
+
+
+var createOrUpdateUser = function(req, res) {
     var request = req.body;
     if (request.FBAppScopeId === undefined) {
         res.json({
@@ -352,6 +469,8 @@ var createUser = function(req, res) {
     User.findOne({
             facebook: request.FBAppScopeId
         },
+        // user may be null if non matched. this could happen on a new user using
+        // the app for the first time.
         function(err, user) {
             if (err) {
                 res.json({
@@ -360,9 +479,11 @@ var createUser = function(req, res) {
                 });
                 return;
             }
-            getUserData(request.accessToken, async.apply(updateFbUser, res));
+            getUserData(request.accessToken, user, async.apply(updateFbUser, res));
         }
     );
 };
 
-app.post('/api/createOrUpdateFBUser', createUser);
+// for ios requests.
+app.post('/api/createOrUpdateFBUser', createOrUpdateUser);
+app.post('/api/logoutUser', exports.isAuthenticated, logoutUser);
