@@ -24,7 +24,8 @@
     "method-override": "*",
     "connect-mongo": "*",
     "flash": "*",
-    "lusca": "*"
+    "lusca": "*",
+    "mongoose-auto-increment": "*"
   },
   "devDependencies": {
   },

@@ -32,6 +32,17 @@ app.get('/uglyurl', function(req, res) {
     res.redirect('/niceurl');
 });
 
+var loopBack = function(req, res) {
+    console.log("req.params = ", req.params);
+    res.json(req.params);
+    
+};
+
+app.get('/api/getImage/:hashId([0-9]+)', loopBack );
+app.get('/api/getImage/:hashId([0-9]+)/:size([0-9]+)', loopBack );
+app.get('/api/getImage/:hashId([0-9]+)/:size([0-9]+)/:type', loopBack );
+
+
 app.get('/niceurl', function(req, res) {
     res.send('Hello World, from niceurl!' + JSON.stringify(req.flash("aField")));
 });
@@ -64,7 +75,7 @@ app.get('/:type(old|NEWER)/:id', function(req, res) {
     res.send('2: type, id, req.params' + req.params.type + req.params.id + JSON.stringify(req.params, null, 4));
 });
 
-var server = app.listen(3000, function() {
+var server = app.listen(4000, function() {
 
     var host = server.address().address;
     var port = server.address().port;

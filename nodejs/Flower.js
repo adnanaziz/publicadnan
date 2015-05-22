@@ -9,8 +9,8 @@ var FlowerSchema = new mongoose.Schema({
         type: String
     },
 
-    identifier: {
-        type: Number
+    missing: {
+        type: String
     }
 
 });
