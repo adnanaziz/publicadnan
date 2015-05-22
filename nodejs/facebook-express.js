@@ -1,3 +1,5 @@
+var async = require('async');
+var graph = require('fbgraph');
 var fbAppId = process.env.FB_APP_ID;
 var fbAppSecret = process.env.FB_APP_SECRET;
 var secrets = {
@@ -123,7 +125,7 @@ exports.isAuthenticated = function(req, res, next) {
             console.log("admin login");
             return next();
         }
-    } 
+    }
     console.log("in isAuthenticated()");
     if (req.isAuthenticated()) return next();
     res.redirect('/login.html');
@@ -139,8 +141,8 @@ exports.isAuthorized = function(req, res, next) {
     console.log("isAuthorized, provider = " + provider);
 
     if (_.find(req.user.tokens, {
-            kind: provider
-        })) {
+        kind: provider
+    })) {
         next();
     } else {
         res.redirect('/auth/' + provider);
@@ -177,8 +179,8 @@ passport.use(new FacebookStrategy(secrets.facebook, function(req, accessToken, r
                     });
                     user.profile.name = user.profile.name || profile.displayName;
                     user.profile.gender = user.profile.gender || profile._json.gender;
-                    user.profile.picture = 
-                        user.profile.picture || 
+                    user.profile.picture =
+                        user.profile.picture ||
                         'https://graph.facebook.com/' + profile.id + '/picture?type=large';
                     user.save(function(err) {
                         req.flash('info', {
@@ -205,8 +207,8 @@ passport.use(new FacebookStrategy(secrets.facebook, function(req, accessToken, r
                 if (existingEmailUser) {
                     req.flash('errors', {
                         msg: 'There is already an account using this email address.' +
-                        'Sign in to that account and link it with Facebook manually ' +
-                        'from Account Settings.'
+                            'Sign in to that account and link it with Facebook manually ' +
+                            'from Account Settings.'
                     });
                     done(err);
                 } else {
@@ -220,9 +222,9 @@ passport.use(new FacebookStrategy(secrets.facebook, function(req, accessToken, r
                     });
                     user.profile.name = profile.displayName;
                     user.profile.gender = profile._json.gender;
-                    user.profile.picture = 
+                    user.profile.picture =
                         'https://graph.facebook.com/' + profile.id + '/picture?type=large';
-                    user.profile.location = 
+                    user.profile.location =
                         (profile._json.location) ? profile._json.location.name : '';
                     user.save(function(err) {
                         done(err, user);
@@ -265,3 +267,102 @@ app.get('/logout', exports.isAuthenticated, function(req, res) {
     req.logout();
     res.redirect('logout.html');
 });
+
+var updateFbUser = function(res, err, facebookuser) {
+    if (err) {
+        res.json({
+            code: 500,
+            msg: err
+        });
+        return;
+    }
+    var user = new User({
+        facebook: facebookuser.FBAppScopeId,
+        profile: {
+            picture: facebookuser.pictureUrl
+        }
+    });
+
+    user.save(function(err, storeduser) {
+        if (err) {
+            res.json({
+                code: 500,
+                msg: err
+            });
+            return;
+        }
+        var loginCookie = "cookie_" + facebookuser.FBAppScopeId;
+        res.json({
+            code: 200,
+            loginCookie: loginCookie
+        });
+    });
+};
+
+var options = {
+    timeout: 3000,
+    pool: {
+        maxSockets: Infinity
+    },
+    headers: {
+        connection: 'keep-alive'
+    }
+};
+
+
+var getUserData = function(accessToken, updateFbUserRes) {
+    async.waterfall(
+        [
+
+            function(cb1) {
+                var url = "me" + "?fields=name&access_token=" + accessToken;
+                graph.setOptions(options)
+                    .get(url, cb1);
+            },
+            function(fbuser, cb2) {
+                console.log("2." + JSON.stringify(fbuser, null, 4));
+                var url = "/picture?width=160&height=160&access_token=" + accessToken;
+                graph.get(url, function(err, profilepic) {
+                    if (err) {
+                        cb2(err);
+                        return;
+                    }
+                    var facebookuser = {
+                        name: fbuser.name,
+                        pictureUrl: profilepic.location
+                    }
+                    cb2(null, facebookuser);
+                });
+            }
+        ],
+        updateFbUserRes
+    );
+
+};
+
+var createUser = function(req, res) {
+    var request = req.body;
+    if (request.FBAppScopeId === undefined) {
+        res.json({
+            code: 500,
+            msg: "no FBAppScopeId " + FBAppScopeId
+        });
+        return;
+    }
+    User.findOne({
+            facebook: request.FBAppScopeId
+        },
+        function(err, user) {
+            if (err) {
+                res.json({
+                    code: 500,
+                    msg: "user lookup error " + FBAppScopeId
+                });
+                return;
+            }
+            getUserData(request.accessToken, async.apply(updateFbUser, res));
+        }
+    );
+};
+
+app.post('/api/createOrUpdateFBUser', createUser);

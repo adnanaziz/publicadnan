@@ -25,7 +25,8 @@
     "connect-mongo": "*",
     "flash": "*",
     "lusca": "*",
-    "mongoose-auto-increment": "*"
+    "mongoose-auto-increment": "*",
+    "fbgraph": "*"
   },
   "devDependencies": {
   },
