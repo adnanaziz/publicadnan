@@ -25,6 +25,8 @@
     "connect-mongo": "*",
     "flash": "*",
     "lusca": "*",
+    "winston": "*",
+    "cli-color": "*",
     "mongoose-auto-increment": "*",
     "fbgraph": "*"
   },
