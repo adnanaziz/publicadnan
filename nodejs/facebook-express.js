@@ -97,10 +97,14 @@ app.use(lusca({
     xframe: 'SAMEORIGIN',
     xssProtection: true
 }));
+
+// is this used?
 app.use(function(req, res, next) {
     res.locals.user = req.user;
     next();
 });
+
+// different match? anything that's api/browser or not starting with api?
 app.use(function(req, res, next) {
     if (/api/i.test(req.path)) req.session.returnTo = req.path;
     next();
@@ -150,56 +154,73 @@ var User = require('./User');
  * Login Required middleware.
  */
 // to auth package, exported
-exports.isCustomAuthenticated = function(req, res, next) {
-    winston.info("in isAuthenticated()");
 
-    if (req.body !== undefined && (req.body.FBAppScopeId !== undefined && (req.body.loginCookie !== undefined || req.body.adminPassword !== undefined))) {
-        // it's an ios call
-        if (req.body.adminPassword !== undefined && req.body.adminPassword == "bathtub") {
-            winston.info("admin login");
+var checkAuthFields = function(req) {
+    if (req.body !== undefined && (req.body.FBAppScopeId !== undefined &&
+        (req.body.loginCookie !== undefined || req.body.adminPassword !== undefined))) {
+        return true;
+    }
+    return false;
+};
+
+exports.isCustomAuthenticated = function(req, res, next) {
+    if (!checkAuthFields(req)) {
+        res.json({
+            code: 500,
+            msg: "auth fields missing"
+        });
+        return;
+    }
+
+    if (req.body.adminPassword !== undefined) {
+        if (req.body.adminPassword == "bathtub") {
             return next();
         } else {
-            winston.info("isAuthenticated, waterfall; body = " + JSON.stringify(req.body, null, 4));
-            async.waterfall(
-                [
-
-                    function(cb2) {
-                        User.findOne({
-                                facebook: req.body.FBAppScopeId
-                            },
-                            function(err, user) {
-                                if (err) {
-                                    cb2(err);
-                                    return;
-                                }
-                                if (user === null) {
-                                    cb2("no user with given FBAppScopeId " + FBAppScopeId);
-                                    return;
-                                }
-                                if (user.loginCookie !== req.body.loginCookie) {
-                                    cb2("bad login credentials");
-                                    return;
-                                }
-                                // all checks pass
-                                req.user = user; // trying to mimic passport
-                                cb2(null);
-                            });
-                    }
-                ],
-                function(err) {
-                    winston.info("in final callback, err = ", err);
-                    if (err) {
-                        res.json({
-                            code: 500,
-                            msg: err
-                        });
-                        return;
-                    }
-                    return next();
-                }
-            );
+            res.json({
+                code: 500,
+                msg: "admin login with incorrect admin password"
+            });
+            return;
         }
     }
+
+    async.waterfall(
+        [
+
+            function(cb2) {
+                User.findOne({
+                        facebook: req.body.FBAppScopeId
+                    },
+                    function(err, user) {
+                        if (err) {
+                            cb2(err);
+                            return;
+                        }
+                        if (user === null) {
+                            cb2("no user with given FBAppScopeId " + FBAppScopeId);
+                            return;
+                        }
+                        if (user.loginCookie !== req.body.loginCookie) {
+                            cb2("bad login credentials");
+                            return;
+                        }
+                        // all checks pass
+                        req.user = user; // trying to mimic passport
+                        cb2(null);
+                    });
+            }
+        ],
+        function(err) {
+            if (err) {
+                res.json({
+                    code: 500,
+                    msg: err
+                });
+                return;
+            }
+            return next();
+        }
+    );
 };
 
 // to auth package, exported
@@ -348,41 +369,46 @@ app.get('/logout', exports.isPassportAuthenticated, function(req, res) {
 
 // err implies user did not have right accessToken
 // to auth package
-var updateFbUser = function(existingFbUser, facebookuser, callback) {
+var updateFbUserFieldsAndCookie = function(existingFbUser, facebookuser, callback) {
     var user;
     // if we're here, he had a valid auth token/FBAppScopeId
     // TODO: use crypto to create right cookie
+    // use this approach:
+    /*
+function encrypt(text){
+  var cipher = crypto.createCipher(algorithm,password)
+  var crypted = cipher.update(text,'utf8','hex')
+  crypted += cipher.final('hex');
+  return crypted;
+}
+*/
+
     var loginCookie = "cookie_" + facebookuser.FBAppScopeId;
-    if (existingFbUser !== null) {
-        // update the user
-        //TODO: dups code in next block, use iter over facebookuser
-        user = existingFbUser;
-        user.email = facebookuser.email;
-        user.profile = {
-            picture: facebookuser.pictureUrl,
-            name: facebookuser.name
-        };
-        user.loginCookie = loginCookie;
-    } else {
+    if (existingFbUser === null) {
         user = new User({
             facebook: facebookuser.id,
             email: facebookuser.email,
             profile: {
                 picture: facebookuser.pictureUrl,
                 name: facebookuser.name,
+                gender: facebookuser.gender
             }
         });
-        user.loginCookie = loginCookie;
+        winston.info("adding new user = ", JSON.stringify(user, null, 4));
+    } else {
+        // update the user
+        user = existingFbUser;
+        user.email = facebookuser.email;
+        user.profile = {
+            picture: facebookuser.pictureUrl,
+            name: facebookuser.name,
+            gender: facebookuser.gender
+        };
     }
-
-    user.save(function(err, storeduser) {
-        if (err) {
-            winston.info("updateFbUserRes err:" + err);
-            return callback(err);
-        }
-        callback(null, loginCookie);
-    });
+    user.loginCookie = loginCookie;
+    user.save(callback);
 };
+
 
 // to auth package
 var options = {
@@ -399,13 +425,12 @@ var options = {
 var getUserData = function(accessToken, existingUser, callback) {
     // idea: err automatically acts as an invalid login. we dont care
     /// about the login cookie now, since accessToken trumps that
-    winston.info("accessToken =", accessToken);
-    winston.info("existingUser =", JSON.stringify(existingUser, null, 4));
     async.waterfall(
         [
 
             function(cb1) {
                 // TODO: why are website, location not coming? gender comes for doroty but not for adnan?
+                // note: now gender comes for both adnan and dorothy, updated in graph explorer (got new access token from explorer)
                 var url = "me" + "?fields=name,email,website,location,gender&access_token=" + accessToken;
                 graph.setOptions(options)
                     .get(url, cb1);
@@ -415,22 +440,9 @@ var getUserData = function(accessToken, existingUser, callback) {
                 var url = "/picture?width=160&height=160&access_token=" + accessToken;
                 graph.get(url, function(err, profilepic) {
                     if (err) {
-                        cb2(err);
+                        callback(err);
                         return;
                     }
-                    winston.warn("fbuser = ", fbuser);
-                    //TODO: can we just clone?
-                    var facebookuser = {
-                        name: fbuser.name,
-                        email: fbuser.email,
-                        location: fbuser.location,
-                        gender: fbuser.gender,
-                        website: fbuser.website,
-                        id: fbuser.id,
-                        pictureUrl: profilepic.location
-                    }
-                    winston.warn("callback with existingUser, facebookuser:", JSON.stringify(existingUser), JSON.stringify(facebookuser));
-
                     callback(null, existingUser, facebookuser);
                 });
             }
@@ -441,7 +453,6 @@ var getUserData = function(accessToken, existingUser, callback) {
 
 // to auth package
 var logoutUser = function(req, res) {
-    winston.info("logoutUser: 1");
     var request = req.body;
     if (request.FBAppScopeId === undefined) {
         // use server response call
@@ -457,14 +468,12 @@ var logoutUser = function(req, res) {
         },
         function(err, user) {
             if (err) {
-                // use server response call
                 res.json({
                     code: 500,
                     msg: "logout user lookup error " + FBAppScopeId
                 });
                 return;
             }
-            winston.info("logoutUser, user = " + user);
             user.loginCookie = "loggedOut";
             user.save(function(err, saveduser) {
                 // use server response call
@@ -475,7 +484,6 @@ var logoutUser = function(req, res) {
                     });
                     return
                 }
-                winston.info("logoutUser, save, succ = " + user);
                 // use server response call
                 res.json({
                     code: 200,
@@ -512,9 +520,9 @@ var createOrUpdateUser = function(req, res) {
             async.waterfall(
                 [
                     async.apply(getUserData, request.accessToken, user),
-                    updateFbUser
+                    updateFbUserFieldsAndCookie
                 ],
-                function(err, loginCookie) {
+                function(err, saveduser) {
                     if (err) {
                         res.json({
                             code: 500,
@@ -524,7 +532,7 @@ var createOrUpdateUser = function(req, res) {
                     }
                     res.json({
                         code: 200,
-                        loginCookie: loginCookie
+                        loginCookie: saveduser.loginCookie
                     });
                 });
         }
