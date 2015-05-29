@@ -13,6 +13,11 @@ app.use(session({
 }));
 app.use(flash());
 
+app.get('/view/:UUID', function(req,res) {
+    console.log("UUID = " + req.params.UUID);
+    res.json({"UUID": req.params.UUID});
+});
+
 app.get('/', function(req, res) {
     res.send('Hello World, redux!');
 });

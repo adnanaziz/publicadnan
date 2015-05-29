@@ -28,7 +28,9 @@
     "winston": "*",
     "cli-color": "*",
     "mongoose-auto-increment": "*",
-    "fbgraph": "*"
+    "fbgraph": "*",
+    "exif": "*",
+    "exif-parser": "*"
   },
   "devDependencies": {
   },
