@@ -88,7 +88,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-var flash = require('flash');
+//var flash = require('flash');
+var flash = require('connect-flash');
 app.use(flash());
 var lusca = require('lusca');
 app.use(lusca({
@@ -106,7 +107,10 @@ app.use(function(req, res, next) {
 
 // different match? anything that's api/browser or not starting with api?
 app.use(function(req, res, next) {
-    if (/api/i.test(req.path)) req.session.returnTo = req.path;
+    if (/api/i.test(req.path)) {
+        winston.warn("setting req.path =", req.path);
+        req.session.returnTo = req.path;
+    }
     next();
 });
 
@@ -345,6 +349,16 @@ var server = app.listen(3000, function() {
     winston.info('Example app listening at http://%s:%s', host, port);
 });
 
+app.get('/', function(req, res) {
+    winston.warn("getting /");
+    if (req.user) {
+        winston.warn("getting /management.html");
+        res.redirect('/management.html');
+    } else {
+        res.redirect('/login.html');
+    }
+});
+
 // with app.js
 app.use(function(req, res, next) {
     if (/api\/browser/i.test(req.path)) req.session.returnTo = req.path;
@@ -355,10 +369,11 @@ app.use(function(req, res, next) {
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    failureRedirect: '/login.html'
+    failureRedirect: '/failure'
 }), function(req, res) {
-    winston.info('req.session.returnTo: ' + req.session.returnTo);
-    res.redirect(req.session.returnTo || '/');
+    winston.warn('req.session.returnTo: ' + req.session.returnTo);
+    winston.warn('req.flash(): ' + req.flash());
+    res.redirect(req.session.returnTo || '/success.html');
 });
 
 // two logout functions
@@ -545,6 +560,17 @@ app.post('/api/logoutUser', exports.isCustomAuthenticated, logoutUser);
 app.post('/api/getUserData', exports.isCustomAuthenticated, function(req, res) {
     res.json(req.user);
 });
+
+app.get('/failure', function(req, res) {
+    //winston.info("req.flash = ", req.flash());
+    res.send("bad login" + JSON.stringify(req.flash()));
+});
+
+app.get('/teststate', exports.isPassportAuthenticated, function(req, res) {
+    //winston.info("req.flash = ", req.flash());
+    res.send("you are logged in");
+});
+
 
 // for browser requests.
 app.get('/api/browser/getUserData', exports.isPassportAuthenticated, function(req, res) {

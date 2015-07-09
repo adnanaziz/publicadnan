@@ -2,7 +2,7 @@ var async = require('async');
 var testFile1 = 'md5_1';
 var testFile2 = 'iphone6plus_1.jpg';
 var testFile3 = 'iphone6plus_2.jpg';
-var testFiles = ['internet-1.jpg', testFile3, 'rc-1.jpg'];
+var testFiles = ['internet-1.jpg', testFile3, 'rc-1.jpg', 'IMG_3732.JPG'];
 
 var exif = require('exif');
 var ExifImage = require('exif').ExifImage;
