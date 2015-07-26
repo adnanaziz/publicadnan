@@ -119,7 +119,7 @@ public class SearchAPairSortedArray {
       Collections.sort(A, new Comparator<Integer>() {
         @Override
         public int compare(Integer o1, Integer o2) {
-          return Integer.valueOf(Math.abs(o1)).compareTo(Math.abs(o2));
+          return Integer.compare(Math.abs(o1), Math.abs(o2));
         }
       });
       int k = rand.nextInt(19999) - 9999;
@@ -139,7 +139,7 @@ public class SearchAPairSortedArray {
             Collections.sort(A, new Comparator<Integer>() {
               @Override
               public int compare(Integer o1, Integer o2) {
-                return Integer.valueOf(Math.abs(o1)).compareTo(Math.abs(o2));
+                return Integer.compare(Math.abs(o1), Math.abs(o2));
               }
             });
             ans = findPairSumK(A, k);

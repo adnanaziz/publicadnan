@@ -26,9 +26,9 @@ public class MinimumDistance3SortedArrays {
 
     @Override
     public int compareTo(ArrayData o) {
-      int result = Integer.valueOf(val).compareTo(o.val);
+      int result = Integer.compare(val, o.val);
       if (result == 0) {
-        result = Integer.valueOf(idx).compareTo(o.idx);
+        result = Integer.compare(idx, o.idx);
       }
       return result;
     }

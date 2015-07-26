@@ -46,7 +46,7 @@ public class ClosestPalindrome {
 
     // Make str a palindrome again by mirroring the left half to the right half.
     mirrored = mirrorLeftHalf(str.toString());
-    return abs(x - mirrorLeft) < abs(x - Long.valueOf(mirrored))
+    return abs(x - mirrorLeft) < abs(x - Long.parseLong(mirrored))
         ? mirrorLeft
         : Long.valueOf(mirrored);
   }

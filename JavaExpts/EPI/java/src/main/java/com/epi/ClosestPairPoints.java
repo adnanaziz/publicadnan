@@ -43,7 +43,7 @@ public class ClosestPairPoints {
     Collections.sort(points, new Comparator<Point>() {
       @Override
       public int compare(Point o1, Point o2) {
-        return Integer.valueOf(o1.x).compareTo(o2.x);
+        return Integer.compare(o1.x, o2.x);
       }
     });
     PairOfPointsWithDistance closestTwoPointsWithDistance =
@@ -105,7 +105,7 @@ public class ClosestPairPoints {
     Collections.sort(remain, new Comparator<Point>() {
       @Override
       public int compare(Point o1, Point o2) {
-        return Integer.valueOf(o1.y).compareTo(o2.y);
+        return Integer.compare(o1.y, o2.y);
       }
     });
 

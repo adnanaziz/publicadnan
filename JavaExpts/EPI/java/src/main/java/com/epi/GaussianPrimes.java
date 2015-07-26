@@ -32,12 +32,12 @@ public class GaussianPrimes {
 
     @Override
     public int compareTo(Complex o) {
-      int result = Integer.valueOf(getNorm()).compareTo(o.getNorm());
+      int result = Integer.compare(getNorm(), o.getNorm());
       if (result == 0) {
-        result = Integer.valueOf(getReal()).compareTo(o.getReal());
+        result = Integer.compare(getReal(), o.getReal());
       }
       if (result == 0) {
-        result = Integer.valueOf(getImag()).compareTo(o.getImag());
+        result = Integer.compare(getImag(), o.getImag());
       }
       return result;
     }

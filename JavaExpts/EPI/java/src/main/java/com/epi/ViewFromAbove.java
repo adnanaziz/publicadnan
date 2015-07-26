@@ -39,7 +39,7 @@ public class ViewFromAbove {
 
     @Override
     public int compareTo(Endpoint o) {
-      return Integer.valueOf(val()).compareTo(o.val());
+      return Integer.compare(val(), o.val());
     }
   }
 
