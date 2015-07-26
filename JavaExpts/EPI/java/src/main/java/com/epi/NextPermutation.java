@@ -93,11 +93,11 @@ public class NextPermutation {
       List<Integer> perm = new ArrayList<>();
       if (args.length > 1) {
         for (int i = 1; i < args.length; ++i) {
-          perm.add(Integer.valueOf(args[i]));
+          perm.add(Integer.parseInt(args[i]));
         }
       } else {
         Random gen = new Random();
-        int n = (args.length == 1 ? Integer.valueOf(args[0])
+        int n = (args.length == 1 ? Integer.parseInt(args[0])
                                   : (gen.nextInt(100) + 1));
         for (int i = 0; i < n; ++i) {
           perm.add(gen.nextInt(n));

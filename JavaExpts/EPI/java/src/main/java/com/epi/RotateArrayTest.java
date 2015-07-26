@@ -25,7 +25,7 @@ public class RotateArrayTest {
     for (int times = 0; times < 1000; ++times) {
       int len;
       if (args.length == 1) {
-        len = Integer.valueOf(args[0]);
+        len = Integer.parseInt(args[0]);
       } else {
         len = gen.nextInt(10000) + 1;
       }

@@ -54,7 +54,7 @@ public class MatrixRotation {
   public static void main(String[] args) {
     int n;
     if (args.length == 1) {
-      n = Integer.valueOf(args[0]);
+      n = Integer.parseInt(args[0]);
       int[][] A = new int[1 << n][1 << n];
       int k = 1;
       for (int i = 0; i < A.length; ++i) {

@@ -39,7 +39,7 @@ public class MatrixRotationConstant {
   public static void main(String[] args) {
     int n;
     if (args.length == 1) {
-      n = Integer.valueOf(args[0]);
+      n = Integer.parseInt(args[0]);
       List<List<Integer>> A = new ArrayList<>(1 << n);
       int k = 1;
       for (int i = 0; i < (1 << n); ++i) {
