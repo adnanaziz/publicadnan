@@ -51,7 +51,7 @@ public class QueueWithMaxUsingDeque {
     assert(t.equals(dequeue));
   }
 
-  public static void SimpleTest() {
+  public static void simpleTest() {
     Queue<Integer> Q = new Queue<>();
     Q.enqueue(11);
     Q.enqueue(2);
@@ -88,7 +88,7 @@ public class QueueWithMaxUsingDeque {
   }
 
   public static void main(String[] args) {
-    SimpleTest();
+    simpleTest();
     Queue<Integer> Q = new Queue<>();
     Q.enqueue(1);
     Q.enqueue(2);

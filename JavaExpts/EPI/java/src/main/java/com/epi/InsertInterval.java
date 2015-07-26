@@ -15,7 +15,7 @@ public class InsertInterval {
     }
   }
 
-  public static List<Interval> AddInterval(List<Interval> disjointIntervals,
+  public static List<Interval> addInterval(List<Interval> disjointIntervals,
                                            Interval newInterval) {
     int i = 0;
     List<Interval> result = new ArrayList<>();
@@ -54,11 +54,11 @@ public class InsertInterval {
       { add(new Interval(1, 5)); }
     };
     Interval newOne = new Interval(0, 3);
-    List<Interval> result = AddInterval(A, newOne);
+    List<Interval> result = addInterval(A, newOne);
     assert(result.size() == 1 && result.get(0).left == 0 &&
            result.get(0).right == 5);
     newOne = new Interval(0, 0);
-    result = AddInterval(A, newOne);
+    result = addInterval(A, newOne);
     assert(result.size() == 2 && result.get(0).left == 0 &&
            result.get(0).right == 0 && result.get(1).left == 1 &&
            result.get(1).right == 5);
@@ -86,7 +86,7 @@ public class InsertInterval {
       int left = r.nextInt(101);
       int right = left + r.nextInt(101);
       Interval target = new Interval(left, right);
-      List<Interval> result = AddInterval(A, target);
+      List<Interval> result = addInterval(A, target);
       checkIntervals(result);
     }
   }
