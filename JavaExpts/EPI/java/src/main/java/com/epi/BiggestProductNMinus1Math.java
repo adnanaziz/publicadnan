@@ -29,7 +29,7 @@ public class BiggestProductNMinus1Math {
     }
 
     int product = 1;
-    int IdxToSkip = (numberOfNegatives % 2) == 1
+    int IdxToSkip = (numberOfNegatives % 2) != 0
                         ? leastNegativeIdx
                         // Check if there are any nonnegative entry.
                         : (leastNonnegativeIdx != -1 ? leastNonnegativeIdx
