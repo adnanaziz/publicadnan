@@ -44,12 +44,12 @@ public class PalindromePartitioning {
 
   private static void checkAns(List<List<String>> vecs, String input) {
     for (List<String> vec : vecs) {
-      String temp = "";
+      StringBuilder temp = new StringBuilder();
       for (String s : vec) {
         assert(isPalindrome(s));
-        temp += s;
+        temp.append(s);
       }
-      assert(temp.equals(input));
+      assert(temp.toString().equals(input));
     }
   }
 

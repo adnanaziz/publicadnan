@@ -76,20 +76,19 @@ public class ReverseWords {
     simpleTest();
     Random gen = new Random();
     for (int times = 0; times < 1000; ++times) {
-      String str = "";
+      StringBuilder str = new StringBuilder();
       if (args.length >= 1) {
-        str += args[0];
+        str.append(args[0]);
         for (int i = 1; i < args.length; ++i) {
-          str += ' ';
-          str += args[i];
+          str.append(' ').append(args[i]);
         }
       } else {
-        str = randString(gen.nextInt(10000));
+        str.append(randString(gen.nextInt(10000)));
       }
       System.out.println(str);
-      String reversed = reverseWords(str);
+      String reversed = reverseWords(str.toString());
       System.out.println(reversed);
-      checkAnswer(str, reversed);
+      checkAnswer(str.toString(), reversed);
     }
   }
 }

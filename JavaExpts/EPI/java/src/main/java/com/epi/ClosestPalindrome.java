@@ -48,7 +48,7 @@ public class ClosestPalindrome {
     mirrored = mirrorLeftHalf(str.toString());
     return abs(x - mirrorLeft) < abs(x - Long.parseLong(mirrored))
         ? mirrorLeft
-        : Long.valueOf(mirrored);
+        : Long.parseLong(mirrored);
   }
   // @exclude
 

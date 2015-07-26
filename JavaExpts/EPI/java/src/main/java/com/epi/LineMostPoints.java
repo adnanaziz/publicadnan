@@ -134,8 +134,7 @@ public class LineMostPoints {
                              public int compare(Map.Entry<Line, Set<Point>> e1,
                                                 Map.Entry<Line, Set<Point>> e2) {
                                if (e1 != null && e2 != null) {
-                                 return new Integer(e1.getValue().size())
-                                     .compareTo(e2.getValue().size());
+                                 return Integer.compare(e1.getValue().size(), e2.getValue().size());
                                } else if (e1 != null) {
                                  return 1;
                                } else {

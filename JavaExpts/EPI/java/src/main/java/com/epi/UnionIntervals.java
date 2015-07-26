@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 class Interval implements Comparable<Interval> {
-  class Endpoint {
+  static class Endpoint {
     public boolean isClosed;
     public int val;
   }

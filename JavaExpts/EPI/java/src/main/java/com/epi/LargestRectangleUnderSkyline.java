@@ -18,7 +18,7 @@ public class LargestRectangleUnderSkyline {
       while (!s.isEmpty() && A.get(s.peek()) >= A.get(i)) {
         s.pop();
       }
-      L.add(s.isEmpty() ? -1 : s.peek());
+      L.add(s.isEmpty() ? Integer.valueOf(-1) : s.peek());
       s.push(i);
     }
 
