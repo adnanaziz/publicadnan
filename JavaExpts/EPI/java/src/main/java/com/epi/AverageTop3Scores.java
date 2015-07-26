@@ -106,9 +106,11 @@ public class AverageTop3Scores {
     } else {
       n = r.nextInt(10000) + 1;
     }
+    OutputStream ofs = null;
+    ObjectOutputStream oos = null;
     try {
-      OutputStream ofs = new FileOutputStream("scores.txt");
-      ObjectOutputStream oos = new ObjectOutputStream(ofs);
+      ofs = new FileOutputStream("scores.txt");
+      oos = new ObjectOutputStream(ofs);
       for (int i = 0; i < n; ++i) {
         int testNum = r.nextInt(21);
         String name = randString(r.nextInt(6) + 5);
@@ -117,9 +119,11 @@ public class AverageTop3Scores {
           oos.writeInt(r.nextInt(101));
         }
       }
-      ofs.close();
     } catch (Exception e) {
       System.out.println("Error creating scores.txt: " + e.getMessage());
+    } finally {
+      if (ofs != null) ofs.close();
+      if (oos != null) oos.close();
     }
     try {
       InputStream ifs = new FileInputStream("scores.txt");

@@ -1,5 +1,7 @@
 package com.epi;
 
+import com.epi.utils.Utils;
+
 import java.io.*;
 import java.util.*;
 
@@ -50,9 +52,10 @@ public class MissingElement {
     Set<Integer> hash = new HashSet<>();
     FileOutputStream ofs = null;
     try {
+      OutputStreamWriter osw = null;
       try {
         ofs = new FileOutputStream(missingFile);
-        OutputStreamWriter osw = new OutputStreamWriter(ofs);
+        osw = new OutputStreamWriter(ofs);
         for (int i = 0; i < n; ++i) {
           int x;
           do {
@@ -61,9 +64,7 @@ public class MissingElement {
           osw.write(x + "\n");
         }
       } finally {
-        if (ofs != null) {
-          ofs.close();
-        }
+        Utils.closeSilently(osw);
       }
 
       FileInputStream ifs = null;
@@ -71,7 +72,7 @@ public class MissingElement {
         ifs = new FileInputStream(missingFile);
         BufferedInputStream bis = new BufferedInputStream(ifs);
         int missing = findMissingElement(bis);
-        assert(!hash.contains(missing));
+        assert (!hash.contains(missing));
         System.out.println(missing);
       } finally {
         if (ifs != null) {

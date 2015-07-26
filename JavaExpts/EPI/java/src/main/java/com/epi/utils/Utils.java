@@ -168,4 +168,18 @@ public class Utils {
     }
     return null;
   }
+  
+  public static void closeSilently(Closeable... closeables) {
+    if (closeables != null) {
+      for (Closeable closeable : closeables) {
+        if (closeable != null) {
+          try {
+            closeable.close();
+          } catch (Exception e) {
+            // We dont' care.
+          }
+        }
+      }
+    }    
+  }
 }

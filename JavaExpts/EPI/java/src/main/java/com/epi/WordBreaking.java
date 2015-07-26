@@ -53,7 +53,7 @@ public class WordBreaking {
       temp.append(an);
     }
     System.out.println();
-    assert(ans.size() == 0 || s.equals(temp));
+    assert(ans.size() == 0 || s.equals(temp.toString()));
   }
 
   private static void smallCase() {
