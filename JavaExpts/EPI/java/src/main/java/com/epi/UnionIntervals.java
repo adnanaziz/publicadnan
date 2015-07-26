@@ -28,6 +28,18 @@ class Interval implements Comparable<Interval> {
     return 0;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Interval)) {
+      return false;
+    }
+    if (this == obj) {
+      return true;
+    }
+    Interval that = (Interval) obj;
+    return this.left.val == that.left.val && this.left.isClosed == that.left.isClosed;
+  }
+
   public Endpoint left = new Endpoint();
   public Endpoint right = new Endpoint();
 }

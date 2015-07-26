@@ -32,6 +32,18 @@ public class MinimumDistance3SortedArrays {
       }
       return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (!(obj instanceof ArrayData)) {
+        return false;
+      }
+      if (this == obj) {
+        return true;
+      }
+      ArrayData that = (ArrayData) obj;
+      return this.val == that.val && this.idx== that.idx;
+    }
   }
 
   public static int findMinDistanceSortedArrays(

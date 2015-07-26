@@ -31,6 +31,18 @@ class Endpoint implements Comparable<Endpoint> {
     return 0;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Endpoint)) {
+      return false;
+    }
+    if (this == obj) {
+      return true;
+    }
+    Endpoint that = (Endpoint) obj;
+    return this.time == that.time && this.isStart == that.isStart;
+  }
+
   Endpoint(int t, boolean is) {
     time = t;
     isStart = is;

@@ -17,6 +17,18 @@ class Player implements Comparable<Player> {
   public int compareTo(Player that) {
     return height.compareTo(that.height);
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Player)) {
+      return false;
+    }
+    if (this == obj) {
+      return true;
+    }
+    Player that = (Player) obj;
+    return this.height.equals(that.height);
+  }
 }
 
 class Team {

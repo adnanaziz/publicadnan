@@ -34,6 +34,18 @@ public class HuffmanEncoding {
     public int compareTo(BinaryTree o) {
       return Double.compare(prob, o.prob);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (!(obj instanceof BinaryTree)) {
+        return false;
+      }
+      if (this == obj) {
+        return true;
+      }
+      BinaryTree that = (BinaryTree) obj;
+      return this.prob == that.prob;
+    }
   }
 
   public static void huffmanEncoding(List<Symbol> symbols) {

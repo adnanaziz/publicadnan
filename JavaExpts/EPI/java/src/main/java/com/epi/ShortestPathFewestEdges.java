@@ -40,6 +40,19 @@ public class ShortestPathFewestEdges {
       }
       return res;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (!(obj instanceof GraphVertex)) {
+        return false;
+      }
+      if (this == obj) {
+        return true;
+      }
+      GraphVertex that = (GraphVertex) obj;
+      return this.distance.distance.equals(that.distance.distance) 
+             && this.distance.minNumEdges.equals(that.distance.minNumEdges);
+    }
   }
 
   public static void dijkstraShortestPath(GraphVertex s, GraphVertex t) {

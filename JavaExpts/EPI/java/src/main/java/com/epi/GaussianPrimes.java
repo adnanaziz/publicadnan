@@ -43,6 +43,18 @@ public class GaussianPrimes {
     }
 
     @Override
+    public boolean equals(Object obj) {
+      if (!(obj instanceof Complex)) {
+        return false;
+      }
+      if (this == obj) {
+        return true;
+      }
+      Complex that = (Complex) obj;
+      return this.getReal() == that.getReal() && this.getImag() == that.getImag();
+    }
+    
+    @Override
     public String toString() {
       return "(" + real + "," + imag + ")";
     }

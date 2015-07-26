@@ -1,5 +1,7 @@
 package com.epi;
 
+import com.epi.utils.Utils;
+
 import java.io.*;
 import java.util.*;
 
@@ -122,8 +124,7 @@ public class AverageTop3Scores {
     } catch (Exception e) {
       System.out.println("Error creating scores.txt: " + e.getMessage());
     } finally {
-      if (ofs != null) ofs.close();
-      if (oos != null) oos.close();
+      Utils.closeSilently(ofs, oos);
     }
     try {
       InputStream ifs = new FileInputStream("scores.txt");

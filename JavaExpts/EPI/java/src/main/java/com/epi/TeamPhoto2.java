@@ -19,6 +19,18 @@ public class TeamPhoto2 {
     public int compareTo(Player<HeightType> o) {
       return height.compareTo(o.height);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (!(obj instanceof Player)) {
+        return false;
+      }
+      if (this == obj) {
+        return true;
+      }
+      Player that = (Player) obj;
+      return this.height.equals(that.height);
+    }
   }
 
   private static class Team<HeightType extends Comparable<HeightType>> {

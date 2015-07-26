@@ -41,6 +41,18 @@ public class ViewFromAbove {
     public int compareTo(Endpoint o) {
       return Integer.compare(val(), o.val());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (!(obj instanceof Endpoint)) {
+        return false;
+      }
+      if (this == obj) {
+        return true;
+      }
+      Endpoint that = (Endpoint) obj;
+      return this.val() == that.val();
+    }
   }
 
   public static void calculateViewFromAbove(List<LineSegment> A) {
