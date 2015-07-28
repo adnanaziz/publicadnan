@@ -30,7 +30,10 @@
     "mongoose-auto-increment": "*",
     "fbgraph": "*",
     "exif": "*",
-    "exif-parser": "*"
+    "exif-parser": "*",
+    "gm": "*",
+    "errorHandler": "*",
+    "swig": "*"
   },
   "devDependencies": {
   },
