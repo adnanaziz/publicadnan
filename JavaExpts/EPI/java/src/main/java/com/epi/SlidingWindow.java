@@ -2,6 +2,8 @@ package com.epi;
 
 import com.epi.QueueWithMaxUsingDeque.Queue;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,8 +21,8 @@ public class SlidingWindow {
 
     @Override
     public int compareTo(TrafficElement o) {
-      double result = volume - o.volume;
-      return result != 0.0 ? (result > 0 ? 1 : -1) : time - o.time;
+      int volumeCmp = Double.compare(volume, o.volume);
+      return  volumeCmp != 0 ? volumeCmp : time - o.time;
     }
 
     @Override
@@ -32,6 +34,14 @@ public class SlidingWindow {
         return false;
       }
       return compareTo((TrafficElement)o) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(23, 109)
+          .append(volume)
+          .append(time)
+          .toHashCode();
     }
   }
 

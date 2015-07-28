@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -46,6 +48,14 @@ public class HuffmanEncoding {
       BinaryTree that = (BinaryTree) obj;
       return this.prob == that.prob;
     }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(41, 47)
+          .append(prob)
+          .toHashCode();
+    }
+
   }
 
   public static void huffmanEncoding(List<Symbol> symbols) {

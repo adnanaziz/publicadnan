@@ -2,6 +2,8 @@
 
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.*;
 
 class PointsCoveringIntervalsAlternative {
@@ -39,6 +41,25 @@ class PointsCoveringIntervalsAlternative {
       } else {
           return 0;
       }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) {
+        return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+        return false;
+      }
+      return compareTo((EndPoint) o) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(17, 37)
+          .append(isLeft)
+          .append(isLeft ? ptr.left : ptr.right)
+          .toHashCode();
     }
   }
 

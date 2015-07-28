@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.*;
 
 public class MinimumDistance3SortedArrays {
@@ -43,6 +45,14 @@ public class MinimumDistance3SortedArrays {
       }
       ArrayData that = (ArrayData) obj;
       return this.val == that.val && this.idx== that.idx;
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(59, 157)
+          .append(val)
+          .append(idx)
+          .toHashCode();
     }
   }
 

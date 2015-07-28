@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.*;
 
 public class ShortestPathFewestEdges {
@@ -52,6 +54,14 @@ public class ShortestPathFewestEdges {
       GraphVertex that = (GraphVertex) obj;
       return this.distance.distance.equals(that.distance.distance) 
              && this.distance.minNumEdges.equals(that.distance.minNumEdges);
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(11, 97)
+          .append(distance.distance)
+          .append(distance.minNumEdges)
+          .toHashCode();
     }
   }
 

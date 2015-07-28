@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class BinarySearchTreePrototypeTemplate {
   // @include
   public static class BSTNode<T> {
@@ -51,6 +53,15 @@ public class BinarySearchTreePrototypeTemplate {
       }
 
       return true;
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(17, 37)
+          .append(data)
+          .append(left)
+          .append(right)
+          .toHashCode();
     }
   }
   // @include

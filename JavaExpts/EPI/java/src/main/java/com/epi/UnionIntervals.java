@@ -2,6 +2,8 @@
 
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,6 +42,13 @@ class Interval implements Comparable<Interval> {
     return this.left.val == that.left.val && this.left.isClosed == that.left.isClosed;
   }
 
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder(53, 151)
+        .append(left.val)
+        .append(left.isClosed)
+        .toHashCode();
+  }
   public Endpoint left = new Endpoint();
   public Endpoint right = new Endpoint();
 }

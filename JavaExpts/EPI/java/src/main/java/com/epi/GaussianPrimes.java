@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -52,6 +54,14 @@ public class GaussianPrimes {
       }
       Complex that = (Complex) obj;
       return this.getReal() == that.getReal() && this.getImag() == that.getImag();
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(23, 31)
+          .append(getReal())
+          .append(getImag())
+          .toHashCode();
     }
     
     @Override
