@@ -39,9 +39,11 @@ public class KthLargestElementLargeN {
         System.out.println("IOException: " + e.getMessage());
       }
       ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-
+      bais.mark(0);
+    
       for (int i = 0; i < a.length; i++) {
         System.out.println("i = " + i);
+        bais.reset();
         int result = findKthLargestUnknownLength(bais, i+1);
         System.out.println(result);
       }
