@@ -54,8 +54,7 @@ class UnionIntervals {
 
     // Sort intervals according to left endpoints of intervals.
     Arrays.sort(intervals);
-    Interval curr = new Interval();
-    curr = intervals[0];
+    Interval curr = intervals[0];
     List<Interval> result = new ArrayList<>();
     for (int i = 1; i < intervals.length; ++i) {
       if (intervals[i].left.val < curr.right.val ||

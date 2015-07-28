@@ -43,12 +43,13 @@ public class PalindromePartitioningMinCuts {
 
   public static void main(String[] args) {
     smallTest();
+    String s;
     if (args.length == 1) {
-      String s = args[0];
+       s = args[0];
     } else {
       Random r = new Random();
-      String s = randString(r.nextInt(11));
-      System.out.println("times = " + minCuts(s));
+      s = randString(r.nextInt(11));
     }
+    System.out.println("times = " + minCuts(s));
   }
 }
