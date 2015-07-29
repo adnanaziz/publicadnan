@@ -6,12 +6,13 @@ import java.util.*;
 public class KthLargestElementLargeN {
   // @include
   public static int findKthLargestUnknownLength(InputStream sin, int k) {
-    int[] candidates = new int[(k * 2)+1];
+    ArrayList<Integer> candidates = new ArrayList<>((k * 2) + 1);
     Scanner s = new Scanner(sin);
     int idx = 0;
     while (s.hasNextInt()) {
       int x = s.nextInt();
-      candidates[idx++] = x;
+      idx++;
+      candidates.add(x);
       if (idx == (k * 2 + 1) ) {
         // Reorders elements about median with larger elements appearing before
         // the median.
@@ -22,7 +23,7 @@ public class KthLargestElementLargeN {
     }
     // Finds the k-th largest element in candidates.
     OrderStatistic.findKthLargest(candidates, k);
-    return candidates[k - 1];
+    return candidates.get(k - 1);
   }
   // @exclude
 
@@ -82,16 +83,12 @@ public class KthLargestElementLargeN {
 
       int result = findKthLargestUnknownLength(bais, k);
 
-      int[] array = new int[a.size()];
-      int i = 0;
-      for (int x : a) {
-        array[i++] = x;
-      }
+      ArrayList<Integer> aCopy = new ArrayList<>(a);
 
-      OrderStatistic.findKthLargest(array, k);
+      OrderStatistic.findKthLargest(aCopy, k);
       System.out.println(result);
-      System.out.println(array[k-1]);
-      assert (array[k-1] == result);
+      System.out.println(aCopy.get(k-1));
+      assert (aCopy.get(k-1) == result);
     }
   }
 }
