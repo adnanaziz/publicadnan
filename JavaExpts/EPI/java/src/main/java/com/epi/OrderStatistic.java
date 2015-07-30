@@ -69,13 +69,16 @@ public class OrderStatistic {
     // @include
   }
 
-  // Partition A[left : right] around pivotIdx, returns the new index of the
-  // pivot, newPivotIdx, after partition. After partitioning,
-  // A[left : newPivotIdx - 1] contains elements that are greater than the
-  // pivot, and A[newPivotIdx + 1 : right] contains elements that are less
-  // than the pivot. 
-  //
-  // Note that greater than is defined by the comparator object.
+  /**
+   * Partitions {@code A[left : right]} around {@code pivotIdx}, returns the new index of the
+   * pivot, {@code newPivotIdx}, after partition. After partitioning,
+   * {@code A[left : newPivotIdx - 1]} contains elements that are less than the
+   * pivot, and {@code A[newPivotIdx + 1 : right]} contains elements that are greater
+   * than the pivot.
+   * 
+   * <b>Note:</b> "Greater than" is defined by the comparator object.
+   * @return new index of the pivot after partition
+   */
   private static int partitionAroundPivot(int left, int right, int pivotIdx,
                                           ArrayList<Integer> A, Comparator<Integer> cmp) {
     int pivotValue = A.get(pivotIdx);
@@ -320,6 +323,15 @@ public class OrderStatistic {
   }
 
   public static void main(String[] args) {
+    Integer.compare(1, 2);
+    
+    ArrayList<Integer> list = Lists.newArrayList(9, 1, 3, 4, 5, 7, 2, 8, 6);
+    partitionAroundPivot(0, 8, 0, list, Compare.LESS_THAN);
+    System.out.println(list);
+    
+    Collections.sort(list, Compare.LESS_THAN);
+    System.out.println(list);
+    /*
     SimpleTest();
     PivotTest();
     SimpleTestKthSmallest();
@@ -346,5 +358,6 @@ public class OrderStatistic {
       Collections.sort(A);
       assert(result == A.get(A.size() - k));
     }
+    */
   }
 }
