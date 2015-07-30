@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GrayCode {
+
   // @include
   public static List<Integer> grayCode(int numBits) {
     if (numBits == 0) {
@@ -33,8 +34,8 @@ public class GrayCode {
   private static void smallTest() {
     List<Integer> vec = grayCode(3);
     List<Integer> expected = Arrays.asList(0, 1, 3, 2, 6, 7, 5, 4);
-    assert(vec.size() == expected.size());
-    assert(Arrays.equals(vec.toArray(), expected.toArray()));
+    assert (vec.size() == expected.size());
+    assert (Arrays.equals(vec.toArray(), expected.toArray()));
   }
 
   private static void checkAns(List<Integer> A) {
@@ -48,7 +49,7 @@ public class GrayCode {
           ++numDifferBits;
         }
       }
-      assert(numDifferBits == 1);
+      assert (numDifferBits == 1);
     }
   }
 

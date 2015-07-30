@@ -7,6 +7,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class PlanningFishing {
+
   // @include
   public static int maximizeFishing(int[][] A) {
     for (int i = 0; i < A.length; ++i) {

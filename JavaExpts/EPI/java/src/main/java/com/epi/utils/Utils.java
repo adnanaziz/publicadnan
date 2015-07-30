@@ -1,15 +1,20 @@
 package com.epi.utils;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.math.BigInteger;
-import java.util.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 
 public class Utils {
+
   private static Random random;
 
   public static <T> List<List<T>> copy(List<List<T>> list) {
@@ -69,13 +74,8 @@ public class Utils {
   }
 
   /**
-   * Fills the range [from, to) with sequentially increasing values, starting
-   * with value and repetitively evaluating ++value.
-   *
-   * @param array
-   * @param from
-   * @param to
-   * @param value
+   * Fills the range [from, to) with sequentially increasing values, starting with value and
+   * repetitively evaluating ++value.
    */
   public static void iota(int[] array, int from, int to, int value) {
     for (int i = from; i < to; ++i) {
@@ -84,12 +84,8 @@ public class Utils {
   }
 
   /**
-   * Fills the list with sequentially increasing values, starting with value and
-   * repetitively evaluating ++value.
-   *
-   * @param list
-   * @param numOfElements
-   * @param value
+   * Fills the list with sequentially increasing values, starting with value and repetitively
+   * evaluating ++value.
    */
   public static void iota(List<Integer> list, int numOfElements, int value) {
     for (int i = 1; i <= numOfElements; ++i) {
@@ -98,12 +94,8 @@ public class Utils {
   }
 
   /**
-   * Fills the list with sequentially increasing values, starting with value and
-   * repetitively evaluating ++value.
-   *
-   * @param list
-   * @param numOfElements
-   * @param value
+   * Fills the list with sequentially increasing values, starting with value and repetitively
+   * evaluating ++value.
    */
   public static void iota(List<Double> list, int numOfElements, double value) {
     for (int i = 1; i <= numOfElements; ++i) {
@@ -142,7 +134,7 @@ public class Utils {
       return;
     }
 
-    for (Iterator<T> iterator = collection.iterator(); iterator.hasNext();) {
+    for (Iterator<T> iterator = collection.iterator(); iterator.hasNext(); ) {
       T t = iterator.next();
       System.out.print(t);
       if (iterator.hasNext()) {
@@ -168,7 +160,7 @@ public class Utils {
     }
     return null;
   }
-  
+
   public static void closeSilently(Closeable... closeables) {
     if (closeables != null) {
       for (Closeable closeable : closeables) {
@@ -180,6 +172,6 @@ public class Utils {
           }
         }
       }
-    }    
+    }
   }
 }

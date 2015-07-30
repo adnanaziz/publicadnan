@@ -3,6 +3,7 @@ package com.epi;
 import com.epi.BinaryTreeWithParentPrototype.BinaryTree;
 
 public class LowestCommonAncestor {
+
   // @include
   public static BinaryTree<Integer> LCA(BinaryTree<Integer> node0,
                                         BinaryTree<Integer> node1) {
@@ -49,19 +50,19 @@ public class LowestCommonAncestor {
     root.getRight().setRight(new BinaryTree<>(6, null, null, root.getRight()));
 
     // should output 3
-    assert(LCA(root.getLeft(), root.getRight()).getData().equals(3));
+    assert (LCA(root.getLeft(), root.getRight()).getData().equals(3));
     System.out.println(LCA(root.getLeft(), root.getRight()).getData());
     // should output 5
-    assert(LCA(root.getRight().getLeft(), root.getRight().getRight())
-               .getData()
-               .equals(5));
+    assert (LCA(root.getRight().getLeft(), root.getRight().getRight())
+                .getData()
+                .equals(5));
     System.out.println(
         LCA(root.getRight().getLeft(), root.getRight().getRight()).getData());
     // should output 3
-    assert(LCA(root.getLeft(), root.getRight().getLeft()).getData().equals(3));
+    assert (LCA(root.getLeft(), root.getRight().getLeft()).getData().equals(3));
     System.out.println(LCA(root.getLeft(), root.getRight().getLeft()).getData());
     // should output 2
-    assert(LCA(root.getLeft(), root.getLeft().getLeft()).getData().equals(2));
+    assert (LCA(root.getLeft(), root.getLeft().getLeft()).getData().equals(2));
     System.out.println(LCA(root.getLeft(), root.getLeft().getLeft()).getData());
   }
 }

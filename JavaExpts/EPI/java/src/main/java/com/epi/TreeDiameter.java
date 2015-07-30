@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TreeDiameter {
+
   // @include
-  public static class TreeNode { List<Edge> edges = new ArrayList<>(); }
+  public static class TreeNode {
+
+    List<Edge> edges = new ArrayList<>();
+  }
 
   private static class Edge {
+
     public TreeNode root;
     public Double length;
 
@@ -18,6 +23,7 @@ public class TreeDiameter {
   }
 
   private static class HeightAndDiameter {
+
     public Double height;
     public Double diameter;
 
@@ -52,15 +58,15 @@ public class TreeDiameter {
 
   public static void main(String[] args) {
     TreeNode r = null;
-    assert(0.0 == computeDiameter(r));
+    assert (0.0 == computeDiameter(r));
     r = new TreeNode();
     r.edges.add(new Edge(new TreeNode(), 10.0));
     r.edges.get(0).root.edges.add(new Edge(new TreeNode(), 50.0));
     r.edges.add(new Edge(new TreeNode(), 20.0));
-    assert(80 == computeDiameter(r));
+    assert (80 == computeDiameter(r));
     System.out.println(computeDiameter(r));
     r.edges.get(0).root.edges.add(new Edge(new TreeNode(), 100.0));
-    assert(150 == computeDiameter(r));
+    assert (150 == computeDiameter(r));
     System.out.println(computeDiameter(r));
   }
 }

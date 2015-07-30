@@ -1,9 +1,13 @@
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class ComputingXPowN {
+
   // @include
   public static List<Integer> getShortestStraightLineProgram(int n) {
     if (n == 1) {
@@ -13,7 +17,9 @@ public class ComputingXPowN {
     LinkedList<ArrayList<Integer>> expLists = new LinkedList<>();
     // Constructs the initial list with one node whose value is 1.
     expLists.addLast(new ArrayList<Integer>() {
-      { add(1); }
+      {
+        add(1);
+      }
     });
     while (!expLists.isEmpty()) {
       List<Integer> exp = expLists.pop();

@@ -1,9 +1,17 @@
 package com.epi;
 
-import java.io.*;
-import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class KthLargestElementLargeN {
+
   // @include
   public static int findKthLargestUnknownLength(InputStream sin, int k) {
     ArrayList<Integer> candidates = new ArrayList<>((k * 2) + 1);
@@ -13,7 +21,7 @@ public class KthLargestElementLargeN {
       int x = s.nextInt();
       idx++;
       candidates.add(x);
-      if (idx == (k * 2 + 1) ) {
+      if (idx == (k * 2 + 1)) {
         // Reorders elements about median with larger elements appearing before
         // the median.
         OrderStatistic.findKthLargest(candidates, k);
@@ -28,26 +36,26 @@ public class KthLargestElementLargeN {
   // @exclude
 
   private static void SimpleTest() {
-      int a[] = new int[]{5,6,2,1,3,0,4};
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      OutputStreamWriter osw = new OutputStreamWriter(baos);
-      try {
-        for (Integer anA : a) {
-          osw.write(anA + " ");
-        }
-        osw.close();
-      } catch (IOException e) {
-        System.out.println("IOException: " + e.getMessage());
+    int a[] = new int[]{5, 6, 2, 1, 3, 0, 4};
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    OutputStreamWriter osw = new OutputStreamWriter(baos);
+    try {
+      for (Integer anA : a) {
+        osw.write(anA + " ");
       }
-      ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-      bais.mark(0);
-    
-      for (int i = 0; i < a.length; i++) {
-        System.out.println("i = " + i);
-        bais.reset();
-        int result = findKthLargestUnknownLength(bais, i+1);
-        System.out.println(result);
-      }
+      osw.close();
+    } catch (IOException e) {
+      System.out.println("IOException: " + e.getMessage());
+    }
+    ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+    bais.mark(0);
+
+    for (int i = 0; i < a.length; i++) {
+      System.out.println("i = " + i);
+      bais.reset();
+      int result = findKthLargestUnknownLength(bais, i + 1);
+      System.out.println(result);
+    }
   }
 
   public static void main(String[] args) {
@@ -87,8 +95,8 @@ public class KthLargestElementLargeN {
 
       OrderStatistic.findKthLargest(aCopy, k);
       System.out.println(result);
-      System.out.println(aCopy.get(k-1));
-      assert (aCopy.get(k-1) == result);
+      System.out.println(aCopy.get(k - 1));
+      assert (aCopy.get(k - 1) == result);
     }
   }
 }

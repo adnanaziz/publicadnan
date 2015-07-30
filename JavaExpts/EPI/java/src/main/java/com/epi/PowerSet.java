@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class PowerSet {
+
   // @include
   private static final double LOG_2 = Math.log(2);
 
@@ -17,7 +18,7 @@ public class PowerSet {
       List<Integer> subset = new ArrayList<>();
       while (bitArray != 0) {
         subset.add(
-            inputSet.get((int)(Math.log(bitArray & ~(bitArray - 1)) / LOG_2)));
+            inputSet.get((int) (Math.log(bitArray & ~(bitArray - 1)) / LOG_2)));
         bitArray &= bitArray - 1;
       }
       powerSet.add(subset);
@@ -32,7 +33,7 @@ public class PowerSet {
         Arrays.asList(0, 1), Arrays.asList(2), Arrays.asList(0, 2),
         Arrays.asList(1, 2), Arrays.asList(0, 1, 2));
     List<List<Integer>> result = generatePowerSet(Arrays.asList(0, 1, 2));
-    assert(result.equals(goldenResult));
+    assert (result.equals(goldenResult));
   }
 
   public static void main(String[] args) {

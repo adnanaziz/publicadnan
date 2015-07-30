@@ -1,8 +1,11 @@
 package com.epi;
 
 public class SearchPostingsListRecursive {
+
   // @include
-  public static void setJumpOrder(PostingListNode L) { setJumpOrderHelper(L, 0); }
+  public static void setJumpOrder(PostingListNode L) {
+    setJumpOrderHelper(L, 0);
+  }
 
   private static int setJumpOrderHelper(PostingListNode L, int order) {
     if (L != null && L.getOrder() == -1) {
@@ -38,14 +41,14 @@ public class SearchPostingsListRecursive {
     PostingListNode temp = L;
     setJumpOrder(L);
     // output the jump-first order, it should be 0, 1, 4, 2, 3
-    assert(temp.getOrder() == 0);
+    assert (temp.getOrder() == 0);
     temp = temp.getNext();
-    assert(temp.getOrder() == 1);
+    assert (temp.getOrder() == 1);
     temp = temp.getNext();
-    assert(temp.getOrder() == 4);
+    assert (temp.getOrder() == 4);
     temp = temp.getNext();
-    assert(temp.getOrder() == 2);
+    assert (temp.getOrder() == 2);
     temp = temp.getNext();
-    assert(temp.getOrder() == 3);
+    assert (temp.getOrder() == 3);
   }
 }

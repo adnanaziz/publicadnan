@@ -1,16 +1,18 @@
 package com.epi;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 import java.util.PriorityQueue;
+import java.util.Random;
 
 public class MergeSortedArrays {
+
   // @include
   private static class ArrayEntry {
+
     public Integer value;
     public Integer arrayId;
 
@@ -26,11 +28,11 @@ public class MergeSortedArrays {
       List<List<Integer>> sortedArrays) {
     PriorityQueue<ArrayEntry> minHeap = new PriorityQueue<>(
         DEFAULT_INITIAL_CAPACITY, new Comparator<ArrayEntry>() {
-          @Override
-          public int compare(ArrayEntry o1, ArrayEntry o2) {
-            return o1.value.compareTo(o2.value);
-          }
-        });
+      @Override
+      public int compare(ArrayEntry o1, ArrayEntry o2) {
+        return o1.value.compareTo(o2.value);
+      }
+    });
     List<Integer> heads = new ArrayList<>(sortedArrays.size());
 
     // Puts each sortedArrays' first element in minHeap.
@@ -68,22 +70,22 @@ public class MergeSortedArrays {
     S.add(Arrays.asList(2, 12, Integer.MAX_VALUE));
 
     List<Integer> ans = mergeSortedArrays(S);
-    assert(9 == ans.size());
-    assert(1 == ans.get(0));
-    assert(2 == ans.get(1));
-    assert(2 == ans.get(2));
-    assert(3 == ans.get(3));
-    assert(5 == ans.get(4));
-    assert(10 == ans.get(5));
-    assert(12 == ans.get(6));
-    assert(100 == ans.get(7));
-    assert(Integer.MAX_VALUE == ans.get(8));
+    assert (9 == ans.size());
+    assert (1 == ans.get(0));
+    assert (2 == ans.get(1));
+    assert (2 == ans.get(2));
+    assert (3 == ans.get(3));
+    assert (5 == ans.get(4));
+    assert (10 == ans.get(5));
+    assert (12 == ans.get(6));
+    assert (100 == ans.get(7));
+    assert (Integer.MAX_VALUE == ans.get(8));
 
     S = new ArrayList<>();
     S.add(Arrays.asList(1));
     ans = mergeSortedArrays(S);
-    assert(1 == ans.size());
-    assert(1 == ans.get(0));
+    assert (1 == ans.size());
+    assert (1 == ans.get(0));
   }
 
   public static void main(String[] args) {
@@ -110,7 +112,7 @@ public class MergeSortedArrays {
 
       List<Integer> ans = mergeSortedArrays(S);
       for (int i = 1; i < ans.size(); ++i) {
-        assert(ans.get(i - 1) <= ans.get(i));
+        assert (ans.get(i - 1) <= ans.get(i));
       }
     }
   }

@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class CollatzConjecture {
+
   // @include
   public static boolean testCollatzConjecture(int n) {
     // Stores odd numbers already tested to converge to 1.
@@ -67,7 +68,7 @@ public class CollatzConjecture {
       System.out.println("n = " + n);
       boolean res = testCollatzConjecture(n);
       System.out.println(res);
-      assert(res == check(n));
+      assert (res == check(n));
     }
   }
 }

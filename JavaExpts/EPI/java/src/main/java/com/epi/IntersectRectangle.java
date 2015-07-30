@@ -3,8 +3,10 @@ package com.epi;
 import java.util.Random;
 
 public class IntersectRectangle {
+
   // @include
   public static class Rectangle {
+
     int x, y, width, height;
 
     public Rectangle(int x, int y, int width, int height) {
@@ -13,6 +15,7 @@ public class IntersectRectangle {
       this.width = width;
       this.height = height;
     }
+
     // @exclude
     public void print(String s) {
       System.out.println(s + x + " " + y + " " + width + " " + height);
@@ -32,7 +35,7 @@ public class IntersectRectangle {
 
   public static boolean isIntersect(Rectangle R1, Rectangle R2) {
     return R1.x <= R2.x + R2.width && R1.x + R1.width >= R2.x &&
-        R1.y <= R2.y + R2.height && R1.y + R1.height >= R2.y;
+           R1.y <= R2.y + R2.height && R1.y + R1.height >= R2.y;
   }
   // @exclude
 
@@ -41,18 +44,18 @@ public class IntersectRectangle {
     R1 = new Rectangle(0, 0, 2, 2);
     R2 = new Rectangle(1, 1, 3, 3);
     Rectangle result = intersectRectangle(R1, R2);
-    assert(result.x == 1 && result.y == 1 && result.width == 1 &&
-           result.height == 1);
+    assert (result.x == 1 && result.y == 1 && result.width == 1 &&
+            result.height == 1);
     R1 = new Rectangle(0, 0, 1, 1);
     R2 = new Rectangle(1, 1, 3, 3);
     result = intersectRectangle(R1, R2);
-    assert(result.x == 1 && result.y == 1 && result.width == 0 &&
-           result.height == 0);
+    assert (result.x == 1 && result.y == 1 && result.width == 0 &&
+            result.height == 0);
     R1 = new Rectangle(0, 0, 1, 1);
     R2 = new Rectangle(2, 2, 3, 3);
     result = intersectRectangle(R1, R2);
-    assert(result.x == 0 && result.y == 0 && result.width == -1 &&
-           result.height == -1);
+    assert (result.x == 0 && result.y == 0 && result.width == -1 &&
+            result.height == -1);
   }
 
   public static void main(String[] args) {
@@ -76,7 +79,7 @@ public class IntersectRectangle {
       System.out.println(res);
       Rectangle ans = intersectRectangle(R1, R2);
       ans.print("ans: ");
-      assert(!res || (ans.width >= 0 && ans.height >= 0));
+      assert (!res || (ans.width >= 0 && ans.height >= 0));
     }
   }
 }

@@ -8,6 +8,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class MaximumSubarrayInCircularArray {
+
   // @include
   public static int maxSubarraySumInCircular(List<Integer> A) {
     return Math.max(findMaxSubarray(A), findCircularMaxSubarray(A));
@@ -88,7 +89,7 @@ public class MaximumSubarrayInCircularArray {
       int ans = maxSubarraySumInCircular(A);
       // System.out.println(A);
       System.out.println("maximum sum = " + ans);
-      assert(ans == checkAns(A));
+      assert (ans == checkAns(A));
     }
   }
 }

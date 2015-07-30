@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class InterleavingString {
+
   // @include
   public static boolean isInterleavingString(String s1, String s2, String s3) {
     // Early return if |s1| + |s2| != |s3|.
@@ -44,16 +45,16 @@ public class InterleavingString {
     Random r = new Random();
     StringBuilder ret = new StringBuilder(len);
     while (len-- > 0) {
-      ret.append((char)(r.nextInt(26) + 'a'));
+      ret.append((char) (r.nextInt(26) + 'a'));
     }
     return ret.toString();
   }
 
   private static void smallTest() {
-    assert(isInterleavingString("aabcc", "dbbca", "aadbbcbcac"));
-    assert(!isInterleavingString("aabcc", "dbbca", "aadbbbaccc"));
-    assert(isInterleavingString("aabaac", "aadaaeaaf", "aadaaeaabaafaac"));
-    assert(isInterleavingString("bbc", "acaab", "abcbcaab"));
+    assert (isInterleavingString("aabcc", "dbbca", "aadbbcbcac"));
+    assert (!isInterleavingString("aabcc", "dbbca", "aadbbbaccc"));
+    assert (isInterleavingString("aabaac", "aadaaeaaf", "aadaaeaabaafaac"));
+    assert (isInterleavingString("bbc", "acaab", "abcbcaab"));
   }
 
   public static void main(String[] args) {
@@ -65,7 +66,7 @@ public class InterleavingString {
     } else {
       Random r = new Random();
       String s1 = randString(r.nextInt(100) + 1),
-             s2 = randString(r.nextInt(100) + 1);
+          s2 = randString(r.nextInt(100) + 1);
       String s3 = randString(s1.length() + s2.length());
       System.out.println(s1 + " " + s2 + " " + s3);
       System.out.println(isInterleavingString(s1, s2, s3));

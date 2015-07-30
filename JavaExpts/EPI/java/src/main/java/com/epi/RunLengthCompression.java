@@ -3,6 +3,7 @@
 package com.epi;
 
 public class RunLengthCompression {
+
   // @include
   public static String decoding(String s) {
     int count = 0;
@@ -42,8 +43,8 @@ public class RunLengthCompression {
       System.out.println(encoding(args[0]) + ' ' + decoding(args[1]));
     }
 
-    assert("4a1b3c2a".equals(encoding("aaaabcccaa")));
-    assert("eeeffffee".equals(decoding("3e4f2e")));
-    assert("aaaaaaaaaaffffee".equals(decoding("10a4f2e")));
+    assert ("4a1b3c2a".equals(encoding("aaaabcccaa")));
+    assert ("eeeffffee".equals(decoding("3e4f2e")));
+    assert ("aaaaaaaaaaffffee".equals(decoding("10a4f2e")));
   }
 }

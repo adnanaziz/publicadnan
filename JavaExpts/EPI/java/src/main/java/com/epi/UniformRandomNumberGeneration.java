@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class UniformRandomNumberGeneration {
+
   static int zeroOneRandom() {
     Random gen = new Random();
     return gen.nextInt(2);
@@ -36,7 +37,7 @@ public class UniformRandomNumberGeneration {
       int x = uniformRandom(a, b);
       System.out.println(String.format("a = %d, b = %d", a, b));
       System.out.println(String.format("random result = %d", x));
-      assert x >= a&& x <= b;
+      assert x >= a && x <= b;
     }
   }
 }

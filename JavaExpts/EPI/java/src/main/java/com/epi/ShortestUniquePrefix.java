@@ -1,16 +1,21 @@
 package com.epi;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * @author translated from c++ by Blazheev Alexander
  */
 public class ShortestUniquePrefix {
+
   private static String randString(int len) {
     Random r = new Random();
     StringBuilder ret = new StringBuilder(len);
     while (len-- > 0) {
-      ret.append((char)(r.nextInt(26) + 'a'));
+      ret.append((char) (r.nextInt(26) + 'a'));
     }
     return ret.toString();
   }
@@ -26,15 +31,23 @@ public class ShortestUniquePrefix {
   }
 
   public static class Trie {
+
     private static class TrieNode {
+
       private boolean isString = false;
       private Map<Character, TrieNode> leaves = new HashMap<>();
 
-      public boolean getIsString() { return isString; }
+      public boolean getIsString() {
+        return isString;
+      }
 
-      public void setIsString(boolean string) { isString = string; }
+      public void setIsString(boolean string) {
+        isString = string;
+      }
 
-      public Map<Character, TrieNode> getLeaves() { return leaves; }
+      public Map<Character, TrieNode> getLeaves() {
+        return leaves;
+      }
     }
 
     private TrieNode root = new TrieNode();
@@ -107,7 +120,7 @@ public class ShortestUniquePrefix {
         D.add(randString(r.nextInt(10) + 1));
       }
       System.out.println(s + " shortest prefix = " + findShortestPrefix(s, D));
-      assert(findShortestPrefix(s, D).equals(checkAns(s, D)));
+      assert (findShortestPrefix(s, D).equals(checkAns(s, D)));
     }
   }
 }

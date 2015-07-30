@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class IntersectSortedArrays {
+
   public static void main(String[] args) {
     int n = 100;
     int l = 1000;

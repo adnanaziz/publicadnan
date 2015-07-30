@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class BinarySearchCircularArrayWithDuplicates {
+
   // @include
   public static int searchSmallest(int[] A) {
     return searchSmallestHelper(A, 0, A.length - 1);
@@ -39,23 +40,23 @@ public class BinarySearchCircularArrayWithDuplicates {
 
   // hand-made tests
   private static void SimpleTest() {
-    int[] A = new int[] {3, 1, 2};
-    assert(1 == searchSmallest(A));
-    A = new int[] {0, 2, 4, 8};
-    assert(0 == searchSmallest(A));
+    int[] A = new int[]{3, 1, 2};
+    assert (1 == searchSmallest(A));
+    A = new int[]{0, 2, 4, 8};
+    assert (0 == searchSmallest(A));
     A[0] = 16;
-    assert(1 == searchSmallest(A));
+    assert (1 == searchSmallest(A));
 
-    A = new int[] {2, 2, 2};
-    assert(0 == searchSmallest(A));
-    A = new int[] {100, 2, 5, 5};
-    assert(1 == searchSmallest(A));
-    A = new int[] {1, 2, 3, 3, 3};
-    assert(0 == searchSmallest(A));
-    A = new int[] {5, 2, 3, 3, 3};
-    assert(1 == searchSmallest(A));
-    A = new int[] {5, 5, 2, 2, 2, 3, 3, 3};
-    assert(2 == searchSmallest(A));
+    A = new int[]{2, 2, 2};
+    assert (0 == searchSmallest(A));
+    A = new int[]{100, 2, 5, 5};
+    assert (1 == searchSmallest(A));
+    A = new int[]{1, 2, 3, 3, 3};
+    assert (0 == searchSmallest(A));
+    A = new int[]{5, 2, 3, 3, 3};
+    assert (1 == searchSmallest(A));
+    A = new int[]{5, 5, 2, 2, 2, 3, 3, 3};
+    assert (2 == searchSmallest(A));
   }
 
   public static void main(String[] args) {
@@ -77,7 +78,7 @@ public class BinarySearchCircularArrayWithDuplicates {
       reverse(A, 0, shift);
       reverse(A, shift + 1, A.length - 1);
       // System.out.println(A);
-      assert((shift + 1) % n == searchSmallest(A));
+      assert ((shift + 1) % n == searchSmallest(A));
     }
   }
 }

@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 public class DrawingSkylines {
+
   // @include
   public static class Rectangle {
+
     public int left, right, height;
 
     public Rectangle(int left, int right, int height) {
@@ -124,11 +126,11 @@ public class DrawingSkylines {
       System.out.println("n = " + n);
       // Just check there is no overlap.
       for (int i = 0; i < ans.size(); ++i) {
-        assert(ans.get(i).left <= ans.get(i).right);
+        assert (ans.get(i).left <= ans.get(i).right);
         if (i > 0) {
-          assert(ans.get(i - 1).right <= ans.get(i).left);
-          assert(ans.get(i - 1).right != ans.get(i).left ||
-                 ans.get(i - 1).height != ans.get(i).height);
+          assert (ans.get(i - 1).right <= ans.get(i).left);
+          assert (ans.get(i - 1).right != ans.get(i).left ||
+                  ans.get(i - 1).height != ans.get(i).height);
         }
       }
     }

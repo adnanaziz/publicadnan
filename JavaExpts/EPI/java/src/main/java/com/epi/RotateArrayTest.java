@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class RotateArrayTest {
+
   public static int[] randVector(int len) {
     Random gen = new Random();
     int[] ret = new int[len];
@@ -16,7 +17,7 @@ public class RotateArrayTest {
   public static void checkAnswer(int[] A, int i, int[] rotated) {
     assert A.length == rotated.length;
     for (int idx = 0; idx < A.length; ++idx) {
-      assert(rotated[(idx + i) % rotated.length] == A[idx]);
+      assert (rotated[(idx + i) % rotated.length] == A[idx]);
     }
   }
 

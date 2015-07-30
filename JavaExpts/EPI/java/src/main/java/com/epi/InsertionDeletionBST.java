@@ -1,9 +1,12 @@
 package com.epi;
 
 public class InsertionDeletionBST {
+
   // @include
   public static class BinarySearchTree {
+
     private static class TreeNode {
+
       public Integer data;
       public TreeNode left, right;
 
@@ -17,9 +20,13 @@ public class InsertionDeletionBST {
     private TreeNode root = null;
 
     // @exclude
-    public boolean empty() { return root == null; }
+    public boolean empty() {
+      return root == null;
+    }
 
-    public void clear() { root = null; }
+    public void clear() {
+      root = null;
+    }
 
     // @include
     public boolean insert(Integer key) {
@@ -95,49 +102,52 @@ public class InsertionDeletionBST {
       }
       return true;
     }
+
     // @exclude
-    public Integer getRootVal() { return root.data; }
+    public Integer getRootVal() {
+      return root.data;
+    }
     // @include
   }
   // @exclude
 
   public static void main(String[] args) {
     BinarySearchTree bst = new BinarySearchTree();
-    assert(bst.empty());
-    assert(bst.insert(7));
-    assert(bst.insert(8));
-    assert(bst.insert(9));
-    assert(bst.insert(4));
-    assert(bst.insert(3));
-    assert(!bst.empty());
-    assert(bst.insert(2));
-    assert(bst.insert(5));
-    assert(bst.delete(7));
-    assert(bst.delete(9));
+    assert (bst.empty());
+    assert (bst.insert(7));
+    assert (bst.insert(8));
+    assert (bst.insert(9));
+    assert (bst.insert(4));
+    assert (bst.insert(3));
+    assert (!bst.empty());
+    assert (bst.insert(2));
+    assert (bst.insert(5));
+    assert (bst.delete(7));
+    assert (bst.delete(9));
     // should output 8
-    assert(bst.getRootVal() == 8);
+    assert (bst.getRootVal() == 8);
     System.out.println(bst.getRootVal());
-    assert(bst.delete(4));
+    assert (bst.delete(4));
     // should output 8
-    assert(bst.getRootVal() == 8);
+    assert (bst.getRootVal() == 8);
     System.out.println(bst.getRootVal());
-    assert(bst.delete(8));
+    assert (bst.delete(8));
     // should output 5
-    assert(bst.getRootVal() == 5);
+    assert (bst.getRootVal() == 5);
     System.out.println(bst.getRootVal());
-    assert(bst.delete(5));
-    assert(bst.delete(3));
+    assert (bst.delete(5));
+    assert (bst.delete(3));
     // should output 2
-    assert(bst.getRootVal() == 2);
+    assert (bst.getRootVal() == 2);
     System.out.println(bst.getRootVal());
-    assert(bst.delete(2));
-    assert(!bst.delete(1));
-    assert(bst.empty());
-    assert(bst.insert(7));
-    assert(bst.getRootVal() == 7);
-    assert(bst.insert(9));
-    assert(bst.getRootVal() == 7);
-    assert(bst.delete(7));
-    assert(bst.getRootVal() == 9);
+    assert (bst.delete(2));
+    assert (!bst.delete(1));
+    assert (bst.empty());
+    assert (bst.insert(7));
+    assert (bst.getRootVal() == 7);
+    assert (bst.insert(9));
+    assert (bst.getRootVal() == 7);
+    assert (bst.delete(7));
+    assert (bst.getRootVal() == 9);
   }
 }

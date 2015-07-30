@@ -9,8 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SlidingWindow {
+
   // @include
   public static class TrafficElement implements Comparable<TrafficElement> {
+
     public int time;
     public double volume;
 
@@ -22,7 +24,7 @@ public class SlidingWindow {
     @Override
     public int compareTo(TrafficElement o) {
       int volumeCmp = Double.compare(volume, o.volume);
-      return  volumeCmp != 0 ? volumeCmp : time - o.time;
+      return volumeCmp != 0 ? volumeCmp : time - o.time;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class SlidingWindow {
       if (o == null || getClass() != o.getClass()) {
         return false;
       }
-      return compareTo((TrafficElement)o) == 0;
+      return compareTo((TrafficElement) o) == 0;
     }
 
     @Override
@@ -63,7 +65,7 @@ public class SlidingWindow {
 
   public static void main(String[] args) {
     int w = 3;
-    TrafficElement[] A = new TrafficElement[] {
+    TrafficElement[] A = new TrafficElement[]{
         new TrafficElement(0, 1.3), new TrafficElement(2, 2.5),
         new TrafficElement(3, 3.7), new TrafficElement(5, 1.4),
         new TrafficElement(6, 2.6), new TrafficElement(8, 2.2),

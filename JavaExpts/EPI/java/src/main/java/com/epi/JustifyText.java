@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class JustifyText {
+
   // @include
   public static List<String> justifyText(String[] words, int L) {
     int currLineStart = 0, numWordsCurrLine = 0, currLineLength = 0;
@@ -52,7 +53,7 @@ public class JustifyText {
     for (int i = start; i < end; ++i) {
       line.append(words[i]);
       --numWordsCurrLine;
-      int numCurrSpace = (int)Math.ceil((double)numSpaces / numWordsCurrLine);
+      int numCurrSpace = (int) Math.ceil((double) numSpaces / numWordsCurrLine);
       for (int j = 0; j < numCurrSpace; j++) {
         line.append(' ');
       }
@@ -72,42 +73,42 @@ public class JustifyText {
       System.out.println("\"" + s + "\"");
     }
     System.out.println();
-    assert(Arrays.equals(result.toArray(), golden));
+    assert (Arrays.equals(result.toArray(), golden));
   }
 
   public static void main(String[] args) {
-    String words[] = new String[] {"Text", "justification", "is", "trickier",
-                                   "than", "it", "seems!"};
-    String golden[] = new String[] {"Text          ", "justification ",
-                                    "is    trickier", "than it seems!"};
+    String words[] = new String[]{"Text", "justification", "is", "trickier",
+                                  "than", "it", "seems!"};
+    String golden[] = new String[]{"Text          ", "justification ",
+                                   "is    trickier", "than it seems!"};
     int L = 14;
     System.out.println("L = " + L);
     testCase(words, L, golden);
-    words = new String[] {"Listen", "to", "many,", "speak", "to", "a", "few."};
+    words = new String[]{"Listen", "to", "many,", "speak", "to", "a", "few."};
     golden =
-        new String[] {"Listen", "to    ", "many, ", "speak ", "to   a", "few.  "};
+        new String[]{"Listen", "to    ", "many, ", "speak ", "to   a", "few.  "};
     L = 6;
     System.out.println("L = " + L);
     testCase(words, L, golden);
-    words = new String[] {"The",  "quick", "brown", "fox",  "jumped",
-                          "over", "the",   "lazy",  "dogs."};
-    golden = new String[] {"The   quick", "brown   fox", "jumped over",
-                           "the    lazy", "dogs.      "};
+    words = new String[]{"The", "quick", "brown", "fox", "jumped",
+                         "over", "the", "lazy", "dogs."};
+    golden = new String[]{"The   quick", "brown   fox", "jumped over",
+                          "the    lazy", "dogs.      "};
     L = 11;
     System.out.println("L = " + L);
     testCase(words, L, golden);
     golden =
-        new String[] {"The  quick brown", "fox  jumped over", "the lazy dogs.  "};
+        new String[]{"The  quick brown", "fox  jumped over", "the lazy dogs.  "};
     L = 16;
     System.out.println("L = " + L);
     testCase(words, L, golden);
-    golden = new String[] {"The  quick  brown", "fox  jumped  over",
-                           "the lazy dogs.   "};
+    golden = new String[]{"The  quick  brown", "fox  jumped  over",
+                          "the lazy dogs.   "};
     L = 17;
     System.out.println("L = " + L);
     testCase(words, L, golden);
-    words = new String[] {"Hello", "World"};
-    golden = new String[] {"Hello World   "};
+    words = new String[]{"Hello", "World"};
+    golden = new String[]{"Hello World   "};
     L = 14;
     System.out.println("L = " + L);
     testCase(words, L, golden);

@@ -7,11 +7,12 @@ import java.util.List;
 import java.util.Random;
 
 public class MatrixRotationNaive {
+
   private static void checkAnswer(List<List<Integer>> A) {
     int k = 1;
     for (int j = A.size() - 1; j >= 0; --j) {
       for (List<Integer> element : A) {
-        assert(k++ == element.get(j));
+        assert (k++ == element.get(j));
       }
     }
   }

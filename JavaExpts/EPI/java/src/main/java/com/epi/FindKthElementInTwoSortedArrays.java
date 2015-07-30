@@ -1,10 +1,10 @@
 package com.epi;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class FindKthElementInTwoSortedArrays {
+
   // @include
   public static int findKthNTwoSortedArrays(int[] A, int[] B, int k) {
     // Lower bound of elements we will choose in A.
@@ -61,13 +61,13 @@ public class FindKthElementInTwoSortedArrays {
 
   private static void smallTest() {
     // AA: handwritten test
-    int[] a0 = new int[] {0, 1, 2, 3};
-    int[] b0 = new int[] {0, 1, 2, 3};
-    assert(0 == findKthNTwoSortedArrays(a0, b0, 1));
-    assert(0 == findKthNTwoSortedArrays(a0, b0, 2));
-    assert(1 == findKthNTwoSortedArrays(a0, b0, 3));
-    assert(1 == findKthNTwoSortedArrays(a0, b0, 4));
-    assert(2 == findKthNTwoSortedArrays(a0, b0, 5));
+    int[] a0 = new int[]{0, 1, 2, 3};
+    int[] b0 = new int[]{0, 1, 2, 3};
+    assert (0 == findKthNTwoSortedArrays(a0, b0, 1));
+    assert (0 == findKthNTwoSortedArrays(a0, b0, 2));
+    assert (1 == findKthNTwoSortedArrays(a0, b0, 3));
+    assert (1 == findKthNTwoSortedArrays(a0, b0, 4));
+    assert (2 == findKthNTwoSortedArrays(a0, b0, 5));
   }
 
   public static void main(String[] args) {
@@ -104,7 +104,7 @@ public class FindKthElementInTwoSortedArrays {
        */
       int ans = findKthNTwoSortedArrays(A, B, k);
       System.out.println(k + "th = " + ans);
-      assert(ans == checkAnswer(A, B, k));
+      assert (ans == checkAnswer(A, B, k));
     }
   }
 }

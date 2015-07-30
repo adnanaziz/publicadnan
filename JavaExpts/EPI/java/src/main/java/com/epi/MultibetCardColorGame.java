@@ -1,14 +1,17 @@
 package com.epi;
 
-import static java.lang.Math.*;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static java.lang.Math.pow;
 
 public class MultibetCardColorGame {
+
   // @include
   public static double computeBestPayoff(int cash) {
     double upperBound = 9.09 * cash;
     int numRed = 26;
     int numCards = 52;
-    Double[][][] cache = new Double[(int)upperBound][numRed + 1][numCards + 1];
+    Double[][][] cache = new Double[(int) upperBound][numRed + 1][numCards + 1];
     return computeBestPayoffHelper(cache, upperBound, cash, 26, 52);
   }
 
@@ -48,7 +51,7 @@ public class MultibetCardColorGame {
   // @exclude
 
   public static void main(String[] args) {
-    int ans = (int)computeBestPayoff(100);
+    int ans = (int) computeBestPayoff(100);
     assert ans == 808;
     System.out.println("100 cash can get " + ans);
   }

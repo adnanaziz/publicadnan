@@ -9,6 +9,7 @@ import static com.epi.utils.Utils.iota;
 import static com.epi.utils.Utils.simplePrint;
 
 public class EquivClasses {
+
   // @include
   /*
    * A and B encode pairwise equivalences on a cardinality N set whose elements
@@ -58,12 +59,12 @@ public class EquivClasses {
     List<Integer> B = Arrays.asList(2, 1, 0, 5);
     List<Integer> res = computeEquivalClasses(7, A, B);
     simplePrint(res);
-    assert(res.get(0) == 0);
-    assert(res.get(1) == 1);
-    assert(res.get(2) == 1);
-    assert(res.get(3) == 0);
-    assert(res.get(4) == 4);
-    assert(res.get(5) == 1);
-    assert(res.get(6) == 1);
+    assert (res.get(0) == 0);
+    assert (res.get(1) == 1);
+    assert (res.get(2) == 1);
+    assert (res.get(3) == 0);
+    assert (res.get(4) == 4);
+    assert (res.get(5) == 1);
+    assert (res.get(6) == 1);
   }
 }

@@ -4,12 +4,19 @@ package com.epi;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 class PointsCoveringIntervalsAlternative {
   // @include
 
   private static class Interval {
+
     public int left, right;
 
     public Interval(int l, int r) {
@@ -19,6 +26,7 @@ class PointsCoveringIntervalsAlternative {
   }
 
   public static class EndPoint implements Comparable<EndPoint> {
+
     public Interval ptr;
     public boolean isLeft;
 
@@ -32,14 +40,14 @@ class PointsCoveringIntervalsAlternative {
                                                              : that.ptr.right;
       if (a != b) {
         return a - b;
-      } 
+      }
       // Give preference to left endpoint.
       if (isLeft && !that.isLeft) {
-          return -1;
+        return -1;
       } else if (!isLeft && that.isLeft) {
-          return 1;
+        return 1;
       } else {
-          return 0;
+        return 0;
       }
     }
 
@@ -105,7 +113,7 @@ class PointsCoveringIntervalsAlternative {
     }
 
     for (boolean b : isVisited) {
-      assert(b);
+      assert (b);
     }
   }
 
@@ -119,7 +127,7 @@ class PointsCoveringIntervalsAlternative {
     intervals[5] = new Interval(9, 11);
     List<Integer> ans = findMinimumVisits(intervals);
     List<Integer> golden = Arrays.asList(4, 10);
-    assert(ans.equals(golden));
+    assert (ans.equals(golden));
 
     intervals = new Interval[6];
     intervals[0] = new Interval(1, 2);
@@ -130,7 +138,7 @@ class PointsCoveringIntervalsAlternative {
     intervals[5] = new Interval(6, 7);
     ans = findMinimumVisits(intervals);
     golden = Arrays.asList(2, 4, 6);
-    assert(ans.equals(golden));
+    assert (ans.equals(golden));
   }
 
   public static void main(String[] args) {

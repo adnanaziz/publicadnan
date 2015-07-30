@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Stack;
 
 public class TowerHanoi {
+
   static int numSteps;
   // @include
   private static final int NUM_PEGS = 3;
@@ -51,18 +52,18 @@ public class TowerHanoi {
 
     numSteps = 0;
     computeTowerHanoi(4);
-    assert(15 == numSteps);
+    assert (15 == numSteps);
 
     numSteps = 0;
     computeTowerHanoi(1);
-    assert(1 == numSteps);
+    assert (1 == numSteps);
 
     numSteps = 0;
     computeTowerHanoi(0);
-    assert(0 == numSteps);
+    assert (0 == numSteps);
 
     numSteps = 0;
     computeTowerHanoi(10);
-    assert(1023 == numSteps);
+    assert (1023 == numSteps);
   }
 }

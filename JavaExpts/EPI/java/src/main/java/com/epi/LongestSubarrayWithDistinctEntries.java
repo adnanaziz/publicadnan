@@ -1,8 +1,13 @@
 package com.epi;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 public class LongestSubarrayWithDistinctEntries {
+
   // @include
   public static int longestSubarrayWithDistinctEntries(int[] A) {
     // Records the most recent occurrences of each entry.
@@ -40,10 +45,10 @@ public class LongestSubarrayWithDistinctEntries {
   }
 
   private static void SimpleTest() {
-    assert(1 == longestSubarrayWithDistinctEntries(new int[]{1,1,1}));
-    assert(2 == longestSubarrayWithDistinctEntries(new int[]{1,2,1}));
-    assert(3 == longestSubarrayWithDistinctEntries(new int[]{1,2,1,3,1,2,1}));
-    assert(2 == longestSubarrayWithDistinctEntries(new int[]{1,2,2,3,3,1,1,2,1}));
+    assert (1 == longestSubarrayWithDistinctEntries(new int[]{1, 1, 1}));
+    assert (2 == longestSubarrayWithDistinctEntries(new int[]{1, 2, 1}));
+    assert (3 == longestSubarrayWithDistinctEntries(new int[]{1, 2, 1, 3, 1, 2, 1}));
+    assert (2 == longestSubarrayWithDistinctEntries(new int[]{1, 2, 2, 3, 3, 1, 1, 2, 1}));
   }
 
   public static void main(String[] args) {
@@ -65,7 +70,7 @@ public class LongestSubarrayWithDistinctEntries {
       int ans = longestSubarrayWithDistinctEntries(A);
       int goldenAns = checkAns(A);
       System.out.println(ans + " " + goldenAns);
-      assert(ans == goldenAns);
+      assert (ans == goldenAns);
     }
   }
 }

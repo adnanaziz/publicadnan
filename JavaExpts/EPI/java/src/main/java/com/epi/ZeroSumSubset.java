@@ -9,6 +9,7 @@ import java.util.Random;
 import static com.epi.utils.Utils.iota;
 
 public class ZeroSumSubset {
+
   // @include
   public static List<Integer> find0SumSubset(List<Integer> A) {
     List<Integer> prefixSum = new ArrayList<>(A);
@@ -49,7 +50,7 @@ public class ZeroSumSubset {
     for (int a : ans) {
       sum = (sum + A.get(a)) % A.size();
     }
-    assert(sum == 0);
+    assert (sum == 0);
   }
 
   public static void main(String[] args) {

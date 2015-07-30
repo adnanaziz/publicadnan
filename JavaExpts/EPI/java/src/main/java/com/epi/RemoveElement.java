@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RemoveElement {
+
   // @include
   // Returns the number of valid entries after deletion.
   public static int deleteKey(int key, List<Integer> A) {
@@ -20,7 +21,7 @@ public class RemoveElement {
 
   private static void checkAns(List<Integer> A, int n, int key) {
     for (int i = 0; i < n; ++i) {
-      assert(A.get(i) != key);
+      assert (A.get(i) != key);
     }
   }
 
@@ -42,10 +43,10 @@ public class RemoveElement {
       int size = deleteKey(target, A);
       System.out.println("size = " + size + " key = " + target);
       checkAns(A, size, target);
-      while (copyA.remove((Integer)target)) {
+      while (copyA.remove((Integer) target)) {
       }
       System.out.println(copyA.size());
-      assert(size == copyA.size());
+      assert (size == copyA.size());
     }
   }
 }

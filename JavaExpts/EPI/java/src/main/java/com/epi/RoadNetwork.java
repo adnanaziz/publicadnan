@@ -9,8 +9,10 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class RoadNetwork {
+
   // @include
   public static class HighwaySection {
+
     public int x, y;
     public double distance;
 

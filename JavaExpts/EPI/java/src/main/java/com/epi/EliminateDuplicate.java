@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Random;
 
 class EliminateDuplicate {
+
   // @include
   public static void eliminateDuplicate(ArrayList<Integer> A) {
     Collections.sort(A); // Makes identical elements become neighbors.
@@ -23,7 +24,7 @@ class EliminateDuplicate {
 
   public static void checkAnswer(ArrayList<Integer> a) {
     for (int i = 1; i < a.size(); ++i) {
-      assert(!a.get(i).equals(a.get(i - 1)));
+      assert (!a.get(i).equals(a.get(i - 1)));
     }
   }
 

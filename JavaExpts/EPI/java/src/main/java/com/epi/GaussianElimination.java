@@ -6,9 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import static com.epi.utils.Utils.*;
+import static com.epi.utils.Utils.copy;
+import static com.epi.utils.Utils.simplePrint;
 
 public class GaussianElimination {
+
   // @include
   static boolean[] gaussianElimination(List<List<Boolean>> A, boolean[] y) {
     List<List<Boolean>> B = copy(A);

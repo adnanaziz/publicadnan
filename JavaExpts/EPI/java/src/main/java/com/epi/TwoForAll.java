@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 public class TwoForAll {
+
   // @include
   public static class GraphVertex {
+
     public int d, l; // Discovery and leaving time.
     public List<GraphVertex> edges;
 
@@ -98,7 +100,7 @@ public class TwoForAll {
     G.get(2).edges.add(G.get(0));
     G.get(0).edges.add(G.get(2));
     boolean res = isGraphFaultTolerant(G);
-    assert(res);
+    assert (res);
   }
 
   private static void testTwoTriangles() {
@@ -126,7 +128,7 @@ public class TwoForAll {
     G.get(3).edges.add(G.get(0));
 
     boolean res = isGraphFaultTolerant(G);
-    assert(!res);
+    assert (!res);
   }
 
   private static void testTwoTrianglesBridged() {
@@ -156,7 +158,7 @@ public class TwoForAll {
     G.get(4).edges.add(G.get(0));
 
     boolean res = isGraphFaultTolerant(G);
-    assert(res);
+    assert (res);
   }
 
   public static void main(String[] args) {
@@ -200,7 +202,7 @@ public class TwoForAll {
 
       boolean res = isGraphFaultTolerant(G);
       System.out.println(res);
-      assert(checkAnswer(G) == res);
+      assert (checkAnswer(G) == res);
     }
   }
 }

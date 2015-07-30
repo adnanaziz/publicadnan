@@ -1,15 +1,14 @@
 package com.epi;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.PriorityQueue;
 
 public class SortKIncreasingDecreasingArray {
+
   // @include
   public static List<Integer> sortKIncreasingDecreasingArray(List<Integer> A) {
     // Decomposes A into a set of sorted arrays.
@@ -36,7 +35,7 @@ public class SortKIncreasingDecreasingArray {
     return MergeSortedArrays.mergeSortedArrays(sortedSubarrays);
   }
 
-  private static enum SubarrayType { INCREASING, DECREASING }
+  private static enum SubarrayType {INCREASING, DECREASING}
   // @exclude
 
   public static <T extends Comparable<T>> boolean isSorted(Iterable<T> iterable) {
@@ -59,22 +58,22 @@ public class SortKIncreasingDecreasingArray {
     List<Integer> A = Arrays.asList(1, 2, 3, 2, 1, 4, 5, 10, 9, 4, 4, 1, -1);
     List<Integer> Adup = new ArrayList<>(A);
     List<Integer> ans = sortKIncreasingDecreasingArray(A);
-    assert(Adup.size() == ans.size());
+    assert (Adup.size() == ans.size());
     Collections.sort(Adup);
-    assert(Adup.equals(ans));
+    assert (Adup.equals(ans));
 
     A = Arrays.asList(Integer.MIN_VALUE, -1, 0, 1, 2, 4, 8, Integer.MAX_VALUE);
     Adup = new ArrayList<>(A);
     ans = sortKIncreasingDecreasingArray(A);
-    assert(Adup.size() == ans.size());
-    assert(Adup.equals(ans));
+    assert (Adup.size() == ans.size());
+    assert (Adup.equals(ans));
 
     A = Arrays.asList(Integer.MIN_VALUE, -1, 0, 1, 2, 4, 8, Integer.MAX_VALUE);
     Adup = new ArrayList<>(A);
     Collections.reverse(A);
     ans = sortKIncreasingDecreasingArray(A);
-    assert(Adup.size() == ans.size());
-    assert(Adup.equals(ans));
+    assert (Adup.size() == ans.size());
+    assert (Adup.equals(ans));
   }
 
   public static void main(String[] args) {
@@ -94,8 +93,8 @@ public class SortKIncreasingDecreasingArray {
       }
 
       List<Integer> ans = sortKIncreasingDecreasingArray(A);
-      assert(A.size() == ans.size());
-      assert(isSorted(ans));
+      assert (A.size() == ans.size());
+      assert (isSorted(ans));
     }
   }
 }

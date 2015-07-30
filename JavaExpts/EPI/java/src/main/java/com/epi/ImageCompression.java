@@ -1,13 +1,19 @@
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * @author translated from c++ by Blazheev Alexander
  */
 public class ImageCompression {
+
   // @include
   public static class Point {
+
     public int i, j;
 
     public Point(int i, int j) {
@@ -15,7 +21,9 @@ public class ImageCompression {
       this.j = j;
     }
 
-    public boolean isGreater(Point that) { return i > that.i || j > that.j; }
+    public boolean isGreater(Point that) {
+      return i > that.i || j > that.j;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -26,7 +34,7 @@ public class ImageCompression {
         return false;
       }
 
-      Point point = (Point)o;
+      Point point = (Point) o;
 
       if (i != point.i) {
         return false;
@@ -45,10 +53,13 @@ public class ImageCompression {
       return result;
     }
 
-    public String toString() { return "(" + i + " " + j + ")"; }
+    public String toString() {
+      return "(" + i + " " + j + ")";
+    }
   }
 
   public static class TreeNode {
+
     public int nodeNum; // stores the number of node in its subtree.
 
     public Point lowerLeft, upperRight;
@@ -95,9 +106,9 @@ public class ImageCompression {
       pixelSum += imageSum[lowerLeft.i - 1][lowerLeft.j - 1];
     }
     return pixelSum == 0 || // totally white.
-        pixelSum ==
-            (upperRight.i - lowerLeft.i + 1) * // totally black.
-                (upperRight.j - lowerLeft.j + 1);
+           pixelSum ==
+           (upperRight.i - lowerLeft.i + 1) * // totally black.
+           (upperRight.j - lowerLeft.j + 1);
   }
 
   public static TreeNode calculateOptimal2DTreeHelper(

@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class SortList {
+
   // @include
   public static ListNode<Integer> stableSortList(ListNode<Integer> L) {
     // Base cases: L is empty or a single node, nothing to do.
@@ -45,12 +46,12 @@ public class SortList {
       int count = 0;
       int pre = Integer.MIN_VALUE;
       while (sortedHead != null) {
-        assert(pre <= sortedHead.data);
+        assert (pre <= sortedHead.data);
         pre = sortedHead.data;
         sortedHead = sortedHead.next;
         ++count;
       }
-      assert(count == n);
+      assert (count == n);
     }
   }
 }

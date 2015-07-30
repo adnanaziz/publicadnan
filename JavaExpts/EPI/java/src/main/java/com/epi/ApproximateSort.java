@@ -1,9 +1,19 @@
 package com.epi;
 
-import java.io.*;
-import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Random;
 
 public class ApproximateSort {
+
   // @include
   public static void sortApproximatelySortedData(InputStream sequence, int k) {
     PriorityQueue<Integer> minHeap = new PriorityQueue<>();
@@ -12,12 +22,12 @@ public class ApproximateSort {
       // Adds the first k elements into minHeap. Stop if there are fewer than
       // k elements.
       for (int i = 0; i < k; ++i) {
-        minHeap.add((Integer)osin.readObject());
+        minHeap.add((Integer) osin.readObject());
       }
 
       // For every new element, add it to minHeap and extract the smallest.
       while (true) {
-        minHeap.add((Integer)osin.readObject());
+        minHeap.add((Integer) osin.readObject());
         System.out.println(minHeap.remove());
       }
     } catch (IOException e) {

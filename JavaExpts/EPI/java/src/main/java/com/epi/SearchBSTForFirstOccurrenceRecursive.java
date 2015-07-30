@@ -3,6 +3,7 @@ package com.epi;
 import com.epi.BinarySearchTreePrototypeTemplate.BSTNode;
 
 public class SearchBSTForFirstOccurrenceRecursive {
+
   // @include
   public static BSTNode<Integer> findFirstEqualK(BSTNode<Integer> tree, int k) {
     if (tree == null) {
@@ -28,19 +29,19 @@ public class SearchBSTForFirstOccurrenceRecursive {
     root.setRight(new BSTNode<>(6));
     root.getRight().setLeft(new BSTNode<>(4));
     root.getRight().setRight(new BSTNode<>(6));
-    assert(findFirstEqualK(root, 7) == null);
-    assert(findFirstEqualK(root, 6).getData().equals(6) &&
-           findFirstEqualK(root, 6).getRight().getData().equals(6));
+    assert (findFirstEqualK(root, 7) == null);
+    assert (findFirstEqualK(root, 6).getData().equals(6) &&
+            findFirstEqualK(root, 6).getRight().getData().equals(6));
 
     root = new BSTNode<>(3);
     root.setLeft(new BSTNode<>(3));
     root.getLeft().setLeft(new BSTNode<>(1));
     root.setRight(new BSTNode<>(5));
-    root.getRight().setLeft(new BSTNode<>(5));            
-    root.getRight().setRight(new BSTNode<>(5));           
-    assert(findFirstEqualK(root, 3) == root.getLeft());   
-    assert(findFirstEqualK(root, 5).equals(root.getRight().getLeft()));
-    assert(findFirstEqualK(root, 5).getData().equals(5));
+    root.getRight().setLeft(new BSTNode<>(5));
+    root.getRight().setRight(new BSTNode<>(5));
+    assert (findFirstEqualK(root, 3) == root.getLeft());
+    assert (findFirstEqualK(root, 5).equals(root.getRight().getLeft()));
+    assert (findFirstEqualK(root, 5).getData().equals(5));
 
   }
 }

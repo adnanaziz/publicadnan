@@ -6,6 +6,7 @@ package com.epi;
 import java.util.Random;
 
 class EvenOddMergeLinkedList {
+
   // @include
   public static ListNode<Integer> evenOddMerge(ListNode<Integer> L) {
     if (L == null) {
@@ -38,18 +39,18 @@ class EvenOddMergeLinkedList {
   public static void SimpleTest() {
     ListNode<Integer> L = new ListNode<>(0, null);
     ListNode<Integer> result = evenOddMerge(L);
-    assert(result.data == 0);
+    assert (result.data == 0);
 
     L.next = new ListNode<Integer>(1, null);
     result = evenOddMerge(L);
-    assert(result.data == 0);
-    assert(result.next.data == 1);
+    assert (result.data == 0);
+    assert (result.next.data == 1);
     L.next.next = new ListNode<Integer>(2, null);
 
     result = evenOddMerge(L);
-    assert(result.data == 0);
-    assert(result.next.data == 2);
-    assert(result.next.next.data == 1);
+    assert (result.data == 0);
+    assert (result.next.data == 2);
+    assert (result.next.next.data == 1);
   }
 
   public static void main(String[] args) {
@@ -79,7 +80,7 @@ class EvenOddMergeLinkedList {
     int x = 0, count = 0;
     while (answer != null) {
       ++count;
-      assert(x == answer.data);
+      assert (x == answer.data);
       x += 2;
       if (x >= n) {
         x = 1;
@@ -87,6 +88,6 @@ class EvenOddMergeLinkedList {
       System.out.println(answer.data);
       answer = answer.next;
     }
-    assert(count == n);
+    assert (count == n);
   }
 }

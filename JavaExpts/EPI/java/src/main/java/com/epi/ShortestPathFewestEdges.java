@@ -2,12 +2,17 @@ package com.epi;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class ShortestPathFewestEdges {
   // @include
 
   private static class VertexWithDistance {
+
     public GraphVertex vertex;
     public Integer distance;
 
@@ -18,6 +23,7 @@ public class ShortestPathFewestEdges {
   }
 
   private static class DistanceWithFewestEdges {
+
     public Integer distance;
     public Integer minNumEdges;
 
@@ -28,6 +34,7 @@ public class ShortestPathFewestEdges {
   }
 
   public static class GraphVertex implements Comparable<GraphVertex> {
+
     public DistanceWithFewestEdges distance =
         new DistanceWithFewestEdges(Integer.MAX_VALUE, 0);
     public List<VertexWithDistance> edges = new ArrayList<>();
@@ -52,7 +59,7 @@ public class ShortestPathFewestEdges {
         return true;
       }
       GraphVertex that = (GraphVertex) obj;
-      return this.distance.distance.equals(that.distance.distance) 
+      return this.distance.distance.equals(that.distance.distance)
              && this.distance.minNumEdges.equals(that.distance.minNumEdges);
     }
 
@@ -157,10 +164,10 @@ public class ShortestPathFewestEdges {
 
     dijkstraShortestPath(G.get(s), G.get(t));
     System.out.println("\nMin distance: " + G.get(t).distance.distance);
-    assert(G.get(t).distance.distance == 21);
+    assert (G.get(t).distance.distance == 21);
     System.out.println("Number of edges: " + G.get(t).distance.minNumEdges);
     System.out.println("Number of edges: " + G.get(t).distance.minNumEdges);
-    assert(G.get(t).distance.minNumEdges == 3);
+    assert (G.get(t).distance.minNumEdges == 3);
   }
 
   public static void main(String[] args) {

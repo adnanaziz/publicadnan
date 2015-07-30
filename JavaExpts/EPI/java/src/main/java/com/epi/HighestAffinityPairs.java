@@ -1,14 +1,29 @@
 package com.epi;
 
-import java.io.*;
-import java.util.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
-import static com.epi.utils.Utils.*;
+import static com.epi.utils.Utils.closeSilently;
+import static com.epi.utils.Utils.objectInputStreamFromList;
 
 public class HighestAffinityPairs {
   // @include
 
   private static class PagePair {
+
     public String pageA;
     public String pageB;
 
@@ -25,7 +40,7 @@ public class HighestAffinityPairs {
       while (true) {
         String page = (String) ois.readObject();
         String user = (String) ois.readObject();
-        System.out.println("page, user = " +  page + " " + user);
+        System.out.println("page, user = " + page + " " + user);
         Set<String> users = pageUsersMap.get(page);
         if (users == null) {
           users = new HashSet<>();
@@ -61,7 +76,7 @@ public class HighestAffinityPairs {
     Random r = new Random();
     StringBuilder ret = new StringBuilder(len);
     while (len-- > 0) {
-      ret.append((char)(r.nextInt(26) + 'a'));
+      ret.append((char) (r.nextInt(26) + 'a'));
     }
     return ret.toString();
   }
@@ -70,7 +85,8 @@ public class HighestAffinityPairs {
     ObjectInputStream ois = objectInputStreamFromList(Arrays.asList("a", "A", "b", "B", "c", "A"));
     PagePair result = highestAffinityPair(ois);
     System.out.println("result.pageA, pageB" + result.pageA + " " + result.pageB);
-    assert(result.pageA.equals("a") && result.pageB.equals("c") || result.pageA.equals("c") && result.pageB.equals("a"));
+    assert (result.pageA.equals("a") && result.pageB.equals("c")
+            || result.pageA.equals("c") && result.pageB.equals("a"));
   }
 
   public static void main(String[] args) {

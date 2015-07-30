@@ -9,11 +9,12 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class PrettyPrinting {
+
   private static String randString(int len) {
     Random r = new Random();
     StringBuilder ret = new StringBuilder(len);
     while (len-- > 0) {
-      ret.append((char)(r.nextInt(26) + 'a'));
+      ret.append((char) (r.nextInt(26) + 'a'));
     }
     return ret.toString();
   }
@@ -41,11 +42,11 @@ public class PrettyPrinting {
     for (int i = W.size() - 2; i >= 0; --i) {
       bLen -= (W.get(i).length() + 1);
       if (bLen < 0) {
-        return (int)minMess;
+        return (int) minMess;
       }
       minMess = Math.min(minMess, (i - 1 < 0 ? 0 : M[i - 1]));
     }
-    return (int)minMess;
+    return (int) minMess;
   }
   // @exclude
 

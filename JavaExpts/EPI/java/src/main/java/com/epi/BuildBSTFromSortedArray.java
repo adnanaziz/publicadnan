@@ -5,6 +5,7 @@ import com.epi.BinarySearchTreePrototypeTemplate.BSTNode;
 import java.util.Random;
 
 public class BuildBSTFromSortedArray {
+
   // @include
   public static BSTNode<Integer> buildMinHeightBSTFromSortedArray(int[] A) {
     return buildMinHeightBSTFromSortedArrayHelper(A, 0, A.length);
@@ -26,7 +27,7 @@ public class BuildBSTFromSortedArray {
   private static int traversalCheck(BSTNode<Integer> tree, Integer target) {
     if (tree != null) {
       target = traversalCheck(tree.getLeft(), target);
-      assert(target.equals(tree.getData()));
+      assert (target.equals(tree.getData()));
       ++target;
       target = traversalCheck(tree.getRight(), target);
     }
@@ -34,11 +35,11 @@ public class BuildBSTFromSortedArray {
   }
 
   private static void SimpleTest() {
-     BSTNode<Integer> result = buildMinHeightBSTFromSortedArray(new int[]{1,2,3,4});
-     assert(3 == result.getData());
-     assert(2 == result.getLeft().getData());
-     assert(1 == result.getLeft().getLeft().getData());
-     assert(4 == result.getRight().getData());
+    BSTNode<Integer> result = buildMinHeightBSTFromSortedArray(new int[]{1, 2, 3, 4});
+    assert (3 == result.getData());
+    assert (2 == result.getLeft().getData());
+    assert (1 == result.getLeft().getLeft().getData());
+    assert (4 == result.getRight().getData());
   }
 
 

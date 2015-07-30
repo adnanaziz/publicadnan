@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class CountInversions {
+
   // @include
   public static int countInversions(List<Integer> A) {
     return countSubarrayInversions(A, 0, A.size());
@@ -19,8 +20,8 @@ public class CountInversions {
 
     int mid = start + ((end - start) / 2);
     return countSubarrayInversions(A, start, mid) +
-        countSubarrayInversions(A, mid, end) +
-        mergeSortAndCountInversionsAcrossSubarrays(A, start, mid, end);
+           countSubarrayInversions(A, mid, end) +
+           mergeSortAndCountInversionsAcrossSubarrays(A, start, mid, end);
   }
 
   // Merge two sorted subarrays A[start : mid - 1] and A[mid : end - 1]
@@ -80,7 +81,7 @@ public class CountInversions {
       for (int i = 0; i < n; ++i) {
         A.add(r.nextInt(2000001) - 1000000);
       }
-      assert(n2Check(A) == countInversions(A));
+      assert (n2Check(A) == countInversions(A));
     }
   }
 }

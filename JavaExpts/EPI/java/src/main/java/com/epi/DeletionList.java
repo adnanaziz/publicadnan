@@ -4,6 +4,7 @@
 package com.epi;
 
 class DeletionList {
+
   // @include
   // Assumes nodeToDelete is not tail.
   public static void deletionFromList(ListNode<Integer> nodeToDelete) {
@@ -16,6 +17,6 @@ class DeletionList {
     ListNode<Integer> L =
         new ListNode<>(1, new ListNode<>(2, new ListNode<>(3, null)));
     deletionFromList(L);
-    assert(L.data == 2 && L.next.data == 3);
+    assert (L.data == 2 && L.next.data == 3);
   }
 }

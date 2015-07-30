@@ -4,12 +4,11 @@ package com.epi;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Random;
 
 public class NonUniformRandomNumberGeneration {
+
   // @include
   public static int nonuniformRandomNumberGeneration(List<Integer> values,
                                                      List<Double> probabilities) {
@@ -80,8 +79,8 @@ public class NonUniformRandomNumberGeneration {
       ++counts[t];
     }
     for (int i = 0; i < n; ++i) {
-      System.out.println((double)(counts[i]) / (n * kTimes) + " " + P.get(i));
-      assert Math.abs(((double)counts[i]) / (n * kTimes) - P.get(i)) < 0.01;
+      System.out.println((double) (counts[i]) / (n * kTimes) + " " + P.get(i));
+      assert Math.abs(((double) counts[i]) / (n * kTimes) - P.get(i)) < 0.01;
     }
   }
 }

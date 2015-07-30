@@ -4,12 +4,16 @@ import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 public class QueueFromStacks {
+
   // @include
   public static class Queue {
+
     private LinkedList<Integer> q1 = new LinkedList<>();
     private LinkedList<Integer> q2 = new LinkedList<>();
 
-    public void enqueue(Integer x) { q1.push(x); }
+    public void enqueue(Integer x) {
+      q1.push(x);
+    }
 
     public Integer dequeue() {
       if (q2.isEmpty()) {
@@ -29,7 +33,7 @@ public class QueueFromStacks {
 
   private static void assertDequeue(Queue q, Integer t) {
     Integer dequeue = q.dequeue();
-    assert(t.equals(dequeue));
+    assert (t.equals(dequeue));
   }
 
   public static void main(String[] args) {
@@ -42,7 +46,7 @@ public class QueueFromStacks {
     assertDequeue(Q, 3);
     try {
       Q.dequeue();
-      assert(false);
+      assert (false);
     } catch (RuntimeException e) {
       System.out.println(e.getMessage());
     }
@@ -60,7 +64,7 @@ public class QueueFromStacks {
     assertDequeue(Q, 0);
     try {
       Q.dequeue();
-      assert(false);
+      assert (false);
     } catch (RuntimeException e) {
       System.out.println(e.getMessage());
     }

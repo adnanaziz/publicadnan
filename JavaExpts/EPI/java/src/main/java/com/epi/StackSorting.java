@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class StackSorting {
+
   // @include
   public static void sort(LinkedList<Integer> S) {
     if (!S.isEmpty()) {
@@ -28,25 +29,25 @@ public class StackSorting {
     LinkedList<Integer> S = new LinkedList<>();
     S.push(1);
     sort(S);
-    assert(S.peek() == 1);
+    assert (S.peek() == 1);
     S.push(0);
     sort(S);
-    assert(S.peek() == 1);
+    assert (S.peek() == 1);
     S.pop();
-    assert(S.peek() == 0);
+    assert (S.peek() == 0);
     S.pop();
-    assert(S.isEmpty());
+    assert (S.isEmpty());
     S.push(-1);
     S.push(1);
     S.push(0);
     sort(S);
-    assert(S.peek() == 1);
+    assert (S.peek() == 1);
     S.pop();
-    assert(S.peek() == 0);
+    assert (S.peek() == 0);
     S.pop();
-    assert(S.peek() == -1);
+    assert (S.peek() == -1);
     S.pop();
-    assert(S.isEmpty());
+    assert (S.isEmpty());
   }
 
   public static void main(String[] args) {
@@ -67,7 +68,7 @@ public class StackSorting {
       sort(S);
       int pre = Integer.MAX_VALUE;
       while (!S.isEmpty()) {
-        assert(pre >= S.peek());
+        assert (pre >= S.peek());
         System.out.println(S.peek());
         pre = S.pop();
       }

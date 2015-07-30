@@ -6,6 +6,7 @@ public class FindMissingAndDuplicateXOR {
   // @include
 
   private static class DuplicateAndMissing {
+
     public Integer duplicate;
     public Integer missing;
 
@@ -14,6 +15,7 @@ public class FindMissingAndDuplicateXOR {
       this.missing = missing;
     }
   }
+
   public static DuplicateAndMissing findDuplicateMissing(int[] A) {
     // Compute the XOR of all numbers from 0 to |A| - 1 and all entries in A.
     int missXORDup = 0;
@@ -51,13 +53,13 @@ public class FindMissingAndDuplicateXOR {
   // @exclude
 
   private static void SimpleTest() {
-    int[] A = {0,0,1};
+    int[] A = {0, 0, 1};
     DuplicateAndMissing dm = findDuplicateMissing(A);
-    assert(dm.duplicate == 0 && dm.missing == 2);
+    assert (dm.duplicate == 0 && dm.missing == 2);
 
-    A = new int[]{1,3,2,5,3,4};
+    A = new int[]{1, 3, 2, 5, 3, 4};
     dm = findDuplicateMissing(A);
-    assert(dm.duplicate == 3 && dm.missing == 0);
+    assert (dm.duplicate == 3 && dm.missing == 0);
   }
 
   public static void main(String[] args) {
@@ -86,7 +88,7 @@ public class FindMissingAndDuplicateXOR {
       System.out.println("times = " + times);
       System.out.println(dup + " " + missing);
       System.out.println(ans.duplicate + " " + ans.missing);
-      assert(ans.duplicate.equals(dup) && ans.missing.equals(missing));
+      assert (ans.duplicate.equals(dup) && ans.missing.equals(missing));
     }
   }
 }

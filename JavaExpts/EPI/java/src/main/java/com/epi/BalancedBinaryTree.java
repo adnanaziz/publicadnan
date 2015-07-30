@@ -3,8 +3,10 @@ package com.epi;
 import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 
 public class BalancedBinaryTree {
+
   // @include
   private static class BalanceStatusWithHeight {
+
     public boolean balanced;
     public int height;
 
@@ -50,12 +52,12 @@ public class BalancedBinaryTree {
     tree.setRight(new BinaryTreeNode<Integer>());
     tree.getRight().setLeft(new BinaryTreeNode<Integer>());
     tree.getRight().setRight(new BinaryTreeNode<Integer>());
-    assert(isBalanced(tree));
+    assert (isBalanced(tree));
     System.out.println(isBalanced(tree));
     tree = new BinaryTreeNode<>();
     tree.setLeft(new BinaryTreeNode<Integer>());
     tree.getLeft().setLeft(new BinaryTreeNode<Integer>());
-    assert(!isBalanced(tree));
+    assert (!isBalanced(tree));
     System.out.println(isBalanced(tree));
   }
 }

@@ -3,6 +3,7 @@ package com.epi;
 import com.epi.BinarySearchTreePrototypeTemplate.BSTNode;
 
 public class MergeTwoBSTs {
+
   private static BSTNode<Integer> head;
 
   private static BSTNode<Integer> buildSortedDoublyLinkedList(BSTNode<Integer> L,
@@ -123,7 +124,7 @@ public class MergeTwoBSTs {
                                                                 T pre) {
     if (n != null) {
       printBstInOrder(n.getLeft(), pre);
-      assert(pre.compareTo(n.getData()) <= 0);
+      assert (pre.compareTo(n.getData()) <= 0);
       System.out.print(n.getData() + " ");
       printBstInOrder(n.getRight(), n.getData());
     }

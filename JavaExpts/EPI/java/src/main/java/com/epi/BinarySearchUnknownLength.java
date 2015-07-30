@@ -1,12 +1,13 @@
 package com.epi;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class BinarySearchUnknownLength {
+
   // @include
   public static int binarySearchUnknownLength(List<Integer> A, int k) {
     // Find a range where k exists, if it's present.
@@ -47,11 +48,11 @@ public class BinarySearchUnknownLength {
 
   private static void smallTest() {
     List<Integer> A = Arrays.asList(1, 2, 3);
-    assert(binarySearchUnknownLength(A, 3) == 2);
-    assert(binarySearchUnknownLength(A, 1) == 0);
-    assert(binarySearchUnknownLength(A, 2) == 1);
-    assert(binarySearchUnknownLength(A, 4) == -1);
-    assert(binarySearchUnknownLength(A, -1) == -1);
+    assert (binarySearchUnknownLength(A, 3) == 2);
+    assert (binarySearchUnknownLength(A, 1) == 0);
+    assert (binarySearchUnknownLength(A, 2) == 1);
+    assert (binarySearchUnknownLength(A, 4) == -1);
+    assert (binarySearchUnknownLength(A, -1) == -1);
   }
 
   public static void main(String[] args) {
@@ -79,7 +80,7 @@ public class BinarySearchUnknownLength {
       System.out.println(n + " " + k);
       int idx = binarySearchUnknownLength(A, k);
       System.out.println(idx);
-      assert(idx != -1 && A.get(idx) == k || Collections.binarySearch(A, k) < 0);
+      assert (idx != -1 && A.get(idx) == k || Collections.binarySearch(A, k) < 0);
     }
   }
 }

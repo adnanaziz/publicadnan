@@ -3,12 +3,19 @@
 package com.epi;
 
 import java.awt.*;
-import java.util.*;
-import java.util.List;
 import java.math.BigInteger;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 class Line {
+
   static class Rational {
+
     public Integer numerator;
     public Integer denominator;
 
@@ -45,14 +52,18 @@ class Line {
     }
   }
 
-  public Rational getSlope() { return slope; }
+  public Rational getSlope() {
+    return slope;
+  }
 
-  public Rational getIntercept() { return intercept; }
+  public Rational getIntercept() {
+    return intercept;
+  }
 
   @Override
   public boolean equals(Object o) {
     if (o instanceof Line) {
-      Line l = (Line)o;
+      Line l = (Line) o;
       return slope.equals(l.getSlope()) && intercept.equals(l.getIntercept());
     }
     return false;
@@ -61,11 +72,12 @@ class Line {
   @Override
   public int hashCode() {
     return slope.numerator ^ slope.denominator ^ intercept.numerator ^
-        intercept.denominator;
+           intercept.denominator;
   }
 }
 
 public class LineMostPoints {
+
   private static int check(Point[] P) {
     int maxCount = 0;
     for (int i = 0; i < P.length; ++i) {
@@ -124,7 +136,7 @@ public class LineMostPoints {
         });
 
     int res = check(P);
-    assert(res == lineMaxPoints.size());
+    assert (res == lineMaxPoints.size());
     // Return the line with most points have passed.
 
     //@include

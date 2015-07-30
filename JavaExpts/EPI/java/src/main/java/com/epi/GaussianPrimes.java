@@ -11,8 +11,10 @@ import java.util.TreeSet;
  * @author translated from c++ by Blazheev Alexander
  */
 public class GaussianPrimes {
+
   // @include
   public static class Complex implements Comparable<Complex> {
+
     private int real;
     private int imag;
 
@@ -21,11 +23,17 @@ public class GaussianPrimes {
       this.imag = imag;
     }
 
-    public int getReal() { return real; }
+    public int getReal() {
+      return real;
+    }
 
-    public int getImag() { return imag; }
+    public int getImag() {
+      return imag;
+    }
 
-    public int getNorm() { return real * real + imag * imag; }
+    public int getNorm() {
+      return real * real + imag * imag;
+    }
 
     public Complex multiply(Complex p) {
       return new Complex(real * p.getReal() - imag * p.getImag(),
@@ -63,7 +71,7 @@ public class GaussianPrimes {
           .append(getImag())
           .toHashCode();
     }
-    
+
     @Override
     public String toString() {
       return "(" + real + "," + imag + ")";
@@ -87,7 +95,7 @@ public class GaussianPrimes {
       Complex p = candidates.pollFirst();
       primes.add(p);
       int maxMultiplier =
-          (int)Math.ceil(Math.sqrt(2.0) * n / Math.floor(Math.sqrt(p.getNorm())));
+          (int) Math.ceil(Math.sqrt(2.0) * n / Math.floor(Math.sqrt(p.getNorm())));
 
       // Any Gaussian integer outside the range we're iterating
       // over below has a modulus greater than maxMultiplier.
@@ -109,9 +117,9 @@ public class GaussianPrimes {
 
   private static boolean isUnit(Complex z) {
     return (z.getReal() == 1 && z.getImag() == 0) ||
-        (z.getReal() == -1 && z.getImag() == 0) ||
-        (z.getReal() == 0 && z.getImag() == 1) ||
-        (z.getReal() == 0 && z.getImag() == -1);
+           (z.getReal() == -1 && z.getImag() == 0) ||
+           (z.getReal() == 0 && z.getImag() == 1) ||
+           (z.getReal() == 0 && z.getImag() == -1);
   }
   // @exclude
 
@@ -169,7 +177,7 @@ public class GaussianPrimes {
       for (int j = first.size(); j < gPrimes.size(); ++j) {
         System.out.print(gPrimes.get(i) + " ");
       }
-      assert(first.size() == gPrimes.size());
+      assert (first.size() == gPrimes.size());
     }
   }
 }

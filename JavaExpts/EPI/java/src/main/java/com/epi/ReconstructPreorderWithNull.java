@@ -2,11 +2,14 @@ package com.epi;
 
 import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import static com.epi.BinaryTreeUtils.generateRandBinaryTree;
 
 public class ReconstructPreorderWithNull {
+
   // @include
   private static Integer idx;
 
@@ -42,25 +45,25 @@ public class ReconstructPreorderWithNull {
   }
 
   private static void simpleTest() {
-    Integer[] preOrder = new Integer[] {1, null, null};
+    Integer[] preOrder = new Integer[]{1, null, null};
     BinaryTreeNode<Integer> result = reconstructPreorder(preOrder);
-    assert(result.getData() == 1);
-    assert(result.getLeft() == null);
-    assert(result.getRight() == null);
+    assert (result.getData() == 1);
+    assert (result.getLeft() == null);
+    assert (result.getRight() == null);
 
-    preOrder = new Integer[] {1, null, 2, null, null};
+    preOrder = new Integer[]{1, null, 2, null, null};
     result = reconstructPreorder(preOrder);
-    assert(result.getData() == 1);
-    assert(result.getLeft() == null);
-    assert(result.getRight().getData() == 2);
+    assert (result.getData() == 1);
+    assert (result.getLeft() == null);
+    assert (result.getRight().getData() == 2);
 
-    preOrder = new Integer[] {1, null, 2, 3, null, null, null};
+    preOrder = new Integer[]{1, null, 2, 3, null, null, null};
     result = reconstructPreorder(preOrder);
-    assert(result.getData() == 1);
-    assert(result.getLeft() == null);
-    assert(result.getRight().getData() == 2);
-    assert(result.getRight().getLeft().getData() == 3);
-    assert(result.getRight().getRight() == null);
+    assert (result.getData() == 1);
+    assert (result.getLeft() == null);
+    assert (result.getRight().getData() == 2);
+    assert (result.getRight().getLeft().getData() == 3);
+    assert (result.getRight().getRight() == null);
   }
 
   public static void main(String[] args) {
@@ -83,7 +86,7 @@ public class ReconstructPreorderWithNull {
       }
       idx = 0;
       BinaryTreeNode<Integer> x = reconstructPreorder(preOrder);
-      assert(root.equals(x));
+      assert (root.equals(x));
     }
   }
 }

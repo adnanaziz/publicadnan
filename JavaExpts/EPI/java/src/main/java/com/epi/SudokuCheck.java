@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SudokuCheck {
+
   // @include
   // Check if a partially filled matrix has any conflicts.
   public static boolean isValidSudoku(List<List<Integer>> partialAssignment) {
@@ -24,7 +25,7 @@ public class SudokuCheck {
     }
 
     // Check region constraints.
-    int regionSize = (int)Math.sqrt(partialAssignment.size());
+    int regionSize = (int) Math.sqrt(partialAssignment.size());
     for (int I = 0; I < regionSize; ++I) {
       for (int J = 0; J < regionSize; ++J) {
         if (hasDuplicate(partialAssignment, regionSize * I, regionSize * (I + 1),
@@ -68,8 +69,8 @@ public class SudokuCheck {
                       Arrays.asList(1, 0, 0, 0, 3, 0, 0, 0, 2),
                       Arrays.asList(5, 0, 0, 2, 0, 4, 0, 0, 9),
                       Arrays.asList(0, 3, 8, 0, 0, 0, 4, 6, 0));
-    assert(isValidSudoku(A) == true);
+    assert (isValidSudoku(A) == true);
     A.set(8, Arrays.asList(3, 3, 8, 0, 0, 0, 4, 6, 0));
-    assert(isValidSudoku(A) == false);
+    assert (isValidSudoku(A) == false);
   }
 }

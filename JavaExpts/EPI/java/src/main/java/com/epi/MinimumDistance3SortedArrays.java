@@ -2,9 +2,15 @@ package com.epi;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.NavigableSet;
+import java.util.Random;
+import java.util.TreeSet;
 
 public class MinimumDistance3SortedArrays {
+
   private static int distance(List<? extends List<Integer>> sortedArrays,
                               List<Integer> idx) {
     int maxVal = Integer.MIN_VALUE;
@@ -18,6 +24,7 @@ public class MinimumDistance3SortedArrays {
 
   // @include
   public static class ArrayData implements Comparable<ArrayData> {
+
     public int val;
     public int idx;
 
@@ -44,7 +51,7 @@ public class MinimumDistance3SortedArrays {
         return true;
       }
       ArrayData that = (ArrayData) obj;
-      return this.val == that.val && this.idx== that.idx;
+      return this.val == that.val && this.idx == that.idx;
     }
 
     @Override
@@ -133,7 +140,7 @@ public class MinimumDistance3SortedArrays {
       }
       int ans = findMinDistanceSortedArrays(sortedArrays);
       System.out.println(ans);
-      assert(bruteForceGenAnswer(sortedArrays) == ans);
+      assert (bruteForceGenAnswer(sortedArrays) == ans);
     }
   }
 }

@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class NormalizedPathnames {
+
   // @include
   public static String shortestEquivalentPath(String path) {
     LinkedList<String> pathNames = new LinkedList<>();
@@ -47,13 +48,13 @@ public class NormalizedPathnames {
   // @exclude
 
   public static void main(String[] args) {
-    assert(shortestEquivalentPath("123/456").equals("123/456"));
-    assert(shortestEquivalentPath("/123/456").equals("/123/456"));
-    assert(shortestEquivalentPath("usr/lib/../bin/gcc").equals("usr/bin/gcc"));
-    assert(shortestEquivalentPath("./../").equals(".."));
-    assert(shortestEquivalentPath("../../local").equals("../../local"));
-    assert(shortestEquivalentPath("./.././../local").equals("../../local"));
-    assert(shortestEquivalentPath("/foo/../foo/./../").equals("/"));
+    assert (shortestEquivalentPath("123/456").equals("123/456"));
+    assert (shortestEquivalentPath("/123/456").equals("/123/456"));
+    assert (shortestEquivalentPath("usr/lib/../bin/gcc").equals("usr/bin/gcc"));
+    assert (shortestEquivalentPath("./../").equals(".."));
+    assert (shortestEquivalentPath("../../local").equals("../../local"));
+    assert (shortestEquivalentPath("./.././../local").equals("../../local"));
+    assert (shortestEquivalentPath("/foo/../foo/./../").equals("/"));
     try {
       shortestEquivalentPath("/..");
     } catch (IllegalArgumentException e) {
@@ -63,10 +64,10 @@ public class NormalizedPathnames {
       shortestEquivalentPath("/cpp_name/bin/");
     } catch (Exception e) {
       System.out.println(e.getMessage());
-      assert(false);
+      assert (false);
     }
-    assert(shortestEquivalentPath("scripts//./../scripts/awkscripts/././")
-               .equals("scripts/awkscripts"));
+    assert (shortestEquivalentPath("scripts//./../scripts/awkscripts/././")
+                .equals("scripts/awkscripts"));
     if (args.length == 1) {
       System.out.println(shortestEquivalentPath(args[0]));
     }

@@ -3,12 +3,14 @@
 package com.epi;
 
 import java.util.Arrays;
-import java.util.Random;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 class CountOccurrencesInSentence {
-  private static Map<Character,Integer> charToCount = new HashMap<>();
+
+  private static Map<Character, Integer> charToCount = new HashMap<>();
+
   // @include
   public static void countOccurrences(String s) {
     char[] a = s.toCharArray();
@@ -21,7 +23,7 @@ class CountOccurrencesInSentence {
       } else {
         System.out.print("(" + a[i - 1] + "," + currentCharacterCount + "),");
         // @exclude
-        charToCount.put(a[i-1], currentCharacterCount);
+        charToCount.put(a[i - 1], currentCharacterCount);
         // @include
         currentCharacterCount = 1;
       }
@@ -35,21 +37,21 @@ class CountOccurrencesInSentence {
     Random rnd = new Random();
 
     while (len-- > 0) {
-      ret.append((char)(rnd.nextInt(26) + 97));
+      ret.append((char) (rnd.nextInt(26) + 97));
     }
     return ret.toString();
   }
 
   private static void SimpleTest() {
     countOccurrences("foo bar! ABA A");
-    assert(charToCount.get('f') == 1);
-    assert(charToCount.get('F') == null);
-    assert(charToCount.get('o') == 2);
-    assert(charToCount.get('x') == null);
-    assert(charToCount.get(' ') == 3);
-    assert(charToCount.get('!') == 1);
-    assert(charToCount.get('A') == 3);
-    assert(charToCount.get('B') == 1);
+    assert (charToCount.get('f') == 1);
+    assert (charToCount.get('F') == null);
+    assert (charToCount.get('o') == 2);
+    assert (charToCount.get('x') == null);
+    assert (charToCount.get(' ') == 3);
+    assert (charToCount.get('!') == 1);
+    assert (charToCount.get('A') == 3);
+    assert (charToCount.get('B') == 1);
   }
 
   public static void main(String[] args) {

@@ -8,6 +8,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class ComputingBinomialCoefficients {
+
   // @include
   public static int computeBinomialCoefficients(int n, int k) {
     int[] table = new int[k + 1];
@@ -72,7 +73,7 @@ public class ComputingBinomialCoefficients {
       }
 
       int res = computeBinomialCoefficients(n, k);
-      assert(res == checkAns(n, k));
+      assert (res == checkAns(n, k));
       System.out.println(n + " out of " + k + " = " + res);
       if (args.length == 2) {
         break;

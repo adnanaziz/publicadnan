@@ -5,6 +5,7 @@ package com.epi;
 import java.util.Random;
 
 public class RabinKarp {
+
   // @include
   private static int kBase = 26, kMod = 997;
 
@@ -71,29 +72,29 @@ public class RabinKarp {
     Random r = new Random();
     StringBuilder ret = new StringBuilder(len);
     while (len-- > 0) {
-      ret.append((char)(r.nextInt(26) + 'a'));
+      ret.append((char) (r.nextInt(26) + 'a'));
     }
     return ret.toString();
   }
 
   private static void smallTest() {
-    assert(rabinKarp("GACGCCA", "CGC") == 2);
-    assert(rabinKarp("GATACCCATCGAGTCGGATCGAGT", "GAG") == 10);
-    assert(rabinKarp("FOOBARWIDGET", "WIDGETS") == -1);
-    assert(rabinKarp("A", "A") == 0);
-    assert(rabinKarp("A", "B") == -1);
-    assert(rabinKarp("A", "") == 0);
-    assert(rabinKarp("ADSADA", "") == 0);
-    assert(rabinKarp("", "A") == -1);
-    assert(rabinKarp("", "AAA") == -1);
-    assert(rabinKarp("A", "AAA") == -1);
-    assert(rabinKarp("AA", "AAA") == -1);
-    assert(rabinKarp("AAA", "AAA") == 0);
-    assert(rabinKarp("BAAAA", "AAA") == 1);
-    assert(rabinKarp("BAAABAAAA", "AAA") == 1);
-    assert(rabinKarp("BAABBAABAAABS", "AAA") == 8);
-    assert(rabinKarp("BAABBAABAAABS", "AAAA") == -1);
-    assert(rabinKarp("FOOBAR", "BAR") > 0);
+    assert (rabinKarp("GACGCCA", "CGC") == 2);
+    assert (rabinKarp("GATACCCATCGAGTCGGATCGAGT", "GAG") == 10);
+    assert (rabinKarp("FOOBARWIDGET", "WIDGETS") == -1);
+    assert (rabinKarp("A", "A") == 0);
+    assert (rabinKarp("A", "B") == -1);
+    assert (rabinKarp("A", "") == 0);
+    assert (rabinKarp("ADSADA", "") == 0);
+    assert (rabinKarp("", "A") == -1);
+    assert (rabinKarp("", "AAA") == -1);
+    assert (rabinKarp("A", "AAA") == -1);
+    assert (rabinKarp("AA", "AAA") == -1);
+    assert (rabinKarp("AAA", "AAA") == 0);
+    assert (rabinKarp("BAAAA", "AAA") == 1);
+    assert (rabinKarp("BAAABAAAA", "AAA") == 1);
+    assert (rabinKarp("BAABBAABAAABS", "AAA") == 8);
+    assert (rabinKarp("BAABBAABAAABS", "AAAA") == -1);
+    assert (rabinKarp("FOOBAR", "BAR") > 0);
   }
 
   public static void main(String args[]) {
@@ -103,7 +104,7 @@ public class RabinKarp {
       String s = args[1];
       System.out.println("t = " + t);
       System.out.println("s = " + s);
-      assert(checkAnswer(t, s) == rabinKarp(t, s));
+      assert (checkAnswer(t, s) == rabinKarp(t, s));
     } else {
       Random r = new Random();
       for (int times = 0; times < 10000; ++times) {
@@ -111,7 +112,7 @@ public class RabinKarp {
         String s = randString(r.nextInt(20) + 1);
         System.out.println("t = " + t);
         System.out.println("s = " + s);
-        assert(checkAnswer(t, s) == rabinKarp(t, s));
+        assert (checkAnswer(t, s) == rabinKarp(t, s));
       }
     }
   }

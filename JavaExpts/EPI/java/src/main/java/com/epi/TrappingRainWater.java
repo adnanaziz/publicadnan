@@ -2,10 +2,14 @@
 
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class TrappingRainWater {
+
   private static int getIndexOfMaxElement(List<Integer> A) {
     int max = Integer.MIN_VALUE;
     int maxH = -1;
@@ -52,6 +56,7 @@ public class TrappingRainWater {
 
   // Stack approach, O(n) time, O(n) space
   private static class HeightBound {
+
     public Integer leftBound;
     public Integer rightBound;
 
@@ -60,6 +65,7 @@ public class TrappingRainWater {
       this.rightBound = rightBound;
     }
   }
+
   private static int checkAnswer(List<Integer> A) {
     LinkedList<HeightBound> s = new LinkedList<>();
     int sum = 0;
@@ -79,7 +85,7 @@ public class TrappingRainWater {
 
   private static void smallTest() {
     List<Integer> A = Arrays.asList(1, 0, 3, 2, 5, 0, 1);
-    assert(calculateTrappingWater(A) == 3);
+    assert (calculateTrappingWater(A) == 3);
   }
 
   public static void main(String[] args) {
@@ -98,7 +104,7 @@ public class TrappingRainWater {
       }
       System.out.println(A);
       System.out.println(checkAnswer(A) + " " + calculateTrappingWater(A));
-      assert(checkAnswer(A) == calculateTrappingWater(A));
+      assert (checkAnswer(A) == calculateTrappingWater(A));
     }
   }
 }

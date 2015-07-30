@@ -6,6 +6,7 @@ public class KBalancedBinaryTree {
   // @include
 
   private static class TreeWithSize {
+
     public BinaryTreeNode<Integer> root;
     public Integer size;
 
@@ -61,7 +62,7 @@ public class KBalancedBinaryTree {
     root.getRight().setRight(new BinaryTreeNode<>(6));
     int k = 0;
     BinaryTreeNode<Integer> ans = findKUnBalancedNode(root, k);
-    assert(ans.getData().equals(2));
+    assert (ans.getData().equals(2));
     System.out.println(ans.getData());
   }
 }

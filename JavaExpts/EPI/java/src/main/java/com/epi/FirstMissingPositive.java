@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class FirstMissingPositive {
+
   private static int checkAns(int[] A) {
     Arrays.sort(A);
     int target = 1;
@@ -63,7 +64,7 @@ public class FirstMissingPositive {
       }
       System.out.println("n = " + n);
       findFirstMissingPositive(A);
-      assert(findFirstMissingPositive(A) == checkAns(A));
+      assert (findFirstMissingPositive(A) == checkAns(A));
     }
   }
 }

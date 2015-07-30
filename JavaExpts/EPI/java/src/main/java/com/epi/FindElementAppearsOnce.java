@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class FindElementAppearsOnce {
+
   // @include
   public static int findElementAppearsOnce(int[] A) {
     // ones denotes whether a bit-position has been set once (modulo 3) so far.
@@ -52,7 +53,7 @@ public class FindElementAppearsOnce {
         }
       }
       System.out.println("Singleton element: " + findElementAppearsOnce(A));
-      assert(findElementAppearsOnce(A) == single);
+      assert (findElementAppearsOnce(A) == single);
     }
   }
 }

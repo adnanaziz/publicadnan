@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IntersectSortedArrays1 {
+
   // @include
   public static List<Integer> intersectTwoSortedArrays(List<Integer> A,
                                                        List<Integer> B) {

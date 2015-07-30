@@ -4,6 +4,7 @@ package com.epi;
 import java.util.Random;
 
 public class ReverseWords {
+
   static String randString(int len) {
     Random gen = new Random();
     StringBuilder ret = new StringBuilder();

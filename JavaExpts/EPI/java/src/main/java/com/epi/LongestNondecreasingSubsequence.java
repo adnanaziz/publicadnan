@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class LongestNondecreasingSubsequence {
+
   public static void main(String[] args) {
     Random r = new Random();
     for (int times = 0; times < 1000; ++times) {
@@ -28,7 +29,7 @@ public class LongestNondecreasingSubsequence {
       List<Integer> output =
           LongestNondecreasingSubsequenceN2.longestNondecreasingSubsequence(A);
       System.out.println(output);
-      assert(retLength == output.size());
+      assert (retLength == output.size());
     }
   }
 }

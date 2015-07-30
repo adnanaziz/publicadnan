@@ -5,7 +5,6 @@ package com.epi;
 import java.util.Random;
 
 import static com.epi.utils.Utils.copy;
-import static com.epi.utils.Utils.simplePrint;
 
 public class MatrixRotation {
 
@@ -13,7 +12,7 @@ public class MatrixRotation {
     int k = 1;
     for (int j = A.length - 1; j >= 0; --j) {
       for (int[] element : A) {
-        assert(k++ == element[j]);
+        assert (k++ == element[j]);
       }
     }
   }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BinaryTreeUtils {
+
   public static BinaryTreeNode<Integer> generateRandBinaryTree(int n,
                                                                boolean isUnique) {
     Random r = new Random();

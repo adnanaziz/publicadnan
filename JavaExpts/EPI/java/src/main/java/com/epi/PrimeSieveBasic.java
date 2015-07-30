@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class PrimeSieveBasic {
+
   // @include
   // Given n, return all primes up to and including n.
   public static List<Integer> generatePrimes(int n) {
@@ -36,7 +37,7 @@ public class PrimeSieveBasic {
       List<Integer> primes = generatePrimes(n);
       for (Integer prime : primes) {
         for (int j = 2; j < prime; ++j) {
-          assert(prime % j != 0);
+          assert (prime % j != 0);
         }
       }
     } else {
@@ -47,7 +48,7 @@ public class PrimeSieveBasic {
         List<Integer> primes = generatePrimes(n);
         for (Integer prime : primes) {
           for (int j = 2; j < prime; ++j) {
-            assert(prime % j != 0);
+            assert (prime % j != 0);
           }
         }
       }

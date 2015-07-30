@@ -1,12 +1,12 @@
 package com.epi;
 
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class Rearrange {
+
   // @include
   public static void rearrange(List<Integer> A) {
     for (int i = 1; i < A.size(); ++i) {
@@ -21,16 +21,16 @@ public class Rearrange {
   private static void checkAnswer(List<Integer> A) {
     for (int i = 0; i < A.size(); ++i) {
       if ((i % 2) != 0) {
-        assert(A.get(i) >= A.get(i - 1));
+        assert (A.get(i) >= A.get(i - 1));
         if (i < A.size() - 1) {
-          assert(A.get(i) >= A.get(i + 1));
+          assert (A.get(i) >= A.get(i + 1));
         }
       } else {
         if (i > 0) {
-          assert(A.get(i - 1) >= A.get(i));
+          assert (A.get(i - 1) >= A.get(i));
         }
         if (i < A.size() - 1) {
-          assert(A.get(i + 1) >= A.get(i));
+          assert (A.get(i + 1) >= A.get(i));
         }
       }
     }

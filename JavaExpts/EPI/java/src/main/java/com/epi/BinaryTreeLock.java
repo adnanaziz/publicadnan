@@ -1,13 +1,17 @@
 package com.epi;
 
 public class BinaryTreeLock {
+
   // @include
   public static class BinaryTree {
+
     private BinaryTree left, right, parent;
     private boolean locked = false;
     private int numLockedDescendants = 0;
 
-    public boolean isLocked() { return locked; }
+    public boolean isLocked() {
+      return locked;
+    }
 
     public boolean lock() {
       // We cannot lock if any of this node's descendents are locked.
@@ -41,15 +45,25 @@ public class BinaryTreeLock {
     }
     // @exclude
 
-    public BinaryTree getLeft() { return left; }
+    public BinaryTree getLeft() {
+      return left;
+    }
 
-    public void setLeft(BinaryTree left) { this.left = left; }
+    public void setLeft(BinaryTree left) {
+      this.left = left;
+    }
 
-    public BinaryTree getRight() { return right; }
+    public BinaryTree getRight() {
+      return right;
+    }
 
-    public void setRight(BinaryTree right) { this.right = right; }
+    public void setRight(BinaryTree right) {
+      this.right = right;
+    }
 
-    public void setParent(BinaryTree parent) { this.parent = parent; }
+    public void setParent(BinaryTree parent) {
+      this.parent = parent;
+    }
     // @include
   }
   // @exclude
@@ -65,30 +79,30 @@ public class BinaryTreeLock {
     root.getLeft().setRight(new BinaryTree());
     root.getLeft().getRight().setParent(root.getLeft());
 
-    assert(!root.isLocked());
+    assert (!root.isLocked());
     System.out.println(root.isLocked());
 
-    assert(root.lock());
-    assert(root.isLocked());
+    assert (root.lock());
+    assert (root.isLocked());
     System.out.println(root.isLocked());
-    assert(!root.getLeft().lock());
-    assert(!root.getLeft().isLocked());
-    assert(!root.getRight().lock());
-    assert(!root.getRight().isLocked());
-    assert(!root.getLeft().getLeft().lock());
-    assert(!root.getLeft().getLeft().isLocked());
-    assert(!root.getLeft().getRight().lock());
-    assert(!root.getLeft().getRight().isLocked());
+    assert (!root.getLeft().lock());
+    assert (!root.getLeft().isLocked());
+    assert (!root.getRight().lock());
+    assert (!root.getRight().isLocked());
+    assert (!root.getLeft().getLeft().lock());
+    assert (!root.getLeft().getLeft().isLocked());
+    assert (!root.getLeft().getRight().lock());
+    assert (!root.getLeft().getRight().isLocked());
 
     root.unlock();
-    assert(root.getLeft().lock());
-    assert(!root.lock());
-    assert(!root.getLeft().getLeft().lock());
-    assert(!root.isLocked());
+    assert (root.getLeft().lock());
+    assert (!root.lock());
+    assert (!root.getLeft().getLeft().lock());
+    assert (!root.isLocked());
 
     System.out.println(root.isLocked());
-    assert(root.getRight().lock());
-    assert(root.getRight().isLocked());
+    assert (root.getRight().lock());
+    assert (root.getRight().isLocked());
     System.out.println(root.isLocked());
   }
 }

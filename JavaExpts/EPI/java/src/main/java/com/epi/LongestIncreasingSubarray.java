@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Random;
 
 public class LongestIncreasingSubarray {
+
   // @include
   // Represent subarray by starting and ending indices, inclusive.
   private static class Subarray {
+
     public Integer start;
     public Integer end;
 
@@ -18,6 +20,7 @@ public class LongestIncreasingSubarray {
       this.end = end;
     }
   }
+
   public static Subarray findLongestIncreasingSubarray(List<Integer> A) {
     int maxLength = 1;
     Subarray ans = new Subarray(0, 0);
@@ -49,9 +52,9 @@ public class LongestIncreasingSubarray {
 
   private static void simpleTest() {
     Subarray ans = findLongestIncreasingSubarray(Arrays.asList(-1, -1));
-    assert(ans.start == 0 && ans.end == 0);
+    assert (ans.start == 0 && ans.end == 0);
     ans = findLongestIncreasingSubarray(Arrays.asList(1, 2));
-    assert(ans.start == 0 && ans.end == 1);
+    assert (ans.start == 0 && ans.end == 1);
   }
 
   public static void main(String[] args) {
@@ -84,7 +87,7 @@ public class LongestIncreasingSubarray {
         } else {
           len = 1;
         }
-        assert(len <= result.end - result.start + 1);
+        assert (len <= result.end - result.start + 1);
       }
     }
   }

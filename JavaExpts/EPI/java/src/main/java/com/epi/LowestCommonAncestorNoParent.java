@@ -3,8 +3,10 @@ package com.epi;
 import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 
 public class LowestCommonAncestorNoParent {
+
   // @include
   private static class Status {
+
     int numTargetNodes;
     BinaryTreeNode<Integer> ancestor;
 
@@ -60,23 +62,23 @@ public class LowestCommonAncestorNoParent {
     tree.getRight().setRight(new BinaryTreeNode<>(6, null, null));
     // should output 3
     BinaryTreeNode<Integer> x = LCA(tree, tree.getLeft(), tree.getRight());
-    assert(x.getData().equals(3));
+    assert (x.getData().equals(3));
     System.out.println(x.getData());
     // should output 5
     x = LCA(tree, tree.getRight().getLeft(), tree.getRight().getRight());
-    assert(x.getData().equals(5));
+    assert (x.getData().equals(5));
     System.out.println(x.getData());
     // should output 5
     x = LCA(tree, tree.getRight(), tree.getRight().getRight());
-    assert(x.getData().equals(5));
+    assert (x.getData().equals(5));
     System.out.println(x.getData());
     // should output 3
     x = LCA(tree, tree.getLeft().getLeft(), tree.getRight().getRight());
-    assert(x.getData().equals(3));
+    assert (x.getData().equals(3));
     System.out.println(x.getData());
     // should output 3
     x = LCA(tree, tree.getLeft().getLeft(), tree);
-    assert(x.getData().equals(3));
+    assert (x.getData().equals(3));
     System.out.println(x.getData());
   }
 }

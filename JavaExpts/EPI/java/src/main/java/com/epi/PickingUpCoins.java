@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class PickingUpCoins {
+
   // @include
   public static int pickUpCoins(List<Integer> C) {
     int[][] T = new int[C.size()][C.size()];
@@ -22,11 +23,11 @@ public class PickingUpCoins {
 
     if (T[a][b] == -1) {
       T[a][b] = Math.max(C.get(a) +
-                             Math.min(pickUpCoinsHelper(C, a + 2, b, T),
-                                      pickUpCoinsHelper(C, a + 1, b - 1, T)),
+                         Math.min(pickUpCoinsHelper(C, a + 2, b, T),
+                                  pickUpCoinsHelper(C, a + 1, b - 1, T)),
                          C.get(b) +
-                             Math.min(pickUpCoinsHelper(C, a + 1, b - 1, T),
-                                      pickUpCoinsHelper(C, a, b - 2, T)));
+                         Math.min(pickUpCoinsHelper(C, a + 1, b - 1, T),
+                                  pickUpCoinsHelper(C, a, b - 2, T)));
     }
     return T[a][b];
   }

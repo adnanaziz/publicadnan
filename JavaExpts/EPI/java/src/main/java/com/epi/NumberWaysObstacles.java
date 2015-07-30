@@ -8,6 +8,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class NumberWaysObstacles {
+
   // @include
   // Given the dimensions of A, n and m, and B, return the number of ways
   // from A[0][0] to A[n - 1][m - 1] considering obstacles.

@@ -1,8 +1,12 @@
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SubstringWithConcatenationOfAllWords {
+
   // @include
   public static List<Integer> findAllSubstrings(String s, String[] words) {
     Map<String, Integer> dict = new HashMap<>();
@@ -51,14 +55,16 @@ public class SubstringWithConcatenationOfAllWords {
 
   private static void smallTest() {
     String s = "barfoothefoobarman";
-    String[] A = new String[] {"foo", "bar"};
+    String[] A = new String[]{"foo", "bar"};
     List<Integer> result = findAllSubstrings(s, A);
-    assert(result.size() == 2 && result.get(0) == 0 && result.get(1) == 9);
+    assert (result.size() == 2 && result.get(0) == 0 && result.get(1) == 9);
     s = "dcacdabcd";
-    A = new String[] {"cd", "ab"};
+    A = new String[]{"cd", "ab"};
     result = findAllSubstrings(s, A);
-    assert(result.size() == 2 && result.get(0) == 3 && result.get(1) == 5);
+    assert (result.size() == 2 && result.get(0) == 3 && result.get(1) == 5);
   }
 
-  public static void main(String[] args) { smallTest(); }
+  public static void main(String[] args) {
+    smallTest();
+  }
 }

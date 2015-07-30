@@ -3,13 +3,14 @@
 package com.epi;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class BigNumberMultiplication {
+
   // @include
   public static List<Integer> multiply(List<Integer> num1, List<Integer> num2) {
     boolean isNegative = (num1.get(0) < 0 && num2.get(0) >= 0) ||
@@ -64,19 +65,19 @@ public class BigNumberMultiplication {
   }
 
   private static void simpleTest() {
-    assert(multiply(Arrays.asList(0), Arrays.asList(-1, 0, 0, 0))
-               .equals(Arrays.asList(0)));
-    assert(multiply(Arrays.asList(0), Arrays.asList(1, 0, 0, 0))
-               .equals(Arrays.asList(0)));
-    assert(
+    assert (multiply(Arrays.asList(0), Arrays.asList(-1, 0, 0, 0))
+                .equals(Arrays.asList(0)));
+    assert (multiply(Arrays.asList(0), Arrays.asList(1, 0, 0, 0))
+                .equals(Arrays.asList(0)));
+    assert (
         multiply(Arrays.asList(9), Arrays.asList(9)).equals(Arrays.asList(8, 1)));
-    assert(multiply(Arrays.asList(9), Arrays.asList(9, 9, 9, 9))
-               .equals(Arrays.asList(8, 9, 9, 9, 1)));
-    assert(multiply(Arrays.asList(1, 3, 1, 4, 1, 2),
-                    Arrays.asList(-1, 3, 1, 3, 3, 3, 2))
-               .equals(Arrays.asList(-1, 7, 2, 5, 8, 7, 5, 8, 4, 7, 8, 4)));
-    assert(multiply(Arrays.asList(7, 3), Arrays.asList(-3))
-               .equals(Arrays.asList(-2, 1, 9)));
+    assert (multiply(Arrays.asList(9), Arrays.asList(9, 9, 9, 9))
+                .equals(Arrays.asList(8, 9, 9, 9, 1)));
+    assert (multiply(Arrays.asList(1, 3, 1, 4, 1, 2),
+                     Arrays.asList(-1, 3, 1, 3, 3, 3, 2))
+                .equals(Arrays.asList(-1, 7, 2, 5, 8, 7, 5, 8, 4, 7, 8, 4)));
+    assert (multiply(Arrays.asList(7, 3), Arrays.asList(-3))
+                .equals(Arrays.asList(-2, 1, 9)));
   }
 
   private static String listToString(List<Integer> A) {
@@ -102,10 +103,10 @@ public class BigNumberMultiplication {
 
       System.out.println("multiplying using Java's BigInteger...");
       BigInteger result = new BigInteger(listToString(s1))
-                              .multiply(new BigInteger(listToString(s2)));
+          .multiply(new BigInteger(listToString(s2)));
       System.out.println("answer = " + result.toString());
 
-      assert(listToString(res).equals(result.toString()));
+      assert (listToString(res).equals(result.toString()));
     }
   }
 }

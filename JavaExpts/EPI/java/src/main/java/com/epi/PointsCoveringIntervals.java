@@ -2,11 +2,19 @@
 
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 // @include
 public class PointsCoveringIntervals {
+
   private static class Interval {
+
     public int left, right;
 
     public Interval(int l, int r) {
@@ -16,6 +24,7 @@ public class PointsCoveringIntervals {
   }
 
   private static class LeftComp implements Comparator<Interval> {
+
     public int compare(Interval a, Interval b) {
       if (a.left != b.left) {
         return Integer.compare(a.left, b.left);
@@ -28,6 +37,7 @@ public class PointsCoveringIntervals {
   }
 
   private static class RightComp implements Comparator<Interval> {
+
     public int compare(Interval a, Interval b) {
       if (a.right != b.right) {
         return a.right - b.right;
@@ -82,7 +92,7 @@ public class PointsCoveringIntervals {
     }
 
     for (boolean b : isVisited) {
-      assert(b);
+      assert (b);
     }
   }
 
@@ -95,7 +105,7 @@ public class PointsCoveringIntervals {
     intervals[4] = new Interval(7, 10);
     intervals[5] = new Interval(9, 11);
     List<Integer> ans = findMinimumVisits(intervals);
-    assert(ans.size() == 2 && ans.get(0) == 4 && ans.get(1) == 10);
+    assert (ans.size() == 2 && ans.get(0) == 4 && ans.get(1) == 10);
 
     intervals = new Interval[6];
     intervals[0] = new Interval(1, 2);
@@ -106,7 +116,7 @@ public class PointsCoveringIntervals {
     intervals[5] = new Interval(6, 7);
     ans = findMinimumVisits(intervals);
     System.out.println(ans);
-    assert(ans.size() == 3 && ans.get(0) == 2 && ans.get(1) == 4 && ans.get(2) == 6);
+    assert (ans.size() == 3 && ans.get(0) == 2 && ans.get(1) == 4 && ans.get(2) == 6);
   }
 
   public static void main(String[] args) {

@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Random;
 
 public class MaxSumSubarray {
+
   // @include
   // Used to represent subarry consisting of elements from index
   // start (inclusive) to index end (exclusive)
   private static class Subarray {
+
     public Integer start;
     public Integer end;
 
@@ -23,6 +25,7 @@ public class MaxSumSubarray {
       return "[" + start + "," + end + "]";
     }
   }
+
   public static Subarray findMaximumSubarray(List<Integer> A) {
     // A[range.start : range.end - 1] will be the maximum subarray.
     Subarray range = new Subarray(0, 0);
@@ -60,7 +63,7 @@ public class MaxSumSubarray {
       int sum = 0;
       for (int j = i; j < A.size(); ++j) {
         sum += A.get(j);
-        assert(sum <= maxSum);
+        assert (sum <= maxSum);
       }
     }
   }

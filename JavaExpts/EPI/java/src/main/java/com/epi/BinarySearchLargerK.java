@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class BinarySearchLargerK {
+
   // @include
   public static int searchFirstLargerOfK(int[] A, int k) {
     int left = 0, right = A.length - 1, result = -1;
@@ -31,24 +32,24 @@ public class BinarySearchLargerK {
   }
 
   private static void SimpleTest() {
-    int[] A = new int[] {0, 1, 2, 3, 4, 5, 6, 7};
+    int[] A = new int[]{0, 1, 2, 3, 4, 5, 6, 7};
     int k = 4;
-    assert(1 == searchFirstLargerOfK(A, 0));
-    assert(2 == searchFirstLargerOfK(A, 1));
-    assert(5 == searchFirstLargerOfK(A, 4));
-    assert(7 == searchFirstLargerOfK(A, 6));
-    assert(-1 == searchFirstLargerOfK(A, 7));
-    assert(0 == searchFirstLargerOfK(A, -1));
-    assert(0 == searchFirstLargerOfK(A, Integer.MIN_VALUE));
-    assert(-1 == searchFirstLargerOfK(A, Integer.MAX_VALUE));
+    assert (1 == searchFirstLargerOfK(A, 0));
+    assert (2 == searchFirstLargerOfK(A, 1));
+    assert (5 == searchFirstLargerOfK(A, 4));
+    assert (7 == searchFirstLargerOfK(A, 6));
+    assert (-1 == searchFirstLargerOfK(A, 7));
+    assert (0 == searchFirstLargerOfK(A, -1));
+    assert (0 == searchFirstLargerOfK(A, Integer.MIN_VALUE));
+    assert (-1 == searchFirstLargerOfK(A, Integer.MAX_VALUE));
     A[0] = 1;
-    assert(2 == searchFirstLargerOfK(A, 1));
+    assert (2 == searchFirstLargerOfK(A, 1));
     A[5] = 4;
     A[6] = 4;
-    assert(7 == searchFirstLargerOfK(A, 4));
-    A = new int[] {1, 1, 1, 1, 1, 2};
-    assert(5 == searchFirstLargerOfK(A, 1));
-    assert(-1 == searchFirstLargerOfK(A, 5));
+    assert (7 == searchFirstLargerOfK(A, 4));
+    A = new int[]{1, 1, 1, 1, 1, 2};
+    assert (5 == searchFirstLargerOfK(A, 1));
+    assert (-1 == searchFirstLargerOfK(A, 5));
   }
 
   public static void main(String[] args) {
@@ -72,7 +73,7 @@ public class BinarySearchLargerK {
       if (ans != -1) {
         System.out.println("A[k] = " + A[ans]);
       }
-      assert(ans == checkAns(A, k));
+      assert (ans == checkAns(A, k));
     }
   }
 }

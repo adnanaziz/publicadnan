@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class NextPermutation {
+
   public static <T> boolean equal(List<T> list1, List<T> list2) {
     if (list1.size() != list2.size()) {
       return false;

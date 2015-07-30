@@ -3,11 +3,11 @@ package com.epi;
 import com.epi.BinarySearchTreePrototypeTemplate.BSTNode;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class FindKLargestBST {
+
   // @include
   public static List<Integer> findKLargestInBST(BSTNode<Integer> tree, int k) {
     List<Integer> kLargestElements = new ArrayList<>();
@@ -49,11 +49,11 @@ public class FindKLargestBST {
     List<Integer> ans = findKLargestInBST(tree, k);
     System.out.println(ans);
     for (int i = 1; i < ans.size(); ++i) {
-      assert(ans.get(i - 1) >= ans.get(i));
+      assert (ans.get(i - 1) >= ans.get(i));
     }
     ans = findKLargestInBST(tree, 2);
-    assert(ans.get(0) == 6);
-    assert(ans.get(1) == 5);
+    assert (ans.get(0) == 6);
+    assert (ans.get(1) == 5);
 
     // 3
     // 3 4
@@ -65,8 +65,8 @@ public class FindKLargestBST {
     tree.getRight().setLeft(new BSTNode<>(4));
     tree.getRight().setRight(new BSTNode<>(6));
     ans = findKLargestInBST(tree, 3);
-    assert(ans.get(0) == 6);
-    assert(ans.get(1) == 4);
-    assert(ans.get(2) == 4);
+    assert (ans.get(0) == 6);
+    assert (ans.get(1) == 4);
+    assert (ans.get(2) == 4);
   }
 }

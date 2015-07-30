@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RebuildBSTPostorder {
+
   // @include
   // Given a postorder traversal of a BST, return its root.
   public static BSTNode<Integer> rebuildBSTFromPostorder(
@@ -32,7 +33,7 @@ public class RebuildBSTPostorder {
   private static <T extends Comparable<T>> void checkAns(BSTNode<T> n, T pre) {
     if (n != null) {
       checkAns(n.getLeft(), pre);
-      assert(pre.compareTo(n.getData()) <= 0);
+      assert (pre.compareTo(n.getData()) <= 0);
       System.out.println(n.getData());
       checkAns(n.getRight(), n.getData());
     }

@@ -5,12 +5,13 @@ package com.epi;
 import java.util.Random;
 
 class HashDictionary {
+
   private static String randString(int len) {
     StringBuilder ret = new StringBuilder();
     Random rnd = new Random();
 
     while (len-- > 0) {
-      ret.append((char)(rnd.nextInt(26) + 97));
+      ret.append((char) (rnd.nextInt(26) + 97));
     }
     return ret.toString();
   }

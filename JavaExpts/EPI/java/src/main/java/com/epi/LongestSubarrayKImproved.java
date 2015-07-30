@@ -1,14 +1,16 @@
 package com.epi;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class LongestSubarrayKImproved {
+
   // @include
   // Represent subarray by starting and ending indices, inclusive.
   private static class Subarray {
+
     public Integer start;
     public Integer end;
 
@@ -22,6 +24,7 @@ public class LongestSubarrayKImproved {
       return "[" + start + "," + end + "]";
     }
   }
+
   public static Subarray findLongestSubarrayLessEqualK(List<Integer> A, int k) {
     // Build the prefix sum according to A.
     List<Integer> prefixSum = new ArrayList<>();
@@ -74,18 +77,18 @@ public class LongestSubarrayKImproved {
       for (int i = ans.start; i <= ans.end; ++i) {
         s += A.get(i);
       }
-      assert(s <= k);
+      assert (s <= k);
       for (int i = 0; i < sum.size(); ++i) {
         for (int j = i + 1; j < sum.size(); ++j) {
           if (sum.get(j) - sum.get(i) <= k) {
-            assert((j - i) <= (ans.end - ans.start + 1));
+            assert ((j - i) <= (ans.end - ans.start + 1));
           }
         }
       }
     } else {
       for (int i = 0; i < sum.size(); ++i) {
         for (int j = i + 1; j < sum.size(); ++j) {
-          assert(sum.get(j) - sum.get(i) > k);
+          assert (sum.get(j) - sum.get(i) > k);
         }
       }
     }
@@ -95,10 +98,10 @@ public class LongestSubarrayKImproved {
     List<Integer> A = Arrays.asList(1, 1);
     int k = 0;
     Subarray res = findLongestSubarrayLessEqualK(A, k);
-    assert(res.start == -1 && res.end == -1);
+    assert (res.start == -1 && res.end == -1);
     k = -100;
     res = findLongestSubarrayLessEqualK(A, k);
-    assert(res.start == -1 && res.end == -1);
+    assert (res.start == -1 && res.end == -1);
   }
 
   public static void main(String[] args) {

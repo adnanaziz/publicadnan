@@ -7,10 +7,12 @@ import java.util.List;
 import static com.epi.BinaryTreeUtils.generateInOrder;
 
 public class ReconstructAlmostBst {
+
   // @include
   private static BinaryTreeNode<Integer> prev;
 
   private static class Inversion {
+
     public BinaryTreeNode<Integer> prev;
     public BinaryTreeNode<Integer> curr;
 
@@ -73,7 +75,7 @@ public class ReconstructAlmostBst {
     List<Integer> result = generateInOrder(tree);
     System.out.println(result);
     for (int i = 1; i < result.size(); i++) {
-      assert(result.get(i - 1) < result.get(i));
+      assert (result.get(i - 1) < result.get(i));
     }
   }
 }

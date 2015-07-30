@@ -5,12 +5,13 @@ package com.epi;
 import java.util.Random;
 
 class CanStringBePalindrome {
+
   private static String randString(int len) {
     StringBuilder ret = new StringBuilder();
     Random rnd = new Random();
 
     while (len-- > 0) {
-      ret.append((char)(rnd.nextInt(26) + 97));
+      ret.append((char) (rnd.nextInt(26) + 97));
     }
     return ret.toString();
   }
@@ -25,8 +26,8 @@ class CanStringBePalindrome {
         s = randString(rnd.nextInt(10) + 1);
       }
       System.out.println(s);
-      assert(CanStringBePalindromeHash.canStringBeAPalindrome(s) ==
-             CanStringBePalindromeSorting.canStringBeAPalindrome(s));
+      assert (CanStringBePalindromeHash.canStringBeAPalindrome(s) ==
+              CanStringBePalindromeSorting.canStringBeAPalindrome(s));
     }
   }
 }

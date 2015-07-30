@@ -9,6 +9,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class ScorePermutation {
+
   // @include
   public static long countPermutations(int k, List<Integer> scoreWays) {
     long[] permutations = new long[k + 1];
@@ -27,7 +28,7 @@ public class ScorePermutation {
   private static void simpleTest() {
     int k = 12;
     List<Integer> scoreWays = Arrays.asList(2, 3, 7);
-    assert(18 == countPermutations(k, scoreWays));
+    assert (18 == countPermutations(k, scoreWays));
   }
 
   public static void main(String[] args) {

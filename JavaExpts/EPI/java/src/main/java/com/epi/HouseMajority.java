@@ -6,6 +6,7 @@ import java.util.Random;
 import static java.lang.Math.ceil;
 
 public class HouseMajority {
+
   // @include
   public static double houseMajority(double[] prob, int n) {
     // Initializes DP table.
@@ -16,7 +17,7 @@ public class HouseMajority {
 
     // Accumulates the probabilities of majority cases.
     double probSum = 0.0;
-    for (int r = (int)ceil(0.5 * n); r <= n; ++r) {
+    for (int r = (int) ceil(0.5 * n); r <= n; ++r) {
       probSum += houseMajorityHelper(prob, r, n, P);
     }
     return probSum;
@@ -61,7 +62,7 @@ public class HouseMajority {
     }
     printVector(prob);
     double ans = houseMajority(prob, n);
-    assert 0.0 <= ans&& ans <= 1.0;
+    assert 0.0 <= ans && ans <= 1.0;
     System.out.println();
   }
 }

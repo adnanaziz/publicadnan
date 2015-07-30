@@ -3,6 +3,7 @@ package com.epi;
 import java.util.LinkedList;
 
 public class LongestValidParentheses {
+
   // @include
   public static int longestValidParentheses(String s) {
     int maxLength = 0, end = -1;
@@ -15,8 +16,8 @@ public class LongestValidParentheses {
       } else {
         leftParenthesesIndices.pop();
         int start = leftParenthesesIndices.isEmpty()
-                        ? end
-                        : leftParenthesesIndices.peek();
+                    ? end
+                    : leftParenthesesIndices.peek();
         maxLength = Math.max(maxLength, i - start);
       }
     }
@@ -25,12 +26,12 @@ public class LongestValidParentheses {
   // @exclude
 
   private static void smallTest() {
-    assert(longestValidParentheses(")(((())()(()(") == 6);
-    assert(longestValidParentheses("((())()(()(") == 6);
-    assert(longestValidParentheses(")(") == 0);
-    assert(longestValidParentheses("()") == 2);
-    assert(longestValidParentheses("") == 0);
-    assert(longestValidParentheses("()()())") == 6);
+    assert (longestValidParentheses(")(((())()(()(") == 6);
+    assert (longestValidParentheses("((())()(()(") == 6);
+    assert (longestValidParentheses(")(") == 0);
+    assert (longestValidParentheses("()") == 2);
+    assert (longestValidParentheses("") == 0);
+    assert (longestValidParentheses("()()())") == 6);
   }
 
   public static void main(String[] args) {

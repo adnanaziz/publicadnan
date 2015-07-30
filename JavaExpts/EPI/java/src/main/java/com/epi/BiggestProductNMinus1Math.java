@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BiggestProductNMinus1Math {
+
   // @include
   public static int findBiggestNMinusOneProduct(List<Integer> A) {
     int leastNonnegativeIdx = -1;
@@ -30,10 +31,10 @@ public class BiggestProductNMinus1Math {
 
     int product = 1;
     int IdxToSkip = (numberOfNegatives % 2) != 0
-                        ? leastNegativeIdx
-                        // Check if there are any nonnegative entry.
-                        : (leastNonnegativeIdx != -1 ? leastNonnegativeIdx
-                                                     : greatestNegativeIdx);
+                    ? leastNegativeIdx
+                    // Check if there are any nonnegative entry.
+                    : (leastNonnegativeIdx != -1 ? leastNonnegativeIdx
+                                                 : greatestNegativeIdx);
     for (int i = 0; i < A.size(); ++i) {
       if (i != IdxToSkip) {
         product *= A.get(i);

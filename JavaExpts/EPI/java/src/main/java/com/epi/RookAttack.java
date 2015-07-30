@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class RookAttack {
+
   // @include
   public static void rookAttack(int[][] A) {
     int m = A.length, n = A[0].length;
@@ -63,10 +64,10 @@ public class RookAttack {
       for (int j = 0; j < A[i].length; ++j) {
         if (A[i][j] == 0) {
           for (int[] an : ans) {
-            assert(an[j] == 0);
+            assert (an[j] == 0);
           }
           for (int k = 0; k < ans[i].length; ++k) {
-            assert(ans[i][k] == 0);
+            assert (ans[i][k] == 0);
           }
         }
       }

@@ -2,14 +2,17 @@ package com.epi;
 
 import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import static com.epi.BinaryTreeUtils.*;
+import static com.epi.BinaryTreeUtils.generateInOrder;
+import static com.epi.BinaryTreeUtils.generatePostOrder;
+import static com.epi.BinaryTreeUtils.generateRandBinaryTree;
 
 public class ReconstructBinaryTreePostInOrders {
+
   // @include
   public static BinaryTreeNode<Integer> reconstructPostInOrders(int[] post,
                                                                 int[] in) {
@@ -63,7 +66,7 @@ public class ReconstructBinaryTreePostInOrders {
         inOrder[i] = in.get(i);
       }
       BinaryTreeNode<Integer> res = reconstructPostInOrders(postOrder, inOrder);
-      assert(root.equals(res));
+      assert (root.equals(res));
     }
   }
 }

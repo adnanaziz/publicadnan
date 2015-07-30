@@ -3,6 +3,7 @@ package com.epi;
 import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 
 public class SearchMinFirstBST {
+
   // @include
   public static boolean searchMinFirstBST(BinaryTreeNode<Integer> minFirstBST,
                                           Integer k) {
@@ -34,9 +35,9 @@ public class SearchMinFirstBST {
     tree.setRight(new BinaryTreeNode<>(4));
     tree.getRight().setLeft(new BinaryTreeNode<>(5));
     tree.getRight().setRight(new BinaryTreeNode<>(7));
-    assert(searchMinFirstBST(tree, 1));
-    assert(searchMinFirstBST(tree, 3));
-    assert(searchMinFirstBST(tree, 5));
-    assert(!searchMinFirstBST(tree, 6));
+    assert (searchMinFirstBST(tree, 1));
+    assert (searchMinFirstBST(tree, 3));
+    assert (searchMinFirstBST(tree, 5));
+    assert (!searchMinFirstBST(tree, 6));
   }
 }

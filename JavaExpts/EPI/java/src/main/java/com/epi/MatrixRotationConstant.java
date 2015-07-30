@@ -9,6 +9,7 @@ import java.util.Random;
 import static com.epi.utils.Utils.copy;
 
 public class MatrixRotationConstant {
+
   private static void rotateMatrix(List<List<Integer>> squareMatrix) {
     for (int i = 0; i < (squareMatrix.size() / 2); ++i) {
       for (int j = i; j < squareMatrix.size() - i - 1; ++j) {
@@ -18,7 +19,7 @@ public class MatrixRotationConstant {
             .set(j, squareMatrix.get(squareMatrix.size() - 1 - j).get(i));
         squareMatrix.get(squareMatrix.size() - 1 - j)
             .set(i, squareMatrix.get(squareMatrix.size() - 1 - i)
-                        .get(squareMatrix.size() - 1 - j));
+                .get(squareMatrix.size() - 1 - j));
         squareMatrix.get(squareMatrix.size() - 1 - i)
             .set(squareMatrix.size() - 1 - j,
                  squareMatrix.get(j).get(squareMatrix.size() - 1 - i));
@@ -31,7 +32,7 @@ public class MatrixRotationConstant {
     RotatedMatrix rA = new RotatedMatrix(A);
     for (int i = 0; i < A.size(); ++i) {
       for (int j = 0; j < A.size(); ++j) {
-        assert(rA.readEntry(i, j) == B.get(i).get(j));
+        assert (rA.readEntry(i, j) == B.get(i).get(j));
       }
     }
   }
@@ -73,6 +74,7 @@ public class MatrixRotationConstant {
 
 // @include
 class RotatedMatrix {
+
   private List<List<Integer>> wrappedSquareMatrix;
 
   public RotatedMatrix(List<List<Integer>> squareMatrix) {

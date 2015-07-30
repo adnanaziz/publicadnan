@@ -1,12 +1,19 @@
 package com.epi;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class ViewSunset {
+
   // @include
   private static class BuildingWithHeight {
+
     public Integer id;
     public Integer height;
 
@@ -20,6 +27,7 @@ public class ViewSunset {
       return "(id = " + id + ", height = " + height + ")";
     }
   }
+
   public static LinkedList<BuildingWithHeight> examineBuildingsWithSunset(
       InputStream sin) {
     int buildingIdx = 0;
@@ -29,7 +37,7 @@ public class ViewSunset {
     try {
       ObjectInputStream osin = new ObjectInputStream(sin);
       while (true) {
-        buildingHeight = (Integer)osin.readObject();
+        buildingHeight = (Integer) osin.readObject();
         while (!buildingsWithSunset.isEmpty() &&
                (buildingHeight.compareTo(buildingsWithSunset.getLast().height) >=
                 0)) {
@@ -70,8 +78,8 @@ public class ViewSunset {
         while (!res.isEmpty()) {
           BuildingWithHeight current = res.pop();
           System.out.println(current);
-          assert(prev.id < current.id);
-          assert(prev.height > current.height);
+          assert (prev.id < current.id);
+          assert (prev.height > current.height);
           prev = current;
         }
       }

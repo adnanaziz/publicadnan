@@ -5,6 +5,7 @@ package com.epi;
 import java.util.Random;
 
 public class MergeSortedLists {
+
   //@include
   public static ListNode<Integer> mergeTwoSortedLists(ListNode<Integer> L1,
                                                       ListNode<Integer> L2) {
@@ -34,22 +35,22 @@ public class MergeSortedLists {
     ListNode<Integer> L1 = null;
     ListNode<Integer> L2 = null;
     ListNode<Integer> result = mergeTwoSortedLists(L1, L2);
-    assert(result == null);
+    assert (result == null);
 
     L1 = new ListNode(123, null);
     result = mergeTwoSortedLists(L1, L2);
-    assert(result.data == 123);
+    assert (result.data == 123);
 
     L2 = L1;
     L1 = null;
     result = mergeTwoSortedLists(L1, L2);
-    assert(result.data == 123);
+    assert (result.data == 123);
 
     L1 = new ListNode(-123, null);
     L2 = new ListNode(123, null);
     result = mergeTwoSortedLists(L1, L2);
-    assert(result.data == -123 && result.next.data == 123 &&
-           result.next.next == null);
+    assert (result.data == -123 && result.next.data == 123 &&
+            result.next.next == null);
   }
 
   public static void main(String[] args) {
@@ -84,13 +85,13 @@ public class MergeSortedLists {
       int count = 0;
       int pre = Integer.MIN_VALUE;
       while (sortedHead != null) {
-        assert(pre <= sortedHead.data);
+        assert (pre <= sortedHead.data);
         pre = sortedHead.data;
         sortedHead = sortedHead.next;
         ++count;
       }
       // Make sure the merged list have the same number of nodes as L1 and L2.
-      assert(count == n + m);
+      assert (count == n + m);
     }
   }
 }

@@ -4,6 +4,7 @@ import static java.lang.Character.isLetterOrDigit;
 import static java.lang.Character.toLowerCase;
 
 public class ValidPalindrome {
+
   // @include
   public static boolean isPalindrome(String s) {
     // i moves forward, and j moves backward.
@@ -27,10 +28,10 @@ public class ValidPalindrome {
   // @exclude
 
   public static void main(String[] args) {
-    assert(isPalindrome("A man, a plan, a canal: Panama"));
-    assert(!isPalindrome("race a car"));
-    assert(isPalindrome("Able was I, ere I saw Elba!"));
-    assert(!isPalindrome("Ray a Ray"));
-    assert(isPalindrome(""));
+    assert (isPalindrome("A man, a plan, a canal: Panama"));
+    assert (!isPalindrome("race a car"));
+    assert (isPalindrome("Able was I, ere I saw Elba!"));
+    assert (!isPalindrome("Ray a Ray"));
+    assert (isPalindrome(""));
   }
 }

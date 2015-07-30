@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class LongestNondecreasingSubsequenceNlogn {
+
   // @include
   public static int longestNondecreasingSubsequence(List<Integer> A) {
     List<Integer> tailValues = new ArrayList<>();
@@ -32,11 +33,15 @@ public class LongestNondecreasingSubsequenceNlogn {
   }
 
   private static class Compare implements Comparator<Integer> {
+
     // Note that the comparator never returns 0. Therefore
     // the return from the call to binarySearch() that uses this
     // comparator always encodes the index of the first
     // element in the array which is greater than the key.
-    public int compare(Integer x, Integer y) { return x > y ? 1 : -1; }
+    public int compare(Integer x, Integer y) {
+      return x > y ? 1 : -1;
+    }
+
     public static final Comparator<Integer> CMP = new Compare();
   }
   // @exclude

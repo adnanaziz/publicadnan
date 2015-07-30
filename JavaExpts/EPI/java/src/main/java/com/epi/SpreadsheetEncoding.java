@@ -3,11 +3,12 @@ package com.epi;
 import java.util.Random;
 
 public class SpreadsheetEncoding {
+
   private static String randString(int len) {
     Random r = new Random();
     StringBuilder ret = new StringBuilder();
     while (len-- != 0) {
-      ret.append((char)(r.nextInt('Z' - 'A' + 1) + 'A'));
+      ret.append((char) (r.nextInt('Z' - 'A' + 1) + 'A'));
     }
     return ret.toString();
   }
@@ -23,10 +24,10 @@ public class SpreadsheetEncoding {
   // @exclude
 
   private static void simpleTest() {
-    assert(1 == ssDecodeColID("A"));
-    assert(2 == ssDecodeColID("B"));
-    assert(26 == ssDecodeColID("Z"));
-    assert(27 == ssDecodeColID("AA"));
+    assert (1 == ssDecodeColID("A"));
+    assert (2 == ssDecodeColID("B"));
+    assert (26 == ssDecodeColID("Z"));
+    assert (27 == ssDecodeColID("AA"));
   }
 
   public static void main(String[] args) {
