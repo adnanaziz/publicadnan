@@ -1,6 +1,6 @@
 package com.epi;
 
-import com.google.common.collect.Lists;
+import com.epi.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -107,12 +107,12 @@ public class OrderStatistic {
   // @exclude
 
   private static void PivotTest() {
-    ArrayList<Integer> A = Lists.newArrayList(3, 3, 3, 2, 5, 1, 7);
+    ArrayList<Integer> A = Utils.newArrayList(3, 3, 3, 2, 5, 1, 7);
     int newIdx = partitionAroundPivot(1, 3, 2, A, Compare.LESS_THAN);
   }
 
   private static void SimpleTestKthSmallest() {
-    ArrayList<Integer> A = Lists.newArrayList(3, 1, 2, 0, 4, 6, 5);
+    ArrayList<Integer> A = Utils.newArrayList(3, 1, 2, 0, 4, 6, 5);
     assert (0 == findKthSmallest(A, 1));
     assert (1 == findKthSmallest(A, 2));
     assert (2 == findKthSmallest(A, 3));
@@ -125,32 +125,32 @@ public class OrderStatistic {
     assert (6 == findKthSmallest(A, 7));
     assert (5 == findKthSmallest(A, 5));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     // -7 0 0 3 4 4 6 10 12
     assert (-7 == findKthSmallest(A, 1));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (0 == findKthSmallest(A, 2));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (0 == findKthSmallest(A, 3));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (3 == findKthSmallest(A, 4));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (4 == findKthSmallest(A, 5));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (4 == findKthSmallest(A, 6));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (6 == findKthSmallest(A, 7));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (10 == findKthSmallest(A, 8));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (12 == findKthSmallest(A, 9));
 
     assert (4 == findKthSmallest(A, 6));
@@ -165,7 +165,7 @@ public class OrderStatistic {
 
 
   private static void simpleTestKthLargest() {
-    ArrayList<Integer> A = Lists.newArrayList(3, 1, 2, 0, 4, 6, 5);
+    ArrayList<Integer> A = Utils.newArrayList(3, 1, 2, 0, 4, 6, 5);
     assert (6 == findKthLargest(A, 1));
     assert (5 == findKthLargest(A, 2));
     assert (4 == findKthLargest(A, 3));
@@ -178,26 +178,26 @@ public class OrderStatistic {
     assert (6 == findKthLargest(A, 2));
     assert (5 == findKthLargest(A, 3));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     // 12 10 6 4 4 3 0 0 -7
     assert (12 == findKthLargest(A, 1));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (10 == findKthLargest(A, 2));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (6 == findKthLargest(A, 3));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (4 == findKthLargest(A, 4));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (4 == findKthLargest(A, 5));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (3 == findKthLargest(A, 6));
 
-    A = Lists.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
+    A = Utils.newArrayList(0, -7, 3, 4, 4, 12, 6, 10, 0);
     assert (4 == findKthLargest(A, 5));
     for (int i = 0; i < A.size(); i++) {
       if (i < 3) {
@@ -209,14 +209,14 @@ public class OrderStatistic {
   }
 
   private static void SimpleTest() {
-    ArrayList<Integer> C = Lists.newArrayList(9, 5);
+    ArrayList<Integer> C = Utils.newArrayList(9, 5);
     assert (9 == findKthLargest(C, 1));
     assert (5 == findKthSmallest(C, 1));
 
-    ArrayList<Integer> B = Lists.newArrayList(3, 2, 3, 5, 7, 3, 1);
+    ArrayList<Integer> B = Utils.newArrayList(3, 2, 3, 5, 7, 3, 1);
     int c = findKthSmallest(B, 4);
 
-    ArrayList<Integer> A = Lists.newArrayList(123);
+    ArrayList<Integer> A = Utils.newArrayList(123);
     assert (123 == findKthLargest(A, 1));
   }
 
@@ -330,7 +330,7 @@ public class OrderStatistic {
   public static void main(String[] args) {
     Integer.compare(1, 2);
 
-    ArrayList<Integer> list = Lists.newArrayList(9, 1, 3, 4, 5, 7, 2, 8, 6);
+    ArrayList<Integer> list = Utils.newArrayList(9, 1, 3, 4, 5, 7, 2, 8, 6);
     partitionAroundPivot(0, 8, 0, list, Compare.LESS_THAN);
     System.out.println(list);
 
