@@ -22,7 +22,7 @@ public class ComputeRandomPermutation {
     int n;
     Random gen = new Random();
     if (args.length == 1) {
-      n = Integer.valueOf(args[0]);
+      n = Integer.parseInt(args[0]);
     } else {
       n = gen.nextInt(1000000) + 1;
     }

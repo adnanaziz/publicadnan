@@ -3,7 +3,7 @@ package com.epi;
 import java.io.*;
 import java.util.*;
 
-import static com.epi.utils.Utils.objectInputStreamFromList;
+import static com.epi.utils.Utils.*;
 
 public class HighestAffinityPairs {
   // @include
@@ -82,25 +82,30 @@ public class HighestAffinityPairs {
     } else {
       n = r.nextInt(10000) + 1;
     }
+    OutputStream ofs = null;
+    ObjectOutputStream oos = null;
     try {
-      OutputStream ofs = new FileOutputStream("logs.txt");
-      ObjectOutputStream oos = new ObjectOutputStream(ofs);
+      ofs = new FileOutputStream("logs.txt");
+      oos = new ObjectOutputStream(ofs);
       for (int i = 0; i < n; ++i) {
         String name = randString(5).toUpperCase();
         oos.writeUTF(name);
         oos.writeUTF(randString(5));
       }
-      ofs.close();
     } catch (Exception e) {
       System.out.println("Error creating logs.txt: " + e.getMessage());
+    } finally {
+      closeSilently(ofs, oos);
     }
+    InputStream ifs = null;
     try {
-      InputStream ifs = new FileInputStream("logs.txt");
+      ifs = new FileInputStream("logs.txt");
       PagePair result = highestAffinityPair(new ObjectInputStream(ifs));
       System.out.println(result);
-      ifs.close();
     } catch (Exception e) {
       System.out.println("Error reading logs.txt: " + e.getMessage());
+    } finally {
+      closeSilently(ifs);
     }
   }
 }

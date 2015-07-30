@@ -76,11 +76,11 @@ public class OfflineMinimum {
     for (int times = 0; times < 1000; ++times) {
       int n, m;
       if (args.length == 1) {
-        n = Integer.valueOf(args[0]);
+        n = Integer.parseInt(args[0]);
         m = gen.nextInt(n) + 1;
       } else if (args.length == 2) {
-        n = Integer.valueOf(args[0]);
-        m = Integer.valueOf(args[1]);
+        n = Integer.parseInt(args[0]);
+        m = Integer.parseInt(args[1]);
       } else {
         n = gen.nextInt(1000) + 1;
         m = gen.nextInt(n) + 1;

@@ -2,6 +2,8 @@
 
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +18,25 @@ class Player implements Comparable<Player> {
   @Override
   public int compareTo(Player that) {
     return height.compareTo(that.height);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Player)) {
+      return false;
+    }
+    if (this == obj) {
+      return true;
+    }
+    Player that = (Player) obj;
+    return this.height.equals(that.height);
+  }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder(61, 163)
+        .append(height)
+        .toHashCode();
   }
 }
 

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class NonconstructibleChange {
   // @include
-  public static int SmallestNonconstructibleValue(int[] A) {
+  public static int smallestNonconstructibleValue(int[] A) {
     Arrays.sort(A);
     int maxConstructibleValue = 0;
     for (int a : A) {
@@ -19,21 +19,21 @@ public class NonconstructibleChange {
 
   private static void smallTest() {
     int[] A = new int[] {1, 2, 3, 4};
-    assert(11 == SmallestNonconstructibleValue(A));
+    assert(11 == smallestNonconstructibleValue(A));
     A = new int[] {1, 2, 2, 4};
-    assert(10 == SmallestNonconstructibleValue(A));
+    assert(10 == smallestNonconstructibleValue(A));
     A = new int[] {2, 3, 4, 5};
-    assert(1 == SmallestNonconstructibleValue(A));
+    assert(1 == smallestNonconstructibleValue(A));
     A = new int[] {1, 3, 2, 1};
-    assert(8 == SmallestNonconstructibleValue(A));
+    assert(8 == smallestNonconstructibleValue(A));
     A = new int[] {1, 3, 2, 5};
-    assert(12 == SmallestNonconstructibleValue(A));
+    assert(12 == smallestNonconstructibleValue(A));
     A = new int[] {1, 3, 2, 6};
-    assert(13 == SmallestNonconstructibleValue(A));
+    assert(13 == smallestNonconstructibleValue(A));
     A = new int[] {1, 3, 2, 7};
-    assert(14 == SmallestNonconstructibleValue(A));
+    assert(14 == smallestNonconstructibleValue(A));
     A = new int[] {1, 3, 2, 8};
-    assert(7 == SmallestNonconstructibleValue(A));
+    assert(7 == smallestNonconstructibleValue(A));
   }
 
   public static void main(String[] args) {
@@ -49,7 +49,7 @@ public class NonconstructibleChange {
     for (int i = 0; i < n; i++) {
       A[i] = r.nextInt(1000) + 1;
     }
-    int ans = SmallestNonconstructibleValue(A);
+    int ans = smallestNonconstructibleValue(A);
     System.out.println(ans);
   }
 }

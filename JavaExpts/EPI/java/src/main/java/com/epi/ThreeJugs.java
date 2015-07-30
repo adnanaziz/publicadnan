@@ -30,7 +30,7 @@ public class ThreeJugs {
         return false;
       }
       VolumeRange vr = (VolumeRange)obj;
-      return (this.low == vr.low && this.high == vr.high);
+      return (this.low.equals(vr.low) && this.high.equals(vr.high));
     }
 
     @Override

@@ -24,7 +24,7 @@ class IndirectSort {
         A.add(ifs.nextInt());
       }
     } finally {
-      ifs.close();
+      if (ifs != null) ifs.close();
     }
 
     // Indirectly sorts file.
@@ -38,7 +38,7 @@ class IndirectSort {
         ofs.println(a);
       }
     } finally {
-      ofs.close();
+      if (ofs != null) ofs.close();
     }
   }
   // @exclude
@@ -81,7 +81,7 @@ class IndirectSort {
           ofs.println(a);
         }
       } finally {
-        ofs.close();
+        if (ofs != null) ofs.close();
       }
       indirectSort("input.txt");
 
@@ -94,7 +94,7 @@ class IndirectSort {
           A.add(ifs.nextInt());
         }
       } finally {
-        ifs.close();
+        if (ifs != null) ifs.close();
       }
 
       assert(isSorted(A));

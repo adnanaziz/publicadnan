@@ -62,12 +62,12 @@ public class LongestIncreasingSubarray {
       List<Integer> A = new ArrayList<>();
       if (args.length > 2) {
         for (int i = 1; i < args.length; ++i) {
-          A.add(Integer.valueOf(args[i]));
+          A.add(Integer.parseInt(args[i]));
         }
       } else {
         int n;
         if (args.length == 1) {
-          n = Integer.valueOf(args[0]);
+          n = Integer.parseInt(args[0]);
         } else {
           n = gen.nextInt(1000000) + 1;
         }

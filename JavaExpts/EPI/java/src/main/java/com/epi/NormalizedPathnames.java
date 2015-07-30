@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class NormalizedPathnames {
   // @include
-  public static String ShortestEquivalentPath(String path) {
+  public static String shortestEquivalentPath(String path) {
     LinkedList<String> pathNames = new LinkedList<>();
     // Special case: starts with "/", which is an absolute path.
     if (path.startsWith("/")) {
@@ -47,28 +47,28 @@ public class NormalizedPathnames {
   // @exclude
 
   public static void main(String[] args) {
-    assert(ShortestEquivalentPath("123/456").equals("123/456"));
-    assert(ShortestEquivalentPath("/123/456").equals("/123/456"));
-    assert(ShortestEquivalentPath("usr/lib/../bin/gcc").equals("usr/bin/gcc"));
-    assert(ShortestEquivalentPath("./../").equals(".."));
-    assert(ShortestEquivalentPath("../../local").equals("../../local"));
-    assert(ShortestEquivalentPath("./.././../local").equals("../../local"));
-    assert(ShortestEquivalentPath("/foo/../foo/./../").equals("/"));
+    assert(shortestEquivalentPath("123/456").equals("123/456"));
+    assert(shortestEquivalentPath("/123/456").equals("/123/456"));
+    assert(shortestEquivalentPath("usr/lib/../bin/gcc").equals("usr/bin/gcc"));
+    assert(shortestEquivalentPath("./../").equals(".."));
+    assert(shortestEquivalentPath("../../local").equals("../../local"));
+    assert(shortestEquivalentPath("./.././../local").equals("../../local"));
+    assert(shortestEquivalentPath("/foo/../foo/./../").equals("/"));
     try {
-      ShortestEquivalentPath("/..");
+      shortestEquivalentPath("/..");
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }
     try {
-      ShortestEquivalentPath("/cpp_name/bin/");
+      shortestEquivalentPath("/cpp_name/bin/");
     } catch (Exception e) {
       System.out.println(e.getMessage());
       assert(false);
     }
-    assert(ShortestEquivalentPath("scripts//./../scripts/awkscripts/././")
+    assert(shortestEquivalentPath("scripts//./../scripts/awkscripts/././")
                .equals("scripts/awkscripts"));
     if (args.length == 1) {
-      System.out.println(ShortestEquivalentPath(args[0]));
+      System.out.println(shortestEquivalentPath(args[0]));
     }
   }
 }

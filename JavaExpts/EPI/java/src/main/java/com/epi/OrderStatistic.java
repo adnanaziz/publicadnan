@@ -17,7 +17,7 @@ public class OrderStatistic {
   private static class Compare {
     private static class GreaterThan implements Comparator<Integer> {
       public int compare(Integer a, Integer b) {
-        return (a > b) ? -1 : (a == b) ? 0 : 1;
+        return (a > b) ? -1 : (a.equals(b)) ? 0 : 1;
       }
     }
     public static final GreaterThan GREATER_THAN = new GreaterThan();
@@ -25,7 +25,7 @@ public class OrderStatistic {
 
     private static class LessThan implements Comparator<Integer> {
       public int compare(Integer a, Integer b) {
-        return (a < b) ? -1 : (a == b) ? 0 : 1;
+        return (a < b) ? -1 : (a.equals(b)) ? 0 : 1;
       }
     }
     public static final LessThan LESS_THAN = new LessThan();

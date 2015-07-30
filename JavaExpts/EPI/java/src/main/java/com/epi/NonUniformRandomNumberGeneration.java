@@ -48,7 +48,7 @@ public class NonUniformRandomNumberGeneration {
     Random gen = new Random();
     int n;
     if (args.length == 1) {
-      n = Integer.valueOf(args[0]);
+      n = Integer.parseInt(args[0]);
     } else {
       n = gen.nextInt(50) + 1;
     }

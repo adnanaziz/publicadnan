@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -32,16 +34,36 @@ public class GaussianPrimes {
 
     @Override
     public int compareTo(Complex o) {
-      int result = Integer.valueOf(getNorm()).compareTo(o.getNorm());
+      int result = Integer.compare(getNorm(), o.getNorm());
       if (result == 0) {
-        result = Integer.valueOf(getReal()).compareTo(o.getReal());
+        result = Integer.compare(getReal(), o.getReal());
       }
       if (result == 0) {
-        result = Integer.valueOf(getImag()).compareTo(o.getImag());
+        result = Integer.compare(getImag(), o.getImag());
       }
       return result;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+      if (!(obj instanceof Complex)) {
+        return false;
+      }
+      if (this == obj) {
+        return true;
+      }
+      Complex that = (Complex) obj;
+      return this.getReal() == that.getReal() && this.getImag() == that.getImag();
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(23, 31)
+          .append(getReal())
+          .append(getImag())
+          .toHashCode();
+    }
+    
     @Override
     public String toString() {
       return "(" + real + "," + imag + ")";

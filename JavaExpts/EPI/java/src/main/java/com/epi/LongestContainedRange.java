@@ -74,8 +74,7 @@ public class LongestContainedRange {
           @Override
           public int compare(Map.Entry<Integer, Integer> o1,
                              Map.Entry<Integer, Integer> o2) {
-            return Integer.valueOf(o1.getValue() - o1.getKey())
-                .compareTo(o2.getValue() - o2.getKey());
+            return Integer.compare(o1.getValue() - o1.getKey(), o2.getValue() - o2.getKey());
           }
         });
     return m.getValue() - m.getKey() + 1;

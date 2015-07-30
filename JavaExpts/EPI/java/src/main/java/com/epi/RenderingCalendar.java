@@ -2,6 +2,8 @@
 
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +31,26 @@ class Endpoint implements Comparable<Endpoint> {
       return 1;
     }
     return 0;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Endpoint)) {
+      return false;
+    }
+    if (this == obj) {
+      return true;
+    }
+    Endpoint that = (Endpoint) obj;
+    return this.time == that.time && this.isStart == that.isStart;
+  }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder(61, 71)
+        .append(time)
+        .append(isStart)
+        .toHashCode();
   }
 
   Endpoint(int t, boolean is) {

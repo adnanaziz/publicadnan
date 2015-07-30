@@ -40,7 +40,7 @@ public class Tail {
       fileName = args[0];
     } else if (args.length == 2) {
       fileName = args[0];
-      tailCount = Integer.valueOf(args[1]);
+      tailCount = Integer.parseInt(args[1]);
     } else {
       return;
     }

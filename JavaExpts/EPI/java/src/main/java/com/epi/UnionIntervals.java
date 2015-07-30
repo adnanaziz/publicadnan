@@ -2,13 +2,15 @@
 
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 class Interval implements Comparable<Interval> {
-  class Endpoint {
+  static class Endpoint {
     public boolean isClosed;
     public int val;
   }
@@ -28,6 +30,25 @@ class Interval implements Comparable<Interval> {
     return 0;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Interval)) {
+      return false;
+    }
+    if (this == obj) {
+      return true;
+    }
+    Interval that = (Interval) obj;
+    return this.left.val == that.left.val && this.left.isClosed == that.left.isClosed;
+  }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder(53, 151)
+        .append(left.val)
+        .append(left.isClosed)
+        .toHashCode();
+  }
   public Endpoint left = new Endpoint();
   public Endpoint right = new Endpoint();
 }
@@ -42,8 +63,7 @@ class UnionIntervals {
 
     // Sort intervals according to left endpoints of intervals.
     Arrays.sort(intervals);
-    Interval curr = new Interval();
-    curr = intervals[0];
+    Interval curr = intervals[0];
     List<Interval> result = new ArrayList<>();
     for (int i = 1; i < intervals.length; ++i) {
       if (intervals[i].left.val < curr.right.val ||

@@ -46,14 +46,14 @@ public class WordBreaking {
 
   // Verify the strings in ans can be assembled into s.
   private static void checkAns(String s, List<String> ans) {
-    String temp = "";
+    StringBuilder temp = new StringBuilder();
     System.out.println(s);
     for (String an : ans) {
       System.out.print(an + " ");
-      temp += an;
+      temp.append(an);
     }
     System.out.println();
-    assert(ans.size() == 0 || s.equals(temp));
+    assert(ans.size() == 0 || s.equals(temp.toString()));
   }
 
   private static void smallCase() {

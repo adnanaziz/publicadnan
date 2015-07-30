@@ -80,11 +80,11 @@ public class BigNumberMultiplication {
   }
 
   private static String listToString(List<Integer> A) {
-    String result = "";
+    StringBuilder result = new StringBuilder();
     for (int a : A) {
-      result += String.valueOf(a);
+      result.append(a);
     }
-    return result;
+    return result.toString();
   }
 
   public static void main(String[] args) {

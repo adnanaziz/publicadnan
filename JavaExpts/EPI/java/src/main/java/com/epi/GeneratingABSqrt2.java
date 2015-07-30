@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.*;
 
 // These numbers have very interesting property, and people called it ugly
@@ -33,6 +35,14 @@ public class GeneratingABSqrt2 {
 
       ABSqrt2 that = (ABSqrt2)o;
       return a == that.a && b == that.b;
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(17, 37)
+          .append(a)
+          .append(b)
+          .toHashCode();
     }
     // @include
   }

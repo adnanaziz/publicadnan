@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.io.*;
 import java.util.*;
 import java.util.LinkedList;
@@ -38,6 +40,15 @@ public class ClosestStars {
       double rhsDistance = rhs.x * rhs.x + rhs.y * rhs.y + rhs.z * rhs.z;
       double distance = x * x + y * y + z * z;
       return distance == rhsDistance;
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(43, 53)
+          .append(x)
+          .append(y)
+          .append(z)
+          .toHashCode();
     }
 
     @Override

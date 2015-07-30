@@ -29,7 +29,7 @@ public class BiggestProductNMinus1Math {
     }
 
     int product = 1;
-    int IdxToSkip = (numberOfNegatives % 2) == 1
+    int IdxToSkip = (numberOfNegatives % 2) != 0
                         ? leastNegativeIdx
                         // Check if there are any nonnegative entry.
                         : (leastNonnegativeIdx != -1 ? leastNonnegativeIdx
@@ -68,7 +68,7 @@ public class BiggestProductNMinus1Math {
       int n;
       List<Integer> A;
       if (args.length == 1) {
-        n = Integer.valueOf(args[0]);
+        n = Integer.parseInt(args[0]);
       } else {
         // Get a random number from [2, 11]
         n = gen.nextInt(10) + 2;

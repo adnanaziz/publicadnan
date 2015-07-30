@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -34,6 +36,14 @@ public class SearchMaze {
       }
 
       return true;
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(71, 173)
+          .append(x)
+          .append(y)
+          .toHashCode();
     }
 
     @Override

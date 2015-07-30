@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -18,6 +20,25 @@ public class TeamPhoto2 {
     @Override
     public int compareTo(Player<HeightType> o) {
       return height.compareTo(o.height);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (!(obj instanceof Player)) {
+        return false;
+      }
+      if (this == obj) {
+        return true;
+      }
+      Player that = (Player) obj;
+      return this.height.equals(that.height);
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(29, 113)
+          .append(height)
+          .toHashCode();
     }
   }
 

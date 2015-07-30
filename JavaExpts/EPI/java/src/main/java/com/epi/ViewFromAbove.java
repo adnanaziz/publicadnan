@@ -1,5 +1,7 @@
 package com.epi;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,7 +41,26 @@ public class ViewFromAbove {
 
     @Override
     public int compareTo(Endpoint o) {
-      return Integer.valueOf(val()).compareTo(o.val());
+      return Integer.compare(val(), o.val());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (!(obj instanceof Endpoint)) {
+        return false;
+      }
+      if (this == obj) {
+        return true;
+      }
+      Endpoint that = (Endpoint) obj;
+      return this.val() == that.val();
+    }
+
+    @Override
+    public int hashCode() {
+      return new HashCodeBuilder(5, 83)
+          .append(val())
+          .toHashCode();
     }
   }
 

@@ -59,7 +59,7 @@ public class SpiralMatrixClockwise {
     Random gen = new Random();
     int N;
     if (args.length == 1) {
-      N = Integer.valueOf(args[0]);
+      N = Integer.parseInt(args[0]);
     } else {
       N = gen.nextInt(50) + 1;
     }
