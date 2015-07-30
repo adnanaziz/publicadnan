@@ -2,8 +2,6 @@
 
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,9 +35,7 @@ class Player implements Comparable<Player> {
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder(61, 163)
-        .append(height)
-        .toHashCode();
+    return height.hashCode();
   }
 }
 

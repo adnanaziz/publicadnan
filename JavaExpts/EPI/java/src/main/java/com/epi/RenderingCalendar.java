@@ -2,11 +2,10 @@
 
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 class Event {
@@ -49,10 +48,7 @@ class Endpoint implements Comparable<Endpoint> {
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder(61, 71)
-        .append(time)
-        .append(isStart)
-        .toHashCode();
+    return Objects.hash(time, isStart);
   }
 
   Endpoint(int t, boolean is) {

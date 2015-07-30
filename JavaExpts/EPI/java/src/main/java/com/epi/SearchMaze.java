@@ -1,11 +1,10 @@
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class SearchMaze {
@@ -42,10 +41,7 @@ public class SearchMaze {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(71, 173)
-          .append(x)
-          .append(y)
-          .toHashCode();
+      return Objects.hash(x, y);
     }
 
     @Override

@@ -2,13 +2,12 @@
 
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
@@ -64,10 +63,7 @@ class PointsCoveringIntervalsAlternative {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(17, 37)
-          .append(isLeft)
-          .append(isLeft ? ptr.left : ptr.right)
-          .toHashCode();
+      return Objects.hash(isLeft, isLeft ? ptr.left : ptr.right);
     }
   }
 

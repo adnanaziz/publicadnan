@@ -2,11 +2,10 @@ package com.epi;
 
 import com.epi.QueueWithMaxUsingDeque.Queue;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class SlidingWindow {
 
@@ -40,10 +39,7 @@ public class SlidingWindow {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(23, 109)
-          .append(volume)
-          .append(time)
-          .toHashCode();
+      return Objects.hash(volume, time);
     }
   }
 

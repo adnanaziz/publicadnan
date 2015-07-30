@@ -1,9 +1,8 @@
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -65,10 +64,7 @@ public class ShortestPathFewestEdges {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(11, 97)
-          .append(distance.distance)
-          .append(distance.minNumEdges)
-          .toHashCode();
+      return Objects.hash(distance.distance, distance.minNumEdges);
     }
   }
 

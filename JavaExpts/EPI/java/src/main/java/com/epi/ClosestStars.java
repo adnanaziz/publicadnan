@@ -1,13 +1,12 @@
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.Random;
 
@@ -51,11 +50,7 @@ public class ClosestStars {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(43, 53)
-          .append(x)
-          .append(y)
-          .append(z)
-          .toHashCode();
+      return Objects.hash(x, y, z);
     }
 
     @Override
