@@ -1,5 +1,7 @@
 package com.epi.utils;
 
+import org.apache.commons.collections.ArrayStack;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -173,5 +175,13 @@ public class Utils {
         }
       }
     }
+  }
+
+  public static <T> ArrayList<T> newArrayList(T... elements) {
+    ArrayList<T> list = new ArrayStack(elements.length);
+    for (T elem : elements) {
+      list.add(elem);
+    }
+    return list;
   }
 }

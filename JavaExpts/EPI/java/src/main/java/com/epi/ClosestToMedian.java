@@ -1,6 +1,6 @@
 package com.epi;
 
-import com.google.common.collect.Lists;
+import com.epi.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -79,10 +79,10 @@ public class ClosestToMedian {
   }
 
   private static void simpleTest() {
-    ArrayList<Integer> d = Lists.newArrayList(3, 2, 3, 5, 7, 3, 1);
+    ArrayList<Integer> d = Utils.newArrayList(3, 2, 3, 5, 7, 3, 1);
     ArrayList<Integer> dRes = findKClosestToMedian(d, 3);
     checkAns(d, dRes, 3);
-    d = Lists.newArrayList(0, 9, 2, 9, 8);
+    d = Utils.newArrayList(0, 9, 2, 9, 8);
     dRes = findKClosestToMedian(d, 2);
     System.out.print(dRes);
     checkAns(d, dRes, 2);
