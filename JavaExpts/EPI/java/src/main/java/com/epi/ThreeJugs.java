@@ -26,7 +26,7 @@ public class ThreeJugs {
 
     @Override
     public boolean equals(Object obj) {
-      if (obj == null || !(obj instanceof VolumeRange)) {
+      if (!(obj instanceof VolumeRange)) {
         return false;
       }
       VolumeRange vr = (VolumeRange)obj;

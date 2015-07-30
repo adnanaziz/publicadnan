@@ -21,8 +21,7 @@ public class ClosestStars {
     public int compareTo(Star rhs) {
       double rhsDistance = rhs.x * rhs.x + rhs.y * rhs.y + rhs.z * rhs.z;
       double distance = x * x + y * y + z * z;
-      int cmp = Double.valueOf(distance).compareTo(rhsDistance);
-      return cmp;
+      return Double.valueOf(distance).compareTo(rhsDistance);
     }
     // @exclude
 

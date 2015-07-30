@@ -6,7 +6,7 @@ import java.util.List;
 
 public class JustifyText {
   // @include
-  public static List<String> JustifyText(String[] words, int L) {
+  public static List<String> justifyText(String[] words, int L) {
     int currLineStart = 0, numWordsCurrLine = 0, currLineLength = 0;
     List<String> result = new ArrayList<>();
     for (int i = 0; i < words.length; ++i) {
@@ -67,7 +67,7 @@ public class JustifyText {
   // @exclude
 
   private static void testCase(String[] words, int L, String[] golden) {
-    List<String> result = JustifyText(words, L);
+    List<String> result = justifyText(words, L);
     for (String s : result) {
       System.out.println("\"" + s + "\"");
     }

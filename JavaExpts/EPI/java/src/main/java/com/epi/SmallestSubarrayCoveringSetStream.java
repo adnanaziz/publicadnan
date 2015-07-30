@@ -43,7 +43,7 @@ public class SmallestSubarrayCoveringSetStream {
 
     Subarray res = new Subarray(-1, -1);
     int idx = 0;
-    String s = new String();
+    String s;
     for (String aA : A) {
       s = aA;
       if (dict.containsKey(s)) { // s is in queryStrings.

@@ -114,7 +114,7 @@ public class LineMostPoints {
           @Override
           public int compare(Set<Point> p1, Set<Point> p2) {
             if (p1 != null && p2 != null) {
-              return new Integer(p1.size()).compareTo(p2.size());
+              return Integer.compare(p1.size(), p2.size());
             } else if (p1 != null) {
               return 1;
             } else {

@@ -26,12 +26,12 @@ public class StackWithMax {
       if (!empty()) {
         return elementWithCachedMax.peek().max;
       }
-      throw new RuntimeException("max(): empty stack");
+      throw new IllegalStateException("max(): empty stack");
     }
 
     public Integer pop() {
       if (empty()) {
-        throw new RuntimeException("pop(): empty stack");
+        throw new IllegalStateException("pop(): empty stack");
       }
       return elementWithCachedMax.pop().element;
     }

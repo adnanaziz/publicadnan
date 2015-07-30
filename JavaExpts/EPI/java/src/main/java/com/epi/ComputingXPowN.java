@@ -34,7 +34,7 @@ public class ComputingXPowN {
     }
     // @exclude
     // This line should never be called.
-    throw new RuntimeException("unknown error");
+    throw new IllegalStateException("unknown error");
     // @include
   }
   // @exclude

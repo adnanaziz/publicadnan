@@ -12,7 +12,7 @@ public class QueueUsingTwoIntegers {
 
     public void enqueue(int x) {
       if (size >= maxSize) {
-        throw new RuntimeException("queue overflow");
+        throw new IllegalStateException("queue overflow");
       }
       val = val * 10 + x;
       ++size;
@@ -20,7 +20,7 @@ public class QueueUsingTwoIntegers {
 
     public int dequeue() {
       if (size == 0) {
-        throw new RuntimeException("empty queue");
+        throw new IllegalStateException("empty queue");
       }
       int ret = 0, d = (int)Math.floor(Math.log10(val));
       if (d + 1 == size) {

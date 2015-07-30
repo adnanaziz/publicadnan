@@ -8,12 +8,6 @@ import static com.epi.utils.Utils.copy;
 import static com.epi.utils.Utils.simplePrint;
 
 public class MatrixRotation {
-  private static void printMatrix(int[][] A) {
-    for (int[] element : A) {
-      simplePrint(element);
-      System.out.println();
-    }
-  }
 
   private static void checkAnswer(int[][] A) {
     int k = 1;
