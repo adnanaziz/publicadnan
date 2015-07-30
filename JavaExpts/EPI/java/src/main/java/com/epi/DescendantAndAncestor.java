@@ -3,6 +3,7 @@ package com.epi;
 import com.epi.BinarySearchTreePrototypeTemplate.BSTNode;
 
 public class DescendantAndAncestor {
+
   // @include
   public static boolean pairIncludesAncestorAndDescendantOfM(
       BSTNode<Integer> possibleAncOrDesc0, BSTNode<Integer> possibleAncOrDesc1,
@@ -51,13 +52,13 @@ public class DescendantAndAncestor {
 
   private static void smallTest() {
     BSTNode<Integer> root = new BSTNode<>(5);
-    assert(!pairIncludesAncestorAndDescendantOfM(root, root, root));
+    assert (!pairIncludesAncestorAndDescendantOfM(root, root, root));
     root.setLeft(new BSTNode<>(2));
     root.getLeft().setRight(new BSTNode<>(4));
-    assert(!pairIncludesAncestorAndDescendantOfM(root.getLeft(), root,
-                                                 root.getLeft().getRight()));
-    assert(pairIncludesAncestorAndDescendantOfM(root, root.getLeft().getRight(), root.getLeft()));
-    
+    assert (!pairIncludesAncestorAndDescendantOfM(root.getLeft(), root,
+                                                  root.getLeft().getRight()));
+    assert (pairIncludesAncestorAndDescendantOfM(root, root.getLeft().getRight(), root.getLeft()));
+
     // Example of the first figure of BST chapter.
     root = new BSTNode<>(19);
     root.setLeft(new BSTNode<>(7));
@@ -75,9 +76,9 @@ public class DescendantAndAncestor {
     root.getRight().getLeft().getRight().setRight(new BSTNode<>(41));
     root.getRight().setRight(new BSTNode<>(47));
     root.getRight().getRight().setRight(new BSTNode<>(53));
-    assert(!pairIncludesAncestorAndDescendantOfM(root.getRight(), root.getLeft(),
-                                                 root.getRight().getLeft()));
-    assert(pairIncludesAncestorAndDescendantOfM(
+    assert (!pairIncludesAncestorAndDescendantOfM(root.getRight(), root.getLeft(),
+                                                  root.getRight().getLeft()));
+    assert (pairIncludesAncestorAndDescendantOfM(
         root, root.getRight().getLeft().getRight().getLeft().getRight(),
         root.getRight().getLeft()));
   }
@@ -93,19 +94,19 @@ public class DescendantAndAncestor {
     root.setRight(new BSTNode<>(5));
     root.getRight().setLeft(new BSTNode<>(4));
     root.getRight().setRight(new BSTNode<>(6));
-    assert(pairIncludesAncestorAndDescendantOfM(root, root.getRight().getRight(),
-                                                root.getRight()));
-    assert(pairIncludesAncestorAndDescendantOfM(root.getRight().getRight(), root,
-                                                root.getRight()));
-    assert(!pairIncludesAncestorAndDescendantOfM(root, root.getRight(),
-                                                 root.getRight().getRight()));
-    assert(!pairIncludesAncestorAndDescendantOfM(root.getRight(), root,
-                                                 root.getRight().getRight()));
-    assert(!pairIncludesAncestorAndDescendantOfM(root.getRight().getLeft(),
-                                                 root.getRight().getRight(),
+    assert (pairIncludesAncestorAndDescendantOfM(root, root.getRight().getRight(),
                                                  root.getRight()));
-    assert(!pairIncludesAncestorAndDescendantOfM(root.getRight().getLeft(),
-                                                 root.getLeft().getLeft(),
+    assert (pairIncludesAncestorAndDescendantOfM(root.getRight().getRight(), root,
                                                  root.getRight()));
+    assert (!pairIncludesAncestorAndDescendantOfM(root, root.getRight(),
+                                                  root.getRight().getRight()));
+    assert (!pairIncludesAncestorAndDescendantOfM(root.getRight(), root,
+                                                  root.getRight().getRight()));
+    assert (!pairIncludesAncestorAndDescendantOfM(root.getRight().getLeft(),
+                                                  root.getRight().getRight(),
+                                                  root.getRight()));
+    assert (!pairIncludesAncestorAndDescendantOfM(root.getRight().getLeft(),
+                                                  root.getLeft().getLeft(),
+                                                  root.getRight()));
   }
 }

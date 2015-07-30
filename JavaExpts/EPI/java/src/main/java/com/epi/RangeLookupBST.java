@@ -8,8 +8,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class RangeLookupBST {
+
   // @include
   private static class Interval {
+
     public int left, right;
 
     public Interval(int left, int right) {
@@ -19,15 +21,15 @@ public class RangeLookupBST {
   }
 
   public static List<Integer> rangeLookupInBST(BSTNode<Integer> tree,
-                                             Interval interval) {
+                                               Interval interval) {
     List<Integer> result = new ArrayList<>();
     rangeLookupInBSTHelper(tree, interval, result);
     return result;
   }
 
   public static void rangeLookupInBSTHelper(BSTNode<Integer> tree,
-                                          Interval interval,
-                                          List<Integer> result) {
+                                            Interval interval,
+                                            List<Integer> result) {
     if (tree == null) {
       return;
     }
@@ -79,14 +81,14 @@ public class RangeLookupBST {
 
     interval = new Interval(38, 42);
     result = rangeLookupInBST(tree, interval);
-    assert((1 == result.size()) && (41 == result.get(0)));
+    assert ((1 == result.size()) && (41 == result.get(0)));
 
     interval = new Interval(-1, 1);
     result = rangeLookupInBST(tree, interval);
-    assert(0 == result.size());
+    assert (0 == result.size());
 
-    interval = new Interval(Integer.MAX_VALUE-1, Integer.MAX_VALUE);
+    interval = new Interval(Integer.MAX_VALUE - 1, Integer.MAX_VALUE);
     result = rangeLookupInBST(tree, interval);
-    assert(0 == result.size());
+    assert (0 == result.size());
   }
 }

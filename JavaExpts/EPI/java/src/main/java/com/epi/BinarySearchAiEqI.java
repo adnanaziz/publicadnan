@@ -2,9 +2,13 @@
 
 package com.epi;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 public class BinarySearchAiEqI {
+
   // @include
   public static int searchEntryEqualToItsIndex(int[] A) {
     int left = 0, right = A.length - 1;
@@ -36,18 +40,18 @@ public class BinarySearchAiEqI {
   }
 
   private static void SimpleTest() {
-    int[] A = new int[] {0, 1, 2, 3};
-    assert(-1 != searchEntryEqualToItsIndex(A));
-    assert(0 <= searchEntryEqualToItsIndex(A) &&
-           searchEntryEqualToItsIndex(A) <= 3);
+    int[] A = new int[]{0, 1, 2, 3};
+    assert (-1 != searchEntryEqualToItsIndex(A));
+    assert (0 <= searchEntryEqualToItsIndex(A) &&
+            searchEntryEqualToItsIndex(A) <= 3);
     A[0] = -1;
     A[2] = 4;
     A[3] = 5;
-    assert(1 == searchEntryEqualToItsIndex(A));
-    A = new int[] {0};
-    assert(-1 != searchEntryEqualToItsIndex(A));
+    assert (1 == searchEntryEqualToItsIndex(A));
+    A = new int[]{0};
+    assert (-1 != searchEntryEqualToItsIndex(A));
     A[0] = -1;
-    assert(-1 == searchEntryEqualToItsIndex(A));
+    assert (-1 == searchEntryEqualToItsIndex(A));
   }
 
   public static void main(String[] args) {
@@ -74,10 +78,10 @@ public class BinarySearchAiEqI {
       int ans = searchEntryEqualToItsIndex(A);
       if (ans != -1) {
         System.out.println("A[" + ans + "] = " + A[ans]);
-        assert(A[ans] == ans);
+        assert (A[ans] == ans);
       } else {
         System.out.println("no entry where A[k] = k");
-        assert(checkAns(A) == -1);
+        assert (checkAns(A) == -1);
       }
     }
   }

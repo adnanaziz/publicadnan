@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GenerateParentheses {
+
   // @include
   public static List<String> generateBalancedParentheses(int numPairs) {
     List<String> result = new ArrayList<>();
@@ -35,11 +36,11 @@ public class GenerateParentheses {
 
   private static void smallTest() {
     List<String> result = generateBalancedParentheses(1);
-    assert(result.size() == 1 && result.get(0).equals("()"));
+    assert (result.size() == 1 && result.get(0).equals("()"));
     result = generateBalancedParentheses(2);
-    assert(result.size() == 2 &&
-           ((result.get(0).equals("(())") && result.get(1).equals("()()")) ||
-            (result.get(0).equals("()()") && result.get(1).equals("(())"))));
+    assert (result.size() == 2 &&
+            ((result.get(0).equals("(())") && result.get(1).equals("()()")) ||
+             (result.get(0).equals("()()") && result.get(1).equals("(())"))));
   }
 
   public static void main(String[] args) {

@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BinaryTreeLevelOrder {
+
   // @include
   public static List<List<Integer>> binaryTreeDepthOrder(
       BinaryTreeNode<Integer> tree) {
@@ -60,6 +61,6 @@ public class BinaryTreeLevelOrder {
     goldenRes.add(Arrays.asList(10));
     goldenRes.add(Arrays.asList(13));
     goldenRes.add(new ArrayList());
-    assert(goldenRes.equals(result));
+    assert (goldenRes.equals(result));
   }
 }

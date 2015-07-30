@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NearestRestaurant {
+
   private static <T> BinaryTree<T> findSuccessorBST(BinaryTree<T> n) {
     if (n.getRight() != null) {
       // Find the smallest element in n's right subtree.
@@ -65,18 +66,18 @@ public class NearestRestaurant {
     root.getRight().setRight(new BinaryTree<>(6, null, null));
     root.getRight().getRight().setParent(root.getRight());
     List<BinaryTree<Integer>> res = rangeQueryOnBST(root, 2, 5);
-    assert(res.size() == 4);
+    assert (res.size() == 4);
     for (BinaryTree<Integer> l : res) {
-      assert(l.getData() >= 2 && l.getData() <= 5);
+      assert (l.getData() >= 2 && l.getData() <= 5);
     }
     res = rangeQueryOnBST(root, -1, 0);
-    assert(res.isEmpty());
+    assert (res.isEmpty());
     res = rangeQueryOnBST(root, 10, 25);
-    assert(res.isEmpty());
+    assert (res.isEmpty());
     res = rangeQueryOnBST(root, -10, 30);
-    assert(res.size() == 6);
+    assert (res.size() == 6);
     for (BinaryTree<Integer> l : res) {
-      assert(l.getData() >= 1 && l.getData() <= 6);
+      assert (l.getData() >= 1 && l.getData() <= 6);
     }
   }
 }

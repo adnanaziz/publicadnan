@@ -3,6 +3,7 @@ package com.epi;
 import com.epi.BinarySearchTreePrototypeTemplate.BSTNode;
 
 public class BSTToSortedDoublyList {
+
   // @include
   // Transform a BST into a circular sorted doubly linked list in-place,
   // return the head of the list.
@@ -57,7 +58,7 @@ public class BSTToSortedDoublyList {
     BSTNode<Integer> curr = L;
     int pre = Integer.MIN_VALUE;
     do {
-      assert(pre <= curr.getData());
+      assert (pre <= curr.getData());
       System.out.println(curr.getData());
       pre = curr.getData();
       curr = curr.getRight();

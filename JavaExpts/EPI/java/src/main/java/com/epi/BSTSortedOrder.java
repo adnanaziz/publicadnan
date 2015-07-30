@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class BSTSortedOrder {
+
   // @include
   public static List<Integer> BSTInSortedOrder(BSTNode<Integer> tree) {
     Stack<BSTNode<Integer>> s = new Stack<>();
@@ -35,11 +36,11 @@ public class BSTSortedOrder {
     BSTNode<Integer> tree = new BSTNode<>(43);
     List<Integer> result = BSTInSortedOrder(tree);
     List<Integer> goldenResult = Arrays.asList(43);
-    assert(result.equals(goldenResult));
+    assert (result.equals(goldenResult));
     tree.setLeft(new BSTNode<>(23));
     result = BSTInSortedOrder(tree);
     goldenResult = Arrays.asList(23, 43);
-    assert(result.equals(goldenResult));
+    assert (result.equals(goldenResult));
   }
 
   public static void main(String[] args) {
@@ -59,6 +60,6 @@ public class BSTSortedOrder {
     tree.getRight().setRight(new BSTNode<>(53));
     List<Integer> result = BSTInSortedOrder(tree);
     List<Integer> goldenResult = Arrays.asList(23, 29, 31, 37, 41, 43, 47, 53);
-    assert(result.equals(goldenResult));
+    assert (result.equals(goldenResult));
   }
 }

@@ -6,10 +6,11 @@ import static java.lang.Math.floor;
 import static java.lang.Math.sqrt;
 
 public class Doors {
+
   // @include
   static boolean isDoorOpen(int i) {
     double sqrtI = sqrt(i);
-    int floorSqrtI = (int)floor(sqrtI);
+    int floorSqrtI = (int) floor(sqrtI);
     return floorSqrtI * floorSqrtI == i;
   }
   // @exclude

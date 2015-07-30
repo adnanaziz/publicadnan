@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class OfflineSampling {
+
   // @include
   public static void randomSampling(int k, List<Integer> A) {
     Random gen = new Random();

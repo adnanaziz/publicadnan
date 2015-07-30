@@ -3,6 +3,7 @@ package com.epi;
 import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 
 public class SumRootToLeafBinaryTree {
+
   // @include
   public static int sumRootToLeaf(BinaryTreeNode<Integer> tree) {
     return sumRootToLeafHelper(tree, 0);
@@ -20,7 +21,7 @@ public class SumRootToLeafBinaryTree {
     }
     // Non-leaf.
     return sumRootToLeafHelper(tree.getLeft(), partialPathSum) +
-        sumRootToLeafHelper(tree.getRight(), partialPathSum);
+           sumRootToLeafHelper(tree.getRight(), partialPathSum);
   }
   // @exclude
 
@@ -30,21 +31,21 @@ public class SumRootToLeafBinaryTree {
     // 0 1 0
     BinaryTreeNode<Integer> root = new BinaryTreeNode<>(1);
     int result = sumRootToLeaf(root);
-    assert(result == 1);
+    assert (result == 1);
     root.setLeft(new BinaryTreeNode<>(1));
     result = sumRootToLeaf(root);
-    assert(result == 3);
+    assert (result == 3);
     root.getLeft().setLeft(new BinaryTreeNode<>(0));
     result = sumRootToLeaf(root);
-    assert(result == 6);
+    assert (result == 6);
     root.setRight(new BinaryTreeNode<>(0));
     result = sumRootToLeaf(root);
-    assert(result == 8);
+    assert (result == 8);
     root.getRight().setLeft(new BinaryTreeNode<>(1));
     result = sumRootToLeaf(root);
-    assert(result == 11);
+    assert (result == 11);
     root.getRight().setRight(new BinaryTreeNode<>(0));
     result = sumRootToLeaf(root);
-    assert(result == 15);
+    assert (result == 15);
   }
 }

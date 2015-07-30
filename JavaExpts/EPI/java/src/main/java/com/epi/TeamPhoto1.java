@@ -4,16 +4,19 @@ package com.epi;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 // @include
 class Player implements Comparable<Player> {
+
   public Integer height;
 
-  public Player(Integer h) { height = h; }
+  public Player(Integer h) {
+    height = h;
+  }
 
   @Override
   public int compareTo(Player that) {
@@ -41,6 +44,7 @@ class Player implements Comparable<Player> {
 }
 
 class Team {
+
   public Team(List<Integer> height) {
     players = new ArrayList<Player>(height.size());
     for (int i = 0; i < height.size(); ++i) {
@@ -71,16 +75,17 @@ class Team {
 // @exclude
 
 class TeamPhoto1 {
+
   public static void main(String[] args) {
     List<Integer> height = Arrays.asList(1, 5, 4);
     Team t1 = new Team(height);
     height = Arrays.asList(2, 3, 4);
     Team t2 = new Team(height);
-    assert(!Team.validPlacementExists(t1, t2) &&
-           !Team.validPlacementExists(t2, t1));
+    assert (!Team.validPlacementExists(t1, t2) &&
+            !Team.validPlacementExists(t2, t1));
     height = Arrays.asList(0, 3, 2);
     Team t3 = new Team(height);
-    assert(
+    assert (
         Team.validPlacementExists(t3, t1) && !Team.validPlacementExists(t1, t3) &&
         Team.validPlacementExists(t3, t2) && !Team.validPlacementExists(t1, t2));
   }

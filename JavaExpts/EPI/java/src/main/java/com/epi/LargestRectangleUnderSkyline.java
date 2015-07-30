@@ -10,6 +10,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class LargestRectangleUnderSkyline {
+
   public static int calculateLargestRectangleAlternative(List<Integer> A) {
     // Calculate L.
     LinkedList<Integer> s = new LinkedList<>();
@@ -84,12 +85,12 @@ public class LargestRectangleUnderSkyline {
     List<Integer> A = Arrays.asList(2, 3, 4, 1, 2);
     int area = calculateLargestRectangle(A);
     int alterArea = calculateLargestRectangleAlternative(A);
-    assert(area == alterArea);
-    assert(checkAnswer(A) == area);
-    assert(6 == area);
+    assert (area == alterArea);
+    assert (checkAnswer(A) == area);
+    assert (6 == area);
     A = Arrays.asList(2, 2, 2);
     System.out.println(calculateLargestRectangle(A));
-    assert(6 == calculateLargestRectangle(A));
+    assert (6 == calculateLargestRectangle(A));
   }
 
   public static void main(String[] args) {
@@ -109,8 +110,8 @@ public class LargestRectangleUnderSkyline {
       int area = calculateLargestRectangle(A);
       int alterArea = calculateLargestRectangleAlternative(A);
       System.out.println(area + " " + alterArea);
-      assert(area == alterArea);
-      assert(checkAnswer(A) == area);
+      assert (area == alterArea);
+      assert (checkAnswer(A) == area);
     }
   }
 }

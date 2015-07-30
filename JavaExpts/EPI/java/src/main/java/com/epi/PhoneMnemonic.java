@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class PhoneMnemonic {
+
   // @include
   public static List<String> phoneMnemonic(String phoneNumber) {
     char[] partialMnemonic = new char[phoneNumber.length()];
@@ -16,7 +17,7 @@ public class PhoneMnemonic {
   }
 
   // The mapping from digit to corresponding charaters.
-  private static final String[] M = new String[] {
+  private static final String[] M = new String[]{
       "0", "1", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"};
 
   private static void phoneMnemonicHelper(String phoneNumber, int digit,

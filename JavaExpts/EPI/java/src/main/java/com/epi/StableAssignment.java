@@ -8,8 +8,10 @@ import java.util.Random;
 import static com.epi.utils.Utils.shuffle;
 
 public class StableAssignment {
+
   // @include
   private static class ProfessorStudentPairing {
+
     public Integer professor;
     public Integer student;
 
@@ -18,6 +20,7 @@ public class StableAssignment {
       this.student = student;
     }
   }
+
   public static ProfessorStudentPairing[] findStableAssignment(
       int[][] professorPreference, int[][] studentPreference) {
     // stores currently free students.
@@ -113,7 +116,7 @@ public class StableAssignment {
         n = gen.nextInt(300) + 1;
       }
       int[][] professorPreference = new int[n][n], studentPreference =
-                                                       new int[n][n];
+          new int[n][n];
       for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
           professorPreference[i][j] = j;

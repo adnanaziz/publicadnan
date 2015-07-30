@@ -2,15 +2,22 @@ package com.epi;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.io.*;
-import java.util.*;
-import java.util.LinkedList;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Random;
 
 import static com.epi.utils.Utils.objectInputStreamFromList;
 
 public class ClosestStars {
+
   // @include
   public static class Star implements Comparable<Star>, Serializable {
+
     private double x, y, z;
 
     public Star(double x, double y, double z) {
@@ -36,7 +43,7 @@ public class ClosestStars {
         return true;
       }
 
-      Star rhs = (Star)obj;
+      Star rhs = (Star) obj;
       double rhsDistance = rhs.x * rhs.x + rhs.y * rhs.y + rhs.z * rhs.z;
       double distance = x * x + y * y + z * z;
       return distance == rhsDistance;
@@ -66,7 +73,7 @@ public class ClosestStars {
       while (true) {
         // Add each star to the max-heap. If the max-heap size exceeds k,
         // remove the maximum element from the max-heap.
-        Star star = (Star)osin.readObject();
+        Star star = (Star) osin.readObject();
         maxHeap.add(star);
         if (maxHeap.size() == k + 1) {
           maxHeap.remove();
@@ -100,11 +107,11 @@ public class ClosestStars {
     ObjectInputStream ois = objectInputStreamFromList(stars);
 
     List<Star> closestStars = findClosestKStars(3, ois);
-    assert(3 == closestStars.size());
-    assert(closestStars.get(0).equals(new Star(0, 2, 1)));
-    assert(closestStars.get(0).equals(new Star(2, 0, 1)));
-    assert(closestStars.get(1).equals(new Star(1, 2, 1)));
-    assert(closestStars.get(1).equals(new Star(1, 1, 2)));
+    assert (3 == closestStars.size());
+    assert (closestStars.get(0).equals(new Star(0, 2, 1)));
+    assert (closestStars.get(0).equals(new Star(2, 0, 1)));
+    assert (closestStars.get(1).equals(new Star(1, 2, 1)));
+    assert (closestStars.get(1).equals(new Star(1, 1, 2)));
 
     stars = new ArrayList<>();
     stars.add(new Star(1, 2, 3));
@@ -117,9 +124,9 @@ public class ClosestStars {
     stars.add(new Star(3, 2, 1));
     ois = objectInputStreamFromList(stars);
     closestStars = findClosestKStars(2, ois);
-    assert(2 == closestStars.size());
-    assert(closestStars.get(0).equals(new Star(1, 2, 3)));
-    assert(closestStars.get(1).equals(new Star(3, 2, 1)));
+    assert (2 == closestStars.size());
+    assert (closestStars.get(0).equals(new Star(1, 2, 3)));
+    assert (closestStars.get(1).equals(new Star(3, 2, 1)));
   }
 
   public static void main(String[] args) {
@@ -148,7 +155,7 @@ public class ClosestStars {
       closestStars = findClosestKStars(k, ois);
       Collections.sort(closestStars);
       Collections.sort(stars);
-      assert(stars.get(k - 1).equals(closestStars.get(closestStars.size() - 1)));
+      assert (stars.get(k - 1).equals(closestStars.get(closestStars.size() - 1)));
     }
   }
 }

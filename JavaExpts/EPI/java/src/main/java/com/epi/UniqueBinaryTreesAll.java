@@ -6,9 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.epi.BinaryTreeUtils.generateInOrder;
-
 public class UniqueBinaryTreesAll {
+
   // @include
   public static List<BinaryTreeNode<Integer>> generateAllBinaryTrees(
       int numNodes) {

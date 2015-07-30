@@ -1,7 +1,7 @@
 package com.epi;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class RemoveDuplicatesFromSortedArray {
+
   // @include
   // Returns the number of valid entries after deletion.
   public static int deleteDuplicates(List<Integer> A) {
@@ -28,12 +29,12 @@ public class RemoveDuplicatesFromSortedArray {
 
   private static void checkAns(List<Integer> A, int n) {
     for (int i = 1; i < n; ++i) {
-      assert(!A.get(i - 1).equals(A.get(i)));
+      assert (!A.get(i - 1).equals(A.get(i)));
     }
   }
 
   private static void smallTest() {
-    assert(6 == deleteDuplicates(Arrays.asList(2, 3, 5, 5, 7, 11, 11, 11, 13)));
+    assert (6 == deleteDuplicates(Arrays.asList(2, 3, 5, 5, 7, 11, 11, 11, 13)));
   }
 
   public static void main(String[] args) {
@@ -53,7 +54,7 @@ public class RemoveDuplicatesFromSortedArray {
       Collections.sort(A);
       Set<Integer> unique = new HashSet<>(A);
       int size = deleteDuplicates(A);
-      assert(size == unique.size());
+      assert (size == unique.size());
       checkAns(A, size);
     }
   }

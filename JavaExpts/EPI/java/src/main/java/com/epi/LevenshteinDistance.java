@@ -6,6 +6,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class LevenshteinDistance {
+
   // @include
   public static int levenshteinDistance(String A, String B) {
     // Try to reduce the space usage.
@@ -27,8 +28,8 @@ public class LevenshteinDistance {
       for (int j = 1; j <= B.length(); ++j) {
         int preI1J = D[j]; // Stores the value of D[i -1][j].
         D[j] = A.charAt(i - 1) == B.charAt(j - 1)
-                   ? preI1J1
-                   : 1 + Math.min(preI1J1, Math.min(D[j - 1], D[j]));
+               ? preI1J1
+               : 1 + Math.min(preI1J1, Math.min(D[j - 1], D[j]));
         // Previous D[i - 1][j] will become the next D[i - 1][j - 1].
         preI1J1 = preI1J;
       }
@@ -41,7 +42,7 @@ public class LevenshteinDistance {
     Random r = new Random();
     StringBuilder ret = new StringBuilder(len);
     while (len-- > 0) {
-      ret.append((char)(r.nextInt(26) + 'a'));
+      ret.append((char) (r.nextInt(26) + 'a'));
     }
     return ret.toString();
   }
@@ -52,10 +53,10 @@ public class LevenshteinDistance {
     // Wiki example (http://en.wikipedia.org/wiki/levenshteinDistance)
     A = "Saturday";
     B = "Sunday";
-    assert(3 == levenshteinDistance(A, B));
+    assert (3 == levenshteinDistance(A, B));
     A = "kitten";
     B = "sitting";
-    assert(3 == levenshteinDistance(A, B));
+    assert (3 == levenshteinDistance(A, B));
 
     if (args.length == 2) {
       A = args[0];

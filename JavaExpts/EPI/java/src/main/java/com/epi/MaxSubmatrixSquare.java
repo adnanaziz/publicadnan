@@ -7,6 +7,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class MaxSubmatrixSquare {
+
   // O(m^3 n^3) time solution.
   private static int checkAns(ArrayList<ArrayList<Boolean>> A) {
     int max = 0;
@@ -40,6 +41,7 @@ public class MaxSubmatrixSquare {
 
   // @include
   public static class MaxHW {
+
     public int h, w;
 
     public MaxHW(int h, int w) {
@@ -58,9 +60,9 @@ public class MaxSubmatrixSquare {
         // Find the largest w such that (i, j) to (i, j + w - 1) are feasible.
         table[i][j] =
             A.get(i).get(j)
-                ? new MaxHW(i + 1 < A.size() ? table[i + 1][j].h + 1 : 1,
-                            j + 1 < A.get(i).size() ? table[i][j + 1].w + 1 : 1)
-                : new MaxHW(0, 0);
+            ? new MaxHW(i + 1 < A.size() ? table[i + 1][j].h + 1 : 1,
+                        j + 1 < A.get(i).size() ? table[i][j + 1].w + 1 : 1)
+            : new MaxHW(0, 0);
       }
     }
 
@@ -108,7 +110,7 @@ public class MaxSubmatrixSquare {
       // System.out.println(A);
       System.out.println(maxSquareSubmatrix(A));
       System.out.println(checkAns(A));
-      assert(checkAns(A) == maxSquareSubmatrix(A));
+      assert (checkAns(A) == maxSquareSubmatrix(A));
     }
   }
 }

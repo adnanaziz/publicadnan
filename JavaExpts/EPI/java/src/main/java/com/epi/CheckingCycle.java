@@ -3,6 +3,7 @@
 package com.epi;
 
 class CheckingCycle {
+
   // @include
   public static ListNode<Integer> hasCycle(ListNode<Integer> head) {
     ListNode<Integer> fast = head, slow = head;
@@ -41,18 +42,18 @@ class CheckingCycle {
   private static void simpleTest() {
     ListNode<Integer> l0 = new ListNode<>(42, null);
     l0.next = l0;
-    assert(hasCycle(l0) == l0);
+    assert (hasCycle(l0) == l0);
 
     ListNode<Integer> l1 = new ListNode<>(42, null);
     ListNode<Integer> l2 = new ListNode<>(42, null);
     l1.next = l2;
     l2.next = l1;
-    assert(hasCycle(l1) == l1);
-    assert(hasCycle(l2) == l2);
+    assert (hasCycle(l1) == l1);
+    assert (hasCycle(l2) == l2);
 
     l2.next = null;
-    assert(hasCycle(l1) == null);
-    assert(hasCycle(l2) == null);
+    assert (hasCycle(l1) == null);
+    assert (hasCycle(l2) == null);
   }
 
   public static void main(String[] args) {
@@ -62,15 +63,15 @@ class CheckingCycle {
     ListNode<Integer> l1 = new ListNode<>(1, l2);
 
     // should output "l1 does not have cycle."
-    assert(hasCycle(l1) == null);
+    assert (hasCycle(l1) == null);
     System.out.println("l1 " + (hasCycle(l1) != null ? "has" : "does not have") +
                        " cycle.");
 
     // make it a cycle
     l3.next = l2;
     // should output "l1 has cycle, located at node has value 2"
-    assert(hasCycle(l1) != null);
-    assert(hasCycle(l1).data == 2);
+    assert (hasCycle(l1) != null);
+    assert (hasCycle(l1).data == 2);
     ListNode<Integer> temp = hasCycle(l1);
     if (temp != null) {
       System.out.println("l1 has cycle, located at node has value " + temp.data);

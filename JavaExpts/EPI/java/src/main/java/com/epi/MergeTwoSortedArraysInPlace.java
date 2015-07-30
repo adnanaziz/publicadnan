@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class MergeTwoSortedArraysInPlace {
+
   // @include
   public static void mergeTwoSortedArrays(int A[], int m, int B[], int n) {
     int a = m - 1, b = n - 1, writeIdx = m + n - 1;
@@ -18,7 +19,7 @@ public class MergeTwoSortedArraysInPlace {
 
   private static void checkAns(int[] A) {
     for (int i = 1; i < A.length; ++i) {
-      assert(A[i - 1] <= A[i]);
+      assert (A[i - 1] <= A[i]);
     }
   }
 

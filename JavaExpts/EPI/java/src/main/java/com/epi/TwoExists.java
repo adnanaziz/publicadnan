@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Random;
 
 public class TwoExists {
+
   // @include
   public static class GraphVertex {
-    public enum Color { WHITE, GRAY, BLACK }
+
+    public enum Color {WHITE, GRAY, BLACK}
 
     public Color color;
     public List<GraphVertex> edges;
@@ -102,7 +104,7 @@ public class TwoExists {
     G.get(1).edges.add(G.get(2));
     boolean res = isGraphMinimallyConnected(G);
     System.out.println(res);
-    assert(checkAnswer(G) == res);
+    assert (checkAnswer(G) == res);
   }
 
   private static void testUndirectedStarTree() {
@@ -119,8 +121,8 @@ public class TwoExists {
     G.get(3).edges.add(G.get(0));
     boolean res = isGraphMinimallyConnected(G);
     System.out.println(res);
-    assert(checkAnswer(G) == res);
-    assert(res);
+    assert (checkAnswer(G) == res);
+    assert (res);
   }
 
   private static void testUndirectedLineTree() {
@@ -137,12 +139,12 @@ public class TwoExists {
     G.get(3).edges.add(G.get(2));
     boolean res = isGraphMinimallyConnected(G);
     System.out.println(res);
-    assert(checkAnswer(G) == res);
-    assert(res);
+    assert (checkAnswer(G) == res);
+    assert (res);
     G.get(1).edges.add(G.get(3));
     G.get(3).edges.add(G.get(1));
     res = isGraphMinimallyConnected(G);
-    assert(!res);
+    assert (!res);
   }
 
   private static void testUndirectedBinaryTree() {
@@ -165,12 +167,12 @@ public class TwoExists {
     G.get(6).edges.add(G.get(2));
     boolean res = isGraphMinimallyConnected(G);
     System.out.println(res);
-    assert(checkAnswer(G) == res);
-    assert(res);
+    assert (checkAnswer(G) == res);
+    assert (res);
     G.get(4).edges.add(G.get(6));
     G.get(6).edges.add(G.get(4));
     res = isGraphMinimallyConnected(G);
-    assert(!res);
+    assert (!res);
   }
 
   private static void testUndirectedTwoSeparateCycles() {
@@ -194,7 +196,7 @@ public class TwoExists {
     boolean res = isGraphMinimallyConnected(G);
     // since we just check for a cycle, result is false.
     // this is ok, because we assume input is connected.
-    assert(!res);
+    assert (!res);
   }
 
   public static void main(String[] args) {
@@ -238,7 +240,7 @@ public class TwoExists {
       // System.out.println(G);
       boolean res = isGraphMinimallyConnected(G);
       System.out.println(res);
-      assert(checkAnswer(G) == res);
+      assert (checkAnswer(G) == res);
     }
   }
 }

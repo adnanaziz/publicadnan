@@ -2,13 +2,13 @@
 
 package com.epi;
 
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class DutchNationalFlagTwoPasses {
+
   // @include
   public static void dutchFlagPartition(int pivotIndex, List<Integer> A) {
     int pivot = A.get(pivotIndex);
@@ -71,7 +71,7 @@ public class DutchNationalFlagTwoPasses {
       }
       System.out.println();
 
-      assert(i == n);
+      assert (i == n);
     }
   }
 }

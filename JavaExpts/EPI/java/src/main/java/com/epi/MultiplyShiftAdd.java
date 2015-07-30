@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class MultiplyShiftAdd {
+
   // @include
   public static long multiply(long x, long y) {
     long sum = 0;
@@ -36,7 +37,7 @@ public class MultiplyShiftAdd {
     if (args.length == 2) {
       int x = Integer.parseInt(args[0]), y = Integer.parseInt(args[1]);
       long res = multiply(x, y);
-      assert(res == x * y);
+      assert (res == x * y);
       System.out.println("PASS: x = " + x + ", y = " + y + "; prod = " + res);
     } else {
       Random r = new Random();
@@ -44,7 +45,7 @@ public class MultiplyShiftAdd {
       for (int i = 0; i < 100000; ++i) {
         int x = r.nextInt(65535), y = r.nextInt(65535);
         long prod = multiply(x, y);
-        assert(prod == (long)x * y);
+        assert (prod == (long) x * y);
         System.out.println("PASS: x = " + x + ", y = " + y + "; prod = " + prod);
       }
     }

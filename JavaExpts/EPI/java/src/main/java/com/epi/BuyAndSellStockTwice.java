@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BuyAndSellStockTwice {
+
   // @include
   public static double buyAndSellStockTwice(List<Double> prices) {
     double maxTotalProfit = 0.0;
@@ -28,7 +29,7 @@ public class BuyAndSellStockTwice {
       maxPriceSoFar = Math.max(maxPriceSoFar, prices.get(i));
       maxTotalProfit =
           Math.max(maxTotalProfit, maxPriceSoFar - prices.get(i) +
-                                       firstBuySellProfits.get(i - 1));
+                                   firstBuySellProfits.get(i - 1));
     }
     return maxTotalProfit;
   }
@@ -70,7 +71,7 @@ public class BuyAndSellStockTwice {
         A.add(gen.nextDouble() * 10000);
       }
       System.out.println("n = " + n);
-      assert(Double.compare(checkAns(A), buyAndSellStockTwice(A)) == 0);
+      assert (Double.compare(checkAns(A), buyAndSellStockTwice(A)) == 0);
     }
   }
 }

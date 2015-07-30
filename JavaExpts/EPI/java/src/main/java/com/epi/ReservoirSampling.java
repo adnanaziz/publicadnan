@@ -1,12 +1,19 @@
 // Copyright (c) 2015 Elements of Programming Interviews. All rights reserved.
 package com.epi;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class ReservoirSampling {
+
   // @include
   public static List<Integer> onlineRandomSample(InputStream sin, int k)
       throws IOException, ClassNotFoundException {
@@ -14,15 +21,15 @@ public class ReservoirSampling {
 
     ObjectInputStream osin = new ObjectInputStream(sin);
     // Stores the first k elements.
-    Integer x = (Integer)readObjectSilently(osin);
+    Integer x = (Integer) readObjectSilently(osin);
     for (int i = 0; i < k && x != null; ++i) {
       runningSample.add(x);
-      x = (Integer)readObjectSilently(osin);
+      x = (Integer) readObjectSilently(osin);
     }
 
     // After the first k elements.
     int numSeenSoFar = k + 1;
-    x = (Integer)readObjectSilently(osin);
+    x = (Integer) readObjectSilently(osin);
     while (x != null) {
       Random randIdxGen = new Random();
       // Generate a random number in [0, numSeenSoFar], and if this number is
@@ -32,7 +39,7 @@ public class ReservoirSampling {
         runningSample.set(idxToReplace, x);
       }
 
-      x = (Integer)readObjectSilently(osin);
+      x = (Integer) readObjectSilently(osin);
     }
 
     osin.close();

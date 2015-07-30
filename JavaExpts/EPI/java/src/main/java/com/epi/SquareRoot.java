@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class SquareRoot {
+
   // @include
   public static double squareRoot(double x) {
     // Decides the search range according to x's value relative to 1.0.
@@ -30,7 +31,7 @@ public class SquareRoot {
     return left;
   }
 
-  private static enum Ordering { SMALLER, EQUAL, LARGER }
+  private static enum Ordering {SMALLER, EQUAL, LARGER}
 
   private static Ordering compare(double a, double b) {
     final double EPSILON = 0.00001;
@@ -45,27 +46,27 @@ public class SquareRoot {
     Double[] res = new Double[2];
     res[0] = squareRoot(1.0);
     res[1] = Math.sqrt(1.0);
-    assert(compare(res[0], res[1]) == Ordering.EQUAL);
+    assert (compare(res[0], res[1]) == Ordering.EQUAL);
 
     res[0] = squareRoot(2.0);
     res[1] = Math.sqrt(2.0);
-    assert(compare(res[0], res[1]) == Ordering.EQUAL);
+    assert (compare(res[0], res[1]) == Ordering.EQUAL);
 
     res[0] = squareRoot(0.001);
     res[1] = Math.sqrt(0.001);
-    assert(compare(res[0], res[1]) == Ordering.EQUAL);
+    assert (compare(res[0], res[1]) == Ordering.EQUAL);
 
     res[0] = squareRoot(0.5);
     res[1] = Math.sqrt(0.5);
-    assert(compare(res[0], res[1]) == Ordering.EQUAL);
+    assert (compare(res[0], res[1]) == Ordering.EQUAL);
 
     res[0] = squareRoot(10000000000.001);
     res[1] = Math.sqrt(10000000000.001);
-    assert(compare(res[0], res[1]) == Ordering.EQUAL);
+    assert (compare(res[0], res[1]) == Ordering.EQUAL);
 
     res[0] = squareRoot(1024.0);
     res[1] = Math.sqrt(1024.0);
-    assert(compare(res[0], res[1]) == Ordering.EQUAL);
+    assert (compare(res[0], res[1]) == Ordering.EQUAL);
   }
 
   public static void main(String[] args) {
@@ -82,7 +83,7 @@ public class SquareRoot {
       System.out.println("x is " + x);
       System.out.println((res[0] = squareRoot(x)) + " " +
                          (res[1] = Math.sqrt(x)));
-      assert(compare(res[0], res[1]) == Ordering.EQUAL);
+      assert (compare(res[0], res[1]) == Ordering.EQUAL);
     }
   }
 }

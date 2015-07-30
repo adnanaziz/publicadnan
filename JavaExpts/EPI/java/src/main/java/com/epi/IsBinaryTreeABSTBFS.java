@@ -5,8 +5,10 @@ import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 import java.util.LinkedList;
 
 public class IsBinaryTreeABSTBFS {
+
   // @include
   public static class QueueEntry {
+
     public BinaryTreeNode<Integer> treeNode;
     public Integer lowerBound, upperBound;
 
@@ -29,11 +31,11 @@ public class IsBinaryTreeABSTBFS {
         }
 
         BFSQueue.addLast(new QueueEntry(BFSQueue.getFirst().treeNode.getLeft(),
-                                   BFSQueue.getFirst().lowerBound,
-                                   BFSQueue.getFirst().treeNode.getData()));
+                                        BFSQueue.getFirst().lowerBound,
+                                        BFSQueue.getFirst().treeNode.getData()));
         BFSQueue.addLast(new QueueEntry(BFSQueue.getFirst().treeNode.getRight(),
-                                   BFSQueue.getFirst().treeNode.getData(),
-                                   BFSQueue.getFirst().upperBound));
+                                        BFSQueue.getFirst().treeNode.getData(),
+                                        BFSQueue.getFirst().upperBound));
       }
       BFSQueue.removeFirst();
     }

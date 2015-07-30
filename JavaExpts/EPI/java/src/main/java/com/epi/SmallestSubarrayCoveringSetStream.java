@@ -2,17 +2,15 @@
 
 package com.epi;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 public class SmallestSubarrayCoveringSetStream {
+
   // @include
   // Represent subarray by starting and ending indices, inclusive.
   private static class Subarray {
+
     public Integer start;
     public Integer end;
 
@@ -22,13 +20,13 @@ public class SmallestSubarrayCoveringSetStream {
     }
   }
 
-  private static Integer getValueForFirstEntry(LinkedHashMap<String,Integer> m) {
+  private static Integer getValueForFirstEntry(LinkedHashMap<String, Integer> m) {
     // LinkedHashMap guarantees iteration over key-value pairs takes place 
     // in insertion order, most recent first.
     Integer result = null;
     for (Map.Entry<String, Integer> entry : m.entrySet()) {
-        result = entry.getValue();
-        break;
+      result = entry.getValue();
+      break;
     }
     return result;
   }
@@ -57,14 +55,14 @@ public class SmallestSubarrayCoveringSetStream {
         // key s is already present. So we explicitly remove the 
         // existing entry with key s, then put (s,idx).
         dict.remove(s);
-        dict.put(s,idx);
+        dict.put(s, idx);
       }
 
       System.out.println("dict = " + dict);
       System.out.println("first entry = " + getValueForFirstEntry(dict));
-        if (numStringsFromQueryStringsSeenSoFar == queryStrings.length ) { 
-          // We have seen all strings in queryStrings, let's get to work.
-          if (((res.start == -1 && res.end == -1) ||
+      if (numStringsFromQueryStringsSeenSoFar == queryStrings.length) {
+        // We have seen all strings in queryStrings, let's get to work.
+        if (((res.start == -1 && res.end == -1) ||
              idx - getValueForFirstEntry(dict) < res.end - res.start)) {
           res.start = getValueForFirstEntry(dict);
           res.end = idx;
@@ -74,6 +72,7 @@ public class SmallestSubarrayCoveringSetStream {
     }
     return res;
   }
+
   // @exclude
   public static Integer[] findSmallestSubarrayCoveringSubsetAsArray(String[] A,
                                                                     String[] queryStrings) {

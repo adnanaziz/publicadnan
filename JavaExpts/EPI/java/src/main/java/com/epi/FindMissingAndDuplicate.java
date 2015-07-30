@@ -3,8 +3,10 @@ package com.epi;
 import java.util.Random;
 
 public class FindMissingAndDuplicate {
+
   // @include
   private static class DuplicateAndMissing {
+
     public Integer duplicate;
     public Integer missing;
 
@@ -50,7 +52,7 @@ public class FindMissingAndDuplicate {
       System.out.println("times = " + times);
       System.out.println(dup + " " + missing);
       System.out.println(ans.duplicate + " " + ans.missing);
-      assert(ans.duplicate.equals(dup) && ans.missing.equals(missing));
+      assert (ans.duplicate.equals(dup) && ans.missing.equals(missing));
     }
   }
 }

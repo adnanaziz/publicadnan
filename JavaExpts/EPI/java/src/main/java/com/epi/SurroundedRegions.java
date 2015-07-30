@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 public class SurroundedRegions {
+
   // @include
   private static class Coordinate {
+
     public Integer x;
     public Integer y;
 
@@ -34,7 +36,7 @@ public class SurroundedRegions {
   private static void markRegionIfSurrounded(int i, int j,
                                              List<List<Character>> board,
                                              boolean[][] visited) {
-    int dir[][] = new int[][] {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    int dir[][] = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
     // Uses q as a queue.
     List<Coordinate> q = new ArrayList<>();
     q.add(new Coordinate(i, j));

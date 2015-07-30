@@ -3,6 +3,7 @@ package com.epi;
 import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 
 public class IsBinaryTreeABST {
+
   // @include
   public static boolean isBinaryTreeBST(BinaryTreeNode<Integer> tree) {
     return areKeysInRange(tree, Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -18,7 +19,7 @@ public class IsBinaryTreeABST {
     }
 
     return areKeysInRange(tree.getLeft(), lower, tree.getData()) &&
-        areKeysInRange(tree.getRight(), tree.getData(), upper);
+           areKeysInRange(tree.getRight(), tree.getData(), upper);
   }
   // @exclude
 

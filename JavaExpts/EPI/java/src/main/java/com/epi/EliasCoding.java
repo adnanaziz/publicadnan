@@ -8,6 +8,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class EliasCoding {
+
   // @include
   public static String encode(List<Integer> A) {
     StringBuilder ret = new StringBuilder();
@@ -25,7 +26,7 @@ public class EliasCoding {
   private static String transIntToBinary(int decimal) {
     StringBuilder ret = new StringBuilder();
     while (decimal != 0) {
-      ret.append((char)('0' + (decimal % 2)));
+      ret.append((char) ('0' + (decimal % 2)));
       decimal >>= 1;
     }
     ret.reverse();
@@ -76,9 +77,9 @@ public class EliasCoding {
     System.out.println(ret);
 
     List<Integer> res = decode(ret);
-    assert(A.size() == res.size());
+    assert (A.size() == res.size());
     for (int i = 0; i < A.size(); ++i) {
-      assert(res.get(i).equals(A.get(i)));
+      assert (res.get(i).equals(A.get(i)));
     }
   }
 }

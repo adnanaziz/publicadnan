@@ -1,6 +1,7 @@
 package com.epi;
 
 public class Parity2 {
+
   // @include
   public static short parity(long x) {
     short result = 0;

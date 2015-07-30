@@ -1,10 +1,17 @@
 package com.epi;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class AddingCredits {
+
   // @include
   public static class ClientsCreditsInfo {
+
     private int offset = 0;
     private Map<String, Integer> clientToCredit = new HashMap<>();
     private NavigableMap<Integer, Set<String>> creditToClients = new TreeMap<>();
@@ -38,26 +45,28 @@ public class AddingCredits {
       return clientCredit == null ? -1 : clientCredit + offset;
     }
 
-    public void addAll(int C) { offset += C; }
+    public void addAll(int C) {
+      offset += C;
+    }
 
     public String max() {
       return creditToClients.isEmpty()
-          ? ""
-          : creditToClients.lastEntry().getValue().iterator().next();
+             ? ""
+             : creditToClients.lastEntry().getValue().iterator().next();
     }
   }
   // @exclude
 
   public static void main(String[] args) {
     ClientsCreditsInfo a = new ClientsCreditsInfo();
-    assert(a.max().isEmpty());
+    assert (a.max().isEmpty());
     String foo = "foo";
     String bar = "bar";
     String widget = "widget";
     String dothis = "dothis";
     String xyz = "xyz";
     String dd = "dd";
-    assert(!a.remove(foo));
+    assert (!a.remove(foo));
     a.insert(foo, 10);
     a.insert(foo, 1);
     a.insert(bar, 2);
@@ -65,16 +74,16 @@ public class AddingCredits {
     a.insert(widget, 3);
     a.addAll(5);
     a.insert(dothis, 4);
-    assert(11 == a.lookup(foo));
-    assert(12 == a.lookup(bar));
-    assert(8 == a.lookup(widget));
-    assert(4 == a.lookup(dothis));
-    assert(a.remove(foo));
-    assert(-1 == a.lookup(foo));
-    assert(a.max().equals(bar));
+    assert (11 == a.lookup(foo));
+    assert (12 == a.lookup(bar));
+    assert (8 == a.lookup(widget));
+    assert (4 == a.lookup(dothis));
+    assert (a.remove(foo));
+    assert (-1 == a.lookup(foo));
+    assert (a.max().equals(bar));
     a.insert(xyz, 13);
-    assert(a.max().equals(xyz));
+    assert (a.max().equals(xyz));
     a.insert(dd, 15);
-    assert(a.max().equals(dd));
+    assert (a.max().equals(dd));
   }
 }

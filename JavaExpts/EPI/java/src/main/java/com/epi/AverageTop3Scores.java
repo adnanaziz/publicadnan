@@ -2,10 +2,23 @@ package com.epi;
 
 import com.epi.utils.Utils;
 
-import java.io.*;
-import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Random;
 
 public class AverageTop3Scores {
+
   // @include
   public static String findStudentWithHighestBestOfThreeScores(ObjectInputStream ois) {
     Map<String, PriorityQueue<Integer>> studentScores = new HashMap<>();
@@ -20,7 +33,7 @@ public class AverageTop3Scores {
         }
         scores.add(score);
         if (scores.size() > 3) {
-            scores.poll(); // Only keep the top 3 scores.
+          scores.poll(); // Only keep the top 3 scores.
         }
       }
     } catch (IOException e) {
@@ -30,7 +43,7 @@ public class AverageTop3Scores {
     String topStudent = "no such student";
     int currentTopThreeScoresSum = 0;
     for (Map.Entry<String, PriorityQueue<Integer>> scores :
-         studentScores.entrySet()) {
+        studentScores.entrySet()) {
       System.out.println(scores.getKey());
       if (scores.getValue().size() == 3) {
         int currentScoresSum = getTopThreeScoresSum(scores.getValue());
@@ -58,7 +71,7 @@ public class AverageTop3Scores {
     Random r = new Random();
     StringBuilder ret = new StringBuilder(len);
     while (len-- > 0) {
-      ret.append((char)(r.nextInt(26) + 'A'));
+      ret.append((char) (r.nextInt(26) + 'A'));
     }
     return ret.toString();
   }
@@ -96,7 +109,7 @@ public class AverageTop3Scores {
     }
     String result = findStudentWithHighestBestOfThreeScores(ois);
     System.out.println("result = " + result);
-    assert("adnan".equals(result));
+    assert ("adnan".equals(result));
   }
 
   public static void main(String[] args) {

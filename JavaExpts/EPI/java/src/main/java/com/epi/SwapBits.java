@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class SwapBits {
+
   // @include
   public static long swapBits(long x, int i, int j) {
     // Extract the i-th and j-th bits, and see if they differ.
@@ -17,8 +18,8 @@ public class SwapBits {
   // @exclude
 
   private static void simpleTest() {
-    assert(swapBits(47, 1, 4) == 61);
-    assert(swapBits(28, 0, 2) == 25);
+    assert (swapBits(47, 1, 4) == 61);
+    assert (swapBits(28, 0, 2) == 25);
   }
 
   public static void main(String[] args) {

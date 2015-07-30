@@ -1,6 +1,5 @@
 package com.epi;
 
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +8,7 @@ import java.util.Random;
 import static com.epi.utils.Utils.simplePrint;
 
 public class PermutationArray {
+
   public static void main(String[] args) {
     Random gen = new Random();
     int n;
@@ -40,7 +40,7 @@ public class PermutationArray {
       System.out.println();
 
       // check answer by comparing the two permutations
-      assert(B.equals(C));
+      assert (B.equals(C));
     }
   }
 }

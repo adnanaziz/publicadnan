@@ -2,8 +2,8 @@
 
 package com.epi;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -13,17 +13,19 @@ import java.util.Random;
 import java.util.Set;
 
 class SubseqCover {
+
   public static String randString(int len) {
     StringBuilder sb = new StringBuilder();
     Random gen = new Random();
     while (len-- != 0) {
-      sb.append((char)(gen.nextInt('z' + 1 - 'a') + 'a'));
+      sb.append((char) (gen.nextInt('z' + 1 - 'a') + 'a'));
     }
     return sb.toString();
   }
 
   // @include
   private static class Subarray {
+
     // Represent subarray by starting and ending indices, inclusive.
     public Integer start;
     public Integer end;
@@ -33,6 +35,7 @@ class SubseqCover {
       this.end = end;
     }
   }
+
   public static Subarray findSmallestSequentiallyCoveringSubset(
       List<String> paragraph, List<String> keywords) {
     // Maps each keyword to its index in the keywords array.
@@ -65,14 +68,14 @@ class SubseqCover {
               i - latestOccurrence.get(keywordIdx - 1);
           shortestSubarrayLength.set(
               keywordIdx, distanceToPreviousKeyword +
-                              shortestSubarrayLength.get(keywordIdx - 1));
+                          shortestSubarrayLength.get(keywordIdx - 1));
         }
         latestOccurrence.set(keywordIdx, i);
 
         // Last keyword, look for improved subarray.
         if (keywordIdx == keywords.size() - 1 &&
             shortestSubarrayLength.get(shortestSubarrayLength.size() - 1) <
-                shortestDistance) {
+            shortestDistance) {
           shortestDistance =
               shortestSubarrayLength.get(shortestSubarrayLength.size() - 1);
           result.start =
@@ -92,7 +95,7 @@ class SubseqCover {
                       "6", "10", "10", "10", "3", "2", "1", "0");
     List<String> subseq4 = Arrays.asList("0", "2", "9", "4", "6");
     Subarray rr = findSmallestSequentiallyCoveringSubset(a3, subseq4);
-    assert(rr.start == 0 && rr.end == 12);
+    assert (rr.start == 0 && rr.end == 12);
   }
 
   public static void main(String[] args) {
@@ -135,7 +138,7 @@ class SubseqCover {
             dict.remove(A.get(i));
           }
         }
-        assert(dict.isEmpty());
+        assert (dict.isEmpty());
       }
     }
   }

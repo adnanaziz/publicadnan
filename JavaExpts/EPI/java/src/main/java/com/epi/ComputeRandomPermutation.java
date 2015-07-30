@@ -1,12 +1,12 @@
 package com.epi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class ComputeRandomPermutation {
+
   // @include
   public static List<Integer> computeRandomPermutation(int n) {
     List<Integer> permutation = new ArrayList<>(n);
@@ -31,7 +31,7 @@ public class ComputeRandomPermutation {
     List<Integer> result = computeRandomPermutation(n);
     Collections.sort(result);
     for (int i = 0; i < n; ++i) {
-      assert(i == result.get(i));
+      assert (i == result.get(i));
     }
   }
 }

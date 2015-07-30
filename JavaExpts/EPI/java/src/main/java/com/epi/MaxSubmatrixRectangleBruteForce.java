@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author translated from c++ by Blazheev Alexander
  */
 public class MaxSubmatrixRectangleBruteForce {
+
   // O(m^3 n^3) time solution.
   public static int maxRectangleSubmatrixBruteForce(
       ArrayList<ArrayList<Boolean>> A) {

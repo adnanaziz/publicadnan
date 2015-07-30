@@ -1,14 +1,21 @@
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
 
 public class JobAssignment {
+
   private static void nthElement(List<Task> A, int n, CompTask c) {
     Collections.sort(A, c);
   }
 
   // @include
   private static class Task {
+
     public Integer taskId;
     public Integer load;
 
@@ -19,6 +26,7 @@ public class JobAssignment {
   }
 
   private static class Server {
+
     public Integer serverId;
     public Integer capacity;
 
@@ -27,6 +35,7 @@ public class JobAssignment {
       this.capacity = capacity;
     }
   }
+
   public static boolean[][] findFeasibleJobAssignment(List<Integer> T,
                                                       List<Integer> S) {
     int tTotal = 0;
@@ -78,6 +87,7 @@ public class JobAssignment {
   }
 
   private static class CompTask implements Comparator<Task> {
+
     @Override
     public int compare(Task o1, Task o2) {
       return o1.load.compareTo(o2.load);
@@ -85,6 +95,7 @@ public class JobAssignment {
   }
 
   private static class CompServer implements Comparator<Server> {
+
     @Override
     public int compare(Server o1, Server o2) {
       return o1.capacity.compareTo(o2.capacity);
@@ -100,7 +111,7 @@ public class JobAssignment {
       for (int j = 0; j < S.size(); ++j) {
         sum += result[i][j] ? 1 : 0;
       }
-      assert(sum == T.get(i));
+      assert (sum == T.get(i));
     }
 
     // Check column constraints.
@@ -109,7 +120,7 @@ public class JobAssignment {
       for (int i = 0; i < T.size(); ++i) {
         sum += result[i][j] ? 1 : 0;
       }
-      assert(sum <= S.get(j));
+      assert (sum <= S.get(j));
     }
   }
 

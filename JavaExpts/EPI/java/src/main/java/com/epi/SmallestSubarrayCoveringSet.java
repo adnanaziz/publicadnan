@@ -2,14 +2,20 @@
 
 package com.epi;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 class SmallestSubarrayCoveringSet {
+
   public static String randString(int len) {
     StringBuilder sb = new StringBuilder();
     Random gen = new Random();
     while (len-- != 0) {
-      sb.append((char)(gen.nextInt('z' + 1 - 'a') + 'a'));
+      sb.append((char) (gen.nextInt('z' + 1 - 'a') + 'a'));
     }
     return sb.toString();
   }
@@ -17,6 +23,7 @@ class SmallestSubarrayCoveringSet {
   // @include
   // Represent subarray by starting and ending indices, inclusive.
   private static class Subarray {
+
     public Integer start;
     public Integer end;
 
@@ -39,8 +46,8 @@ class SmallestSubarrayCoveringSet {
         if (keywords.contains(paragraph[right])) {
           keywordsToCount.put(paragraph[right],
                               keywordsToCount.containsKey(paragraph[right])
-                                  ? keywordsToCount.get(paragraph[right]) + 1
-                                  : 1);
+                              ? keywordsToCount.get(paragraph[right]) + 1
+                              : 1);
         }
         ++right;
       }
@@ -145,9 +152,9 @@ class SmallestSubarrayCoveringSet {
           dict.remove(A[i]);
         }
       }
-      assert(dict.isEmpty());
+      assert (dict.isEmpty());
       Integer[] res2Array = SmallestSubarrayCoveringSetStream
-                                .findSmallestSubarrayCoveringSubsetAsArray(A, Q);
+          .findSmallestSubarrayCoveringSubsetAsArray(A, Q);
       Subarray res2 = new Subarray(res2Array[0], res2Array[1]);
 
       System.out.println(res2.start + ", " + res2.end);
@@ -160,9 +167,9 @@ class SmallestSubarrayCoveringSet {
           dict.remove(A[i]);
         }
       }
-      assert(dict.isEmpty());
-      assert(res.end - res.start == res2.end - res2.start);
-      assert(res.end - res.start == checkAns(A, Q));
+      assert (dict.isEmpty());
+      assert (res.end - res.start == res2.end - res2.start);
+      assert (res.end - res.start == checkAns(A, Q));
     }
   }
 }

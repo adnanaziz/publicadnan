@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class TailCoin {
+
   // @include
   // Return the number of failed trails.
   public static int simulateBiasedCoin(int n, int trails) {
@@ -36,6 +37,6 @@ public class TailCoin {
     }
     int fails = simulateBiasedCoin(n, trails);
     System.out.println("fails = " + fails);
-    System.out.println("ratio = " + ((double)fails) / trails);
+    System.out.println("ratio = " + ((double) fails) / trails);
   }
 }

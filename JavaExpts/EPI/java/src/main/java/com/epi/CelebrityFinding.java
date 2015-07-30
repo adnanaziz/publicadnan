@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class CelebrityFinding {
+
   // @include
   public static int celebrityFinding(boolean[][] F) {
     // Start checking the relation from F[0][1].

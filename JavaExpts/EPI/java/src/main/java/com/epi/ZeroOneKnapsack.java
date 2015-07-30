@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ZeroOneKnapsack {
+
   private static List<Integer> randVector(int len) {
     List<Integer> ret = new ArrayList<>();
     Random r = new Random();
@@ -16,6 +17,7 @@ public class ZeroOneKnapsack {
 
   // @include
   private static class Item {
+
     public Integer weight;
     public Integer value;
 

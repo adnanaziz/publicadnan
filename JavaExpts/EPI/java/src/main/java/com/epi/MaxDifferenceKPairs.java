@@ -8,6 +8,7 @@ import java.util.Random;
 import static java.lang.Math.max;
 
 public class MaxDifferenceKPairs {
+
   // @include
   public static double maxKPairsProfits(List<Double> A, int k) {
     List<Double> kSum = new ArrayList<>();
@@ -67,7 +68,7 @@ public class MaxDifferenceKPairs {
 
       System.out.println("n = " + n + ", k = " + k);
       System.out.println(maxKPairsProfits(A, k));
-      assert(checkAns(A, k) == maxKPairsProfits(A, k));
+      assert (checkAns(A, k) == maxKPairsProfits(A, k));
     }
 
     if (args.length == 1) {
@@ -89,6 +90,6 @@ public class MaxDifferenceKPairs {
 
     System.out.println("n = " + n + ", k = " + k);
     System.out.println(checkAns(A, k) + ", " + maxKPairsProfits(A, k));
-    assert(checkAns(A, k) == maxKPairsProfits(A, k));
+    assert (checkAns(A, k) == maxKPairsProfits(A, k));
   }
 }

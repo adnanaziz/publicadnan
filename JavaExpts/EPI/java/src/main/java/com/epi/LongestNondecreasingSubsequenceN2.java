@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LongestNondecreasingSubsequenceN2 {
+
   // @include
   public static List<Integer> longestNondecreasingSubsequence(List<Integer> A) {
     // Empty array.

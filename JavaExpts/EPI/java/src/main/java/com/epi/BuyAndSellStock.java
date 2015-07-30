@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BuyAndSellStock {
+
   // @include
   public static double computeMaxProfit(List<Double> prices) {
     double minPrice = Double.MAX_VALUE, maxProfit = 0.0;
@@ -43,7 +44,7 @@ public class BuyAndSellStock {
         A.add(gen.nextDouble() * 10000);
       }
       System.out.println(computeMaxProfit(A));
-      assert(Double.compare(checkAns(A), computeMaxProfit(A)) == 0);
+      assert (Double.compare(checkAns(A), computeMaxProfit(A)) == 0);
     }
   }
 }

@@ -4,8 +4,10 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class FindingMinMax {
+
   // @include
   private static class MinMax {
+
     public Integer min;
     public Integer max;
 
@@ -42,15 +44,15 @@ public class FindingMinMax {
   // @exclude
 
   private static void SimpleTest() {
-    int[] A = new int[] {-1, 3, -4, 6, 4, 10, 4, 4, 9};
+    int[] A = new int[]{-1, 3, -4, 6, 4, 10, 4, 4, 9};
     MinMax res = findMinMax(A);
-    assert(-4 == res.min && 10 == res.max);
+    assert (-4 == res.min && 10 == res.max);
     A[5] = -12;
-    assert(-12 == res.min && 9 == res.max);
+    assert (-12 == res.min && 9 == res.max);
 
-    A = new int[] {-1, 3, -4};
+    A = new int[]{-1, 3, -4};
     res = findMinMax(A);
-    assert(-4 == res.min && 3 == res.max);
+    assert (-4 == res.min && 3 == res.max);
   }
 
   public static void main(String[] args) {
@@ -69,7 +71,7 @@ public class FindingMinMax {
       }
       MinMax res = findMinMax(A);
       Arrays.sort(A);
-      assert(res.min.equals(A[0]) && res.max.equals(A[A.length - 1]));
+      assert (res.min.equals(A[0]) && res.max.equals(A[A.length - 1]));
     }
   }
 }

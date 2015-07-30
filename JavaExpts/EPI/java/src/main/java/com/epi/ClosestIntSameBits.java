@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class ClosestIntSameBits {
+
   // @include
   public static long closestIntSameBitCount(long x) {
     for (int i = 0; i < 63; ++i) {
@@ -27,16 +28,16 @@ public class ClosestIntSameBits {
   }
 
   private static void smallTest() {
-    assert(closestIntSameBitCount(6) == 5);
-    assert(closestIntSameBitCount(7) == 11);
-    assert(closestIntSameBitCount(2) == 1);
-    assert(closestIntSameBitCount(32) == 16);
+    assert (closestIntSameBitCount(6) == 5);
+    assert (closestIntSameBitCount(7) == 11);
+    assert (closestIntSameBitCount(2) == 1);
+    assert (closestIntSameBitCount(32) == 16);
   }
 
   public static void main(String[] args) {
     smallTest();
     long r1 = closestIntSameBitCount(1L);
-    assert(r1 == 2L);
+    assert (r1 == 2L);
 
     long r2 = 0;
     try {
@@ -46,7 +47,7 @@ public class ClosestIntSameBits {
     }
 
     long r3 = closestIntSameBitCount(Long.MAX_VALUE - 1);
-    assert(r3 == Long.MAX_VALUE - 2);
+    assert (r3 == Long.MAX_VALUE - 2);
 
     Random r = new Random();
     long x;
@@ -58,7 +59,7 @@ public class ClosestIntSameBits {
     try {
       long res = closestIntSameBitCount(x);
       System.out.println(x + " " + res);
-      assert(countBitsSetTo1((int)x) == countBitsSetTo1((int)res));
+      assert (countBitsSetTo1((int) x) == countBitsSetTo1((int) res));
     } catch (Exception e) {
       System.out.println(x + " " + e.getMessage());
     }

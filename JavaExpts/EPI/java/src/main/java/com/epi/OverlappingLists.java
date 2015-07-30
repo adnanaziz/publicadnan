@@ -3,16 +3,17 @@
 
 package com.epi;
 
-import static com.epi.OverlappingListsNoCycle.overlappingNoCycleLists;
 import static com.epi.OverlappingListsNoCycle.advanceListByK;
+import static com.epi.OverlappingListsNoCycle.overlappingNoCycleLists;
 
 class OverlappingLists {
+
   // @include
   public static ListNode<Integer> overlappingLists(ListNode<Integer> L1,
                                                    ListNode<Integer> L2) {
     // Store the start of cycle if any.
     ListNode<Integer> root1 = CheckingCycle.hasCycle(L1),
-                      root2 = CheckingCycle.hasCycle(L2);
+        root2 = CheckingCycle.hasCycle(L2);
 
     if (root1 == null && root2 == null) {
       // Both lists don't have cycles.
@@ -73,21 +74,21 @@ class OverlappingLists {
     // L2: 7->8-----
     l1 = new ListNode<>(
         1, new ListNode<>(
-               2, new ListNode<>(
-                      3, new ListNode<>(
-                             4, new ListNode<>(5, new ListNode<>(6, null))))));
+        2, new ListNode<>(
+        3, new ListNode<>(
+        4, new ListNode<>(5, new ListNode<>(6, null))))));
     l1.next.next.next.next.next.next = l1.next.next.next.next;
 
     l2 = new ListNode<>(7, new ListNode<>(8, null));
     l2.next.next = l1.next.next.next;
-    assert(overlappingLists(l1, l2).data == 4);
+    assert (overlappingLists(l1, l2).data == 4);
 
     // L1: 1->2->3->4->5->6-
     //           ^     ^    |
     //           |     |____|
     // L2: 7->8---
     l2.next.next = l1.next.next;
-    assert(overlappingLists(l1, l2).data == 3);
+    assert (overlappingLists(l1, l2).data == 3);
   }
 
   public static void main(String[] args) {
@@ -96,15 +97,15 @@ class OverlappingLists {
     // L1: 1->2->3->null
     L1 = new ListNode<>(1, new ListNode<>(2, new ListNode<>(3, null)));
     L2 = L1.next.next;
-    assert(overlappingLists(L1, L2).data == 3);
+    assert (overlappingLists(L1, L2).data == 3);
     // L2: 4->5->null
     L2 = new ListNode<>(4, new ListNode<>(5, null));
-    assert(overlappingLists(L1, L2) == null);
+    assert (overlappingLists(L1, L2) == null);
     L1.next.next.next = L1;
-    assert(overlappingLists(L1, L2) == null);
+    assert (overlappingLists(L1, L2) == null);
     L2.next.next = L2;
-    assert(overlappingLists(L1, L2) == null);
+    assert (overlappingLists(L1, L2) == null);
     L2.next.next = L1;
-    assert(overlappingLists(L1, L2) != null);
+    assert (overlappingLists(L1, L2) != null);
   }
 }

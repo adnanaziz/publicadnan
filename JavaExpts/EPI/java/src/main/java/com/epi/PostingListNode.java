@@ -1,6 +1,7 @@
 package com.epi;
 
 public class PostingListNode {
+
   private int order;
   private PostingListNode next, jump;
 
@@ -10,15 +11,27 @@ public class PostingListNode {
     this.jump = jump;
   }
 
-  public int getOrder() { return order; }
+  public int getOrder() {
+    return order;
+  }
 
-  public void setOrder(int order) { this.order = order; }
+  public void setOrder(int order) {
+    this.order = order;
+  }
 
-  public PostingListNode getNext() { return next; }
+  public PostingListNode getNext() {
+    return next;
+  }
 
-  public void setNext(PostingListNode next) { this.next = next; }
+  public void setNext(PostingListNode next) {
+    this.next = next;
+  }
 
-  public PostingListNode getJump() { return jump; }
+  public PostingListNode getJump() {
+    return jump;
+  }
 
-  public void setJump(PostingListNode jump) { this.jump = jump; }
+  public void setJump(PostingListNode jump) {
+    this.jump = jump;
+  }
 }

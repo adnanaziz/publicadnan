@@ -3,6 +3,7 @@ package com.epi;
 import java.util.LinkedList;
 
 public class ValidParentheses {
+
   // @include
   public static boolean isWellFormed(String s) {
     LinkedList<Character> leftChars = new LinkedList<>();
@@ -26,13 +27,13 @@ public class ValidParentheses {
   // @exclude
 
   private static void smallTest() {
-    assert(isWellFormed("()"));
-    assert(isWellFormed("()[]{}"));
-    assert(isWellFormed("[()[]]{}"));
-    assert(isWellFormed("(()[]{()[]{}{}})"));
-    assert(!isWellFormed("([)]"));
-    assert(!isWellFormed("["));
-    assert(!isWellFormed("(()[]{()[]{})({}})"));
+    assert (isWellFormed("()"));
+    assert (isWellFormed("()[]{}"));
+    assert (isWellFormed("[()[]]{}"));
+    assert (isWellFormed("(()[]{()[]{}{}})"));
+    assert (!isWellFormed("([)]"));
+    assert (!isWellFormed("["));
+    assert (!isWellFormed("(()[]{()[]{})({}})"));
   }
 
   public static void main(String[] args) {

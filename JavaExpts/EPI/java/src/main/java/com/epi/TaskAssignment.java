@@ -3,14 +3,15 @@
 package com.epi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 class TaskAssignment {
+
   // @include
   private static class PairedTasks {
+
     public Integer task1;
     public Integer task2;
 

@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InorderTraversalWithParent {
+
   // @include
   public static List<Integer> inOrderTraversal(BinaryTree<Integer> tree) {
     BinaryTree<Integer> prev = null, curr = tree;
@@ -47,7 +48,7 @@ public class InorderTraversalWithParent {
     root.setParent(null);
     List<Integer> result = inOrderTraversal(root);
     List<Integer> goldenRes = Arrays.asList(3);
-    assert(goldenRes.equals(result));
+    assert (goldenRes.equals(result));
 
     root.setLeft(new BinaryTree<>(2, null, null));
     root.getLeft().setParent(root);
@@ -56,7 +57,7 @@ public class InorderTraversalWithParent {
 
     result = inOrderTraversal(root);
     goldenRes = Arrays.asList(1, 2, 3);
-    assert(goldenRes.equals(result));
+    assert (goldenRes.equals(result));
 
     root.setRight(new BinaryTree<>(5, null, null));
     root.getRight().setParent(root);
@@ -67,6 +68,6 @@ public class InorderTraversalWithParent {
 
     result = inOrderTraversal(root);
     goldenRes = Arrays.asList(1, 2, 3, 4, 5, 6);
-    assert(goldenRes.equals(result));
+    assert (goldenRes.equals(result));
   }
 }

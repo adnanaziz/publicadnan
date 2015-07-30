@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class ConvertBase {
+
   // @include
   public static String convertBase(String s, int b1, int b2) {
     boolean isNegative = s.startsWith("-");
@@ -17,7 +18,7 @@ public class ConvertBase {
     do {
       int remainder = x % b2;
       result.append(
-          (char)(remainder >= 10 ? 'A' + remainder - 10 : '0' + remainder));
+          (char) (remainder >= 10 ? 'A' + remainder - 10 : '0' + remainder));
       x /= b2;
     } while (x != 0);
 
@@ -38,9 +39,9 @@ public class ConvertBase {
     if (r.nextBoolean()) {
       ret.append('-');
     }
-    ret.append((char)('1' + r.nextInt(9)));
+    ret.append((char) ('1' + r.nextInt(9)));
     while (--len != 0) {
-      ret.append((char)('0' + r.nextInt(10)));
+      ret.append((char) ('0' + r.nextInt(10)));
     }
     return ret.toString();
   }
@@ -51,7 +52,7 @@ public class ConvertBase {
       int b1 = Integer.parseInt(args[1]);
       int b2 = Integer.parseInt(args[2]);
       System.out.println(convertBase(input, b1, b2));
-      assert(input.equals(convertBase(convertBase(input, b1, b2), b2, b1)));
+      assert (input.equals(convertBase(convertBase(input, b1, b2), b2, b1)));
     } else {
       Random r = new Random();
       for (int times = 0; times < 100000; ++times) {
@@ -59,7 +60,7 @@ public class ConvertBase {
         int base = r.nextInt(15) + 2;
         System.out.println("input is " + input + ", base1 = 10, base2 = " + base +
                            ", result = " + convertBase(input, 10, base));
-        assert(input.equals(convertBase(convertBase(input, 10, base), base, 10)));
+        assert (input.equals(convertBase(convertBase(input, 10, base), base, 10)));
       }
     }
   }

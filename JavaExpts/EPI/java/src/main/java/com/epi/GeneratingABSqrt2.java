@@ -2,13 +2,18 @@ package com.epi;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.TreeSet;
 
 // These numbers have very interesting property, and people called it ugly
 // numbers. It is also called Quadratic integer rings.
 public class GeneratingABSqrt2 {
+
   // @include
   public static class ABSqrt2 implements Comparable<ABSqrt2> {
+
     public int a, b;
     public double val;
 
@@ -33,7 +38,7 @@ public class GeneratingABSqrt2 {
         return false;
       }
 
-      ABSqrt2 that = (ABSqrt2)o;
+      ABSqrt2 that = (ABSqrt2) o;
       return a == that.a && b == that.b;
     }
 
@@ -68,14 +73,14 @@ public class GeneratingABSqrt2 {
 
   private static void SimpleTest() {
     List<ABSqrt2> ans = generateFirstKABSqrt2(8);
-    assert(0.0 == ans.get(0).val);
-    assert(1.0 == ans.get(1).val);
-    assert(Math.sqrt(2.0) == ans.get(2).val);
-    assert(2.0 == ans.get(3).val);
-    assert(1.0 + Math.sqrt(2.0) == ans.get(4).val);
-    assert(2.0*Math.sqrt(2.0) == ans.get(5).val);
-    assert(3.0 == ans.get(6).val);
-    assert(2.0 + Math.sqrt(2.0) == ans.get(7).val);
+    assert (0.0 == ans.get(0).val);
+    assert (1.0 == ans.get(1).val);
+    assert (Math.sqrt(2.0) == ans.get(2).val);
+    assert (2.0 == ans.get(3).val);
+    assert (1.0 + Math.sqrt(2.0) == ans.get(4).val);
+    assert (2.0 * Math.sqrt(2.0) == ans.get(5).val);
+    assert (3.0 == ans.get(6).val);
+    assert (2.0 + Math.sqrt(2.0) == ans.get(7).val);
   }
 
   public static void main(String[] args) {
@@ -92,7 +97,7 @@ public class GeneratingABSqrt2 {
         System.out.println(ans.get(i).a + " " + ans.get(i).b + " " +
                            ans.get(i).val);
         if (i > 0) {
-          assert(ans.get(i).val >= ans.get(i - 1).val);
+          assert (ans.get(i).val >= ans.get(i - 1).val);
         }
       }
       ans = generateFirstKABSqrt2(8);

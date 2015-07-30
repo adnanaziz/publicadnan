@@ -2,15 +2,17 @@ package com.epi;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
 public class ViewFromAbove {
+
   // @include
   public static class LineSegment {
+
     public int left, right; // Specifies the interval.
     public int color;
     public int height;
@@ -24,11 +26,12 @@ public class ViewFromAbove {
 
     public String toString() {
       return "[" + left + ", " + right + "], color = " + color + ", height = " +
-          height;
+             height;
     }
   }
 
   public static class Endpoint implements Comparable<Endpoint> {
+
     private boolean isLeft;
     private LineSegment line;
 
@@ -37,7 +40,9 @@ public class ViewFromAbove {
       this.line = line;
     }
 
-    public int val() { return isLeft ? line.left : line.right; }
+    public int val() {
+      return isLeft ? line.left : line.right;
+    }
 
     @Override
     public int compareTo(Endpoint o) {

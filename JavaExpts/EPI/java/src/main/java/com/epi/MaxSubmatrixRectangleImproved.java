@@ -8,6 +8,7 @@ import static com.epi.LargestRectangleUnderSkyline.calculateLargestRectangle;
 import static com.epi.MaxSubmatrixRectangleBruteForce.maxRectangleSubmatrixBruteForce;
 
 public class MaxSubmatrixRectangleImproved {
+
   // @include
   public static int maxRectangleSubmatrix(ArrayList<ArrayList<Boolean>> A) {
     Integer[] table = new Integer[A.get(0).size()];
@@ -46,7 +47,7 @@ public class MaxSubmatrixRectangleImproved {
       // System.out.println(A);
       System.out.println(maxRectangleSubmatrix(A));
       System.out.println(maxRectangleSubmatrixBruteForce(A));
-      assert(maxRectangleSubmatrixBruteForce(A) == maxRectangleSubmatrix(A));
+      assert (maxRectangleSubmatrixBruteForce(A) == maxRectangleSubmatrix(A));
     }
   }
 }

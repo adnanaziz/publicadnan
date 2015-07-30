@@ -5,8 +5,10 @@ import java.util.Random;
 // import static com.epi.utils.Utils.simplePrint;
 
 public class GassingUp {
+
   // @include
   private static class CityAndRemainingGas {
+
     public Integer city;
     public Integer remainingGas;
 
@@ -34,7 +36,7 @@ public class GassingUp {
     int gas = 0;
     do {
       gas += G[s] - D[s];
-      assert(gas >= 0);
+      assert (gas >= 0);
       s = (s + 1) % G.length;
     } while (s != c);
   }

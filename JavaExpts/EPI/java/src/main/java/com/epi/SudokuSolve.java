@@ -1,10 +1,10 @@
 package com.epi;
 
 import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SudokuSolve {
+
   // @include
   private static final int EMPTY_ENTRY = 0;
 
@@ -61,7 +61,7 @@ public class SudokuSolve {
     }
 
     // Check region constraints.
-    int regionSize = (int)Math.sqrt(partialAssignment.size());
+    int regionSize = (int) Math.sqrt(partialAssignment.size());
     int I = i / regionSize, J = j / regionSize;
     for (int a = 0; a < regionSize; ++a) {
       for (int b = 0; b < regionSize; ++b) {
@@ -86,7 +86,7 @@ public class SudokuSolve {
                       Arrays.asList(1, 0, 0, 0, 3, 0, 0, 0, 2),
                       Arrays.asList(5, 0, 0, 2, 0, 4, 0, 0, 9),
                       Arrays.asList(0, 3, 8, 0, 0, 0, 4, 6, 0));
-    assert(solveSudoku(A) == true);
+    assert (solveSudoku(A) == true);
     List<List<Integer>> goldenA =
         Arrays.asList(Arrays.asList(7, 2, 6, 4, 9, 3, 8, 1, 5),
                       Arrays.asList(3, 1, 5, 7, 2, 8, 9, 4, 6),
@@ -97,6 +97,6 @@ public class SudokuSolve {
                       Arrays.asList(1, 9, 4, 8, 3, 6, 5, 7, 2),
                       Arrays.asList(5, 6, 7, 2, 1, 4, 3, 8, 9),
                       Arrays.asList(2, 3, 8, 5, 7, 9, 4, 6, 1));
-    assert(A.equals(goldenA));
+    assert (A.equals(goldenA));
   }
 }

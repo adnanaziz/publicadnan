@@ -2,14 +2,16 @@ package com.epi;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 public class SearchMaze {
+
   public static class Coordinate {
+
     public int x, y;
 
     public Coordinate(int x, int y) {
@@ -26,7 +28,7 @@ public class SearchMaze {
         return false;
       }
 
-      Coordinate that = (Coordinate)o;
+      Coordinate that = (Coordinate) o;
 
       if (x != that.x) {
         return false;
@@ -93,7 +95,7 @@ public class SearchMaze {
   // Checks cur is within maze and is a white pixel.
   private static boolean isFeasible(Coordinate cur, List<List<Integer>> maze) {
     return cur.x >= 0 && cur.x < maze.size() && cur.y >= 0 &&
-        cur.y < maze.get(cur.x).size() && maze.get(cur.x).get(cur.y) == 0;
+           cur.y < maze.get(cur.x).size() && maze.get(cur.x).get(cur.y) == 0;
   }
   // @exclude
 
@@ -134,13 +136,13 @@ public class SearchMaze {
         LinkedList<Coordinate> path =
             searchMaze(maze, white.get(start), white.get(end));
         if (!path.isEmpty()) {
-          assert(white.get(start).equals(path.peekFirst()) &&
-                 white.get(end).equals(path.peekLast()));
+          assert (white.get(start).equals(path.peekFirst()) &&
+                  white.get(end).equals(path.peekLast()));
         }
         Coordinate prev = null;
         for (Coordinate curr : path) {
           if (prev != null) {
-            assert(Math.abs(prev.x - curr.x) + Math.abs(prev.y - curr.y) == 1);
+            assert (Math.abs(prev.x - curr.x) + Math.abs(prev.y - curr.y) == 1);
           }
           prev = curr;
           System.out.println("(" + curr.x + "," + curr.y + ")");

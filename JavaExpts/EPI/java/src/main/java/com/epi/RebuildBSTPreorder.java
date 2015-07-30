@@ -2,11 +2,11 @@ package com.epi;
 
 import com.epi.BinarySearchTreePrototypeTemplate.BSTNode;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class RebuildBSTPreorder {
+
   // @include
   public static BSTNode<Integer> rebuildBSTFromPreorder(
       List<Integer> preorderSequence) {
@@ -23,7 +23,7 @@ public class RebuildBSTPreorder {
     int transitionPoint = start + 1;
     while (transitionPoint < end &&
            preorderSequence.get(transitionPoint)
-                   .compareTo(preorderSequence.get(start)) < 0) {
+               .compareTo(preorderSequence.get(start)) < 0) {
       ++transitionPoint;
     }
     return new BSTNode<>(
@@ -37,7 +37,7 @@ public class RebuildBSTPreorder {
   private static void checkAns(BSTNode<Integer> n, Integer pre) {
     if (n != null) {
       checkAns(n.getLeft(), pre);
-      assert(pre.compareTo(n.getData()) <= 0);
+      assert (pre.compareTo(n.getData()) <= 0);
       System.out.println(n.getData());
       checkAns(n.getRight(), n.getData());
     }
@@ -52,11 +52,11 @@ public class RebuildBSTPreorder {
     List<Integer> preorder = Arrays.asList(3, 2, 1, 5, 4, 6);
     BSTNode<Integer> tree = rebuildBSTFromPreorder(preorder);
     checkAns(tree, Integer.MIN_VALUE);
-    assert(3 == tree.getData());
-    assert(2 == tree.getLeft().getData());
-    assert(1 == tree.getLeft().getLeft().getData());
-    assert(5 == tree.getRight().getData());
-    assert(4 == tree.getRight().getLeft().getData());
-    assert(6 == tree.getRight().getRight().getData());
+    assert (3 == tree.getData());
+    assert (2 == tree.getLeft().getData());
+    assert (1 == tree.getLeft().getLeft().getData());
+    assert (5 == tree.getRight().getData());
+    assert (4 == tree.getRight().getLeft().getData());
+    assert (6 == tree.getRight().getRight().getData());
   }
 }

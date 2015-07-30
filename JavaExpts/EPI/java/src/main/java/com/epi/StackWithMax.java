@@ -5,8 +5,10 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 public class StackWithMax {
+
   // @include
   private static class ElementWithCachedMax {
+
     public Integer element;
     public Integer max;
 
@@ -15,12 +17,16 @@ public class StackWithMax {
       this.max = max;
     }
   }
+
   public static class Stack {
+
     // Stores (element, cached maximum) pair.
     private LinkedList<ElementWithCachedMax> elementWithCachedMax =
         new LinkedList<>();
 
-    public boolean empty() { return elementWithCachedMax.isEmpty(); }
+    public boolean empty() {
+      return elementWithCachedMax.isEmpty();
+    }
 
     public Integer max() {
       if (!empty()) {
@@ -47,20 +53,20 @@ public class StackWithMax {
     Stack s = new Stack();
     s.push(1);
     s.push(2);
-    assert(s.max() == 2);
+    assert (s.max() == 2);
     System.out.println(s.max()); // 2
     System.out.println(s.pop()); // 2
-    assert(s.max() == 1);
+    assert (s.max() == 1);
     System.out.println(s.max()); // 1
     s.push(3);
     s.push(2);
-    assert(s.max() == 3);
+    assert (s.max() == 3);
     System.out.println(s.max()); // 3
     s.pop();
-    assert(s.max() == 3);
+    assert (s.max() == 3);
     System.out.println(s.max()); // 3
     s.pop();
-    assert(s.max() == 1);
+    assert (s.max() == 1);
     System.out.println(s.max()); // 1
     s.pop();
     try {

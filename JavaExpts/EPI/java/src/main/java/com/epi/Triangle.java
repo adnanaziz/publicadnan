@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Triangle {
+
   // @include
   public static int findMinimumTotal(List<List<Integer>> triangle) {
     if (triangle.isEmpty()) {
@@ -25,7 +26,7 @@ public class Triangle {
       }
       // For the last element
       currRow.set(currRow.size() - 1, currRow.get(currRow.size() - 1) +
-                                          prevRow.get(prevRow.size() - 1));
+                                      prevRow.get(prevRow.size() - 1));
 
       prevRow = currRow;
     }
@@ -37,6 +38,6 @@ public class Triangle {
     List<List<Integer>> A =
         Arrays.asList(Arrays.asList(2), Arrays.asList(3, 4),
                       Arrays.asList(6, 5, 7), Arrays.asList(4, 1, 8, 3));
-    assert(11 == findMinimumTotal(A));
+    assert (11 == findMinimumTotal(A));
   }
 }

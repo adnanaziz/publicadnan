@@ -1,9 +1,20 @@
 package com.epi;
 
-import java.io.*;
-import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Random;
+import java.util.Scanner;
 
 public class OnlineMedian {
+
   private static List<Double> globalResult = new ArrayList<>();
 
   // @include
@@ -38,12 +49,12 @@ public class OnlineMedian {
 
       // @exclude
       globalResult.add((minHeap.size() == maxHeap.size()
-                            ? 0.5 * (minHeap.peek() + maxHeap.peek())
-                            : minHeap.peek()));
+                        ? 0.5 * (minHeap.peek() + maxHeap.peek())
+                        : minHeap.peek()));
       // @include
       System.out.println(minHeap.size() == maxHeap.size()
-                             ? 0.5 * (minHeap.peek() + maxHeap.peek())
-                             : minHeap.peek());
+                         ? 0.5 * (minHeap.peek() + maxHeap.peek())
+                         : minHeap.peek());
     }
   }
   // @exclude

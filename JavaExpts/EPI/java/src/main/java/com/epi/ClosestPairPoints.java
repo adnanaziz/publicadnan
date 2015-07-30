@@ -1,9 +1,15 @@
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
 
 public class ClosestPairPoints {
+
   private static class PairOfPoints {
+
     public Point p1;
     public Point p2;
 
@@ -14,6 +20,7 @@ public class ClosestPairPoints {
   }
 
   private static class PairOfPointsWithDistance {
+
     public Point p1;
     public Point p2;
     public double distance;
@@ -27,6 +34,7 @@ public class ClosestPairPoints {
 
   // @include
   public static class Point {
+
     public int x, y;
 
     public Point(int x, int y) {
@@ -35,7 +43,9 @@ public class ClosestPairPoints {
     }
 
     // @exclude
-    public String toString() { return "(" + x + ", " + y + ")"; }
+    public String toString() {
+      return "(" + x + ", " + y + ")";
+    }
     // @include
   }
 
@@ -149,7 +159,7 @@ public class ClosestPairPoints {
       System.out.println("p = " + p + ", dis = " + distance(p.p1, p.p2));
       System.out.println("q = " + q.p1 + " " + q.p2 + ", dis = " +
                          distance(q.p1, q.p2));
-      assert(distance(p.p1, p.p2) == q.distance);
+      assert (distance(p.p1, p.p2) == q.distance);
     }
   }
 }

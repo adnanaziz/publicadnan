@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class LowestCommonAncestorHash {
+
   // @include
   public static BinaryTree<Integer> LCA(BinaryTree<Integer> node0,
                                         BinaryTree<Integer> node1) {
@@ -46,12 +47,12 @@ public class LowestCommonAncestorHash {
     root.getRight().getRight().setParent(root.getRight());
 
     // should output 3
-    assert(LCA(root.getLeft(), root.getRight()).getData().equals(3));
+    assert (LCA(root.getLeft(), root.getRight()).getData().equals(3));
     System.out.println(LCA(root.getLeft(), root.getRight()).getData());
     // should output 5
-    assert(LCA(root.getRight().getLeft(), root.getRight().getRight())
-               .getData()
-               .equals(5));
+    assert (LCA(root.getRight().getLeft(), root.getRight().getRight())
+                .getData()
+                .equals(5));
     System.out.println(
         LCA(root.getRight().getLeft(), root.getRight().getRight()).getData());
   }

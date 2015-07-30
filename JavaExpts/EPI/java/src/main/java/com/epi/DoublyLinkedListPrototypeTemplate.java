@@ -4,6 +4,7 @@ package com.epi;
 
 // @include
 class DoublyListNode<T> {
+
   public T data;
   public DoublyListNode<T> prev, next;
   // @exclude

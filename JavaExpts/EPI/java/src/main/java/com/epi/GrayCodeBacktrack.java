@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class GrayCodeBacktrack {
+
   // @include
   public static List<Integer> grayCode(int numBits) {
     Set<Integer> history = new HashSet<>(Arrays.asList(0));
@@ -48,8 +49,8 @@ public class GrayCodeBacktrack {
   private static void smallTest() {
     List<Integer> vec = grayCode(3);
     List<Integer> expected = Arrays.asList(0, 1, 3, 2, 6, 7, 5, 4);
-    assert(vec.size() == expected.size());
-    assert(Arrays.equals(vec.toArray(), expected.toArray()));
+    assert (vec.size() == expected.size());
+    assert (Arrays.equals(vec.toArray(), expected.toArray()));
   }
 
   private static void checkAns(List<Integer> A) {
@@ -63,7 +64,7 @@ public class GrayCodeBacktrack {
           ++numDifferBits;
         }
       }
-      assert(numDifferBits == 1);
+      assert (numDifferBits == 1);
     }
   }
 

@@ -5,6 +5,7 @@ package com.epi;
 import java.util.List;
 
 public class PermutationArray1 {
+
   // @include
   public static void applyPermutation(List<Integer> perm, List<Integer> A) {
     for (int i = 0; i < A.size(); ++i) {

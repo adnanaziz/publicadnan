@@ -2,12 +2,15 @@ package com.epi;
 
 import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
 
 import static com.epi.BinaryTreeUtils.generatePreOrder;
 
 public class BinaryTreePreorderTraversalIterative {
+
   // @include
   public static List<Integer> preOrderTraversal(BinaryTreeNode<Integer> tree) {
     Stack<BinaryTreeNode<Integer>> pathStack = new Stack<>();
@@ -38,7 +41,7 @@ public class BinaryTreePreorderTraversalIterative {
     tree.getRight().setRight(new BinaryTreeNode<>(6));
     List<Integer> res = preOrderTraversal(tree);
     List<Integer> goldenRes = generatePreOrder(tree);
-    assert(res.size() == goldenRes.size() &&
-           Arrays.deepEquals(res.toArray(), goldenRes.toArray()));
+    assert (res.size() == goldenRes.size() &&
+            Arrays.deepEquals(res.toArray(), goldenRes.toArray()));
   }
 }

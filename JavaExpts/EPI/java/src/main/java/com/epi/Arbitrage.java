@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Arbitrage {
+
   // @include
   public static boolean isArbitrageExist(List<? extends List<Double>> G) {
     // Transforms each edge in G.

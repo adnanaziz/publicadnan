@@ -10,6 +10,7 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class OfflineMinimum {
+
   // @include
   public static int[] offlineMinimum(int[] A, int[] E) {
     int[] R = new int[A.length];
@@ -106,7 +107,7 @@ public class OfflineMinimum {
        * System.out.print("ans1 = "); System.out.println(Arrays.toString(ans));
        */
       int[] tmp = checkAnswer(A, E);
-      assert(Arrays.equals(ans, tmp));
+      assert (Arrays.equals(ans, tmp));
     }
   }
 }

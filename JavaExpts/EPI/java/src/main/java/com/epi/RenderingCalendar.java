@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 class Event {
+
   int start, finish;
 
   public Event(int start, int finish) {
@@ -19,6 +20,7 @@ class Event {
 }
 
 class Endpoint implements Comparable<Endpoint> {
+
   public int compareTo(Endpoint e) {
     if (time != e.time) {
       return Integer.compare(time, e.time);
@@ -63,6 +65,7 @@ class Endpoint implements Comparable<Endpoint> {
 }
 
 class RenderingCalendar {
+
   // @include
   public static int findMaxSimultaneousEvents(Event[] A) {
     // Builds an array of all endpoints.
@@ -102,7 +105,7 @@ class RenderingCalendar {
     events[6] = new Event(11, 13);
     events[7] = new Event(12, 15);
     events[8] = new Event(14, 15);
-    assert(3 == findMaxSimultaneousEvents(events));
+    assert (3 == findMaxSimultaneousEvents(events));
   }
 
   public static void main(String[] args) {

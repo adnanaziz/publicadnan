@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class ReverseBits {
+
   private static long[] precomputedReverse = new long[(1 << 16)];
 
   private static long reverseBits(long x, int n) {
@@ -22,12 +23,12 @@ public class ReverseBits {
   public static long reverseBits(long x) {
     final int WORD_SIZE = 16;
     final int BIT_MASK = 0xFFFF;
-    return precomputedReverse[(int)(x & BIT_MASK)] << (3 * WORD_SIZE) |
-        precomputedReverse[(int)((x >>> WORD_SIZE) & BIT_MASK)]
-            << (2 * WORD_SIZE) |
-        precomputedReverse[(int)((x >>> (2 * WORD_SIZE)) & BIT_MASK)]
-            << WORD_SIZE |
-        precomputedReverse[(int)((x >>> (3 * WORD_SIZE)) & BIT_MASK)];
+    return precomputedReverse[(int) (x & BIT_MASK)] << (3 * WORD_SIZE) |
+           precomputedReverse[(int) ((x >>> WORD_SIZE) & BIT_MASK)]
+           << (2 * WORD_SIZE) |
+           precomputedReverse[(int) ((x >>> (2 * WORD_SIZE)) & BIT_MASK)]
+           << WORD_SIZE |
+           precomputedReverse[(int) ((x >>> (3 * WORD_SIZE)) & BIT_MASK)];
   }
   // @exclude
 

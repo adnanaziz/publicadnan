@@ -4,11 +4,13 @@ package com.epi;
  * @author translated from c++ by Blazheev Alexander
  */
 public class QueueUsingTwoIntegers {
+
   // @include
   public static class Queue {
+
     private int val = 0;
     private int size = 0;
-    private int maxSize = (int)Math.floor(Math.log10(Integer.MAX_VALUE));
+    private int maxSize = (int) Math.floor(Math.log10(Integer.MAX_VALUE));
 
     public void enqueue(int x) {
       if (size >= maxSize) {
@@ -22,9 +24,9 @@ public class QueueUsingTwoIntegers {
       if (size == 0) {
         throw new IllegalStateException("empty queue");
       }
-      int ret = 0, d = (int)Math.floor(Math.log10(val));
+      int ret = 0, d = (int) Math.floor(Math.log10(val));
       if (d + 1 == size) {
-        int powVal = (int)Math.pow(10, d);
+        int powVal = (int) Math.pow(10, d);
         ret = val / powVal;
         val -= powVal * ret;
       }
@@ -36,7 +38,7 @@ public class QueueUsingTwoIntegers {
 
   private static void assertDequeue(Queue q, int t) {
     int dequeue = q.dequeue();
-    assert(t == dequeue);
+    assert (t == dequeue);
   }
 
   public static void main(String[] args) {

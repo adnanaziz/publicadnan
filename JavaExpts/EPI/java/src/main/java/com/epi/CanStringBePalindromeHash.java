@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class CanStringBePalindromeHash {
+
   // @include
   public static boolean canStringBeAPalindrome(String s) {
     Map<Character, Integer> charFrequencies = new HashMap<>();

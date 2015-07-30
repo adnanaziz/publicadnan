@@ -1,13 +1,13 @@
 package com.epi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 public class StringInMatrix {
+
   private static List<List<Integer>> randMatrix(int n) {
     Random r = new Random();
     List<List<Integer>> matrix = new ArrayList<>(n);
@@ -21,11 +21,13 @@ public class StringInMatrix {
   }
 
   private static class CacheEntry {
+
     public Integer x;
     public Integer y;
     public Integer suffixIndex;
 
-    public CacheEntry() {}
+    public CacheEntry() {
+    }
 
     public CacheEntry(Integer x, Integer y, Integer suffixIndex) {
       this.x = x;
@@ -42,7 +44,7 @@ public class StringInMatrix {
         return false;
       }
 
-      CacheEntry cacheEntry = (CacheEntry)o;
+      CacheEntry cacheEntry = (CacheEntry) o;
 
       if (x != null ? !x.equals(cacheEntry.x) : cacheEntry.x != null) {
         return false;

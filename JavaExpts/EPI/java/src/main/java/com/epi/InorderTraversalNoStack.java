@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InorderTraversalNoStack {
+
   private static List<Integer> result = new ArrayList<>();
 
   // @include
@@ -64,6 +65,6 @@ public class InorderTraversalNoStack {
         add(6);
       }
     };
-    assert(goldenRes.equals(result));
+    assert (goldenRes.equals(result));
   }
 }

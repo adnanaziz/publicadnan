@@ -1,21 +1,23 @@
 package com.epi;
 
 public class CompareKthLargestInHeap {
+
   // @include
   private static class Counts {
+
     public int largerX = 0;
     public int equalX = 0;
   }
 
-  public static enum Ordering { SMALLER, EQUAL, LARGER }
+  public static enum Ordering {SMALLER, EQUAL, LARGER}
 
   public static Ordering compareKthLargestHeap(int[] maxHeap, int k, int x) {
     Counts counts = new Counts();
     compareKthLargestHeapHelper(maxHeap, k, x, 0, counts);
     return counts.largerX >= k
-        ? Ordering.LARGER
-        : (counts.largerX + counts.equalX >= k ? Ordering.EQUAL
-                                               : Ordering.SMALLER);
+           ? Ordering.LARGER
+           : (counts.largerX + counts.equalX >= k ? Ordering.EQUAL
+                                                  : Ordering.SMALLER);
   }
 
   private static void compareKthLargestHeapHelper(int[] maxHeap, int k, int x,
@@ -42,7 +44,7 @@ public class CompareKthLargestInHeap {
     // 4 5
     // 4 4 4 3
     // 4
-    int[] maxHeap = new int[] {5, 4, 5, 4, 4, 4, 3, 4};
+    int[] maxHeap = new int[]{5, 4, 5, 4, 4, 4, 3, 4};
     int k, x;
     if (args.length == 2) {
       k = Integer.parseInt(args[0]);
@@ -50,20 +52,20 @@ public class CompareKthLargestInHeap {
       Ordering res = compareKthLargestHeap(maxHeap, k, x);
       System.out.println(res);
     } else {
-      assert(Ordering.SMALLER ==
-             compareKthLargestHeap(maxHeap, 1, 6)); // expect smaller
-      assert(Ordering.EQUAL ==
-             compareKthLargestHeap(maxHeap, 1, 5)); // expect equal
-      assert(Ordering.EQUAL ==
-             compareKthLargestHeap(maxHeap, 6, 4)); // expect equal
-      assert(Ordering.EQUAL ==
-             compareKthLargestHeap(maxHeap, 3, 4)); // expect equal
-      assert(Ordering.SMALLER ==
-             compareKthLargestHeap(maxHeap, 8, 4)); // expect smaller
-      assert(Ordering.LARGER ==
-             compareKthLargestHeap(maxHeap, 2, 4)); // expect larger
-      assert(Ordering.LARGER ==
-             compareKthLargestHeap(maxHeap, 2, 3)); // expect larger
+      assert (Ordering.SMALLER ==
+              compareKthLargestHeap(maxHeap, 1, 6)); // expect smaller
+      assert (Ordering.EQUAL ==
+              compareKthLargestHeap(maxHeap, 1, 5)); // expect equal
+      assert (Ordering.EQUAL ==
+              compareKthLargestHeap(maxHeap, 6, 4)); // expect equal
+      assert (Ordering.EQUAL ==
+              compareKthLargestHeap(maxHeap, 3, 4)); // expect equal
+      assert (Ordering.SMALLER ==
+              compareKthLargestHeap(maxHeap, 8, 4)); // expect smaller
+      assert (Ordering.LARGER ==
+              compareKthLargestHeap(maxHeap, 2, 4)); // expect larger
+      assert (Ordering.LARGER ==
+              compareKthLargestHeap(maxHeap, 2, 3)); // expect larger
     }
   }
 }

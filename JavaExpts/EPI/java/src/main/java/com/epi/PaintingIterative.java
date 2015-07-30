@@ -8,6 +8,7 @@ import java.util.Random;
 import static com.epi.utils.Utils.simplePrint;
 
 public class PaintingIterative {
+
   static void printMatrix(boolean[][] A) {
     for (boolean[] element : A) {
       simplePrint(element);
@@ -17,6 +18,7 @@ public class PaintingIterative {
 
   // @include
   private static class Coordinate {
+
     public Integer x;
     public Integer y;
 
@@ -27,8 +29,8 @@ public class PaintingIterative {
   }
 
   public static void flipColor(boolean[][] A, int x, int y) {
-    int[][] dir = new int[][] {new int[] {0, 1}, new int[] {0, -1},
-                               new int[] {1, 0}, new int[] {-1, 0}};
+    int[][] dir = new int[][]{new int[]{0, 1}, new int[]{0, -1},
+                              new int[]{1, 0}, new int[]{-1, 0}};
     boolean color = A[x][y];
 
     Queue<Coordinate> q = new LinkedList<>();

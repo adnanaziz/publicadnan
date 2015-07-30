@@ -2,11 +2,17 @@
 
 package com.epi;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 class PartitionArray {
+
   // @include
   private static class Person implements Comparable<Person> {
+
     public Integer age;
     public String name;
 
@@ -28,7 +34,7 @@ class PartitionArray {
 
     @Override
     public boolean equals(Object o) {
-      if (o instanceof Person && ((Person)o).age.equals(age)) {
+      if (o instanceof Person && ((Person) o).age.equals(age)) {
         return true;
       } else {
         return false;
@@ -80,7 +86,7 @@ class PartitionArray {
     Random rnd = new Random();
 
     while (len-- > 0) {
-      ret.append((char)(rnd.nextInt(26) + 97));
+      ret.append((char) (rnd.nextInt(26) + 97));
     }
     return ret.toString();
   }
@@ -94,9 +100,9 @@ class PartitionArray {
 
     groupByAge(people);
     if (people[0].age == 10) {
-        assert(people[1].age == 20 && people[2].age == 20 && people[3].age == 20);
+      assert (people[1].age == 20 && people[2].age == 20 && people[3].age == 20);
     } else {
-        assert(people[1].age == 20 && people[2].age == 20 && people[3].age == 10);
+      assert (people[1].age == 20 && people[2].age == 20 && people[3].age == 10);
     }
   }
 
@@ -134,7 +140,7 @@ class PartitionArray {
           ++diffCount;
         }
       }
-      assert(diffCount == ageSet.size());
+      assert (diffCount == ageSet.size());
     }
   }
 }

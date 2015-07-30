@@ -1,6 +1,7 @@
 package com.epi;
 
 public class InsertionSortList {
+
   // @include
   public static ListNode<Integer> insertionSort(final ListNode<Integer> L) {
     ListNode<Integer> dummyHead = new ListNode<>(0, L);
@@ -31,11 +32,11 @@ public class InsertionSortList {
     ListNode<Integer> L;
     L = new ListNode<>(
         1, new ListNode<>(
-               4, new ListNode<>(3, new ListNode<>(2, new ListNode<>(5, null)))));
+        4, new ListNode<>(3, new ListNode<>(2, new ListNode<>(5, null)))));
     ListNode<Integer> result = insertionSort(L);
     ListNode<Integer> pre = null;
     while (result != null) {
-      assert(pre == null || pre.data <= result.data);
+      assert (pre == null || pre.data <= result.data);
       pre = result;
       System.out.println(result.data);
       result = result.next;

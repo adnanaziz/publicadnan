@@ -2,11 +2,17 @@
 
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
 
 public class SearchAPairSortedArray {
+
   // @include
   private static class IndexPair {
+
     public Integer index1;
     public Integer index2;
 
@@ -15,29 +21,30 @@ public class SearchAPairSortedArray {
       this.index2 = index2;
     }
   }
+
   public static IndexPair findPairSumK(List<Integer> A, int k) {
     IndexPair result = findPosNegPair(A, k);
     if (result.index1 == -1 && result.index2 == -1) {
       return k >= 0
-          ? findPairUsingComp(A, k,
-                              new Comparator<Integer>() {
-                                @Override
-                                public int compare(Integer o1, Integer o2) {
-                                  if (o1 < o2) {
-                                    return 0;
-                                  }
-                                  return o1.compareTo(o2);
-                                }
-                              })
-          : findPairUsingComp(A, k, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-              if (o1 >= o2) {
-                return 0;
-              }
-              return o1.compareTo(o2);
-            }
-          });
+             ? findPairUsingComp(A, k,
+                                 new Comparator<Integer>() {
+                                   @Override
+                                   public int compare(Integer o1, Integer o2) {
+                                     if (o1 < o2) {
+                                       return 0;
+                                     }
+                                     return o1.compareTo(o2);
+                                   }
+                                 })
+             : findPairUsingComp(A, k, new Comparator<Integer>() {
+               @Override
+               public int compare(Integer o1, Integer o2) {
+                 if (o1 >= o2) {
+                   return 0;
+                 }
+                 return o1.compareTo(o2);
+               }
+             });
     }
     return result;
   }
@@ -127,7 +134,7 @@ public class SearchAPairSortedArray {
       // System.out.println(k);
       IndexPair ans = findPairSumK(A, k);
       if (ans.index1 != -1 && ans.index2 != -1) {
-        assert(A.get(ans.index1) + A.get(ans.index2) == k);
+        assert (A.get(ans.index1) + A.get(ans.index2) == k);
         System.out.println(A.get(ans.index1) + "+" + A.get(ans.index2) + "=" + k);
       } else {
         Collections.sort(A);
@@ -152,7 +159,7 @@ public class SearchAPairSortedArray {
           }
         }
         System.out.println("no answer");
-        assert(!found);
+        assert (!found);
       }
     }
   }

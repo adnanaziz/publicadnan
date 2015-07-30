@@ -2,15 +2,17 @@ package com.epi;
 
 import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import static com.epi.BinaryTreeUtils.*;
+import static com.epi.BinaryTreeUtils.generateInOrder;
+import static com.epi.BinaryTreeUtils.generatePreOrder;
+import static com.epi.BinaryTreeUtils.generateRandBinaryTree;
 
 public class ReconstructBinaryTreePreInOrders {
+
   // @include
   public static BinaryTreeNode<Integer> binaryTreeFromPreorderInorder(
       int[] preorder, int[] inorder) {
@@ -47,18 +49,18 @@ public class ReconstructBinaryTreePreInOrders {
   // @exclude
 
   private static void simpleTest() {
-    int[] inOrder = new int[] {1};
-    int[] preOrder = new int[] {1};
+    int[] inOrder = new int[]{1};
+    int[] preOrder = new int[]{1};
     BinaryTreeNode<Integer> res =
         binaryTreeFromPreorderInorder(preOrder, inOrder);
-    assert(res.getData() == 1);
+    assert (res.getData() == 1);
 
-    inOrder = new int[] {1, 2};
-    preOrder = new int[] {2, 1};
+    inOrder = new int[]{1, 2};
+    preOrder = new int[]{2, 1};
     res = binaryTreeFromPreorderInorder(preOrder, inOrder);
-    assert(res.getData() == 2);
-    assert(res.getLeft().getData() == 1);
-    assert(res.getRight() == null);
+    assert (res.getData() == 2);
+    assert (res.getLeft().getData() == 1);
+    assert (res.getRight() == null);
 
     int N = 100;
     inOrder = new int[N];
@@ -69,9 +71,9 @@ public class ReconstructBinaryTreePreInOrders {
     }
 
     res = binaryTreeFromPreorderInorder(preOrder, inOrder);
-    assert(res.getData() == N - 1);
-    assert(res.getLeft().getData() == N - 2);
-    assert(res.getRight() == null);
+    assert (res.getData() == N - 1);
+    assert (res.getLeft().getData() == N - 2);
+    assert (res.getRight() == null);
   }
 
   public static void main(String[] args) {
@@ -98,7 +100,7 @@ public class ReconstructBinaryTreePreInOrders {
       }
       BinaryTreeNode<Integer> res =
           binaryTreeFromPreorderInorder(preOrder, inOrder);
-      assert(root.equals(res));
+      assert (root.equals(res));
     }
   }
 }

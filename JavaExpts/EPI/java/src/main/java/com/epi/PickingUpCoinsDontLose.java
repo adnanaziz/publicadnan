@@ -5,6 +5,7 @@ import java.util.Random;
 import static com.epi.utils.Utils.simplePrint;
 
 public class PickingUpCoinsDontLose {
+
   // @include
   // Return 0 means choosing F (even numbered coins),
   // and return 1 means choosing S (odd numbered coins).
@@ -31,9 +32,9 @@ public class PickingUpCoinsDontLose {
       }
     }
     if (choose == 0) {
-      assert(even >= odd);
+      assert (even >= odd);
     } else {
-      assert(odd >= even);
+      assert (odd >= even);
     }
   }
 

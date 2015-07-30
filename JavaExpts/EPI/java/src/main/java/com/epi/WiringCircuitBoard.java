@@ -9,8 +9,10 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class WiringCircuitBoard {
+
   // @include
   public static class GraphVertex {
+
     public int d = -1;
     public List<GraphVertex> edges = new ArrayList<>();
   }
@@ -110,7 +112,7 @@ public class WiringCircuitBoard {
 
       boolean res = isAnyPlacementFeasible(G);
       System.out.println(res);
-      assert(res == isTwoColorable(G));
+      assert (res == isTwoColorable(G));
     }
   }
 }

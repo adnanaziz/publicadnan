@@ -1,11 +1,10 @@
 package com.epi;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class CompletionSearch {
+
   // @include
   public static double findSalaryCap(double targetPayroll,
                                      Double[] currentSalaries) {
@@ -17,7 +16,7 @@ public class CompletionSearch {
       adjustedSalarySum = currentSalaries[i] * (currentSalaries.length - (i + 1));
       if (unadjustedSalarySum + adjustedSalarySum >= targetPayroll) {
         return (targetPayroll - unadjustedSalarySum + currentSalaries[i]) /
-            (currentSalaries.length - i);
+               (currentSalaries.length - i);
       }
     }
     // No solution, since targetPayroll > existing payroll.
@@ -28,13 +27,13 @@ public class CompletionSearch {
   private static void smallTest() {
     Double[] A = {20.0, 30.0, 40.0, 90.0, 100.0};
     double T = 210;
-    assert(findSalaryCap(T, A) == 60);
+    assert (findSalaryCap(T, A) == 60);
     T = 280;
-    assert(findSalaryCap(T, A) == 100);
+    assert (findSalaryCap(T, A) == 100);
     T = 50;
-    assert(findSalaryCap(T, A) == 10);
+    assert (findSalaryCap(T, A) == 10);
     T = 281;
-    assert(findSalaryCap(T, A) == -1.0);
+    assert (findSalaryCap(T, A) == -1.0);
   }
 
   public static void main(String[] args) {
@@ -55,7 +54,7 @@ public class CompletionSearch {
       }
       Double[] A = new Double[n];
       for (int i = 0; i < n; ++i) {
-        A[i] = (double)r.nextInt(10000);
+        A[i] = (double) r.nextInt(10000);
       }
       System.out.println("tar = " + tar);
       double ret = findSalaryCap(tar, A);
@@ -71,7 +70,7 @@ public class CompletionSearch {
         }
         tar -= sum;
         System.out.println("sum = " + sum);
-        assert(tar < 1.0e-8);
+        assert (tar < 1.0e-8);
       }
     }
   }

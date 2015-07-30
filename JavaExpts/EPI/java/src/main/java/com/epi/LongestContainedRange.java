@@ -1,11 +1,19 @@
 package com.epi;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 public class LongestContainedRange {
 
   // Represents the set of numbers from begin to end, inclusive, i.e., [begin,end].
   private static class Range {
+
     public Integer begin;
     public Integer end;
 
@@ -161,11 +169,11 @@ public class LongestContainedRange {
         A[i] = r.nextInt(n + 1);
       }
 
-      assert(findLongestContainedRangeInt(A) == checkAns(A));
+      assert (findLongestContainedRangeInt(A) == checkAns(A));
       Range result = findLongestContainedRange(A);
       System.out.println(result);
-      assert(result.end - result.begin + 1 == findLongestContainedRangeInt(A));
-      assert(result.end - result.begin + 1 == longestContainedRange(A));
+      assert (result.end - result.begin + 1 == findLongestContainedRangeInt(A));
+      assert (result.end - result.begin + 1 == longestContainedRange(A));
     }
   }
 }

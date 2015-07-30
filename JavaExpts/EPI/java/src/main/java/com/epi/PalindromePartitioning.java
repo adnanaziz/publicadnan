@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class PalindromePartitioning {
+
   // @include
   public static List<List<String>> palindromePartitioning(String input) {
     List<List<String>> result = new ArrayList<>();
@@ -46,10 +47,10 @@ public class PalindromePartitioning {
     for (List<String> vec : vecs) {
       StringBuilder temp = new StringBuilder();
       for (String s : vec) {
-        assert(isPalindrome(s));
+        assert (isPalindrome(s));
         temp.append(s);
       }
-      assert(temp.toString().equals(input));
+      assert (temp.toString().equals(input));
     }
   }
 
@@ -57,7 +58,7 @@ public class PalindromePartitioning {
     Random r = new Random();
     StringBuilder ret = new StringBuilder(len);
     while (len-- > 0) {
-      ret.append((char)(r.nextInt(26) + 'a'));
+      ret.append((char) (r.nextInt(26) + 'a'));
     }
     return ret.toString();
   }
@@ -69,9 +70,9 @@ public class PalindromePartitioning {
         Arrays.asList("a", "b", "bb", "a", "c"),
         Arrays.asList("a", "bb", "b", "a", "c"),
         Arrays.asList("a", "bbb", "a", "c"),
-        Arrays.asList("abbba", "c")); 
+        Arrays.asList("abbba", "c"));
     System.out.println(result);
-    assert(result.equals(golden));
+    assert (result.equals(golden));
   }
 
   public static void main(String[] args) {

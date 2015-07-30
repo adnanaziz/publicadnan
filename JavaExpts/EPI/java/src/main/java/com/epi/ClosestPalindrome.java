@@ -5,6 +5,7 @@ import java.util.Random;
 import static java.lang.Math.abs;
 
 public class ClosestPalindrome {
+
   // @include
   static long findClosestPalindrome(long x) {
     // Make str a palindrome by mirroring the left half to the right half.
@@ -20,7 +21,7 @@ public class ClosestPalindrome {
           str.setCharAt(idx--, '9');
         } else {
           char c = str.charAt(idx);
-          str.setCharAt(idx, (char)(c - 1));
+          str.setCharAt(idx, (char) (c - 1));
           break;
         }
       }
@@ -38,7 +39,7 @@ public class ClosestPalindrome {
           str.setCharAt(idx--, '0');
         } else {
           char c = str.charAt(idx);
-          str.setCharAt(idx, (char)(c + 1));
+          str.setCharAt(idx, (char) (c + 1));
           break;
         }
       }
@@ -47,8 +48,8 @@ public class ClosestPalindrome {
     // Make str a palindrome again by mirroring the left half to the right half.
     mirrored = mirrorLeftHalf(str.toString());
     return abs(x - mirrorLeft) < abs(x - Long.parseLong(mirrored))
-        ? mirrorLeft
-        : Long.parseLong(mirrored);
+           ? mirrorLeft
+           : Long.parseLong(mirrored);
   }
   // @exclude
 

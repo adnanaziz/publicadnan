@@ -8,6 +8,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class LoadBalancing {
+
   // @include
   public static List<Integer> decideLoadBalancing(List<Integer> userFileSize,
                                                   int serverNum) {

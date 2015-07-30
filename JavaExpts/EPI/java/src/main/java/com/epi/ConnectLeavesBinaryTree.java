@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ConnectLeavesBinaryTree {
+
   // @include
   public static List<BinaryTreeNode<Integer>> createListOfLeaves(
       BinaryTreeNode<Integer> tree) {
@@ -30,8 +31,8 @@ public class ConnectLeavesBinaryTree {
     BinaryTreeNode<Integer> tree = new BinaryTreeNode<>(3, null, null);
     tree.setLeft(new BinaryTreeNode<>(2, null, null));
     List<BinaryTreeNode<Integer>> L = createListOfLeaves(tree);
-    assert(L.size() == 1);
-    assert(L.get(0).getData().equals(2));
+    assert (L.size() == 1);
+    assert (L.get(0).getData().equals(2));
 
     tree.getLeft().setLeft(new BinaryTreeNode<>(1, null, null));
     tree.setRight(new BinaryTreeNode<>(5, null, null));
@@ -42,8 +43,8 @@ public class ConnectLeavesBinaryTree {
     for (BinaryTreeNode<Integer> l : L) {
       System.out.println(l.getData());
     }
-    assert(L.size() == 3);
-    assert(L.get(0).getData().equals(1) && L.get(1).getData().equals(4) &&
-           L.get(2).getData().equals(6));
+    assert (L.size() == 3);
+    assert (L.get(0).getData().equals(1) && L.get(1).getData().equals(4) &&
+            L.get(2).getData().equals(6));
   }
 }

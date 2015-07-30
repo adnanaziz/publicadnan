@@ -6,7 +6,9 @@ import java.util.Random;
 import java.util.TreeSet;
 
 public class Bonus {
+
   private static class EmployeeData {
+
     public Integer productivity;
     public Integer index;
 
@@ -19,14 +21,14 @@ public class Bonus {
   private static void checkAns(int[] ratings, int[] C) {
     for (int i = 0; i < ratings.length; ++i) {
       if (i > 0) {
-        assert((ratings[i] > ratings[i - 1] && C[i] > C[i - 1]) ||
-               (ratings[i] < ratings[i - 1] && C[i] < C[i - 1]) ||
-               ratings[i] == ratings[i - 1]);
+        assert ((ratings[i] > ratings[i - 1] && C[i] > C[i - 1]) ||
+                (ratings[i] < ratings[i - 1] && C[i] < C[i - 1]) ||
+                ratings[i] == ratings[i - 1]);
       }
       if (i + 1 < ratings.length) {
-        assert((ratings[i] > ratings[i + 1] && C[i] > C[i + 1]) ||
-               (ratings[i] < ratings[i + 1] && C[i] < C[i + 1]) ||
-               ratings[i] == ratings[i + 1]);
+        assert ((ratings[i] > ratings[i + 1] && C[i] > C[i + 1]) ||
+                (ratings[i] < ratings[i + 1] && C[i] < C[i + 1]) ||
+                ratings[i] == ratings[i + 1]);
       }
     }
   }
@@ -75,15 +77,15 @@ public class Bonus {
   // @exclude
 
   private static void smallTest() {
-    int[] a = new int[] {1, 2, 2};
-    int[] goldenA = new int[] {1, 2, 1};
-    assert(Arrays.equals(calculateBonus(a), goldenA));
-    a = new int[] {1, 2, 3, 2, 1};
-    goldenA = new int[] {1, 2, 3, 2, 1};
-    assert(Arrays.equals(calculateBonus(a), goldenA));
-    a = new int[] {300, 400, 500, 200};
-    goldenA = new int[] {1, 2, 3, 1};
-    assert(Arrays.equals(calculateBonus(a), goldenA));
+    int[] a = new int[]{1, 2, 2};
+    int[] goldenA = new int[]{1, 2, 1};
+    assert (Arrays.equals(calculateBonus(a), goldenA));
+    a = new int[]{1, 2, 3, 2, 1};
+    goldenA = new int[]{1, 2, 3, 2, 1};
+    assert (Arrays.equals(calculateBonus(a), goldenA));
+    a = new int[]{300, 400, 500, 200};
+    goldenA = new int[]{1, 2, 3, 1};
+    assert (Arrays.equals(calculateBonus(a), goldenA));
   }
 
   public static void main(String[] args) {

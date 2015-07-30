@@ -2,12 +2,16 @@ package com.epi;
 
 import com.epi.BinaryTreePrototypeTemplate.BinaryTreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 import static com.epi.BinaryTreeUtils.generatePostOrder;
 
 public class BinaryTreePostorderTraversalIterative {
+
   // @include
   // We use stack and previous node pointer to simulate postorder traversal.
   public static List<Integer> postOrderTraversal(BinaryTreeNode<Integer> tree) {
@@ -62,7 +66,7 @@ public class BinaryTreePostorderTraversalIterative {
     tree.getRight().setRight(new BinaryTreeNode<>(6));
     List<Integer> res = postOrderTraversal(tree);
     List<Integer> goldenRes = generatePostOrder(tree);
-    assert(res.size() == goldenRes.size() &&
-           Arrays.deepEquals(res.toArray(), goldenRes.toArray()));
+    assert (res.size() == goldenRes.size() &&
+            Arrays.deepEquals(res.toArray(), goldenRes.toArray()));
   }
 }

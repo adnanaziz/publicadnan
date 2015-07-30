@@ -1,8 +1,15 @@
 package com.epi;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
 
 public class Tail {
+
   // @include
   public static String tail(String fileName, int N) throws IOException {
     RandomAccessFile filePtr = new RandomAccessFile(fileName, "r");
@@ -14,7 +21,7 @@ public class Tail {
     for (long i = fileSize - 1; i != -1; i--) {
       filePtr.seek(i);
       int readByte = filePtr.readByte();
-      char c = (char)readByte;
+      char c = (char) readByte;
       if (c == '\n') {
         ++newLineCount;
         if (newLineCount > N) {

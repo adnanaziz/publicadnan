@@ -8,6 +8,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class CloseSearch {
+
   // @include
   public static int closeSearch(List<Integer> a, int k) {
     int idx = 0;
@@ -37,7 +38,7 @@ public class CloseSearch {
       int ans = closeSearch(a, k);
       System.out.println(ans);
       if (ans != -1) {
-        assert(a.get(ans) == k);
+        assert (a.get(ans) == k);
       } else {
         boolean found = false;
         for (Integer anA : a) {
@@ -46,7 +47,7 @@ public class CloseSearch {
             break;
           }
         }
-        assert(!found);
+        assert (!found);
       }
     }
   }

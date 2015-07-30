@@ -3,6 +3,7 @@ package com.epi;
 import com.epi.BinaryTreeWithParentPrototype.BinaryTree;
 
 public class Successor {
+
   // @include
   public static BinaryTree<Integer> findSuccessor(BinaryTree<Integer> node) {
     BinaryTree<Integer> iter = node;
@@ -30,15 +31,15 @@ public class Successor {
     //  2   5
     // 1   4 6
     BinaryTree<Integer> root = new BinaryTree<>(3, null, null);
-    assert(findSuccessor(root) == null);
+    assert (findSuccessor(root) == null);
     root.setLeft(new BinaryTree<>(2, null, null));
     root.getLeft().setParent(root);
-    assert(findSuccessor(root.getLeft()).getData() == 3);
+    assert (findSuccessor(root.getLeft()).getData() == 3);
 
     root.getLeft().setLeft(new BinaryTree<>(1, null, null));
     root.getLeft().getLeft().setParent(root.getLeft());
-    assert(findSuccessor(root.getLeft()).getData() == 3);
-    assert(findSuccessor(root.getLeft().getLeft()).getData() == 2);
+    assert (findSuccessor(root.getLeft()).getData() == 3);
+    assert (findSuccessor(root.getLeft().getLeft()).getData() == 2);
 
     root.setRight(new BinaryTree<>(5, null, null));
     root.getRight().setParent(root);
@@ -48,11 +49,11 @@ public class Successor {
     root.getRight().getRight().setParent(root.getRight());
     // should output 6
     BinaryTree<Integer> node = findSuccessor(root.getRight());
-    assert(node.getData().equals(6));
+    assert (node.getData().equals(6));
     System.out.println(node.getData());
     // should output "null"
     node = findSuccessor(root.getRight().getRight());
-    assert(node == null);
+    assert (node == null);
     if (node != null) {
       System.out.println(node.getData());
     } else {

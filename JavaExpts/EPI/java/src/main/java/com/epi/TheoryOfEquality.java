@@ -1,13 +1,19 @@
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * @author translated from c++ by Blazheev Alexander
  */
 public class TheoryOfEquality {
+
   // @include
   public static class Constraint {
+
     public int a, b;
 
     public Constraint(int a, int b) {
@@ -15,10 +21,13 @@ public class TheoryOfEquality {
       this.b = b;
     }
 
-    public String toString() { return a + " " + b; }
+    public String toString() {
+      return a + " " + b;
+    }
   }
 
   public static class GraphVertex {
+
     public int group = -1; // represents the connected component it belongs.
     public List<GraphVertex> edges = new ArrayList<>();
   }
@@ -81,7 +90,7 @@ public class TheoryOfEquality {
     List<Constraint> I = new ArrayList<>();
     E.add(new Constraint(0, 1));
     I.add(new Constraint(2, 3));
-    assert(areConstraintsSatisfied(E, I));
+    assert (areConstraintsSatisfied(E, I));
     E.clear();
     I.clear();
     // Example on the book.
@@ -89,7 +98,7 @@ public class TheoryOfEquality {
     E.add(new Constraint(2, 3));
     E.add(new Constraint(3, 4));
     I.add(new Constraint(1, 4));
-    assert(!areConstraintsSatisfied(E, I));
+    assert (!areConstraintsSatisfied(E, I));
   }
 
   public static void main(String[] args) {

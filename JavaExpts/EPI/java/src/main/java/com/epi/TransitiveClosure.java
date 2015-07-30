@@ -8,8 +8,10 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class TransitiveClosure {
+
   // @include
   public static class GraphVertex {
+
     public int visitTime = -1;
     public List<GraphVertex> edges = new ArrayList<>();
     public List<GraphVertex> extendedContacts = new ArrayList<>();

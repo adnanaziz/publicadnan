@@ -7,12 +7,13 @@ import java.util.Map;
 import java.util.Random;
 
 class AnonymousLetter {
+
   private static String randString(int len) {
     StringBuilder ret = new StringBuilder();
     Random rnd = new Random();
 
     while (len-- > 0) {
-      ret.append((char)(rnd.nextInt(26) + 97));
+      ret.append((char) (rnd.nextInt(26) + 97));
     }
     return ret.toString();
   }
@@ -50,12 +51,12 @@ class AnonymousLetter {
   // @exclude
 
   private static void SimpleTest() {
-    assert(!isLetterConstructibleFromMagazine("123", "456"));
-    assert(!isLetterConstructibleFromMagazine("123", "12222222"));
-    assert(isLetterConstructibleFromMagazine("123", "1123"));
-    assert(isLetterConstructibleFromMagazine("123", "123"));
-    assert(!isLetterConstructibleFromMagazine("12323", "123"));
-    assert(isLetterConstructibleFromMagazine("GATTACA", "A AD FS GA T ACA TTT"));
+    assert (!isLetterConstructibleFromMagazine("123", "456"));
+    assert (!isLetterConstructibleFromMagazine("123", "12222222"));
+    assert (isLetterConstructibleFromMagazine("123", "1123"));
+    assert (isLetterConstructibleFromMagazine("123", "123"));
+    assert (!isLetterConstructibleFromMagazine("12323", "123"));
+    assert (isLetterConstructibleFromMagazine("GATTACA", "A AD FS GA T ACA TTT"));
   }
 
   public static void main(String[] args) {

@@ -3,6 +3,7 @@ package com.epi;
 import java.util.Random;
 
 public class Division {
+
   // Alternative solution.
   public static long divideBinSearch(long x, long y) {
     if (x < y) {
@@ -55,23 +56,23 @@ public class Division {
   // @exclude
 
   private static void simpleTest() {
-    assert(divide(64, 1) == 64);
-    assert(divide(64, 2) == 32);
-    assert(divide(64, 3) == 21);
-    assert(divide(64, 4) == 16);
-    assert(divide(64, 5) == 12);
-    assert(divide(65, 2) == 32);
-    assert(divide(2600540749L, 2147483647L) == 1);
-    assert(divideBinSearch(4, 2) == 2);
-    assert(divideBinSearch(64, 1) == 64);
-    assert(divideBinSearch(64, 2) == 32);
-    assert(divideBinSearch(64, 3) == 21);
-    assert(divideBinSearch(64, 4) == 16);
-    assert(divideBinSearch(64, 5) == 12);
-    assert(divideBinSearch(65, 2) == 32);
-    assert(divideBinSearch(9444, 4714) == 2);
-    assert(divideBinSearch(8186, 19) == 430);
-    assert(divideBinSearch(8186, 19) == 430);
+    assert (divide(64, 1) == 64);
+    assert (divide(64, 2) == 32);
+    assert (divide(64, 3) == 21);
+    assert (divide(64, 4) == 16);
+    assert (divide(64, 5) == 12);
+    assert (divide(65, 2) == 32);
+    assert (divide(2600540749L, 2147483647L) == 1);
+    assert (divideBinSearch(4, 2) == 2);
+    assert (divideBinSearch(64, 1) == 64);
+    assert (divideBinSearch(64, 2) == 32);
+    assert (divideBinSearch(64, 3) == 21);
+    assert (divideBinSearch(64, 4) == 16);
+    assert (divideBinSearch(64, 5) == 12);
+    assert (divideBinSearch(65, 2) == 32);
+    assert (divideBinSearch(9444, 4714) == 2);
+    assert (divideBinSearch(8186, 19) == 430);
+    assert (divideBinSearch(8186, 19) == 430);
   }
 
   public static void main(String[] args) {
@@ -79,8 +80,8 @@ public class Division {
     if (args.length == 2) {
       long x = Long.parseLong(args[0]);
       long y = Long.parseLong(args[1]);
-      assert(x / y == divide(x, y));
-      assert(x / y == divideBinSearch(x, y));
+      assert (x / y == divide(x, y));
+      assert (x / y == divideBinSearch(x, y));
     } else {
       Random r = new Random();
       for (int times = 0; times < 100000; ++times) {
@@ -88,8 +89,8 @@ public class Division {
         y = (y == 0) ? 1 : y; // ensure no divide by 0.
         System.out.println("times = " + times + ", x = " + x + ", y = " + y);
         System.out.println("first = " + x / y + ", second = " + divide(x, y));
-        assert(x / y == divide(x, y));
-        assert(x / y == divideBinSearch(x, y));
+        assert (x / y == divide(x, y));
+        assert (x / y == divideBinSearch(x, y));
       }
     }
   }

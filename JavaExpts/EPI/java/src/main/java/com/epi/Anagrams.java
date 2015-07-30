@@ -2,9 +2,17 @@
 
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 class Anagrams {
+
   // @include
   public static List<List<String>> findAnagrams(String[] dictionary) {
     Map<String, List<String>> sortedStringToAnagrams = new HashMap<>();
@@ -31,9 +39,9 @@ class Anagrams {
   // @exclude
 
   private static void smallTest() {
-    String[] dictionary = new String[] {
+    String[] dictionary = new String[]{
         "debit card", "bad credit", "the morse code", "here come dots",
-        "the eyes",   "they see",   "THL"};
+        "the eyes", "they see", "THL"};
     List<List<String>> result = findAnagrams(dictionary);
     assert result.size() == 3;
   }
@@ -43,7 +51,7 @@ class Anagrams {
     Random rnd = new Random();
 
     while (len-- > 0) {
-      ret.append((char)(rnd.nextInt(26) + 97));
+      ret.append((char) (rnd.nextInt(26) + 97));
     }
     return ret.toString();
   }

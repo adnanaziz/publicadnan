@@ -13,6 +13,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 class IndirectSort {
+
   // @include
   public static void indirectSort(String fileName) throws IOException {
     // Stores file records into A.
@@ -24,7 +25,9 @@ class IndirectSort {
         A.add(ifs.nextInt());
       }
     } finally {
-      if (ifs != null) ifs.close();
+      if (ifs != null) {
+        ifs.close();
+      }
     }
 
     // Indirectly sorts file.
@@ -38,7 +41,9 @@ class IndirectSort {
         ofs.println(a);
       }
     } finally {
-      if (ofs != null) ofs.close();
+      if (ofs != null) {
+        ofs.close();
+      }
     }
   }
   // @exclude
@@ -81,7 +86,9 @@ class IndirectSort {
           ofs.println(a);
         }
       } finally {
-        if (ofs != null) ofs.close();
+        if (ofs != null) {
+          ofs.close();
+        }
       }
       indirectSort("input.txt");
 
@@ -94,10 +101,12 @@ class IndirectSort {
           A.add(ifs.nextInt());
         }
       } finally {
-        if (ifs != null) ifs.close();
+        if (ifs != null) {
+          ifs.close();
+        }
       }
 
-      assert(isSorted(A));
+      assert (isSorted(A));
       input.delete();
     }
   }

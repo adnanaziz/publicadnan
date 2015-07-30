@@ -1,12 +1,16 @@
 package com.epi;
 
 public class PopulatingNextRightPointers {
+
   public static class BinaryTreeNode<T> {
+
     public T data;
     public BinaryTreeNode<T> left, right;
     public BinaryTreeNode<T> next; // Populates this field.
 
-    public BinaryTreeNode(T data) { this.data = data; }
+    public BinaryTreeNode(T data) {
+      this.data = data;
+    }
   }
 
   // @include
@@ -40,9 +44,9 @@ public class PopulatingNextRightPointers {
     root.left = new BinaryTreeNode<>(2);
     root.right = new BinaryTreeNode<>(5);
     populateNextPointer(root);
-    assert(root.next == null);
-    assert(root.left.next == root.right);
-    assert(root.right.next == null);
+    assert (root.next == null);
+    assert (root.left.next == root.right);
+    assert (root.right.next == null);
   }
 
   public static void main(String[] args) {
@@ -58,10 +62,10 @@ public class PopulatingNextRightPointers {
     root.right.left = new BinaryTreeNode<>(4);
     root.right.right = new BinaryTreeNode<>(6);
     populateNextPointer(root);
-    assert(root.next == null);
-    assert(root.left.next == root.right);
-    assert(root.left.left.next == root.left.right);
-    assert(root.left.right.next == root.right.left);
-    assert(root.right.left.next == root.right.right);
+    assert (root.next == null);
+    assert (root.left.next == root.right);
+    assert (root.left.left.next == root.left.right);
+    assert (root.left.right.next == root.right.left);
+    assert (root.right.left.next == root.right.right);
   }
 }

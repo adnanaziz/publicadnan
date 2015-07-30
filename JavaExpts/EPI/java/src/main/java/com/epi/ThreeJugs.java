@@ -1,13 +1,20 @@
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class ThreeJugs {
+
   // @include
   public static class Jug {
+
     public int low, high;
 
-    public Jug() {}
+    public Jug() {
+    }
 
     public Jug(int low, int high) {
       this.low = low;
@@ -16,6 +23,7 @@ public class ThreeJugs {
   }
 
   private static class VolumeRange {
+
     public Integer low;
     public Integer high;
 
@@ -29,7 +37,7 @@ public class ThreeJugs {
       if (!(obj instanceof VolumeRange)) {
         return false;
       }
-      VolumeRange vr = (VolumeRange)obj;
+      VolumeRange vr = (VolumeRange) obj;
       return (this.low.equals(vr.low) && this.high.equals(vr.high));
     }
 
@@ -68,7 +76,7 @@ public class ThreeJugs {
     jugs.add(new Jug(230, 240));
     jugs.add(new Jug(290, 310));
     jugs.add(new Jug(500, 515));
-    assert(checkFeasible(jugs, 2100, 2300));
+    assert (checkFeasible(jugs, 2100, 2300));
     jugs.clear();
     Random r = new Random();
     if (args.length == 1) {

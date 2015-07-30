@@ -2,10 +2,21 @@ package com.epi;
 
 import com.epi.utils.Utils;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.util.BitSet;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.Set;
 
 public class MissingElement {
+
   // @include
   public static int findMissingElement(InputStream ifs) throws IOException {
     int[] counter = new int[1 << 16];

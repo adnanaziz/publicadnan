@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ExteriorBinaryTree {
+
   // @include
   public static List<BinaryTreeNode<Integer>> exteriorBinaryTree(
       BinaryTreeNode<Integer> tree) {
@@ -74,13 +75,13 @@ public class ExteriorBinaryTree {
     List<BinaryTreeNode<Integer>> L = exteriorBinaryTree(tree);
     List<Integer> result = createOutputList(L);
     List<Integer> goldenResult = Arrays.asList(3);
-    assert(goldenResult.equals(result));
+    assert (goldenResult.equals(result));
 
     tree.setLeft(new BinaryTreeNode<>(2, null, null));
     L = exteriorBinaryTree(tree);
     result = createOutputList(L);
     goldenResult = Arrays.asList(3, 2);
-    assert(goldenResult.equals(result));
+    assert (goldenResult.equals(result));
 
     tree.getLeft().setRight(new BinaryTreeNode<>(0, null, null));
     tree.getLeft().getRight().setLeft(new BinaryTreeNode<>(-1, null, null));
@@ -92,6 +93,6 @@ public class ExteriorBinaryTree {
     L = exteriorBinaryTree(tree);
     result = createOutputList(L);
     goldenResult = Arrays.asList(3, 2, 1, -1, -2, 4, 6, 5);
-    assert(goldenResult.equals(result));
+    assert (goldenResult.equals(result));
   }
 }

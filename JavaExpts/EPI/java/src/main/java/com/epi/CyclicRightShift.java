@@ -1,6 +1,7 @@
 package com.epi;
 
 public class CyclicRightShift {
+
   // @include
   public static ListNode<Integer> cyclicallyRightShiftList(ListNode<Integer> L,
                                                            int k) {
@@ -36,12 +37,12 @@ public class CyclicRightShift {
     ListNode<Integer> L;
     L = new ListNode<>(1, null);
     ListNode<Integer> result = cyclicallyRightShiftList(L, 2);
-    assert(result == L);
+    assert (result == L);
     L.next = new ListNode<>(2, null);
     result = cyclicallyRightShiftList(L, 2);
-    assert(result == L);
+    assert (result == L);
     result = cyclicallyRightShiftList(L, 3);
-    assert(result.next == L);
+    assert (result.next == L);
   }
 
   public static void main(String[] args) {
@@ -49,7 +50,7 @@ public class CyclicRightShift {
     ListNode<Integer> L;
     L = new ListNode<>(1, new ListNode<>(2, new ListNode<>(3, null)));
     ListNode<Integer> result = cyclicallyRightShiftList(L, 2);
-    assert(result.data.equals(2) && result.next.data.equals(3) &&
-           result.next.next.data.equals(1) && result.next.next.next == null);
+    assert (result.data.equals(2) && result.next.data.equals(3) &&
+            result.next.next.data.equals(1) && result.next.next.next == null);
   }
 }

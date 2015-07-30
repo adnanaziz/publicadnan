@@ -6,6 +6,7 @@ import java.util.Random;
  * @author translated from c++ by Blazheev Alexander
  */
 public class NumberWays {
+
   // @include
   public static int numberOfWays(int n, int m) {
     if (n < m) {
@@ -60,7 +61,7 @@ public class NumberWays {
       }
       System.out.println("n = " + n + ", m = " + m + ", number of ways = " +
                          numberOfWays(n, m));
-      assert(checkAns(n + m - 2, m - 1) == numberOfWays(n, m));
+      assert (checkAns(n + m - 2, m - 1) == numberOfWays(n, m));
       if (args.length == 2) {
         break;
       }

@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Random;
 
 class Interval implements Comparable<Interval> {
+
   static class Endpoint {
+
     public boolean isClosed;
     public int val;
   }
@@ -49,11 +51,13 @@ class Interval implements Comparable<Interval> {
         .append(left.isClosed)
         .toHashCode();
   }
+
   public Endpoint left = new Endpoint();
   public Endpoint right = new Endpoint();
 }
 
 class UnionIntervals {
+
   // @include
   public static List<Interval> unionOfIntervals(Interval[] intervals) {
     // Empty input.
@@ -87,9 +91,9 @@ class UnionIntervals {
   private static void checkIntervals(List<Interval> A) {
     // only check the Intervals do not overlap with each other.
     for (int i = 1; i < A.size(); ++i) {
-      assert(A.get(i - 1).right.val < A.get(i).left.val ||
-             (A.get(i - 1).right.val == A.get(i).left.val &&
-              !A.get(i - 1).right.isClosed && !A.get(i).left.isClosed));
+      assert (A.get(i - 1).right.val < A.get(i).left.val ||
+              (A.get(i - 1).right.val == A.get(i).left.val &&
+               !A.get(i - 1).right.isClosed && !A.get(i).left.isClosed));
     }
   }
 

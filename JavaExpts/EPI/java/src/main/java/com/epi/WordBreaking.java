@@ -1,13 +1,20 @@
 package com.epi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class WordBreaking {
+
   private static String randString(int len) {
     Random r = new Random();
     StringBuilder ret = new StringBuilder(len);
     while (len-- > 0) {
-      ret.append((char)(r.nextInt(26) + 'a'));
+      ret.append((char) (r.nextInt(26) + 'a'));
     }
     return ret.toString();
   }
@@ -53,7 +60,7 @@ public class WordBreaking {
       temp.append(an);
     }
     System.out.println();
-    assert(ans.size() == 0 || s.equals(temp.toString()));
+    assert (ans.size() == 0 || s.equals(temp.toString()));
   }
 
   private static void smallCase() {
@@ -65,7 +72,7 @@ public class WordBreaking {
     dictionary.add("beyond");
     List<String> ans = wordBreaking("bedbathandbeyond", dictionary);
     List<String> goldenAns = Arrays.asList("bed", "bath", "and", "beyond");
-    assert(ans.equals(goldenAns));
+    assert (ans.equals(goldenAns));
   }
 
   public static void main(String[] args) {

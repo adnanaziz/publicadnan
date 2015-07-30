@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Random;
 
 public class LargeArray {
+
   // @include
   private static final int N = 2000000000;
   private static final char[] A_LARGE = new char[N];
@@ -100,7 +101,7 @@ public class LargeArray {
     // @exclude
     if (result != -1) {
       System.out.println("B[" + result + "] = " + A_LARGE[offset + result]);
-      assert(A_LARGE[offset + result] == key);
+      assert (A_LARGE[offset + result] == key);
     }
   }
 }

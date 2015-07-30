@@ -3,6 +3,7 @@
 package com.epi;
 
 class PNode<T> {
+
   public T data;
   public PNode<T> next, jump;
 

@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class IntersectSortedArrays2 {
+
   // @include
   public static List<Integer> intersectTwoSortedArrays(List<Integer> A,
                                                        List<Integer> B) {

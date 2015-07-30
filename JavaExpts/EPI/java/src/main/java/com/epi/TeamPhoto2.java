@@ -11,11 +11,15 @@ import java.util.List;
  * @author translated from c++ by Blazheev Alexander
  */
 public class TeamPhoto2 {
+
   private static class Player<HeightType extends Comparable<HeightType>>
       implements Comparable<Player<HeightType>> {
+
     public HeightType height;
 
-    public Player(HeightType height) { this.height = height; }
+    public Player(HeightType height) {
+      this.height = height;
+    }
 
     @Override
     public int compareTo(Player<HeightType> o) {
@@ -43,6 +47,7 @@ public class TeamPhoto2 {
   }
 
   private static class Team<HeightType extends Comparable<HeightType>> {
+
     private ArrayList<Player<HeightType>> members;
 
     public Team(List<HeightType> height) {
@@ -65,7 +70,7 @@ public class TeamPhoto2 {
 
     private List<Player<HeightType>> sortHeightMembers() {
       List<Player<HeightType>> sortedMembers =
-          (List<Player<HeightType>>)members.clone();
+          (List<Player<HeightType>>) members.clone();
       Collections.sort(sortedMembers);
       return sortedMembers;
     }
@@ -73,6 +78,7 @@ public class TeamPhoto2 {
 
   // @include
   public static class GraphVertex {
+
     public List<GraphVertex> edges = new ArrayList<>();
     public int maxDistance = 1;
     public boolean visited = false;
@@ -125,6 +131,6 @@ public class TeamPhoto2 {
     }
     G.get(0).edges.add(G.get(2));
     G.get(1).edges.add(G.get(2));
-    assert(2 == findLargestNumberTeams(G));
+    assert (2 == findLargestNumberTeams(G));
   }
 }
