@@ -1,11 +1,19 @@
 package com.epi;
 
-import java.util.*;
+import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ClosestToMedian {
 
   // @include
-  public static int[] findKClosestToMedian(int[] A, int k) {
+  public static ArrayList<Integer> findKClosestToMedian(ArrayList<Integer> A, int k) {
     final double median = findMedian(A);
 
     // We will use this custom comparator to reorder the array
@@ -27,30 +35,30 @@ public class ClosestToMedian {
     // Since findKth reordered A so that elements closest in absolute value
     // to median have been moved to the front of A, the first k entries 
     // are the result.
-    return Arrays.copyOfRange(A, 0, k);
+    return new ArrayList<>(A.subList(0, k));
   }
 
   // Promote the return value to double to prevent precision error.
-  public static double findMedian(int[] A) {
-    int half = A.length / 2 + 1;
+  public static double findMedian(ArrayList<Integer> A) {
+    int half = A.size() / 2 + 1;
     OrderStatistic.findKthSmallest(A, half);
 
-    if ((A.length % 2) != 0) { // A has an odd number elements.
-      return A[half-1];
+    if ((A.size() % 2) != 0) { // A has an odd number elements.
+      return A.get(half-1);
     } else { // A has an even number elements.
-      int x = A[half-1];
+      int x = A.get(half-1);
       OrderStatistic.findKthSmallest(A, half - 1);
-      return 0.5 * (x + A[half - 2]);
+      return 0.5 * (x + A.get(half - 2));
     }
   }
   // @exclude
 
-  private static void checkAns(int[] A, int[] res, int k) {
-    Arrays.sort(A);
-    double median = ((A.length & 1) != 0)
-                        ? A[(A.length / 2)]
-                        : 0.5 * (A[((A.length / 2) - 1)] +
-                                 A[(A.length / 2)]);
+  private static void checkAns(ArrayList<Integer> A, ArrayList<Integer> res, int k) {
+    Collections.sort(A);
+    double median = ((A.size() & 1) != 0)
+                        ? A.get(A.size() / 2)
+                        : 0.5 * (A.get((A.size() / 2) - 1) +
+                                 A.get(A.size() / 2));
     List<Double> temp = new ArrayList<>();
     for (int a : A) {
       temp.add(Math.abs(median - a));
@@ -71,12 +79,12 @@ public class ClosestToMedian {
   }
 
   private static void simpleTest() {
-    int[] d = new int[]{3, 2, 3, 5, 7, 3, 1};
-    int[] dRes = findKClosestToMedian(d, 3);
+    ArrayList<Integer> d = Lists.newArrayList(3, 2, 3, 5, 7, 3, 1);
+    ArrayList<Integer> dRes = findKClosestToMedian(d, 3);
     checkAns(d, dRes, 3);
-    d = new int[]{0, 9, 2, 9, 8};
+    d = Lists.newArrayList(0, 9, 2, 9, 8);
     dRes = findKClosestToMedian(d, 2);
-    System.out.print(Arrays.toString(dRes));
+    System.out.print(dRes);
     checkAns(d, dRes, 2);
   }
 
@@ -102,36 +110,39 @@ public class ClosestToMedian {
     order.add(Math.max(1,N-1));
     order.add(N);
 
-    int[] A = new int[N];
+    ArrayList<Integer> A = new ArrayList<>(N);
 
     Random r = new Random();
     for (int i = 0; i < N; ++i) {
-        A[i] = r.nextInt(10000000);
+        A.add(r.nextInt(10000000));
     }
     testMultipleK(A, order);
+    
     for (int i = 0; i < N; ++i) {
-        A[i] = r.nextInt(N);
+        A.add(r.nextInt(N));
     }
     testMultipleK(A, order);
+    
     for (int i = 0; i < N; ++i) {
-        A[i] = r.nextInt(2*N);
+        A.add(r.nextInt(2*N));
     }
     testMultipleK(A, order);
+    
     for (int i = 0; i < N; ++i) {
-        A[i] = r.nextInt(Math.max(N/2,1));
+        A.add(r.nextInt(Math.max(N/2,1)));
     }
     testMultipleK(A, order);
   }
 
-  private static void testMultipleK(int[] A, List<Integer> order) {
+  private static void testMultipleK(ArrayList<Integer> A, List<Integer> order) {
     for (int k : order) {
         test(A, k);
     }
   }  
 
-  private static void test(int[] A, int k) {
-      int[] res = findKClosestToMedian(A, k);
-      assert(res.length == k);
+  private static void test(ArrayList<Integer> A, int k) {
+      ArrayList<Integer> res = findKClosestToMedian(A, k);
+      assert(res.size() == k);
       checkAns(A, res, k);
   }
 
@@ -163,16 +174,16 @@ private static void ComplexRandomTest() {
       }
       n = r.nextInt(6) + 1;
       k = r.nextInt(n) + 1;
-      List<Integer> a = new ArrayList<>();
+      ArrayList<Integer> a = new ArrayList<>();
       for (int i = 0; i < n; ++i) {
         a.add(r.nextInt(n * 2));
       }
-      int[] res = findKClosestToMedian(toIntArray(a), k);
-      assert(res.length == k);
+      ArrayList<Integer> res = findKClosestToMedian(a, k);
+      assert(res.size() == k);
       System.out.println("n = " + n + ", k = " + k);
-      System.out.println("res = " + Arrays.toString(res));
+      System.out.println("res = " + res);
       System.out.println("checking:" + a + " " + k);
-      checkAns(toIntArray(a), res, k);
+      checkAns(a, res, k);
     }
   }
 }
