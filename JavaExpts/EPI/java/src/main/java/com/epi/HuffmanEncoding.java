@@ -1,9 +1,8 @@
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.Random;
 
@@ -54,9 +53,7 @@ public class HuffmanEncoding {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(41, 47)
-          .append(prob)
-          .toHashCode();
+      return Objects.hash(prob);
     }
 
   }

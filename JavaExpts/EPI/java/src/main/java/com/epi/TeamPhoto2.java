@@ -1,7 +1,5 @@
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -40,9 +38,7 @@ public class TeamPhoto2 {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(29, 113)
-          .append(height)
-          .toHashCode();
+      return height.hashCode();
     }
   }
 

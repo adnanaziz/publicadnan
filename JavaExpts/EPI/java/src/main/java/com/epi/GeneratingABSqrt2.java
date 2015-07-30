@@ -1,9 +1,8 @@
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.TreeSet;
 
@@ -44,10 +43,7 @@ public class GeneratingABSqrt2 {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(17, 37)
-          .append(a)
-          .append(b)
-          .toHashCode();
+      return Objects.hash(a, b);
     }
     // @include
   }

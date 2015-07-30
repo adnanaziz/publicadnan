@@ -2,11 +2,10 @@
 
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 class Interval implements Comparable<Interval> {
@@ -46,10 +45,7 @@ class Interval implements Comparable<Interval> {
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder(53, 151)
-        .append(left.val)
-        .append(left.isClosed)
-        .toHashCode();
+    return Objects.hash(left.val, left.isClosed);
   }
 
   public Endpoint left = new Endpoint();

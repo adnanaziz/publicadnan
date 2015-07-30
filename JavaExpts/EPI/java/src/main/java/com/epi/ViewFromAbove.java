@@ -1,11 +1,10 @@
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.TreeMap;
 
 public class ViewFromAbove {
@@ -63,9 +62,7 @@ public class ViewFromAbove {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(5, 83)
-          .append(val())
-          .toHashCode();
+      return Objects.hash(val());
     }
   }
 

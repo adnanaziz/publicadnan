@@ -1,11 +1,10 @@
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NavigableSet;
+import java.util.Objects;
 import java.util.Random;
 import java.util.TreeSet;
 
@@ -56,10 +55,7 @@ public class MinimumDistance3SortedArrays {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(59, 157)
-          .append(val)
-          .append(idx)
-          .toHashCode();
+      return Objects.hash(val, idx);
     }
   }
 

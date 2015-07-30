@@ -1,6 +1,6 @@
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import java.util.Objects;
 
 public class BinarySearchTreePrototypeTemplate {
 
@@ -74,11 +74,7 @@ public class BinarySearchTreePrototypeTemplate {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(17, 37)
-          .append(data)
-          .append(left)
-          .append(right)
-          .toHashCode();
+      return Objects.hash(data, left, right);
     }
   }
   // @include

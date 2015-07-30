@@ -1,9 +1,8 @@
 package com.epi;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.TreeSet;
 
@@ -66,10 +65,7 @@ public class GaussianPrimes {
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder(23, 31)
-          .append(getReal())
-          .append(getImag())
-          .toHashCode();
+      return Objects.hash(getReal(), getImag());
     }
 
     @Override
@@ -95,7 +91,8 @@ public class GaussianPrimes {
       Complex p = candidates.pollFirst();
       primes.add(p);
       int maxMultiplier =
-          (int) Math.ceil(Math.sqrt(2.0) * n / Math.floor(Math.sqrt(p.getNorm())));
+          (int) Math.ceil(
+              Math.sqrt(2.0) * n / Math.floor(Math.sqrt(p.getNorm())));
 
       // Any Gaussian integer outside the range we're iterating
       // over below has a modulus greater than maxMultiplier.
