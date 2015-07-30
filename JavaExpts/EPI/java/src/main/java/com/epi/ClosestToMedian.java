@@ -88,14 +88,6 @@ public class ClosestToMedian {
     checkAns(d, dRes, 2);
   }
 
-  static int[] toIntArray(List<Integer> list) {
-    int[] result = new int[list.size()];
-    for (int i = 0; i < result.length; i++) {
-      result[i] = list.get(i);
-    }
-    return result;
-  }
-
   private static void RandomTestFixedN(int N) {
     List<Integer> order = new ArrayList<>();
     for (int i = 0; i < 5; i++) {
