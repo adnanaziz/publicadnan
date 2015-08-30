@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Collections;
 import java.util.Map;
+import java.util.List;
 import java.util.HashMap;
 
 class Student implements Comparable<Student> {
@@ -58,6 +59,7 @@ class Student implements Comparable<Student> {
 
     // Compare on second name using anonymous class
     Adup = new ArrayList<>(A);
+    final List<String> comparisonsMade = new ArrayList<>();
     Collections.sort(Adup, new Comparator<Student>() {
       // Assuming all students names are of the form Foo Bar
       public int compare(Student s1, Student s2) {
@@ -80,7 +82,7 @@ class Student implements Comparable<Student> {
 
     Collections.sort(Adup, new Comparator<Student>() {
       public int compare(Student s1, Student s2) {
-        GPAs.put(s1.name + s2.name, -1.0);
+        comparisonsMade.add(s1.name + ":" + s2.name);
         if (GPAs.get(s1.name) == GPAs.get(s2.name)) {
           return 0;
         } else if (GPAs.get(s1.name) < GPAs.get(s2.name)) {
@@ -93,6 +95,9 @@ class Student implements Comparable<Student> {
     System.out.println("By GPA");
     for ( Student s : Adup ) {
       System.out.println(s);
+    }
+    for ( String comparison : comparisonsMade ) {
+      System.out.println(comparison);
     }
 
   }
