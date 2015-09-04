@@ -1,6 +1,6 @@
 # from Adam Barr's wonderful book "Find the Bug"
 
-''' This function draws a car from a deck and puts it into a hand. It is
+''' This function draws a card from a deck and puts it into a hand. It is
 meant to be part of the game Go Fish, so if the resulting hand has all four 
 suits for a given card rank, those four cards are removed from the hand. 
 

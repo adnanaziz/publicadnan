@@ -28,6 +28,9 @@ class BankAccount(object):
   def __str__(self):
     return 'Account balance = ' + str(self.balance)
 
+  def __repr__(self):
+    return self.__str__()
+
 class CheckingAccount(BankAccount):
 
   def __init__(self, initBal):
@@ -64,6 +67,8 @@ print acct0.getBalance()
 print acct1.getBalance()
 
 print acct0
+
+print "list view " + str([acct0, acct1])
 
 print acct0.__class__
 print BankAccount.__name__
