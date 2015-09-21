@@ -34,9 +34,10 @@
     "exif-parser": "*",
     "gm": "*",
     "errorHandler": "*",
-    "swig": "*"
+    "swig": "*",
+    "georedis": "^3.0.1",
+    "redis": "^2.1.0"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engine": "node >= 0.10.26"
 }
