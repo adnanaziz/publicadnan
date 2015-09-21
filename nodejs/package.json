@@ -3,6 +3,7 @@
   "description": "A package with illustrative node examples",
   "author": "Adnan Aziz <adnan.aziz@gmail.com>",
   "dependencies": {
+    "fbgraph": "*",
     "async": "*",
     "slug": "*",
     "body-parser": "*",
