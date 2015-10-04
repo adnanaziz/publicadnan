@@ -7,4 +7,6 @@ resized, compressed via preview
 best: no jpeg compression
 med: 50% jpeg compresion as per preview
 
--disc-upload: orig image uploaded to disc server
+-disc-upload: orig image uploaded to disc server via IOS
+
+-disc-upload-0.1: IOS upload with compression set to 0.1 (from 0.5)
