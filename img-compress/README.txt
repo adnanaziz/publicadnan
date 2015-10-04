@@ -6,3 +6,5 @@ resized, compressed via preview
 
 best: no jpeg compression
 med: 50% jpeg compresion as per preview
+
+-disc-upload: orig image uploaded to disc server
