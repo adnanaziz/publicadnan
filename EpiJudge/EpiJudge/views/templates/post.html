@@ -1,0 +1,278 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sample EPI Judge Posting</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- ACE code editor -->
+    <style type="text/css" media="screen">
+        #editor {
+            width: 100%;
+            height: 40%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- <div class="container"> -->
+    <div class="col-lg-2" id="left-column">
+        <b>Trending Tags</b>
+        <div id="tagcloud"></div>
+        <b>Suggested Problems</b>
+        <div id="trendingposts"></div>
+    </div>
+
+    <div class="col-lg-8" id="mainscreen">
+
+        <p></p>
+
+        <div class="row" class="input-group search-input">
+            <input id="search-field" class="col-lg-11" class="form-control input-round search-field" style="height: 30px; font-size: 12px; line-height: 27px;" placeholder="Search" type="text" value="Add search text here">
+            <span class="col-lg=1" class="input-group-btn search-btn-wrapper">
+                <button class="btn input-round search-btn" id="search-btn" style="height: 30px; border:1px solid #d3d3d3; font-size: 15px;"><i class="fa fa-search" style="display: block; margin-top: -2px;"></i>
+
+                </button>
+
+            </span>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-6">
+                <h3>Summary</h3>{{ summary }}
+            </div>
+
+            <div class="col-lg-6">
+                <h3>Problems Tags</h3>{{ hashtags }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Description</h3>{{ description }}
+            </div>
+        </div>
+
+        <div class="row" style="padding-top: 20px;">
+            <div class="col-lg-4">
+                <button type="button" value="submit" class="btn btn-default col-lg-6" aria-label="Left Align">
+                    <span>Hint</span>
+                </button>
+            </div>
+
+            <div class="col-lg-4">
+                <button type="button" id="change-column" value="submit" class="btn btn-default col-lg-6" aria-label="Left Align">
+                    <span>Discussion</span>
+                </button>
+            </div>
+
+            <div class="col-lg-4">
+                <button type="button" value="submit" class="btn btn-default col-lg-6" aria-label="Left Align">
+                    <span>Solution</span>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Program</h3>
+                <p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="editor">{{ skeleton }}</div>
+            </div>
+            <p></p>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Custom test</h3>
+                <textarea rows=1 class="col-lg-12" id="custom-test">
+                    {{ testcase }}
+                </textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Output</h3>
+                <div id="compilebox-output"></div>
+            </div>
+            <div class="col-lg-8">
+                <h3>Errors</h3>
+                <div id="compilebox-errors"></div>
+            </div>
+            <div class="col-lg-3">
+                <h3>Runtime</h3>
+                <div id="compilebox-time"></div>
+            </div>
+        </div>
+
+
+
+        <button type="button" id="sendto-compilebox" value="submit" class="btn btn-default" id="change-column" aria-label="Change Columns">
+            <span>Run</span>
+        </button>
+
+    </div>
+
+    <div class="col-lg-2" id="right-column">
+        <div id="faq">
+            <a href="http://google.com"><b><h3>FAQ <i class="fa fa-question-circle"></i></h3></b></a>
+        </div>
+        <div id="buy" style="padding-top: 20px;" id="rcorners2">
+            <a href="http://amzn.to/epibook">
+                <img width=100 src="http://elementsofprogramminginterviews.com/img/epi-java-thumbnail.png"></img>
+                <p></p>
+                Buy at Amazon
+            </a>
+            <p></p>
+        </div>
+        <div id="articlecloud" style="padding-top: 10px;">
+            <b>Good articles</b>
+        </div>
+    </div>
+
+
+    <!-- </div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/theme-monokai.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/worker-javascript.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/github");
+        document.getElementById('editor').style.fontSize = '18px';
+        editor.getSession().setMode("ace/mode/java");
+        editor.setFontSize(14) // will set font-size: 10px
+         //console.log(editor.getValue());
+    </script>
+
+
+    <script>
+        var compileboxServer = "http://146.6.28.101:8000/";
+
+        $(document).ready(function() {
+            $("#sendto-compilebox").click(function() {
+                console.log("In compilebox");
+                var compileboxArgs = {
+                    "language": 8, // Java
+                    "code": editor.getValue(),
+                    "stdin": $("#custom-test").text()
+                };
+                console.log(compileboxArgs);
+                $.ajax({
+                    type: 'POST', // http method
+                    // url: compileboxServer + 'compiler', // target URL
+                    url: "http://146.6.28.101:8000/compile",
+                    //url: "http://146.6.28.101:8000/compile",
+                    data: compileboxArgs,
+                    //data: {},
+                    success: function(serverResp) { // on ajax success
+                        console.log("serverResp = " + JSON.stringify(serverResp));
+                        $('#compilebox-output').html(serverResp.output);
+                        $('#compilebox-errors').html(serverResp.errors);
+                        $('#compilebox-time').html(serverResp.time);
+                    },
+                    error: function(serverResp) { // on ajax failure
+                        console.log('5xx http status code or unexpected response content');
+                    }
+                });
+            });
+        });
+        $(document).ready(function() {
+            $("#change-column").click(function() {
+                console.log("In change-column");
+                $("#left-column").remove();
+                $("#right-column").replaceWith('<div class="region">' + "Some Discuss Content" + '</div>');
+            });
+        });
+    </script>
+
+    <script>
+        var divFiller = function(service, data, callback) {
+            $.ajax({
+                type: 'POST', // http method
+                url: '/api/' + service, // target URL
+                data: data || {}, // data (the js obj)
+                success: function(serverResp) { // on ajax success
+                    callback(serverResp);
+                },
+                error: function(serverResp) { // on ajax failure
+                    console.log('5xx http status code or unexpected response content');
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            divFiller('tagcloud', undefined, function(serverResp) {
+                for (var key in serverResp) {
+                    console.log(key, serverResp[key]);
+                    var div = document.createElement('div');
+                    div.innerHTML = '<a href="' + serverResp[key] + '">' + key + '</a>';
+                    document.getElementById('tagcloud').appendChild(div);
+                }
+            });
+            divFiller('articlecloud', undefined, function(serverResp) {
+                for (var key in serverResp) {
+                    console.log(key, serverResp[key]);
+                    var div = document.createElement('div');
+                    div.innerHTML = '<a href="' + serverResp[key] + '">' + key + '</a>';
+                    document.getElementById('articlecloud').appendChild(div);
+                }
+            });
+            divFiller('trendingposts', undefined, function(serverResp) {
+                for (var key in serverResp) {
+                    console.log(key, serverResp[key]);
+                    var div = document.createElement('div');
+                    div.innerHTML = '<a href="' + serverResp[key] + '">' + key + '</a>';
+                    document.getElementById('trendingposts').appendChild(div);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#search-btn").click(function() {
+                console.log("called search");
+                divFiller('search', {}, function(serverResp) {
+                    console.log("search response = " + JSON.stringify(serverResp));
+                    var searchResultHtml = "";
+                    for (var searchResult in serverResp) {
+                        searchResultHtml += '<a href="' + serverResp[searchResult] + '">' + searchResult + '</a><p></p>\n';
+                    }
+                    console.log("searchResultHtml = " + searchResultHtml);
+                    $('#mainscreen').html(searchResultHtml);
+                });
+            });
+        });
+    </script>
+
+
+
+</body>

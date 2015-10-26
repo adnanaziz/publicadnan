@@ -1,0 +1,23 @@
+{% block title %} ERROR PAGE {% endblock %}
+
+{% block content_title_left %} Error {% endblock %}
+
+{% block content %}
+
+
+{% if serverError %}
+<h2>The server could not complete your request.</h3>
+<h3>Message:</h3> {{serverErrorMessage}}
+{% else %}
+<h2>Routing Error</h2>
+<h3>Could not find a route for the page/service you requested, here are some details</h3>
+<h4>URL you requested:</h4> {{url}}
+<h4>Host:</h4> {{host}}
+{% endif %}
+
+{% endblock %}
+
+
+{% block end_scripts %}
+    {% parent %}
+{% endblock %}
