@@ -1,0 +1,70 @@
+summary
+Deletion from a singly-linked list
+
+--
+
+description
+Given a node in a 
+singly linked list,
+deleting it in O(1) time appears impossible because
+its predecessor's next field has to be updated.
+Surprisingly, it can be done with one small caveat---the node to
+delete cannot be the last one in the list and it is easy to copy the value part of a node.
+
+Write a program which deletes
+a node in a singly linked list
+The input node is guaranteed not to be the tail node.
+
+--
+
+tags
+LinkedList Amazon
+
+--
+
+skeleton
+import java.util.*;
+
+/*
+    class ListNode<T> {
+      public T data;
+      public ListNode<T> next;
+    }
+*/
+
+class Solution {
+    public static void deletionFromList(ListNode<Integer> list) {
+        return;
+    }
+}
+
+--
+
+testcases
+
+class ListNode<T> {
+  public T data;
+  public ListNode<T> next;
+  // @exclude
+
+  ListNode(T data, ListNode<T> next) {
+    this.data = data;
+    this.next = next;
+  }
+  // @include
+}
+
+class DeletionList {
+
+  public static void main(String[] args) {
+    ListNode<Integer> L
+        = new ListNode<>(1, new ListNode<>(2, new ListNode<>(3, null)));
+    Solution.deletionFromList(L);
+    assert(L.data == 2 && L.next.data == 3);
+  }
+}
+
+--
+
+hint
+Instead of deleting the node, can you delete its successor and still achieve the desired configuration?

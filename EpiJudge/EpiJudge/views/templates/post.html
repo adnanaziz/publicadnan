@@ -32,20 +32,21 @@
 
 <body>
 
+
     <!-- <div class="container"> -->
-    <div class="col-lg-2" id="left-column">
-        <b>Trending Tags</b>
+    <div class="col-md-2" id="left-column">
+        <b>Trending Tags</b>
         <div id="tagcloud"></div>
-        <b>Suggested Problems</b>
+        <b>Suggested Problems</b>
         <div id="trendingposts"></div>
     </div>
 
-    <div class="col-lg-8" id="mainscreen">
+    <div class="col-md-8" id="mainscreen">
 
         <p></p>
 
         <div class="row" class="input-group search-input">
-            <input id="search-field" class="col-lg-11" class="form-control input-round search-field" style="height: 30px; font-size: 12px; line-height: 27px;" placeholder="Search" type="text" value="Add search text here">
+            <input id="search-field" class="col-md-11" class="form-control input-round search-field" style="height: 30px; font-size: 12px; line-height: 27px;" placeholder="Search" type="text" value="Add search text here">
             <span class="col-lg=1" class="input-group-btn search-btn-wrapper">
                 <button class="btn input-round search-btn" id="search-btn" style="height: 30px; border:1px solid #d3d3d3; font-size: 15px;"><i class="fa fa-search" style="display: block; margin-top: -2px;"></i>
 
@@ -56,51 +57,51 @@
 
         <div class="row">
 
-            <div class="col-lg-6">
-                <h3>Summary</h3>{{ summary }}
+            <div class="col-md-6">
+                <h3>Summary</h3>{{ summary }}
             </div>
 
-            <div class="col-lg-6">
-                <h3>Problems Tags</h3>{{ hashtags }}
+            <div class="col-md-6">
+                <h3>Problems Tags</h3>{{ hashtags }}
             </div>
         </div>
 
         <div class="row">
-            <div class="col-lg-12">
-                <h3>Description</h3>{{ description }}
+            <div class="col-md-12">
+                <h3>Description</h3>{{ description }}
             </div>
         </div>
 
         <div class="row" style="padding-top: 20px;">
-            <div class="col-lg-4">
-                <button type="button" value="submit" class="btn btn-default col-lg-6" aria-label="Left Align">
-                    <span>Hint</span>
+            <div class="col-md-4">
+                <button type="button" value="submit" class="btn btn-default col-md-6" aria-label="Left Align">
+                    <span>Hint</span>
                 </button>
             </div>
 
-            <div class="col-lg-4">
-                <button type="button" id="change-column" value="submit" class="btn btn-default col-lg-6" aria-label="Left Align">
-                    <span>Discussion</span>
+            <div class="col-md-4">
+                <button type="button" id="change-column" value="submit" class="btn btn-default col-md-6" aria-label="Left Align">
+                    <span>Discussion</span>
                 </button>
             </div>
 
-            <div class="col-lg-4">
-                <button type="button" value="submit" class="btn btn-default col-lg-6" aria-label="Left Align">
-                    <span>Solution</span>
+            <div class="col-md-4">
+                <button type="button" value="submit" class="btn btn-default col-md-6" aria-label="Left Align">
+                    <span>Solution</span>
                 </button>
             </div>
         </div>
 
 
         <div class="row">
-            <div class="col-lg-12">
-                <h3>Program</h3>
+            <div class="col-md-12">
+                <h3>Program</h3>
                 <p>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <div id="editor">{{ skeleton }}</div>
             </div>
             <p></p>
@@ -108,24 +109,24 @@
 
 
         <div class="row">
-            <div class="col-lg-12">
-                <h3>Custom test</h3>
-                <textarea rows=1 class="col-lg-12" id="custom-test">
-                    {{ testcase }}
+            <div class="col-md-12">
+                <h3>Custom arguments</h3>
+                <textarea rows=1 class="col-md-12" id="custom-test">
+                    {{ args }}
                 </textarea>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <h3>Output</h3>
                 <div id="compilebox-output"></div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-md-8">
                 <h3>Errors</h3>
                 <div id="compilebox-errors"></div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-md-3">
                 <h3>Runtime</h3>
                 <div id="compilebox-time"></div>
             </div>
@@ -134,14 +135,14 @@
 
 
         <button type="button" id="sendto-compilebox" value="submit" class="btn btn-default" id="change-column" aria-label="Change Columns">
-            <span>Run</span>
+            <span>Run</span>
         </button>
 
     </div>
 
-    <div class="col-lg-2" id="right-column">
+    <div class="col-md-2" id="right-column">
         <div id="faq">
-            <a href="http://google.com"><b><h3>FAQ <i class="fa fa-question-circle"></i></h3></b></a>
+            <a href="http://google.com"><b><h3>FAQ <i class="fa fa-question-circle"></i></h3></b></a>
         </div>
         <div id="buy" style="padding-top: 20px;" id="rcorners2">
             <a href="http://amzn.to/epibook">
@@ -152,7 +153,7 @@
             <p></p>
         </div>
         <div id="articlecloud" style="padding-top: 10px;">
-            <b>Good articles</b>
+            <b>Good articles</b>
         </div>
     </div>
 
@@ -174,21 +175,26 @@
 
 
     <script>
-        var compileboxServer = "http://146.6.28.101:8000/";
+        var compileboxServer = "http://epijudge.ddns.net:8000/";
+
+        var testcases =  `{% autoescape false %}{{testcases}}{% endautoescape %}`;
+        console.log("args = " + `{{args}}`);
+
+        //var numPrologueLines = prologue.split(/\r\n|\r|\n/).length;
 
         $(document).ready(function() {
             $("#sendto-compilebox").click(function() {
                 console.log("In compilebox");
                 var compileboxArgs = {
                     "language": 8, // Java
-                    "code": editor.getValue(),
+                    "code": editor.getValue() + testcases,
                     "stdin": $("#custom-test").text()
                 };
-                console.log(compileboxArgs);
+
+                console.log(JSON.stringify(compileboxArgs));
                 $.ajax({
                     type: 'POST', // http method
-                    // url: compileboxServer + 'compiler', // target URL
-                    url: "http://146.6.28.101:8000/compile",
+                    url: compileboxServer + 'compile', // target URL
                     //url: "http://146.6.28.101:8000/compile",
                     data: compileboxArgs,
                     //data: {},
@@ -204,6 +210,7 @@
                 });
             });
         });
+
         $(document).ready(function() {
             $("#change-column").click(function() {
                 console.log("In change-column");

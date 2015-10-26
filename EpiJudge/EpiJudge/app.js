@@ -37,6 +37,8 @@ var str = function(a) {
     JSON.stringify(a, null, 4);
 }
 
+var judge = require('./controllers/judge');
+
 winston.level = 'debug';
 
 // var config = require('./config/config.json');
@@ -162,17 +164,31 @@ app.post('/api/tagcloud', function(req, res) {
 var mockPostDict = {};
 mockPostDict.summary = "Reverse a singly linked list";
 mockPostDict.description = "Take a singly linked list and reverse it in O(n) time.";
-mockPostDict.skeleton = "class Solution {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello World!\");\n\t}\n}";
-mockPostDict.hint = "Start form the end.";
-mockPostDict.testcase = "[1,3,4,9]";
-mockPostDict.hashtags = "#List #Java #InPlace #ArrayList #HashTable #Medium #AdnansFavorites"
+mockPostDict.skeleton = "class Solution {\n\tpublic static String something(String[] args) {\n\t\treturn(\"Hello World from Solution!\");\n\t}\n}";
+mockPostDict.hint = "Start from the end.";
+mockPostDict.args = "[1,2,3]";
+mockPostDict.testcases = [
+    "\n",
+    "class TestCases {",
+    "    public static void main(String[] args) {",
+    "        System.out.println(\"In a test case\");",
+    "        System.out.println(\"Your program returned \" + Solution.something(new String[1]));",
+    "    }",
+    "}",
+    ""
+].join("\n");
+
+mockPostDict.hashtags = "#List #Java #InPlace #ArrayList #HashTable #Medium #AdnansFavorites";
+
+console.log(JSON.stringify(mockPostDict, null, 4));
 
 var servePost = function(req, res) {
     var postid = req.params.postid;
     res.render('templates/post.html', mockPostDict);
 }
 
-app.get('/post/:id', servePost);
+//app.get('/post/:id', servePost);
+app.get('/post/:id', judge.servePost);
 
 
 app.post('/api/articlecloud', function(req, res) {

@@ -1,0 +1,70 @@
+summary
+Compute the parity of a long.
+
+--
+
+description
+The parity of a binary word is 1 if the number of 1s in the word is odd; otherwise, it is 0.
+For example, the parity of 1011 is 1, and the parity of 10001000 is 0.
+Parity checks are used to detect single bit errors in data storage and communication.
+It is fairly straightforward to write code that computes the parity of a single 64-bit word.
+
+How would you compute the parity of a very large number of 64-bit words?
+
+--
+
+tags
+PrimitiveTypes BitFiddling
+
+--
+
+skeleton
+import java.util.*;
+
+class Solution {
+    public static int parity(long x) {
+        return 0;
+    }
+}
+
+--
+
+testcases
+class GoldenParity {
+  public static short parity(long x) {
+    short result = 0;
+    while (x != 0) {
+      result ^= (x & 1);
+      x >>= 1;
+    }
+    return result;
+  }
+}
+
+class Parity {
+  public static void main(String[] args) {
+    if (false && args.length == 1) {
+      System.out.println("args = " + Arrays.toString(args));
+      System.out.println("args[0] = " + args[0]);
+      long x = Long.parseLong(args[0]);
+      assert(GoldenParity.parity(x) == Solution.parity(x));
+      System.out.println("x = " + x + ", parity = " + GoldenParity.parity(x));
+    } else {
+      Random r = new Random();
+      for (int times = 0; times < 1000; ++times) {
+        long x = r.nextInt(Integer.MAX_VALUE);
+        assert(GoldenParity.parity(x) == Solution.parity(x));
+        System.out.println("x = " + x + ", parity = " + GoldenParity.parity(x));
+      }
+    }
+  }
+}
+
+--
+
+args
+10
+
+--
+hint
+Be prepared to mask and shift.
