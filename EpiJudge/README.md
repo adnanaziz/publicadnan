@@ -46,17 +46,18 @@ which uses mock data to return trending tags, related posts, articles, etc.
 
 Code is submitted by an AJAX call. The callback updates the output, error and time divs in the page.
 
-Search is also currently mocked. It overwrites the 
-8 columns in the middle with the search result.
+Search is done using the node search-index package. It overwrites the 
+8 columns in the middle with the search result. Autocompletion uses the same
+library.
 
 TODOs, in no particular order
 
   - Good taxonomy of problems, easy to access
   - Right format for expressing problems
   - Construct a tag library
-  - Use mongo for search by tag, free text
   - integrate bloodhound autocompletion in search, maybe just on tags?
-  - Read all posts into one dict, dont go to file each time
+    - currently using jquery, placement of results is all off. doesnt use caching
+      right
   - add github post-commit hook to autoupdate
     - should be able to pull from github using https://github.com/nodegit/nodegit,
       supervisor will auto restart

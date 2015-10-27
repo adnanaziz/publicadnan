@@ -1,0 +1,53 @@
+summary
+The Towes of Hanoi
+
+--
+
+description
+A peg contains rings in sorted order,  with the largest ring being the lowest.
+You are to transfer these rings to another peg, which is initially empty.
+This is illustrated in the figure below.
+<br>
+<img src="/hanoi.png"></img>
+<br>
+
+Write a program which prints a sequence of operations that 
+transfers <i>n</i> rings from one peg to another.
+You have a third peg, which is initially empty.
+The only operation you can perform is taking a single ring from the top
+of one peg and placing it on the top of another peg. You must never place
+a larger ring above a smaller ring.
+
+
+--
+
+tags
+Recursion Classic
+
+--
+
+skeleton
+class Solution {
+  public static int computeTowerHanoi(int numRings) {
+  }
+}
+
+
+
+testcases
+class Hanoi {
+  public static void main(String[] args) {
+     assert(Solution.computeTowerHanoi(1) == 1);
+     assert(Solution.computeTowerHanoi(2) == 3);
+     assert(Solution.computeTowerHanoi(3) == 7);
+  }
+}
+
+--
+
+args
+6
+
+--
+hint
+If you know how to transfer the top n-1 rings, how does that help move the n-th ring?

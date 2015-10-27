@@ -81,7 +81,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h3>Description</h3>{{ description }}
+                <h3>Description</h3>{% autoescape false %}{{description}}{% endautoescape %}
             </div>
         </div>
 
@@ -263,6 +263,7 @@
             ajaxHelper('difficultytags', undefined, writeDiv);
             ajaxHelper('studyguide1', undefined, writeDiv);
             ajaxHelper('studyguide2', undefined, writeDiv);
+            ajaxHelper('articlecloud', undefined, writeDiv);
         });
     </script>
 

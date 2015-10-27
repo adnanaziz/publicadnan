@@ -213,10 +213,9 @@ app.post('/api/articlecloud', function(req, res) {
 
 app.post('/api/studyguide1', function(req, res) {
     res.json({
-        "Remove duplicates": "http://localhost",
-        "Max-difference in an array": "http://localhost",
-        "Shortest path in a maze": "http://localhost",
-        "The third reader-writer locker problem ": "http://localhost"
+        "Parity": "/post/parity-basic",
+        "Deletion from a linked list": "/post/linked-list-delete",
+        "The Towers of Hanoi": "/post/hanoi"
     });
 });
 
