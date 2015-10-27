@@ -62,7 +62,7 @@ TODOs, in no particular order
     - should be able to pull from github using https://github.com/nodegit/nodegit,
       supervisor will auto restart
   - Implement mocked API calls
-  - Try post with figure, inline html
+  - Add FB share option
   - Decide on right page layout
   - Decide on right fields for templatizing post
   - Figure out a good way to embed the discussion. My thought is to 
