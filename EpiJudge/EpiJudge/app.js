@@ -188,6 +188,7 @@ var servePost = function(req, res) {
 }
 
 //app.get('/post/:id', servePost);
+
 app.get('/post/:id', judge.servePost);
 
 

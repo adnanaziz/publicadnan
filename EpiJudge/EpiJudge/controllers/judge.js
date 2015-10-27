@@ -13,40 +13,49 @@ mockPostDict.hashtags = "#List #Java #InPlace #ArrayList #HashTable #Medium #Adn
 
 var fs = require('fs')
 
+var postToDict;
+
+function initPostToDict(callback) {
+    postToDict = {};
+    fs.readdir('./posts',
+        function(err, list) {
+            if (err) {
+                return callback(err);
+            }
+            for (var i = 0; i < list.length; i++) {
+                var data;
+                try {
+                    data = fs.readFileSync('posts/' + list[i], 'utf8');
+                } catch (readFileSyncError) {
+                    console.log("error reading file: " + readFileSyncError);
+                    continue;
+                }
+                var fields = data.split("\n--");
+                var dict = {};
+                for (var j = 0; j < fields.length; j++) {
+                    var lines = fields[j].trim().split("\n");
+                    var key = lines[0];
+                    var value = lines.slice(1).join("\n");
+                    dict[key] = value;
+                }
+                postToDict[list[i]] = dict;
+            }
+            callback(null);
+        });
+}
+
 var problemFileToDict = function(filename, callback) {
-    fs.readFile('posts/' + filename, 'utf8', function(err, data) {
-        if (err) {
-            return callback(err);
-        }
-        var fields = data.split("\n--");
-        var dict = {};
-        console.log("fields = " + fields);
-        for (var i = 0; i < fields.length; i++) {
-            console.log("fields[i] = " + fields[i]);
-            var lines = fields[i].trim().split("\n");
-            console.log("lines = " + lines);
-            var key = lines[0];
-            var value = lines.slice(1).join("\n");
-            dict[key] = value;
-        }
-        console.log("dict = " + JSON.stringify(dict, null, 4));
-        callback(null, dict);
-    });
+    if (postToDict === undefined) {
+        return initPostToDict(callback);
+    } else {
+        callback(null, postToDict[filename]);
+    }
 };
 
 module.exports.servePost = function(req, res) {
     var postid = req.params.id;
     console.log("in judge controller servepost, postid = " + postid);
-    //res.render('templates/post.html', mockPostDict);
-    var dict = problemFileToDict(postid,
-        function(err, postDict) {
-            if (err) {
-                return res.json({
-                    code: 500,
-                    "message": err
-                });
-            }
-            res.render('templates/post.html', postDict);
-            //res.render('templates/post.html', mockPostDict);
-        });
+    problemFileToDict(postid, function(err, postdict) {
+        res.render('templates/post.html', postdict);
+    });
 };
