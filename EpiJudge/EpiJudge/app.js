@@ -6,7 +6,7 @@ var express = require('express');
 //var compress = require('compression');
 var favicon = require('serve-favicon');
 //var session = require('express-session');
-//var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 //var logger = require('morgan');
 var errorHandler = require('errorhandler');
 //var lusca = require('lusca');
@@ -92,13 +92,14 @@ app.set('view cache', false);
 //app.use(logger('dev'));
 app.use(favicon(path.join(__dirname, 'public/favicon.png')));
 
-//app.use(bodyParser.json(//{
-//    limit: '50mb'
-//}));
-//app.use(bodyParser.urlencoded({
-//    limit: '50mb',
-//    extended: true
-//}));
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
+
+app.use(bodyParser.urlencoded({
+    limit: '50mb',
+    extended: true
+}));
 
 //app.use(multer({
 //    dest: path.join(__dirname, 'public/images')
@@ -145,21 +146,30 @@ var adminUserNames = {
 };
 
 
-app.post('/api/tagcloud', function(req, res) {
+app.post('/api/chaptertags', function(req, res) {
     res.json({
-        "LinkedList1": "http://localhost",
-        "LinkedList2": "http://localhost",
-        "LinkedList3": "http://localhost",
-        "LinkedList4": "http://localhost",
-        "LinkedList5": "http://localhost",
-        "Array1": "http://localhost",
-        "Array2": "http://localhost",
-        "Array3": "http://localhost",
-        "Array4": "http://localhost",
-        "Array5": "http://localhost",
-        "HashTable": "http://localhost"
+        "PrimitiveTypes": "http://localhost",
+        "Arrays": "http://localhost",
+        "Strings": "http://localhost",
+        "LinkedList": "http://localhost",
+        "StackQueue": "http://localhost",
+        "HashTable": "http://localhost",
+        "Sorting": "http://localhost",
+        "BinaryTree": "http://localhost",
+        "BST": "http://localhost",
+        "Searching": "http://localhost"
     });
 });
+
+app.post('/api/difficultytags', function(req, res) {
+    res.json({
+        "Easy": "http://localhost",
+        "Medium": "http://localhost",
+        "Hard": "http://localhost"
+    });
+});
+
+var mockPostDict = {};
 
 var mockPostDict = {};
 mockPostDict.summary = "Reverse a singly linked list";
@@ -180,8 +190,6 @@ mockPostDict.testcases = [
 
 mockPostDict.hashtags = "#List #Java #InPlace #ArrayList #HashTable #Medium #AdnansFavorites";
 
-console.log(JSON.stringify(mockPostDict, null, 4));
-
 var servePost = function(req, res) {
     var postid = req.params.postid;
     res.render('templates/post.html', mockPostDict);
@@ -190,6 +198,7 @@ var servePost = function(req, res) {
 //app.get('/post/:id', servePost);
 
 app.get('/post/:id', judge.servePost);
+app.get('/autocomplete/:autocompleteTerm', judge.autocomplete);
 
 
 app.post('/api/articlecloud', function(req, res) {
@@ -202,7 +211,7 @@ app.post('/api/articlecloud', function(req, res) {
     });
 });
 
-app.post('/api/trendingposts', function(req, res) {
+app.post('/api/studyguide1', function(req, res) {
     res.json({
         "Remove duplicates": "http://localhost",
         "Max-difference in an array": "http://localhost",
@@ -211,13 +220,18 @@ app.post('/api/trendingposts', function(req, res) {
     });
 });
 
-app.post('/api/search', function(req, res) {
+app.post('/api/studyguide2', function(req, res) {
     res.json({
-        "Search Result 1": "http://localhost",
-        "Search Result 2": "http://localhost",
-        "Search Result 3": "http://localhost"
+        "Find missing element": "http://localhost",
+        "Reverse a string": "http://localhost",
+        "Nim": "http://localhost",
+        "Game of life": "http://localhost"
     });
 });
+
+app.post('/api/search', judge.search);
+
+app.get('/api/searchSuggestionsForBloodhound', judge.autocomplete);
 
 
 /**

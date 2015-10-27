@@ -1,5 +1,3 @@
-<html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,17 +26,31 @@
         }
     </style>
 
+  <!-- For autocompletion -->
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 </head>
 
 <body>
 
-
     <!-- <div class="container"> -->
     <div class="col-md-2" id="left-column">
-        <b>Trending Tags</b>
-        <div id="tagcloud"></div>
-        <b>Suggested Problems</b>
-        <div id="trendingposts"></div>
+        <div id="epijudgebeta">
+            <!-- <img src="/epijudgebeta.png"></img> -->
+            <h2>
+
+            EPI Judge
+
+            </h2>
+        </div>
+        <b>Posts by Chapter</b>
+        <div id="chaptertags"></div>
+        <b>Posts by Difficulty</b>
+        <div id="difficultytags"></div>
+        <b>Study Guide 1</b>
+        <div id="studyguide1"></div>
+        <b>Study Guide 2</b>
+        <div id="studyguide2"></div>
     </div>
 
     <div class="col-md-8" id="mainscreen">
@@ -46,12 +58,13 @@
         <p></p>
 
         <div class="row" class="input-group search-input">
+
             <input id="search-field" class="col-md-11" class="form-control input-round search-field" style="height: 30px; font-size: 12px; line-height: 27px;" placeholder="Search" type="text" value="Add search text here">
+
             <span class="col-lg=1" class="input-group-btn search-btn-wrapper">
+
                 <button class="btn input-round search-btn" id="search-btn" style="height: 30px; border:1px solid #d3d3d3; font-size: 15px;"><i class="fa fa-search" style="display: block; margin-top: -2px;"></i>
-
                 </button>
-
             </span>
         </div>
 
@@ -177,10 +190,10 @@
     <script>
         var compileboxServer = "http://epijudge.ddns.net:8000/";
 
-        var testcases =  `{% autoescape false %}{{testcases}}{% endautoescape %}`;
+        var testcases = `{% autoescape false %}{{testcases}}{% endautoescape %}`;
         console.log("args = " + `{{args}}`);
 
-        //var numPrologueLines = prologue.split(/\r\n|\r|\n/).length;
+         //var numPrologueLines = prologue.split(/\r\n|\r|\n/).length;
 
         $(document).ready(function() {
             $("#sendto-compilebox").click(function() {
@@ -221,13 +234,13 @@
     </script>
 
     <script>
-        var divFiller = function(service, data, callback) {
+        var ajaxHelper = function(service, data, callback) {
             $.ajax({
                 type: 'POST', // http method
                 url: '/api/' + service, // target URL
                 data: data || {}, // data (the js obj)
                 success: function(serverResp) { // on ajax success
-                    callback(serverResp);
+                    callback(service, serverResp);
                 },
                 error: function(serverResp) { // on ajax failure
                     console.log('5xx http status code or unexpected response content');
@@ -235,45 +248,45 @@
             });
         }
 
+        var writeDiv = function(divid, serverResp) {
+            console.log("divid = " + divid);
+            for (var key in serverResp) {
+                //console.log(key, serverResp[key]);
+                var div = document.createElement('div');
+                div.innerHTML = '<a href="' + serverResp[key] + '">' + key + '</a>';
+                document.getElementById(divid).appendChild(div);
+            }
+        }
+
         $(document).ready(function() {
-            divFiller('tagcloud', undefined, function(serverResp) {
-                for (var key in serverResp) {
-                    console.log(key, serverResp[key]);
-                    var div = document.createElement('div');
-                    div.innerHTML = '<a href="' + serverResp[key] + '">' + key + '</a>';
-                    document.getElementById('tagcloud').appendChild(div);
-                }
-            });
-            divFiller('articlecloud', undefined, function(serverResp) {
-                for (var key in serverResp) {
-                    console.log(key, serverResp[key]);
-                    var div = document.createElement('div');
-                    div.innerHTML = '<a href="' + serverResp[key] + '">' + key + '</a>';
-                    document.getElementById('articlecloud').appendChild(div);
-                }
-            });
-            divFiller('trendingposts', undefined, function(serverResp) {
-                for (var key in serverResp) {
-                    console.log(key, serverResp[key]);
-                    var div = document.createElement('div');
-                    div.innerHTML = '<a href="' + serverResp[key] + '">' + key + '</a>';
-                    document.getElementById('trendingposts').appendChild(div);
-                }
-            });
+            ajaxHelper('chaptertags', undefined, writeDiv);
+            ajaxHelper('difficultytags', undefined, writeDiv);
+            ajaxHelper('studyguide1', undefined, writeDiv);
+            ajaxHelper('studyguide2', undefined, writeDiv);
         });
     </script>
 
     <script>
         $(document).ready(function() {
+            // clear searchbox default contents
+            $("#search-field").click(function() {
+                $("#search-field").val('');
+            });
+
             $("#search-btn").click(function() {
-                console.log("called search");
-                divFiller('search', {}, function(serverResp) {
-                    console.log("search response = " + JSON.stringify(serverResp));
-                    var searchResultHtml = "";
-                    for (var searchResult in serverResp) {
-                        searchResultHtml += '<a href="' + serverResp[searchResult] + '">' + searchResult + '</a><p></p>\n';
+                var searchTerm = $("#search-field").val().trim();
+                ajaxHelper('search', {
+                    searchTerm: searchTerm
+                }, function(service, serverResp) {
+                    if (serverResp.code !== 200) {
+                        console.log("Search error" + JSON.stringify(serverResp));
+                        return;
                     }
-                    console.log("searchResultHtml = " + searchResultHtml);
+                    var searchResultHtml = "<p><p><h3>Search Results</h3><p><p>";
+                    for (var i = 0; i < serverResp.result.length; i++) {
+                        var dict = serverResp.result[i];
+                        searchResultHtml += '<a href="' + dict.postname + '">' + dict.postname + '</a><br>' + dict.summary;
+                    }
                     $('#mainscreen').html(searchResultHtml);
                 });
             });
@@ -281,5 +294,18 @@
     </script>
 
 
+    <script>
+        $(function() {
+            $("#search-field").autocomplete({
+                source: "/api/searchSuggestionsForBloodhound",
+                minLength: 2,
+                select: function(event, ui) {
+                    console.log("Selected: " + ui.item.value 
+                            + " aka " + ui.item.id + 
+                        " input was " + this.value);
+                }
+            });
+        });
+    </script>
 
 </body>
