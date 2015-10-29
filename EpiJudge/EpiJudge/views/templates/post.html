@@ -22,12 +22,12 @@
     <style type="text/css" media="screen">
         #editor {
             width: 100%;
-            height: 40%;
+            height: 25%;
         }
     </style>
 
-  <!-- For autocompletion -->
-  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <!-- For autocompletion -->
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 </head>
 
@@ -43,14 +43,18 @@
 
             </h2>
         </div>
+        <b>Study Guide</b>
+        <div id="studyguide1"></div>
+        <!--
         <b>Posts by Chapter</b>
         <div id="chaptertags"></div>
+        -->
         <b>Posts by Difficulty</b>
         <div id="difficultytags"></div>
-        <b>Study Guide 1</b>
-        <div id="studyguide1"></div>
+        <!--
         <b>Study Guide 2</b>
         <div id="studyguide2"></div>
+        -->
     </div>
 
     <div class="col-md-8" id="mainscreen">
@@ -120,6 +124,13 @@
             <p></p>
         </div>
 
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" id="sendto-compilebox" value="submit" class="btn btn-default" id="change-column" aria-label="Change Columns">
+                    <span>Run</span>
+                </button>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -131,35 +142,48 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-5">
                 <h3>Output</h3>
                 <div id="compilebox-output"></div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-5">
                 <h3>Errors</h3>
                 <div id="compilebox-errors"></div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <h3>Runtime</h3>
                 <div id="compilebox-time"></div>
             </div>
         </div>
 
+        <div class="row">
+<div id='discourse-comments'></div>
 
+<script type="text/javascript">
+  DiscourseEmbed = { discourseUrl: 'http://talk.elementsofprogramminginterviews.com/',
+                     discourseEmbedUrl: 'http://epijudge.ddns.net/' };
 
-        <button type="button" id="sendto-compilebox" value="submit" class="btn btn-default" id="change-column" aria-label="Change Columns">
-            <span>Run</span>
-        </button>
+  (function() {
+    var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+    d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+  })();
+</script>
+
+        </div>
+
 
     </div>
 
     <div class="col-md-2" id="right-column">
+        <!--
         <div id="faq">
             <a href="http://google.com"><b><h3>FAQ <i class="fa fa-question-circle"></i></h3></b></a>
         </div>
+        -->
         <div id="buy" style="padding-top: 20px;" id="rcorners2">
             <a href="http://amzn.to/epibook">
-                <img width=100 src="http://elementsofprogramminginterviews.com/img/epi-java-thumbnail.png"></img>
+                <!--<img width=100 src="http://elementsofprogramminginterviews.com/img/epi-java-thumbnail.png"></img>-->
                 <p></p>
                 Buy at Amazon
             </a>
@@ -183,7 +207,7 @@
         document.getElementById('editor').style.fontSize = '18px';
         editor.getSession().setMode("ace/mode/java");
         editor.setFontSize(14) // will set font-size: 10px
-         //console.log(editor.getValue());
+            //console.log(editor.getValue());
     </script>
 
 
@@ -193,7 +217,7 @@
         var testcases = `{% autoescape false %}{{testcases}}{% endautoescape %}`;
         console.log("args = " + `{{args}}`);
 
-         //var numPrologueLines = prologue.split(/\r\n|\r|\n/).length;
+        //var numPrologueLines = prologue.split(/\r\n|\r|\n/).length;
 
         $(document).ready(function() {
             $("#sendto-compilebox").click(function() {
@@ -233,6 +257,7 @@
         });
     </script>
 
+
     <script>
         var ajaxHelper = function(service, data, callback) {
             $.ajax({
@@ -259,10 +284,10 @@
         }
 
         $(document).ready(function() {
-            ajaxHelper('chaptertags', undefined, writeDiv);
+            //ajaxHelper('chaptertags', undefined, writeDiv);
             ajaxHelper('difficultytags', undefined, writeDiv);
             ajaxHelper('studyguide1', undefined, writeDiv);
-            ajaxHelper('studyguide2', undefined, writeDiv);
+            //ajaxHelper('studyguide2', undefined, writeDiv);
             ajaxHelper('articlecloud', undefined, writeDiv);
         });
     </script>
@@ -301,8 +326,7 @@
                 source: "/api/searchSuggestionsForBloodhound",
                 minLength: 2,
                 select: function(event, ui) {
-                    console.log("Selected: " + ui.item.value 
-                            + " aka " + ui.item.id + 
+                    console.log("Selected: " + ui.item.value + " aka " + ui.item.id +
                         " input was " + this.value);
                 }
             });

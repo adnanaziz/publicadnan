@@ -145,6 +145,19 @@ var adminUserNames = {
     "Tsung-Hsien Lee": true
 };
 
+//CORS middleware for allowing Discourse embedding
+var allowCrossDomain = function(req, res, next) {
+    //res.header('Access-Control-Allow-Origin', 'talk.elementsofprogramminginterviews.com');
+    res.header('Access-Control-Allow-Origin', '*');
+    //res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    //res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+
+    next();
+}
+app.use(allowCrossDomain);
+
 
 app.post('/api/chaptertags', function(req, res) {
     res.json({
@@ -204,17 +217,18 @@ app.get('/autocomplete/:autocompleteTerm', judge.autocomplete);
 
 app.post('/api/articlecloud', function(req, res) {
     res.json({
-        "A Day To Remember": "http://localhost",
-        "Why Java?": "http://localhost",
-        "C++ vs. C": "http://localhost",
-        "Quicken your coding": "http://localhost",
-        "Knuth on Concurrency": "http://localhost"
+        "General facts about C, C++, Java, Python": "http://elementsofprogramminginterviews.com/Programming-Languages",
+        "General Programming Questions": "http://elementsofprogramminginterviews.com/General-Programming-Questions",
+        "Debugging and Testing": "http://elementsofprogramminginterviews.com/Debugging-and-Testing",
+        "Why we wrote EPI": "http://elementsofprogramminginterviews.com//2014/08/29/why/",
+        "Sampler": "http://elementsofprogramminginterviews.com/sample/",
     });
 });
 
 app.post('/api/studyguide1', function(req, res) {
     res.json({
         "Parity": "/post/parity-basic",
+        "Minimum in a shifted sorted array": "/post/min-shifted-sorted-array",
         "Deletion from a linked list": "/post/linked-list-delete",
         "The Towers of Hanoi": "/post/hanoi"
     });
