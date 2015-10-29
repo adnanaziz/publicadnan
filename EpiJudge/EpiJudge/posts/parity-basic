@@ -66,5 +66,13 @@ args
 10
 
 --
+
 hint
 Be prepared to mask and shift.
+
+--
+
+readmore
+CLRS Chapter 10 has some good explanations. We also like Bentley's examples.
+This <a href="https://graphics.stanford.edu/~seander/bithacks.html">article</a> has an incredible array of bit-fiddling tricks. The Wikipedia article
+is also a good resource.
