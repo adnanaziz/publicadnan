@@ -1,0 +1,94 @@
+summary
+Find the minimum in a cyclically shifted sorted array.
+
+--
+
+description
+An array is said to be cyclically sorted if it is possible to cyclically
+shift its entries so that it becomes sorted.
+For example, the array in the figure below is cyclically sorted.
+<br>
+<img src="/cyclically-sorted-array.png"></img>
+<br>
+Design an O(\log n) algorithm for finding the position of the smallest
+element in a cyclically sorted array. Assume all elements are distinct.
+For example, for the array in the example, your algorithm
+should return $4$
+
+--
+
+tags
+Array BinarySearch
+
+--
+
+skeleton
+import java.util.*;
+
+/* Return the index of the smallest entry in the array A, which 
+ * you can assume to be a cyclically shifted sorted array.
+ */
+
+class BinarySearchCircularArray {
+    public static int searchSmallest(List<Integer> A) {
+        return 0;
+    }
+}
+
+--
+
+testcases
+
+
+
+class TestBinarySearchCircularArray {
+
+  private static boolean TestArray(List<Integer> A, int expectedResult ) {
+    try {
+        int result = BinarySearchCircularArray.searchSmallest(A);
+        if (expectedResult != result) {
+            System.err.println("Failed test:" + A + "<br>");
+            System.err.println("\tExpected " + expectedResult + ", got " + result);
+            return false;
+        } else {
+            return true;
+        }
+    } catch (Exception e) {
+        System.err.println("\tThe exception was " + e.toString() + "<br>");
+        StackTraceElement[] trace = e.getStackTrace();
+        System.err.println("\tYour code threw the exception at " + trace[1] + "<br>");
+        System.err.println("\tThe input was " + A + "<br>");
+        return false;
+    }
+  }
+
+  /** Get the current line number.
+   * @return int - Current line number.
+   */
+  public static String getLineNumber() {
+      System.out.println(Thread.currentThread().getStackTrace().toString());
+      return Thread.currentThread().getStackTrace().toString(); // [4].getLineNumber();
+  }
+
+  public static void main(String[] args) {
+    List<List<Integer>> tests = new ArrayList<>();
+    List<Integer> results = new ArrayList<>();
+    tests.add(Arrays.asList(1,2,3,0));
+    results.add(0);
+    tests.add(Arrays.asList(2,3,0,1));
+    results.add(0);
+    tests.add(Arrays.asList(3,2,1,0));
+    results.add(0);
+
+    for (int i = 0; i < results.size(); i++) {
+        if ( !TestArray(tests.get(i), results.get(i)) ) {
+            System.exit(-1);
+        }
+    }
+  }
+}
+
+--
+
+hint
+Use divide and conquer.

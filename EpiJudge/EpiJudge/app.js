@@ -197,6 +197,7 @@ var servePost = function(req, res) {
 
 //app.get('/post/:id', servePost);
 
+app.get('/', function(req, res) { res.redirect('/post/min-in-shifted-sorted-array') });
 app.get('/post/:id', judge.servePost);
 app.get('/autocomplete/:autocompleteTerm', judge.autocomplete);
 
