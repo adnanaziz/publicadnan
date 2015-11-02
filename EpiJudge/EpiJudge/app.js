@@ -228,8 +228,9 @@ app.post('/api/articlecloud', function(req, res) {
 app.post('/api/studyguide1', function(req, res) {
     res.json({
         "Parity": "/post/parity-basic",
-        "Minimum in a shifted sorted array": "/post/min-shifted-sorted-array",
+        "Delete a key from an array": "/post/delete-key-from-array",
         "Deletion from a linked list": "/post/linked-list-delete",
+        "Minimum in a shifted sorted array": "/post/min-shifted-sorted-array",
         "The Towers of Hanoi": "/post/hanoi"
     });
 });

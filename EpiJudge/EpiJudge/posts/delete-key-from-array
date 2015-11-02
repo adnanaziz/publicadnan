@@ -58,4 +58,4 @@ args
 2
 --
 hint
-If you know how to transfer the top n-1 rings, how does that help move the n-th ring?
+Watch out for off-by-one errors
