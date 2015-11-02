@@ -1,5 +1,7 @@
 pagetitle
-Min in Shifter Sorted Array
+Min in Shifted Sorted Array
+
+--
 
 summary
 Find the minimum in a cyclically shifted sorted array.

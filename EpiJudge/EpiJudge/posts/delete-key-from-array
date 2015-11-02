@@ -1,0 +1,61 @@
+summary
+Delete a key from an array
+
+--
+
+description
+This problem is concerned with writing a remove function for arrays. 
+For example, if the array is <5,3,7,11,2,3,13,5,7> and the key to remove is 3, 
+then <5, 7, 11, 2, 13, 5, 7, 0, 0> is an acceptable update to the array. (The last two entries are not important—<5, 7, 11, 2, 13, 5, 7, 5, 7> would also be acceptable.) Many languages have library functions for performing this operation. You cannot use these functions.
+
+Implement a function which takes as input an array and a key, and updates the array so that all occurrences of the input key have been removed and the remaining elements have been shifted left to fill the emptied indices. Return the number of remaining elements. There are no requirements as to the values stored beyond the last valid element.
+
+--
+
+tags
+Arrays OffByOne
+
+--
+
+skeleton
+class Solution {
+  public static int deleteKey(int[] A, int key) {
+  }
+}
+
+
+--
+
+testcases
+class DeleteKey {
+
+  public void check(int[] A, key k) {
+    int[] B = Arrays.dup(A);
+    int result = deleteKey(A, k);
+    for (int i = 0; i < A.length - result; i++) {
+        if (A[i] == k) {
+            System.err.println("Failed to remove " + k + " from " + Arrays.asString(B));
+            System.err.println("\tProblem key is at index "  i );
+            System.exit(-1);
+        }
+    }
+    
+    
+  }
+
+  public static void main(String[] args) {
+     new Solution().check(new int[]{1,2,4,5,2,1,3}, 2);
+     new Solution().check(new int[]{1,2,4,5,2,1,3}, 0);
+     new Solution().check(new int[]{1,2,4,5,2,1,3}, 0);
+     System.exit(0);
+  }
+}
+
+--
+
+args
+[1,2,4,5,2,1,3]
+2
+--
+hint
+If you know how to transfer the top n-1 rings, how does that help move the n-th ring?
