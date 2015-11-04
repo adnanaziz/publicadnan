@@ -61,6 +61,7 @@
 
         <p></p>
 
+<!--
         <div class="row" class="input-group search-input">
 
             <input id="search-field" class="col-md-11" class="form-control input-round search-field" style="height: 30px; font-size: 12px; line-height: 27px;" placeholder="Search" type="text" value="Add search text here">
@@ -71,48 +72,68 @@
                 </button>
             </span>
         </div>
+-->
 
         <div class="row">
-
             <div class="col-md-8">
                 <h4>Summary</h4>{{ summary }}
             </div>
+       </div>
 
-            <div class="col-md-4">
-                <h4>Problems Tags</h4>{{ tags }}
+        <div class="row">
+            <div class="col-md-8">
+                <!-- <div class="pull-right" style="padding-right:20px"> -->
+                <div>
+                    <h4>Tags</h4>{{ tags }}
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="padding-right:20px">
                 <h3>Description</h3>{% autoescape false %}{{description}}{% endautoescape %}
             </div>
         </div>
 
-        <div class="row" style="padding-top: 20px;">
-            <div class="col-md-4">
-                <button type="button" value="submit" class="btn btn-default col-md-6" aria-label="Left Align">
-                    <span>Hint</span>
-                </button>
-            </div>
+        <div class="row" style="padding-top: 20px; padding-left:16px;">
+            <button type="button" value="submit" id="hint-btn" class="btn btn-xs btn-default " aria-label="Left Align">
+                <span>Hint 1</span>
+            </button>
 
-            <div class="col-md-4">
-                <button type="button" id="change-column" value="submit" class="btn btn-default col-md-6" aria-label="Left Align">
-                    <span>Discussion</span>
+                <button type="button" id="hint-2-btn" value="submit" class="btn btn-danger btn-xs" id="change-column">
+                    <span>Hint 2</span>
                 </button>
-            </div>
 
-            <div class="col-md-4">
-                <button type="button" value="submit" class="btn btn-default col-md-6" aria-label="Left Align">
-                    <span>Solution</span>
+            <button type="button" value="submit" id="custom-args-btn" class="btn btn-xs btn-primary " aria-label="Left Align">
+                <span>Custom args</span>
+            </button>
+
+
+            <button type="button" id="change-column" value="submit" class="btn btn-success btn-xs" aria-label="Left Align">
+                <span>Discussion</span>
+            </button>
+
+            <button type="button" value="submit" class="btn btn-info btn-xs" aria-label="Left Align">
+                <span>Solution</span>
+            </button>
+
+                <button type="button" id="sendto-compilebox" value="submit" class="btn btn-warning btn-xs" id="change-column" aria-label="Change Columns">
+                    <span>Run</span>
                 </button>
+
+        </div>
+
+        <div class="row" style="display:none" id="hint-content">
+            <div class="col-md-12">
+                <h3>Hint</h3> Here it is! {{ hint }}
+                <p></p>
             </div>
         </div>
 
 
         <div class="row">
             <div class="col-md-12">
-                <h3>Program</h3>
+                <h3>Your submission</h3>
                 <p>
             </div>
         </div>
@@ -124,69 +145,67 @@
             <p></p>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <button type="button" id="sendto-compilebox" value="submit" class="btn btn-default" id="change-column" aria-label="Change Columns">
-                    <span>Run</span>
-                </button>
-            </div>
-        </div>
 
-        <div class="row">
+        <div class="row" style="display:none" id="custom-args-content">
             <div class="col-md-12">
                 <h3>Custom arguments</h3>
-                <textarea rows=1 class="col-md-12" id="custom-test">
+                <textarea rows=1 id="custom-test">
                     {{ args }}
                 </textarea>
             </div>
         </div>
 
-        <div class="row">
-        <p><p>
-        <hr>
-            <div class="col-md-5">
-                <b>Output</b>
-                <div id="compilebox-output"></div>
-            </div>
-            <div class="col-md-5">
-                <b>Errors</b>
-                <div id="compilebox-errors"></div>
-            </div>
-            <div class="col-md-2">
-                <b>Runtime</b>
-                <div id="compilebox-time"></div>
-            </div>
-        </div>
-        <hr>
+        <div class="row" style="display:none" id="std-output">
+                    <div class="col-md-12">
+                        <b>Output</b>
+                        <pre><code><div id="compilebox-output"></div></code></pre>
+                    </div>
 
-        <div class="row">
+                    <!--
+                    <div style="display:none" class="col-md-1">
+                        <b>Runtime</b>
+                        <div id="compilebox-time"></div>
+                    </div>
+                    -->
+        </div>
+
+        <div class="row" style="display:none" id="error-output">
+             <div class="col-md-12">
+               <b>Errors</b>
+               <pre><code><div id="compilebox-errors"></div></code></pre>
+             </div>
+        </div>
+
+        <div class="row" style="display:none" id="suggest-reading-content">
             <div class="col-md-12">
-                <h3>Suggested Readings</h3>
-                   {% autoescape false %}{{readmore}}{% endautoescape %}
+                <h3>Suggested Readings</h3> {% autoescape false %}{{readmore}}{% endautoescape %}
             </div>
-            
         </div>
 
         <div class="row">
-<div id='discourse-comments'></div>
+            <div id='discourse-comments'></div>
 
-<script type="text/javascript">
-  DiscourseEmbed = { discourseUrl: 'http://talk.elementsofprogramminginterviews.com/',
-                     discourseEmbedUrl: 'http://epijudge.ddns.net/' };
+            <script type="text/javascript">
+                DiscourseEmbed = {
+                    discourseUrl: 'http://talk.elementsofprogramminginterviews.com/',
+                    discourseEmbedUrl: 'http://epijudge.ddns.net/'
+                };
 
-  (function() {
-    var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
-    d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
-  })();
-</script>
+                (function() {
+                    var d = document.createElement('script');
+                    d.type = 'text/javascript';
+                    d.async = true;
+                    d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+                })();
+            </script>
 
         </div>
 
 
     </div>
 
-<!--
+    <!--
     <div class="col-md-2" id="right-column">
         <div id="faq">
             <a href="http://google.com"><b><h3>FAQ <i class="fa fa-question-circle"></i></h3></b></a>
@@ -210,15 +229,17 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/theme-monokai.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/theme-github.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/theme-dawn.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/worker-javascript.js" type="text/javascript" charset="utf-8"></script>
     <script>
         var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/github");
-        document.getElementById('editor').style.fontSize = '18px';
+        editor.setTheme("ace/theme/vibrant_ink");
+        //document.getElementById('editor').style.fontSize = '18px';
         editor.getSession().setMode("ace/mode/java");
         editor.setFontSize(14) // will set font-size: 10px
-            //console.log(editor.getValue());
+        //console.log(editor.getValue());
     </script>
 
 
@@ -251,6 +272,9 @@
                         $('#compilebox-output').html(serverResp.output);
                         $('#compilebox-errors').html(serverResp.errors);
                         $('#compilebox-time').html(serverResp.time);
+                        $("#std-output").show();
+                        $("#error-output").show();
+
                     },
                     error: function(serverResp) { // on ajax failure
                         console.log('5xx http status code or unexpected response content');
@@ -286,10 +310,11 @@
 
         var writeDiv = function(divid, serverResp) {
             console.log("divid = " + divid);
-            for (var key in serverResp) {
+            console.log("serverResp = " + JSON.stringify(serverResp));
+            for (var i = 0; i < serverResp.length; i++) {
                 //console.log(key, serverResp[key]);
                 var div = document.createElement('div');
-                div.innerHTML = '<a href="' + serverResp[key] + '">' + key + '</a>';
+                div.innerHTML = '<a href="' + serverResp[i][1] + '">' + serverResp[i][0] + '</a>';
                 document.getElementById(divid).appendChild(div);
             }
         }
@@ -343,5 +368,46 @@
             });
         });
     </script>
+
+    <script>
+        var visibleHint = false;
+        $(function() {
+            $("#hint-btn").on("click",
+                function() {
+                    if (visibleHint === false) {
+                        $("#hint-content").show();
+                        visibleHint = true;
+                    } else {
+                        $("#hint-content").hide();
+                        visibleHint = false;
+                    }
+                    //$("#hint-content").show();
+                    // also hide
+                })
+        });
+    </script>
+
+    <script>
+        var visible = false;
+        $(function() {
+            $("#custom-args-btn").on("click",
+                function() {
+                    if (visible === false) {
+                        $("#custom-args-content").show();
+                        visible = true;
+                    } else {
+                        $("#custom-args-content").hide();
+                        visible = false;
+                    }
+                    //$("#hint-content").show();
+                    // also hide
+                })
+        });
+    </script>
+
+
+
+
+
 
 </body>

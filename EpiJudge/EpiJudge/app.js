@@ -225,14 +225,24 @@ app.post('/api/articlecloud', function(req, res) {
     });
 });
 
+var MAX_POST_TITLE = 20;
 app.post('/api/studyguide1', function(req, res) {
-    res.json({
-        "Parity": "/post/parity-basic",
-        "Delete a key from an array": "/post/delete-key-from-array",
-        "Deletion from a linked list": "/post/linked-list-delete",
-        "Minimum in a shifted sorted array": "/post/min-shifted-sorted-array",
-        "The Towers of Hanoi": "/post/hanoi"
+    var result = [
+        ["Parity", "/post/parity-basic"],
+        ["Delete a key from an array", "/post/delete-key-from-array"],
+        ["Deletion from a linked list", "/post/linked-list-delete"],
+        ["Minimum in a shifted sorted array", "/post/min-shifted-sorted-array"],
+        ["The Towers of Hanoi", "/post/hanoi"]
+    ];
+    var resultTrimmed = result.map( function(post) {
+        var mappedPost = post;
+        if (mappedPost[0].length > MAX_POST_TITLE) {
+            mappedPost[0] = mappedPost[0].substring(0,MAX_POST_TITLE) + "...";
+        }
+        return mappedPost;
     });
+    console.log(JSON.stringify(resultTrimmed));
+    res.json(resultTrimmed);
 });
 
 app.post('/api/studyguide2', function(req, res) {
