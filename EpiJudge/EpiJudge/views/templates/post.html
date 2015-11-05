@@ -32,6 +32,8 @@
 </head>
 
 <body>
+    
+    <pre id="uploaded-content"> </pre>
 
     <!-- <div class="container"> -->
     <div class="col-md-2" id="left-column">
@@ -99,21 +101,23 @@
             <button type="button" value="submit" id="hint-btn" class="btn btn-xs btn-default " aria-label="Left Align">
                 <span>Hint 1</span>
             </button>
-
-                <button type="button" id="hint-2-btn" value="submit" class="btn btn-danger btn-xs" id="change-column">
+            
+            {% if hint2 %}
+                <button type="button" id="hint2-btn" value="submit" class="btn btn-danger btn-xs" id="change-column">
                     <span>Hint 2</span>
                 </button>
+            {% endif %}
 
             <button type="button" value="submit" id="custom-args-btn" class="btn btn-xs btn-primary " aria-label="Left Align">
                 <span>Custom args</span>
             </button>
 
 
-            <button type="button" id="change-column" value="submit" class="btn btn-success btn-xs" aria-label="Left Align">
+            <a href="{{discussion|default('http://talk.elementsofprogramminginterviews.com')}}"><button type="button" id="change-column" value="submit" class="btn btn-success btn-xs" aria-label="Left Align">
                 <span>Discussion</span>
-            </button>
+            </button></a>
 
-            <button type="button" value="submit" class="btn btn-info btn-xs" aria-label="Left Align">
+            <button type="button" value="submit" id="solution-btn" class="btn btn-info btn-xs" aria-label="Left Align">
                 <span>Solution</span>
             </button>
 
@@ -121,35 +125,51 @@
                     <span>Run</span>
                 </button>
 
+                <button type="button" id="sendto-compilebox" value="submit" class="btn btn-error btn-xs" id="change-column" aria-label="Change Columns">
+                    <span>Learn more</span>
+                </button>
+
         </div>
 
         <div class="row" style="display:none" id="hint-content">
             <div class="col-md-12">
-                <h3>Hint</h3> Here it is! {{ hint }}
+                <h3>Hint</h3> {{ hint | default('No hint for this problem.') }}
+                <p></p>
+            </div>
+        </div>
+
+        <div class="row" style="display:none" id="hint2-content">
+            <div class="col-md-12">
+                <h3>Hint 2</h3> {{ hint2 | default('No hint for this problem.') }}
+                <p></p>
+            </div>
+        </div>
+
+        <div class="row" style="display:none" id="solution-content">
+            <div class="col-md-12">
+                <h3>Solution</h3> {% autoescape false %}{{ solution|default('<a href="http://amzn.to/epibook">Here</a>') }}{% endautoescape %}
                 <p></p>
             </div>
         </div>
 
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 <h3>Your submission</h3>
-                <p>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" id="drop-area">
                 <div id="editor">{{ skeleton }}</div>
             </div>
-            <p></p>
         </div>
 
 
         <div class="row" style="display:none" id="custom-args-content">
             <div class="col-md-12">
                 <h3>Custom arguments</h3>
-                <textarea rows=1 id="custom-test">
+                <textarea rows=2 id="custom-test" style="width:100%;">
                     {{ args }}
                 </textarea>
             </div>
@@ -388,6 +408,23 @@
     </script>
 
     <script>
+        var visibleHint = false;
+        $(function() {
+            $("#hint2-btn").on("click",
+                function() {
+                    if (visibleHint === false) {
+                        $("#hint2-content").show();
+                        visibleHint = true;
+                    } else {
+                        $("#hint2-content").hide();
+                        visibleHint = false;
+                    }
+                    //$("#hint-content").show();
+                    // also hide
+                })
+        });
+    </script>
+    <script>
         var visible = false;
         $(function() {
             $("#custom-args-btn").on("click",
@@ -399,15 +436,73 @@
                         $("#custom-args-content").hide();
                         visible = false;
                     }
-                    //$("#hint-content").show();
-                    // also hide
                 })
         });
     </script>
 
+    <script>
+        var visible = false;
+        $(function() {
+            $("#solution-btn").on("click",
+                function() {
+                    console.log("solution clicked");
+                    if (visible === false) {
+                        $("#solution-content").show();
+                        visible = true;
+                    } else {
+                        $("#solution-content").hide();
+                        visible = false;
+                    }
+                })
+        });
+        </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#drop-area').on('dragover', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        $('#drop-area').on('dragenter', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        $('#drop-area').on('drop', function(e){
+            if(e.originalEvent.dataTransfer){
+                if(e.originalEvent.dataTransfer.files.length) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    readAndProcessFiles(e.originalEvent.dataTransfer.files);
+                }   
+            }
+        });
 
 
+       function readAndProcessFiles(files) {
+            var file = files[0];
+            
+            var textType = /.*/; // ND: you can add specific types here, like: /text.*/ for only .txt files...
 
+            if (file.type.match(textType)) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // $('#uploaded-content').text(reader.result); 
+                    // $('#uploaded-content').text(reader.result); 
+                    editor.setValue(reader.result);
+                }
+
+                reader.readAsText(file);
+            }
+            else {
+                $('#uploaded-content').text("file not supported!");
+            }
+        }
+    });
+
+    </script>
 
 
 </body>
