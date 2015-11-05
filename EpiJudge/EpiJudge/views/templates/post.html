@@ -77,19 +77,19 @@
 -->
 
         <div class="row">
-            <div class="col-md-8">
-                <h4>Summary</h4>{{ summary }}
+            <div class="col-md-12">
+                <h4>Summary</h4>{% autoescape false %}{{ summary }}{% endautoescape %}
             </div>
        </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-8">
-                <!-- <div class="pull-right" style="padding-right:20px"> -->
                 <div>
                     <h4>Tags</h4>{{ tags }}
                 </div>
             </div>
         </div>
+        -->
 
         <div class="row">
             <div class="col-md-12" style="padding-right:20px">
