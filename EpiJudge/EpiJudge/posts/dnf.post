@@ -1,0 +1,218 @@
+slug
+DNF partitioning
+
+--
+
+summary
+Reorder an array into elements less than, equal to and greater than a key.  <b>#Arrays #OffByOne #InPlace</b>
+
+--
+
+description
+The quicksort algorithm for sorting arrays proceeds recursively—it selects an element
+(the "pivot"), reorders the array to make all the elements less than or equal to the pivot
+appear first, followed by all the elements greater than the pivot. The two subarrays
+are then sorted recursively.
+<p>
+
+Implemented naively, quicksort has large run times and deep function call stacks
+on arrays with many duplicates because the subarrays may differ greatly in size. One
+solution is to reorder the array so that all elements less than the pivot appear first,
+followed by elements equal to the pivot, followed by elements greater than the pivot.
+This is known as Dutch national flag partitioning, because the Dutch national flag
+consists of three horizontal bands, each in a different color.
+<p>
+
+As an example, assuming that black precedes white and white precedes gray,
+Figure 2.1(b) is a valid partitioning for Figure 2.1(a).
+If gray precedes black and black precedes white, Figure 2.1(c) 
+is a valid partitioning for Figure 2.1(a).  
+<br>
+<img src="/dnf.png"></img>
+<br>
+
+--
+
+problem
+Write a program that takes an array A and an index i into A, and rearranges the
+elements such that all elements less than A[i] (the "pivot") appear first, followed by
+elements equal to the pivot, followed by elements greater than the pivot.
+
+--
+
+tags
+Arrays OffByOne InPlace 
+
+--
+
+javaskeleton
+import java.util.*;
+
+class Solution {
+    public static enum Color { RED, WHITE, BLUE };
+
+    public static void dutchFlagPartition (int pivotIndex , List <Color > A) {
+        // fill me
+    }
+}
+
+--
+
+javatestcase
+
+class DNF {
+
+  public static boolean checker(List<Solution.Color> A) {
+    Solution.Color constraint = Solution.Color.RED;
+    for (int i = 0; i < A.size(); i++) {
+        Solution.Color current = A.get(i);
+        if (current.compareTo(constraint) < 0) {
+            return false;
+        } else if (current.compareTo(constraint) > 0) {
+            constraint = current;
+        }
+    }
+    return true;
+  }
+
+  public static void test(int index, List<Solution.Color> tc) {
+    ArrayList<Solution.Color> tcMutable = new ArrayList<Solution.Color>(tc);
+    Solution.dutchFlagPartition(index, tcMutable);
+    if (!checker(tcMutable)) {
+        System.err.println("Failed test case:" + tc + ", pivot = " + index);
+        System.err.println("\tYour partitioning yielded: " + tcMutable);
+        System.exit(-1);
+    }
+  }
+
+  public static void main(String[] args) {
+    List<Solution.Color> tc1 = Arrays.asList(Solution.Color.RED, Solution.Color.BLUE, Solution.Color.RED, Solution.Color.WHITE, Solution.Color.BLUE);
+    test(2, tc1);
+    List<Solution.Color> tc2 = Arrays.asList(Solution.Color.RED);
+    test(0,tc2);
+
+    System.out.println("All tests passed");
+  }
+}
+
+--
+
+cplusplusskeleton
+
+int parity(long x) {
+    // fill me
+    return 0;
+}
+
+--
+
+cplusplustestcase
+int main(int argc, char** argv) {
+    exit(0);
+}
+
+--
+
+args
+10
+
+--
+
+hint
+There's an O(n) time solution that's inplace.
+
+--
+
+hint2
+Maintain 4 subarrays.
+
+--
+
+readmore
+Wikipedia is a good resource: https://en.wikipedia.org/wiki/Dutch_national_flag_problem
+
+--
+
+solution
+The problem is trivial to solve with O(n) additional space, where n is the
+length of A. We form three lists, namely, elements less than the pivot, elements equal
+to the pivot, and elements greater than the pivot. Consequently, we write these values
+into A. The time complexity is O(n).
+
+We can avoid using O(n) additional space at the cost of increased time complexity
+as follows. In the first stage, we iterate through A starting from index 0, then index 1,
+etc. In each iteration, we seek an element smaller than the pivot—as soon as we find
+it, we move it to the subarray of smaller elements via an exchange. This moves all
+the elements less than the pivot to the start of the array. The second stage is similar
+to the first one, the difference being that we move elements greater than the pivot to
+the end of the array. Code illustrating this approach is shown below.
+
+<pre>
+<code>
+public static void dutchFlagPartition(int pivotIndex, List<Color> A) {
+    Color pivot = A.get(pivotIndex);
+    // First pass: group elements smaller than pivot.
+    for (int i = 0; i < A.size(); ++i) {
+      // Look for a smaller element.
+      for (int j = i + 1; j < A.size(); ++j) {
+        if (A.get(j).ordinal() < pivot.ordinal()) {
+          Collections.swap(A, i, j);
+          break;
+        }
+      }
+    }
+    // Second pass: group elements larger than pivot.
+    for (int i = A.size() - 1; i >= 0 && A.get(i).ordinal() >= pivot.ordinal();
+         --i) {
+      // Look for a larger element. Stop when we reach an element less
+      // than pivot, since first pass has moved them to the start of A.
+      for (int j = i - 1; j >= 0 && A.get(j).ordinal() >= pivot.ordinal();
+           --j) {
+        if (A.get(j).ordinal() > pivot.ordinal()) {
+          Collections.swap(A, i, j);
+          break;
+        }
+      }
+    }
+  }
+</code>
+</pre>
+
+The additional space complexity is now O(1), but the time complexity is O(n^2),
+e.g., if i = n/2 and all elements before i are greater than A[i], and all elements after i
+are less than A[i]. Intuitively, this approach has bad time complexity because in the
+first pass when searching for each additional element smaller than the pivot we start
+from the beginning. However, there is no reason to start from so far back—we can
+begin from the last location we advanced to. (Similar comments hold for the second
+pass.)
+
+To improve time complexity, we make a single pass and move all the elements
+less than the pivot to the beginning, In the second pass we move the larger elements
+to the end. It is easy to perform each pass in a single iteration, moving out-of-place
+elements as soon as they are discovered.
+
+
+<code>
+<pre>
+public static void dutchFlagPartition(int pivotIndex, List<Color> A) {
+    Color pivot = A.get(pivotIndex);
+    // First pass: group elements smaller than pivot.
+    int smaller = 0;
+    for (int i = 0; i < A.size(); ++i) {
+      if (A.get(i).ordinal() < pivot.ordinal()) {
+        Collections.swap(A, smaller++, i);
+      }
+    }
+    // Second pass: group elements larger than pivot.
+    int larger = A.size() - 1;
+    for (int i = A.size() - 1; i >= 0 && A.get(i).ordinal() >= pivot.ordinal();
+         --i) {
+      if (A.get(i).ordinal() > pivot.ordinal()) {
+        Collections.swap(A, larger--, i);
+      }
+    }
+  }
+</code>
+</pre>
+
+The time complexity is O(n) and the space complexity is O(1).

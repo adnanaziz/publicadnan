@@ -1,0 +1,205 @@
+slug
+Integer-String 
+
+--
+
+summary
+Interconvert strings and integers.  <b>#Strings #PrimitiveTypes</b>
+
+--
+
+description
+
+A string is a sequence of characters. A string may encode an integer, e.g., “123”
+encodes 123. In this problem, you are to implement methods that take a string
+representing an integer and return the corresponding integer, and vice versa. Your
+code should handle negative integers. You cannot use library functions like <code>stoi</code> in
+C++ and <code>parseInt</code> in Java.
+
+
+--
+
+problem
+Implement string/integer inter-conversion functions.
+
+--
+
+tags
+Strings PrimitiveTypes
+
+--
+
+javaskeleton
+import java.util.*;
+
+class Solution {
+    public static String intToString (int x) {
+        // write me!
+        return "";
+    }
+
+    public static int stringToInt (String s) {
+        // write me!
+        return 0;
+    }
+}
+
+--
+
+javatestcase
+
+class ATOI {
+
+  static void checkToString(int x) {
+    String s = Solution.intToString(x);
+    try {
+      if (!new Integer(Solution.intToString(x)).equals(x)) {
+          System.err.println("Failed on integer input " + x);
+          System.err.println("\tYour output was " +  s);
+          System.exit(-1);
+      }
+    } catch (NumberFormatException e) {
+        System.err.println("Failed: noninteger string " + s + " on integer input " + x);
+          System.exit(-1);
+    }
+  }
+
+  static void checkFromString(String s) {
+    int x = Solution.stringToInt(s);
+    if (!new Integer(s).equals(x)) {
+      System.err.println("Failed on string input " + s);
+      System.err.println("\tYour output was " +  x);
+      System.exit(-1);
+    }
+  }
+
+  public static void main(String[] args) {
+    checkToString(123);
+    checkToString(0);
+    checkToString(-1);
+    checkToString(1);
+    checkToString(2); 
+    checkToString(1000000); 
+    checkToString(Integer.MAX_VALUE);
+    checkToString(Integer.MAX_VALUE-1);
+    checkToString(Integer.MIN_VALUE);
+    checkToString(Integer.MIN_VALUE+1);
+
+    checkFromString("123");
+    checkFromString("0");
+    checkFromString("-1");
+    checkFromString("-10000");
+    checkFromString("444");
+    checkFromString(""+ Integer.MAX_VALUE);
+    checkFromString(""+ (Integer.MAX_VALUE-1));
+    checkFromString(""+ Integer.MIN_VALUE);
+    checkFromString(""+ (Integer.MIN_VALUE+1));
+  }
+}
+
+--
+
+cplusplusskeleton
+
+int parity(long x) {
+    // fill me
+    return 0;
+}
+
+--
+
+cplusplustestcase
+int main(int argc, char** argv) {
+    exit(0);
+}
+
+--
+
+args
+10
+
+--
+
+hint
+Build the result one digit at a time.
+
+--
+
+readmore
+Kernighan and Ritchie has lots of examples.
+
+--
+
+solution
+Let's consider the integer to string problem first. If the number to convert
+is a single digit, i.e., it is between 0 and 9, the result is easy to compute: it is the string
+consisting of the single character encoding that digit.
+<p>
+
+If the number has more than one digit, it is natural to perform the conversion
+digit-by-digit. The key insight is that for any positive integer x, the least significant
+digit in the decimal representation of x is x mod 10, and the remaining digits are
+x/10. This approach computes the digits in reverse order, e.g., if we begin with 423,
+we get 3 and are left with 42 to convert. Then we get 2, and are left with 4 to convert.
+Finally, we get 4 and there are no digits to convert. There are multiple ways in which
+we can form a string from the reverse order of the digits, but a particularly simple
+and memory-efficient way is to add the digits to the end of a string, and eventually
+reverse it.
+<p>
+
+If x is negative, we record that, negate x, and then add a ’-’ before reversing. If x is
+0, our code breaks out of the iteration without writing any digits, in which case we
+need to explicitly set a 0.
+<p>
+
+To convert from a string to an integer we recall the basic working of a positional
+number system. A base-10 number d_2 d_1 d_0 encodes the number 10^2 * d2 + 10^1 * d1 + d0.
+A brute-force algorithm then is to begin with the rightmost digit, and iteratively add
+10i * di to a cumulative sum. The efficient way to compute 10i+1 is to use the existing
+value 10i and multiply that by 10.
+<p>
+
+A more elegant solution is to begin from the leftmost digit and with each succeeding
+digit, multiply the partial result by 10 and add that digit. For example, to convert
+"314" to an integer, we initial the partial result r to 0. In the first iteration, r = 3, in
+the second iteration r = 3*10+1 = 31, and in the third iteration r = 31*10+4 = 314,
+which is the final result.
+<p>
+
+Negative numbers are handled by recording the sign and negating the result
+<p>
+
+<pre>
+<code>
+  public static String intToString(int x) {
+    boolean isNegative = false;
+    if (x < 0) {
+      x = -x;
+      isNegative = true;
+    }
+
+    StringBuilder s = new StringBuilder();
+    do {
+      s.append((char)('0' + x % 10));
+      x /= 10;
+    } while (x != 0);
+
+    if (isNegative) {
+      s.append('-'); // Adds the negative sign back.
+    }
+    s.reverse();
+    return s.toString();
+  }
+
+  public static int stringToInt(String s) {
+    boolean isNegative = s.charAt(0) == '-';
+    int result = 0;
+    for (int i = s.charAt(0) == '-' ? 1 : 0; i < s.length(); ++i) {
+      int digit = s.charAt(i) - '0';
+      result = result * 10 + digit;
+    }
+    return isNegative ? -result : result;
+  }
+</pre>
+</code>
+

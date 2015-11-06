@@ -1,0 +1,182 @@
+slug
+Does list cycle?
+
+--
+
+summary
+Does a list end in a cycle?<b>#LinkedLists #TwoPointerTrick</b>
+
+--
+
+description
+See the figure for an example of a singly linked list.
+<br>
+<img src="/singly-linked-list.png"></img>
+<br>
+Although a linked list is supposed to be a sequence of nodes ending in null, it is
+possible to create a cycle in a linked list by making the next field of an element
+reference to one of the earlier nodes.
+<p>
+
+--
+
+problem
+Given a reference to the head of a singly linked list, how would you determine
+whether the list ends in null or reaches a cycle of nodes? Write a program that returns
+null if there does not exist a cycle, and the reference to the start of the cycle if a cycle
+is present. (You do not know the length of the list in advance.)
+
+
+
+--
+
+tags
+LinkedLists TwoPointerTrick
+
+--
+
+javaskeleton
+import java.util.*;
+
+class ListNode {
+    public int data;
+    public ListNode next;
+}
+
+class Solution {
+    public static ListNode hasCycle (ListNode head) {
+        // fill me!
+        return null;
+    }
+}
+
+--
+
+javatestcase
+
+class Checker {
+
+  String listToString(ListNode L) {
+    if (L == null) {
+        return "";
+    } else {
+        return L.data + (L.next != null) ? (" -> " + listToString(L.next)) : "";
+    }
+  }
+
+  public static void main(String[] args) {
+    ListNode L0 = new ListNode();
+    L0.data = 0;
+    ListNode L1 = new ListNode();
+    L1.data = 1;
+    ListNode L2 = new ListNode();
+    L2.data = 2;
+    L0.next = L1;
+    L1.next = L2;
+    L2.next = L1;
+
+    if (Solution.hasCycle(L0) != L1) {
+        System.err.println("Failed on " + listToString(L0));
+        System.exit(-1);
+    }
+    System.out.println("All tests passed!");
+  }
+}
+
+--
+
+cplusplusskeleton
+
+int parity(long x) {
+    // fill me
+    return 0;
+}
+
+--
+
+cplusplustestcase
+int main(int argc, char** argv) {
+    exit(0);
+}
+
+--
+
+args
+10
+
+--
+
+hint
+Hint: Consider using two iterators, one fast and one slow
+
+--
+
+solution
+This problem has several solutions. If space is not an issue, the simplest
+approach is to explore nodes via the next field starting from the head and storing
+visited nodes in a hash table—a cycle exists if and only if we visit a node already
+in the hash table. If no cycle exists, the search ends at the tail (often represented by
+having the next field set to null). This solution requires O(n) space, where n is the
+number of nodes in the list.
+<p>
+
+A brute-force approach that does not use additional storage and does not modify
+the list is to traverse the list in two loops—the outer loop traverses the nodes one-byone,
+and the inner loop starts from the head, and traverses as many nodes as the outer
+loop has gone through so far. If the node being visited by the outer loop is visited
+twice, a loop has been detected. (If the outer loop encounters the end of the list, no
+cycle exists.) This approach has O(n^2) time complexity.
+<p>
+
+This idea can be made to work in linear time—use a slow iterator and a fast iterator
+to traverse the list. In each iteration, advance the slow iterator by one and the fast
+iterator by two. The list has a cycle if and only if the two iterators meet. The reasoning
+is as follows: if the fast iterator jumps over the slow iterator, the slow iterator will
+equal the fast iterator in the next step.
+<p>
+
+Now, assuming that we have detected a cycle using the above method, we can
+find the start of the cycle, by first calculating the cycle length C. Once we know there
+is a cycle, and we have a node on it, it is trivial to compute the cycle length. To find
+the first node on the cycle, we use two iterators, one of which is C ahead of the other.
+We advance them in tandem, and when they meet, that node must be the first node
+on the cycle.
+<p>
+
+The code to do this traversal is quite simple:
+<pre>
+<code>
+public static ListNode<Integer> hasCycle(ListNode<Integer> head) {
+    ListNode<Integer> fast = head, slow = head;
+
+    while (fast != null && fast.next != null && fast.next.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+      if (slow == fast) {
+        // There is a cycle, so now let's calculate the cycle length.
+        int cycleLen = 0;
+        do {
+          ++cycleLen;
+          fast = fast.next;
+        } while (slow != fast);
+
+        // Finds the start of the cycle.
+        ListNode<Integer> cycleLenAdvancedIter = head;
+        // cycleLenAdvancedIter pointer advances cycleLen first.
+        while (cycleLen-- > 0) {
+          cycleLenAdvancedIter = cycleLenAdvancedIter.next;
+        }
+
+        ListNode<Integer> iter = head;
+        // Both iterators advance in tandem.
+        while (iter != cycleLenAdvancedIter) {
+          iter = iter.next;
+          cycleLenAdvancedIter = cycleLenAdvancedIter.next;
+        }
+        return iter; // iter is the start of cycle.
+      }
+    }
+    return null; // no cycle.
+  }
+</code>
+</pre>
