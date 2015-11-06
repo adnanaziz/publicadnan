@@ -229,11 +229,22 @@ var MAX_POST_TITLE = 20;
 app.post('/api/studyguide1', function(req, res) {
     var result = [
         ["Parity", "/post/parity-basic"],
+        ["DNF Partitioning", "/post/dnf"],
+        ["Integer-String conversion", "/post/atoi"],
+        ["Test list for cyclicity", "/post/test-list-for-cyclicity"],
         ["Delete a key from an array", "/post/delete-key-from-array"],
         ["Deletion from a linked list", "/post/linked-list-delete"],
         ["Minimum in a shifted sorted array", "/post/min-shifted-sorted-array"],
         ["The Towers of Hanoi", "/post/hanoi"]
     ];
+
+    //TODO(AA): sync file access to make this work
+    //var resultnew = [];
+    //var postsToDict = judge.postsToDict;
+    //for (var key in postsToDict) {
+    //    result.push([postsToDict[key].slug, "/posts/" + postsToDict[key].slug]);
+    //}
+
     var resultTrimmed = result.map( function(post) {
         var mappedPost = post;
         if (mappedPost[0].length > MAX_POST_TITLE) {
@@ -241,7 +252,7 @@ app.post('/api/studyguide1', function(req, res) {
         }
         return mappedPost;
     });
-    console.log(JSON.stringify(resultTrimmed));
+    console.log("resultTrimmed = " + JSON.stringify(resultTrimmed));
     res.json(resultTrimmed);
 });
 

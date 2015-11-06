@@ -1,17 +1,24 @@
+slug
+Parity
+
+--
+
 summary
-Compute the parity of a long.<br>
-#PrimitiveTypes #BitFiddling
+Compute the parity of a long.  <b>#PrimitiveTypes #BitFiddling</b>
 
 --
 
 description
 The parity of a binary word is 1 if the number of 1s in the word is odd; otherwise, it is 0.
-<p>
 For example, the parity of 1011 is 1, and the parity of 10001000 is 0.
 <p>
 Parity checks are used to detect single bit errors in data storage and communication.
 It is fairly straightforward to write code that computes the parity of a single 64-bit word.
 <p>
+
+--
+
+problem
 How would you compute the parity of a very large number of 64-bit words?
 
 --
@@ -26,6 +33,7 @@ import java.util.*;
 
 class Solution {
     public static int parity(long x) {
+        // fill me!
         return 0;
     }
 }
@@ -45,19 +53,41 @@ class GoldenParity {
 }
 
 class Parity {
+
+  public static void checker(long x) {
+      int theirs = Solution.parity(x);
+      if (GoldenParity.parity(x) != theirs) {
+        System.err.println("Failed on input x = " + x);
+        System.err.println("\tExpected " + GoldenParity.parity(x)  + ", got " + theirs);
+        System.exit(-1);
+      }
+  }
+
   public static void main(String[] args) {
+    //TODO(AA): compilebox is feeding "-" as argument to program, why?
     if (false && args.length == 1) {
       System.out.println("args = " + Arrays.toString(args));
       System.out.println("args[0] = " + args[0]);
       long x = Long.parseLong(args[0]);
-      assert(GoldenParity.parity(x) == Solution.parity(x));
-      System.out.println("x = " + x + ", parity = " + GoldenParity.parity(x));
+      checker(x);
     } else {
+      checker(0);
+      checker(1);
+      checker(-1);
+      checker(2);
+      checker(-2);
+      checker(2*2*2*2);
+      checker(32*32*32*32);
+      checker(32*32*32*32 + 1);
+      checker(32*32*32*32 - 1);
+      checker(Long.MAX_VALUE);
+      checker(Long.MIN_VALUE);
+      checker(Long.MAX_VALUE-1);
+      checker(Long.MIN_VALUE+1);
       Random r = new Random();
       for (int times = 0; times < 1000; ++times) {
         long x = r.nextInt(Integer.MAX_VALUE);
-        assert(GoldenParity.parity(x) == Solution.parity(x));
-        System.out.println("x = " + x + ", parity = " + GoldenParity.parity(x));
+        checker(x);
       }
     }
   }
@@ -68,6 +98,8 @@ class Parity {
 cplusplusskeleton
 
 int parity(long x) {
+    // fill me
+    return 0;
 }
 
 --

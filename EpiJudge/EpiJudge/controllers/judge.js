@@ -13,7 +13,18 @@ mockPostDict.hashtags = "#List #Java #InPlace #ArrayList #HashTable #Medium #Adn
 
 var fs = require('fs')
 
+module.exports.postToDict = postToDict;
+
 var postToDict;
+
+var POST_SUFFIX = ".post";
+var endsWith = function(str, suffix) {
+    if (suffix.length > str.length) {
+        return false;
+    } else {
+        return str.substring(str.length - POST_SUFFIX.length, str.length) === POST_SUFFIX;
+    }
+}
 
 function initPostToDict(callback) {
     postToDict = {};
@@ -25,6 +36,9 @@ function initPostToDict(callback) {
             for (var i = 0; i < list.length; i++) {
                 var data;
                 try {
+                    if (!endsWith(list[i],POST_SUFFIX)) {
+                        continuel
+                    }
                     data = fs.readFileSync('posts/' + list[i], 'utf8');
                 } catch (readFileSyncError) {
                     console.log("error reading file: " + readFileSyncError);
@@ -38,7 +52,8 @@ function initPostToDict(callback) {
                     var value = lines.slice(1).join("\n");
                     dict[key] = value;
                 }
-                postToDict[list[i]] = dict;
+                var postKey = list[i].substring(0,list[i].length - POST_SUFFIX.length);
+                postToDict[postKey] = dict;
             }
             console.log("postToDict is now " + JSON.stringify(postToDict));
             createSearchIndex(callback);
