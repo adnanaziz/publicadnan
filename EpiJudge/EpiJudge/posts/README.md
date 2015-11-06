@@ -11,6 +11,7 @@ We use swig to fill in post.html, which is templatized by the keys in the dictio
 Below is an example of a problem.
 
 <pre>
+<code>
 
 slug
 Parity
@@ -59,20 +60,43 @@ class GoldenParity {
 }
 
 class Parity {
+
+  public static void checker(long x) {
+      int theirs = Solution.parity(x);
+      if (GoldenParity.parity(x) != theirs) {
+        System.err.println("Failed on input x = " + x);
+        System.err.println("\tExpected " + GoldenParity.parity(x)  + ", got " + theirs);
+        System.exit(-1);
+      }
+  }
+
   public static void main(String[] args) {
-    if (false && args.length == 1) {
+    //TODO(AA): compilebox is feeding "-" as argument to program, why?
+    /*
+    if (args.length == 1) {
       System.out.println("args = " + Arrays.toString(args));
       System.out.println("args[0] = " + args[0]);
       long x = Long.parseLong(args[0]);
-      assert(GoldenParity.parity(x) == Solution.parity(x));
-      System.out.println("x = " + x + ", parity = " + GoldenParity.parity(x));
-    } else {
-      Random r = new Random();
-      for (int times = 0; times < 1000; ++times) {
-        long x = r.nextInt(Integer.MAX_VALUE);
-        assert(GoldenParity.parity(x) == Solution.parity(x));
-        System.out.println("x = " + x + ", parity = " + GoldenParity.parity(x));
-      }
+      checker(x);
+    } 
+    */
+    checker(0);
+    checker(1);
+    checker(-1);
+    checker(2);
+    checker(-2);
+    checker(2*2*2*2);
+    checker(32*32*32*32);
+    checker(32*32*32*32 + 1);
+    checker(32*32*32*32 - 1);
+    checker(Long.MAX_VALUE);
+    checker(Long.MIN_VALUE);
+    checker(Long.MAX_VALUE-1);
+    checker(Long.MIN_VALUE+1);
+    Random r = new Random();
+    for (int times = 0; times < 1000; ++times) {
+      long x = r.nextInt(Integer.MAX_VALUE);
+      checker(x);
     }
   }
 }
@@ -112,3 +136,6 @@ readmore
 CLRS Chapter 10 has some good explanations. We also like Bentley's examples.
 This <a href="https://graphics.stanford.edu/~seander/bithacks.html">article</a> has an incredible array of bit-fiddling tricks. The Wikipedia article
 is also a good resource.
+
+</code>
+</pre>
