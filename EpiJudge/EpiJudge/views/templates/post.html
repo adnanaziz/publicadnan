@@ -98,17 +98,45 @@
         </div>
 
         <div class="row" style="padding-top: 20px; padding-left:16px;">
+
+            <!--<span class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Language
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Java</a></li>
+                <li><a href="#">C++</a></li>
+                <li><a href="#">Python</a></li>
+              </ul>
+            </span>
+-->
+
+        <div class="row">
+<div style="padding-left:10px">
+<select class="form-control col-md-2" id="language-select" style="width:80px;">
+    <option value="Java">Java</option>
+    <option value="Python">Python</option>
+    <option value="C++">C++</option>
+</select>
+</div>
+
+<div class="col-md-1">
+</div>
+
+<div class="col-md-8">
+
             <button type="button" value="submit" id="hint-btn" class="btn btn-xs btn-default " aria-label="Left Align">
                 <span>Hint 1</span>
             </button>
             
             {% if hint2 %}
-                <button type="button" id="hint2-btn" value="submit" class="btn btn-danger btn-xs" id="change-column">
+                <button type="button" id="hint2-btn" value="submit" class="btn btn-danger btn-xs">
                     <span>Hint 2</span>
                 </button>
             {% endif %}
 
-            <button type="button" value="submit" id="custom-args-btn" class="btn btn-xs btn-primary " aria-label="Left Align">
+            <button type="button" value="submit" id="custom-args-btn" class="btn btn-xs btn-primary">
                 <span>Custom args</span>
             </button>
 
@@ -117,19 +145,32 @@
                 <span>Discussion</span>
             </button></a>
 
-            <button type="button" value="submit" id="solution-btn" class="btn btn-info btn-xs" aria-label="Left Align">
+            <button type="button" value="submit" id="solution-btn" class="btn btn-info btn-xs">
                 <span>Solution</span>
             </button>
 
-                <button type="button" id="sendto-compilebox" value="submit" class="btn btn-warning btn-xs" id="change-column" aria-label="Change Columns">
+                <button type="button" id="sendto-compilebox" value="submit" class="btn btn-warning btn-xs">
                     <span>Run</span>
                 </button>
 
-                <button type="button" id="sendto-compilebox" value="submit" class="btn btn-error btn-xs" id="change-column" aria-label="Change Columns">
+                <button type="button" id="sendto-compilebox" value="submit" class="btn btn-error btn-xs">
                     <span>Learn more</span>
                 </button>
 
+</div>
+
+<div class="col-md-2">
+                <button type="button" id="share-facebook" value="submit" class="btn btn-primary btn-xs">
+                    <span><i class="fa fa-facebook-official fa-2x"></i></span>
+                </button>
+
+                <button type="button" id="share-twitter" value="submit" class="btn btn-primary btn-xs">
+                    <span><i class="fa fa-twitter-square fa-2x"></i></span>
+                </button>
+
         </div>
+
+</div>
 
         <div class="row" style="display:none" id="hint-content">
             <div class="col-md-12">
@@ -161,10 +202,13 @@
 
         <div class="row">
             <div class="col-md-12" id="drop-area">
-                <div id="editor">{{ skeleton }}</div>
+                <div id="editor">{{ javaskeleton }}</div>
             </div>
         </div>
 
+        <div class="row" style="display:none" id="cplusplusskeleton-content">
+            {{cplusplusskeleton}}
+        </div>
 
         <div class="row" style="display:none" id="custom-args-content">
             <div class="col-md-12">
@@ -266,10 +310,13 @@
     <script>
         var compileboxServer = "http://epijudge.ddns.net:8000/";
 
-        var testcases = `{% autoescape false %}{{testcases}}{% endautoescape %}`;
+        var javatestcase = `{% autoescape false %}{{java-testcase}}{% endautoescape %}`; 
+        var pythontestcase = `{% autoescape false %}{{python-testcase}}{% endautoescape %}`;
+        var cplusplustestcase = `{% autoescape false %}{{cplusplustestcase}}{% endautoescape %}`;
         console.log("args = " + `{{args}}`);
 
         //var numPrologueLines = prologue.split(/\r\n|\r|\n/).length;
+        console.log($("#language-select").val())
 
         $(document).ready(function() {
             $("#sendto-compilebox").click(function() {
@@ -502,6 +549,14 @@
         }
     });
 
+    </script>
+
+    <script>
+        $("#language-select").change(function() {
+             // console.log("selection changed, new language is " + $("#language-select").val());
+            editor.setValue($("#cplusplusskeleton-content").text());
+            console.log("here!");
+        });
     </script>
 
 

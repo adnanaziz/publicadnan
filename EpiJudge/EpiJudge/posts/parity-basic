@@ -21,7 +21,7 @@ PrimitiveTypes BitFiddling
 
 --
 
-skeleton
+javaskeleton
 import java.util.*;
 
 class Solution {
@@ -32,7 +32,7 @@ class Solution {
 
 --
 
-testcases
+javatestcase
 class GoldenParity {
   public static short parity(long x) {
     short result = 0;
@@ -61,6 +61,20 @@ class Parity {
       }
     }
   }
+}
+
+--
+
+cplusplusskeleton
+
+int parity(long x) {
+}
+
+--
+
+cplusplustestcase
+int main(int argc, char** argv) {
+    exit(0);
 }
 
 --
