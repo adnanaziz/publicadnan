@@ -29,6 +29,10 @@
     <!-- For autocompletion -->
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
+    <!-- For nice notifications -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
 </head>
 
 <body>
@@ -493,6 +497,18 @@
                 })
         });
     </script>
+
+    <script>
+
+        toastr.options.preventDuplicates = true;
+        var visible = false;
+        $(function() {
+            $("[id^=share-]").on("click",
+                function() {
+                    toastr["success"]('This will be used to share the problem.');
+                })
+        });
+        </script>
 
     <script>
         var visible = false;
