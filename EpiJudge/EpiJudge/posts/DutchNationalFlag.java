@@ -1,12 +1,14 @@
 // Copyright (c) 2015 Elements of Programming Interviews. All rights reserved.
 
 /*
-    @slug dutch-national-flag
+    @slug 
+    dutch-national-flag
 
-    @title Dutch National Flag Partitioning
+    @title 
+    Dutch National Flag Partitioning
 
     @context
-    The quicksort algorithm for sorting arrays proceeds recursively—it selects an element
+    The quicksort algorithm for sorting arrays proceeds recursively-it selects an element
     (the "pivot"), reorders the array to make all the elements less than or equal to the pivot
     appear first, followed by all the elements greater than the pivot. The two subarrays
     are then sorted recursively.
@@ -26,7 +28,8 @@
     <img src="/dnf.png"></img>
     <br>
 
-    @summary Reorder an array into elements less than, equal to and greater than a key.  <b>#Arrays #OffByOne #InPlace</b>
+    @summary 
+    Reorder an array into elements less than, equal to and greater than a key.  <b>#Arrays #OffByOne #InPlace</b>
 
     @problem
     Write a program that takes an array A and an index i into A, and rearranges the
@@ -34,7 +37,8 @@
     elements equal to the pivot, followed by elements greater than the pivot.
     <p>
 
-    @hint It's possible to do this in O(n) time and O(1) space.
+    @hint 
+    It's possible to do this in O(n) time and O(1) space.
 
  */
 
@@ -53,7 +57,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class DutchNationalFlag {
+class DutchNationalFlag {
   // @include
   // @judge-include-display
   public static enum Color { RED, WHITE, BLUE }
@@ -98,12 +102,17 @@ public class DutchNationalFlag {
   public static void main(String[] args) {
     Random gen = new Random();
 
-    for (int times = 0; times < 1000; ++times) {
-      int n;
-      if (args.length == 1) {
-        n = Integer.parseInt(args[0]);
-      } else {
-        n = gen.nextInt(100) + 1;
+    for (int times = 0; times < 10; ++times) {
+      int n = 10;
+        
+      try {
+        if (args.length == 1) {
+          n = Integer.parseInt(args[0]);
+        } else {
+          n = gen.nextInt(100) + 1;
+        }
+      } catch (Exception e) {
+        // user provided bad input (or compilebox gave us a -) so we skip
       }
 
       List<Color> A = randArray(n);
@@ -113,22 +122,32 @@ public class DutchNationalFlag {
 
       new DutchNationalFlag().dutchFlagPartition(pivotIndex, A);
 
+      check(pivot, A);
+
+
+    }
+  }
+
+  public static void check(Color pivot, List<Color> A) {
+      int n = A.size();
       int i = 0;
       while (i < n && A.get(i).ordinal() < pivot.ordinal()) {
-        System.out.print(A.get(i) + " ");
+        //System.out.print(A.get(i) + " ");
         ++i;
       }
       while (i < n && A.get(i) == pivot) {
-        System.out.print(A.get(i) + " ");
+        //System.out.print(A.get(i) + " ");
         ++i;
       }
       while (i < n && A.get(i).ordinal() > pivot.ordinal()) {
-        System.out.print(A.get(i) + " ");
+        //System.out.print(A.get(i) + " ");
         ++i;
       }
       System.out.println();
 
-      assert(i == n);
+      if (i != n) {
+        System.err.println("Failed test, saw " + A);
+        System.exit(-1);
+      }
     }
-  }
 }

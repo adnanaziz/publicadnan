@@ -26,6 +26,96 @@ var endsWith = function(str, suffix) {
     }
 }
 
+function parseFile(filename, callback) {
+    var fileContent;
+    console.log("filename = " + filename);
+    try {
+        fileContent = fs.readFileSync('posts/' + filename, 'utf8');
+    } catch (readFileSyncError) {
+        return callback("error reading file: " + readFileSyncError);
+    }
+    //console.log("fileContent = " + fileContent);
+
+    var lines = fileContent.split("\n");
+
+    var result = {};
+    for (var i = 0; i < lines.length; i++) {
+        var currentField;
+        if (lines[i].match(/^\s+@/)) {
+            console.log("matched line " + lines[i]);
+            currentField = lines[i].trim().substring(1); // drop leading @
+            result[currentField] = "";
+            i++;
+            while (!(lines[i].match(/^\s+@/)) && !(lines[i].match(/^\s+\*\//))) {
+                result[currentField] += lines[i];
+                i++;
+            }
+            i--; // back up one line
+        }
+    }
+    
+    // now get the skeleton
+    var skeleton = "";
+    var begin = -1;
+    var end;
+    var skeletonWrite = false;
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        if (line.match(/\/\/\ @judge-include-display/)) {
+            if (!skeletonWrite && begin == -1) {
+                begin = i;
+            }
+            skeletonWrite = true;
+        }
+        if (line.match(/\/\/\ @judge-exclude-display/)) {
+            skeletonWrite = false;
+            end = i;
+        }
+        if (skeletonWrite && !line.match(/\/\/\ @judge-include-display/)) {
+            skeleton += line + "\n";
+        }
+    }
+    result.javaskeleton = skeleton;
+
+/*
+    if "// @judge-include-display" in line:
+        if not skeletonWrite and begin == -1:
+            begin = lineNum
+        skeletonWrite = True
+    if "// @judge-exclude-display" in line:
+        skeletonWrite = False
+        end = lineNum
+    if skeletonWrite and not "// @judge-include-display" in line:
+        skeleton.write("%s\n" % line)
+    lineNum = lineNum + 1
+*/
+
+    // now create the test cases
+    var testcase = "";
+    console.log("begin, end = " + begin + " " + end);
+    for (var i = 0; i < begin; i++) {
+        testcase += lines[i] + "\n";
+    }
+    testcase += "// @judge-fill\n";   
+    for (var i = end+1; i < lines.length; i++) {
+        testcase += lines[i] + "\n";
+    }
+    result.javatestcase = testcase;
+    console.log(">>> result = " + JSON.stringify(result, null, 4));
+    callback(null, result);
+
+/*
+    for i in range(0,begin):
+        test.write("%s\n" % lines[i])
+    
+    test.write("// @judge-fill")
+    
+    for i in range(end+1,len(lines)):
+        test.write("%s\n" % lines[i])
+*/
+
+};
+
 function initPostToDict(callback) {
     postToDict = {};
     fs.readdir('./posts',
@@ -37,7 +127,7 @@ function initPostToDict(callback) {
                 var data;
                 try {
                     if (!endsWith(list[i],POST_SUFFIX)) {
-                        continuel
+                        continue;
                     }
                     data = fs.readFileSync('posts/' + list[i], 'utf8');
                 } catch (readFileSyncError) {
@@ -97,12 +187,21 @@ var problemFileToDict = function(filename, callback) {
     }
 };
 
+var slugToFileName = {
+    "dnf":"DutchNationalFlag.java"
+};
+
 module.exports.servePost = function(req, res) {
     var postid = req.params.id;
-    console.log("in judge controller servepost, postid = " + postid);
-    console.log("in judge controller postToDict = " + JSON.stringify(postToDict));
-    problemFileToDict(postid, function(err, postdict) {
-        res.render('templates/post.html', postdict);
+    parseFile(slugToFileName[postid], function(err, postDict) {
+        if (err) {
+            console.log("Error " + err);
+            res.render('templates/routingerror.html', {serverError:500, serverErrorMessage:err});
+        } else {
+            //problemFileToDict(postid, function(err, postDict) {
+                res.render('templates/post.html', postDict);
+            //});
+        }
     });
 };
 

@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{pagetitle | default('EPI Judge')}}</title>
+    <title>{{title | default('EPI Judge')}}</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -15,6 +15,10 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cerulean/bootstrap.min.css">
+    </script>
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
@@ -36,38 +40,151 @@
 </head>
 
 <body>
-    
-    <pre id="uploaded-content"> </pre>
 
-    <!-- <div class="container"> -->
-    <div class="col-xs-2" id="left-column">
-        <div id="epijudgebeta">
-            <!-- <img src="/epijudgebeta.png"></img> -->
-            <h2>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
 
-            EPI Judge
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
 
-            </h2>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Primitive Types <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Parity</a> </li>
+                            <li><a href="#">atoi</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Arrays<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Dutch National Flag</a> </li>
+                            <li><a href="#">Delete a  key</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">String<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Base conversion</a> </li>
+                            <li><a href="#">Replace and remove</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Linked Lists<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Merge two sorted lists</a> </li>
+                            <li><a href="#">Test for cyclicity</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stack, Queues<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Implement a stack with max API</a> </li>
+                            <li><a href="#">Evaluate RPN expressions</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Binary Trees<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Test if a binary tree is balanced</a> </li>
+                            <li><a href="#">Compute the LCA</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Heaps<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Merge sorted arrays</a> </li>
+                            <li><a href="#">Compute the exterior of a binary tree</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Searching<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">First occurence of a key</a> </li>
+                            <li><a href="#">Search a cyclically sorted array</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hash Tables<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Anagrams</a> </li>
+                            <li><a href="#">ISBN Cache</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sorting<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">In-place mergesort</a> </li>
+                            <li><a href="#">Render a calendar</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">BSTs<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Compute the LCA in a BST</a> </li>
+                            <li><a href="#">Enumerate numbers of the form a + b sqrt(2)</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recursion<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">The towers of Hanoi</a> </li>
+                            <li><a href="#">Powerset</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">D.P.<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Number of ways</a> </li>
+                            <li><a href="#">The <pre>bedbathandbeyond.com</pre> problem</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Greedy Algos<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Huffman Coding</a> </li>
+                            <li><a href="#">The 3-sum problem</a> </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Graphs<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Search a maze</a> </li>
+                            <li><a href="#">Paint a Boolean matrix</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-        <b>Suggested Problems</b>
-        <div id="studyguide1"></div>
-        <!--
-        <b>Posts by Chapter</b>
-        <div id="chaptertags"></div>
-        <b>Posts by Difficulty</b>
-        <div id="difficultytags"></div>
-        -->
-        <!--
-        <b>Study Guide 2</b>
-        <div id="studyguide2"></div>
-        -->
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>EPI Judge</h1>
+            <h2>Learn by hands-on coding!</h2>
+        </div>
     </div>
 
-    <div class="col-xs-10" id="mainscreen" style="padding-right:40px">
+    <row>
+        <div class="col-xs-12" id="mainscreen" style="padding-right:40px">
 
-        <p></p>
-
-<!--
+            <!--
         <div class="row" class="input-group search-input">
 
             <input id="search-field" class="col-xs-11" class="form-control input-round search-field" style="height: 30px; font-size: 12px; line-height: 27px;" placeholder="Search" type="text" value="Add search text here">
@@ -80,13 +197,33 @@
         </div>
 -->
 
-        <div class="row">
-            <div class="col-xs-12">
-                <h4>Summary</h4>{% autoescape false %}{{ summary }}{% endautoescape %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Summary</h3>
+                </div>
+                <div class="panel-body">
+                    {% autoescape false %}{{ summary }}{% endautoescape %}
+                </div>
             </div>
-       </div>
 
-        <!-- <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Description</h3>
+                </div>
+                <div class="panel-body">
+                    {% autoescape false %}{{ context }}{% endautoescape %}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Problem</h3>
+                </div>
+                <div class="panel-body">
+                    {% autoescape false %}{{ problem }}{% endautoescape %}
+                </div>
+            </div>
+            <!-- <div class="row">
             <div class="col-xs-8">
                 <div>
                     <h4>Tags</h4>{{ tags }}
@@ -95,22 +232,9 @@
         </div>
         -->
 
-        <div class="row">
-            <div class="col-xs-12" style="padding-right:20px">
-                <h4>Description</h4>{% autoescape false %}{{description}}{% endautoescape %}
-            </div>
-        </div>
+            <div class="row" style="padding-top: 20px; padding-left:16px;">
 
-        <div class="row">
-            <div class="col-xs-12" style="padding-right:20px">
-                <h4>Problem</h4>{% autoescape false %}{{problem}}{% endautoescape %}
-            </div>
-        </div>
-
-
-        <div class="row" style="padding-top: 20px; padding-left:16px;">
-
-            <!--<span class="dropdown">
+                <!--<span class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Language
                 <span class="caret"></span>
@@ -123,163 +247,150 @@
             </span>
 -->
 
-        <div class="row">
-<div style="padding-left:10px">
-<select class="form-control input-xs col-xs-2" id="language-select" style="width:80px;">
-    <option value="Java" class="form-control input-xs">Java</option>
-    <option value="C++" class="form-control input-xs">C++</option>
-    <option value="Python" class="form-control input-xs">Python</option>
-</select>
-</div>
+                <!--
+                <div class="row">
+                    <div style="padding-left:10px">
+                        <select class="form-control input-xs col-xs-2" id="language-select" style="width:80px;">
+                            <option value="Java" class="form-control input-xs">Java</option>
+                            <option value="C++" class="form-control input-xs">C++</option>
+                            <option value="Python" class="form-control input-xs">Python</option>
+                        </select>
+                    </div>
+-->
 
-<div class="col-xs-1">
-</div>
 
-<div class="col-xs-8">
+                <button type="button" value="submit" id="hint-btn" class="btn btn-xs btn-default " aria-label="Left Align">
+                    <span>Hint {% if hint2 %}1{% endif %}</span>
+                </button>
 
-            <button type="button" value="submit" id="hint-btn" class="btn btn-xs btn-default " aria-label="Left Align">
-                <span>Hint 1</span>
-            </button>
-            
-            {% if hint2 %}
+                {% if hint2 %}
                 <button type="button" id="hint2-btn" value="submit" class="btn btn-danger btn-xs">
                     <span>Hint 2</span>
                 </button>
-            {% endif %}
+                {% endif %}
 
-            <button type="button" value="submit" id="custom-args-btn" class="btn btn-xs btn-primary">
-                <span>Custom args</span>
-            </button>
+                <button type="button" value="submit" id="custom-args-btn" class="btn btn-xs btn-primary">
+                    <span>Custom args</span>
+                </button>
 
 
-            <a href="{{discussion|default('http://talk.elementsofprogramminginterviews.com')}}"><button type="button" id="change-column" value="submit" class="btn btn-success btn-xs" aria-label="Left Align">
-                <span>Discussion</span>
-            </button></a>
+                <a href="{{discussion|default('http://talk.elementsofprogramminginterviews.com')}}">
+                    <button type="button" id="change-column" value="submit" class="btn btn-success btn-xs" aria-label="Left Align">
+                        <span>Discussion</span>
+                    </button>
+                </a>
 
-            <button type="button" value="submit" id="solution-btn" class="btn btn-info btn-xs">
+                <!-- <button type="button" value="submit" id="solution-btn" class="btn btn-info btn-xs">
                 <span>Solution</span>
             </button>
+            -->
 
                 <button type="button" id="sendto-compilebox" value="submit" class="btn btn-warning btn-xs">
                     <span>Run</span>
                 </button>
 
+                <!-- 
                 <button type="button" id="sendto-compilebox" value="submit" class="btn btn-error btn-xs">
                     <span>Learn more</span>
                 </button>
+                -->
 
-</div>
+                <!-- 
+                <div class="col-xs-2">
+                    <button type="button" id="share-facebook" value="submit" class="btn btn-primary btn-xs">
+                        <span><i class="fa fa-facebook-official fa-2x"></i></span>
+                    </button>
 
-<div class="col-xs-2">
-                <button type="button" id="share-facebook" value="submit" class="btn btn-primary btn-xs">
-                    <span><i class="fa fa-facebook-official fa-2x"></i></span>
-                </button>
-
-                <button type="button" id="share-twitter" value="submit" class="btn btn-primary btn-xs">
-                    <span><i class="fa fa-twitter-square fa-2x"></i></span>
-                </button>
-
-        </div>
-
-</div>
-
-        <div class="row" style="display:none" id="hint-content">
-            <div class="col-xs-12">
-                <h4>Hint</h4> {{ hint | default('No hint for this problem.') }}
-                <p></p>
-            </div>
-        </div>
-
-        <div class="row" style="display:none" id="hint2-content">
-            <div class="col-xs-12">
-                <h4>Hint 2</h4> {{ hint2 | default('No hint for this problem.') }}
-                <p></p>
-            </div>
-        </div>
-
-        <div class="row" style="display:none" id="solution-content">
-            <div class="col-xs-12">
-                <h4>Solution</h4> {% autoescape false %}{{ solution|default('<a href="http://amzn.to/epibook">Here</a>') }}{% endautoescape %}
-                <p></p>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-xs-10">
-                <h4>Your submission</h4>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12" id="drop-area">
-                <div id="editor">{{ javaskeleton }}</div>
-            </div>
-        </div>
-
-        <div class="row" style="display:none" id="cplusplusskeleton-content">
-            {{cplusplusskeleton}}
-        </div>
-
-        <div class="row" style="display:none" id="custom-args-content">
-            <div class="col-xs-12">
-                <h4>Custom arguments</h4>
-                <textarea rows=2 id="custom-test" style="width:100%;">
-                    {{ args }}
-                </textarea>
-            </div>
-        </div>
-
-        <div class="row" style="display:none" id="std-output">
-                    <div class="col-xs-12">
-                        <b>Output</b>
-                        <pre><code><div id="compilebox-output"></div></code></pre>
-                    </div>
-
-                    <!--
-                    <div style="display:none" class="col-xs-1">
-                        <b>Runtime</b>
-                        <div id="compilebox-time"></div>
-                    </div>
+                    <button type="button" id="share-twitter" value="submit" class="btn btn-primary btn-xs">
+                        <span><i class="fa fa-twitter-square fa-2x"></i></span>
+                    </button>
+                </div>
                     -->
-        </div>
 
-        <div class="row" style="display:none" id="error-output">
-             <div class="col-xs-12">
-               <b>Errors</b>
-               <pre><code><div id="compilebox-errors"></div></code></pre>
-             </div>
-        </div>
-
-        <div class="row" style="display:none" id="suggest-reading-content">
-            <div class="col-xs-12">
-                <h4>Suggested Readings</h4> {% autoescape false %}{{readmore}}{% endautoescape %}
             </div>
+
+            <div class="panel panel-default" style="display:none" id="hint-content">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Hint</h3>
+                </div>
+                <div class="panel-body">
+                    {{ hint | default('No hint for this problem.') }}
+                </div>
+            </div>
+
+            <div class="panel panel-default" style="display:none" id="hint2-content">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Hint 2</h3>
+                </div>
+                <div class="panel-body">
+                    {{ hint2 | default('No hint for this problem.') }}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Your solution</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="editor">{{ javaskeleton }}</div>
+                </div>
+            </div>
+
+            <div class="panel panel-default" style="display:none" id="custom-args-content">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Custom arguments</h3>
+                </div>
+                <div class="panel-body">
+                    <textarea rows=2 id="custom-test" style="width:100%;">{{ args }}</textarea>
+                </div>
+            </div>
+            <div class="row" style="display:none" id="cplusplusskeleton-content">
+                {{cplusplusskeleton}}
+            </div>
+
+            <div class="panel panel-default" id="compilebox-output-container" style="display:none">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><pre>stdout</pre></h3>
+                </div>
+                <div class="panel-body">
+                    <pre><code><div id="compilebox-output"></div></code></pre>
+                </div>
+            </div>
+
+            <div class="panel panel-default" id="compilebox-errors-container" style="display:none">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><pre>stderr</pre></h3>
+                </div>
+                <div class="panel-body">
+                    <pre><code><div id="compilebox-errors"></div></code></pre>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div id='discourse-comments'></div>
+
+                <script type="text/javascript">
+                    DiscourseEmbed = {
+                        discourseUrl: 'http://talk.elementsofprogramminginterviews.com/',
+                        discourseEmbedUrl: 'http://epijudge.ddns.net/'
+                    };
+
+                    (function() {
+                        var d = document.createElement('script');
+                        d.type = 'text/javascript';
+                        d.async = true;
+                        d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+                    })();
+                </script>
+
+            </div>
+
+
         </div>
 
-        <div class="row">
-            <div id='discourse-comments'></div>
-
-            <script type="text/javascript">
-                DiscourseEmbed = {
-                    discourseUrl: 'http://talk.elementsofprogramminginterviews.com/',
-                    discourseEmbedUrl: 'http://epijudge.ddns.net/'
-                };
-
-                (function() {
-                    var d = document.createElement('script');
-                    d.type = 'text/javascript';
-                    d.async = true;
-                    d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
-                })();
-            </script>
-
-        </div>
-
-
-    </div>
-
+    </row>
     <!--
     <div class="col-xs-2" id="right-column">
         <div id="faq">
@@ -314,14 +425,14 @@
         //document.getElementById('editor').style.fontSize = '18px';
         editor.getSession().setMode("ace/mode/java");
         editor.setFontSize(14) // will set font-size: 10px
-        //console.log(editor.getValue());
+            //console.log(editor.getValue());
     </script>
 
 
     <script>
         var compileboxServer = "http://epijudge.ddns.net:8000/";
 
-        var javatestcase = `{% autoescape false %}{{javatestcase}}{% endautoescape %}`; 
+        var javatestcase = `{% autoescape false %}{{javatestcase}}{% endautoescape %}`;
         var pythontestcase = `{% autoescape false %}{{pythontestcase}}{% endautoescape %}`;
         var cplusplustestcase = `{% autoescape false %}{{cplusplustestcase}}{% endautoescape %}`;
         console.log("args = " + `{{args}}`);
@@ -332,9 +443,11 @@
         $(document).ready(function() {
             $("#sendto-compilebox").click(function() {
                 console.log("In compilebox");
+                var editorText = editor.getValue();
+                var codeToRun = javatestcase.replace("// @judge-fill", "\n // submitted solution:\n" + editorText + "\n// end submitted solution\n");
                 var compileboxArgs = {
                     "language": 8, // Java
-                    "code": editor.getValue() + javatestcase,
+                    "code": codeToRun,
                     "stdin": $("#custom-test").text()
                 };
 
@@ -350,6 +463,8 @@
                         $('#compilebox-output').html(serverResp.output);
                         $('#compilebox-errors').html(serverResp.errors);
                         $('#compilebox-time').html(serverResp.time);
+                        $('#compilebox-output-container').show();
+                        $('#compilebox-errors-container').show();
                         $("#std-output").show();
                         $("#error-output").show();
 
@@ -499,7 +614,6 @@
     </script>
 
     <script>
-
         toastr.options.preventDuplicates = true;
         var visible = false;
         $(function() {
@@ -508,7 +622,7 @@
                     toastr["success"]('This will be used to share the problem.');
                 })
         });
-        </script>
+    </script>
 
     <script>
         var visible = false;
@@ -525,58 +639,56 @@
                     }
                 })
         });
-        </script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#drop-area').on('dragover', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#drop-area').on('dragover', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
 
-        $('#drop-area').on('dragenter', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        });
+            $('#drop-area').on('dragenter', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
 
-        $('#drop-area').on('drop', function(e){
-            if(e.originalEvent.dataTransfer){
-                if(e.originalEvent.dataTransfer.files.length) {
-                    e.preventDefault();
-                    e.stopPropagation();
+            $('#drop-area').on('drop', function(e) {
+                if (e.originalEvent.dataTransfer) {
+                    if (e.originalEvent.dataTransfer.files.length) {
+                        e.preventDefault();
+                        e.stopPropagation();
 
-                    readAndProcessFiles(e.originalEvent.dataTransfer.files);
-                }   
-            }
-        });
-
-
-       function readAndProcessFiles(files) {
-            var file = files[0];
-            
-            var textType = /.*/; // ND: you can add specific types here, like: /text.*/ for only .txt files...
-
-            if (file.type.match(textType)) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    // $('#uploaded-content').text(reader.result); 
-                    // $('#uploaded-content').text(reader.result); 
-                    editor.setValue(reader.result);
+                        readAndProcessFiles(e.originalEvent.dataTransfer.files);
+                    }
                 }
+            });
 
-                reader.readAsText(file);
-            }
-            else {
-                $('#uploaded-content').text("file not supported!");
-            }
-        }
-    });
 
+            function readAndProcessFiles(files) {
+                var file = files[0];
+
+                var textType = /.*/; // ND: you can add specific types here, like: /text.*/ for only .txt files...
+
+                if (file.type.match(textType)) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        // $('#uploaded-content').text(reader.result); 
+                        // $('#uploaded-content').text(reader.result); 
+                        editor.setValue(reader.result);
+                    }
+
+                    reader.readAsText(file);
+                } else {
+                    $('#uploaded-content').text("file not supported!");
+                }
+            }
+        });
     </script>
 
     <script>
         $("#language-select").change(function() {
-             // console.log("selection changed, new language is " + $("#language-select").val());
+            // console.log("selection changed, new language is " + $("#language-select").val());
             editor.setValue($("#cplusplusskeleton-content").text());
             console.log("here!");
         });
