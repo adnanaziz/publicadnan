@@ -75,6 +75,8 @@ function parseFile(filename, callback) {
             skeleton += line + "\n";
         }
     }
+    skeleton =  "import java.util.*;\n\nclass Solution {\n\n" + skeleton;
+    skeleton = skeleton + "\n}";
     result.javaskeleton = skeleton;
 
 /*
@@ -93,6 +95,7 @@ function parseFile(filename, callback) {
     // now create the test cases
     var testcase = "";
     console.log("begin, end = " + begin + " " + end);
+    result.begin = begin;
     for (var i = 0; i < begin; i++) {
         testcase += lines[i] + "\n";
     }

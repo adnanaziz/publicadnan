@@ -430,6 +430,32 @@
 
 
     <script>
+        var postProcess = function(errors, begin) {
+            console.log("errors = " + errors);
+            var lines = errors.split("\n");
+            var result = "";
+            for (var i = 0; i < lines.length; i++) {
+                var tmp = lines[i].replace("/usercode/file.java:", "") + "\n";
+                if (tmp.match(/^\d+:/)) {
+                    var parts = tmp.split(":");
+                    parts[0] = "Line " + (parseInt(parts[0]) - (begin-1));
+                    parts = parts.join(":");
+                    result += parts;
+                    console.log("parts = " + parts);
+                } else {
+                    result += tmp;
+                }
+            }
+            console.log("begin = " + begin);
+            return result;
+        };
+
+        var postProcessEditorText = function(text) {
+            var lines = text.split("\n");
+            var result = lines.slice(3, -2).join("\n");
+            return result;
+        }
+
         var compileboxServer = "http://epijudge.ddns.net:8000/";
 
         var javatestcase = `{% autoescape false %}{{javatestcase}}{% endautoescape %}`;
@@ -444,7 +470,8 @@
             $("#sendto-compilebox").click(function() {
                 console.log("In compilebox");
                 var editorText = editor.getValue();
-                var codeToRun = javatestcase.replace("// @judge-fill", "\n // submitted solution:\n" + editorText + "\n// end submitted solution\n");
+                var massagedEditorText = postProcessEditorText(editorText);
+                var codeToRun = javatestcase.replace("// @judge-fill", "\n // submitted solution:\n" + massagedEditorText  + "\n// end submitted solution\n");
                 var compileboxArgs = {
                     "language": 8, // Java
                     "code": codeToRun,
@@ -459,9 +486,13 @@
                     data: compileboxArgs,
                     //data: {},
                     success: function(serverResp) { // on ajax success
-                        console.log("serverResp = " + JSON.stringify(serverResp));
+
+                        //console.log("serverResp = " + JSON.stringify(serverResp));
+                        var begin = {{begin}};
+                        var massagedErrors = postProcess(serverResp.errors, begin);
+                        console.log(massagedErrors);
                         $('#compilebox-output').html(serverResp.output);
-                        $('#compilebox-errors').html(serverResp.errors);
+                        $('#compilebox-errors').html(massagedErrors);
                         $('#compilebox-time').html(serverResp.time);
                         $('#compilebox-output-container').show();
                         $('#compilebox-errors-container').show();
