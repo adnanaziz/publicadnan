@@ -7,19 +7,11 @@
     @title 
     Dutch National Flag Partitioning
 
-    @context
-    The quicksort algorithm for sorting arrays proceeds recursively-it selects an element
-    (the "pivot"), reorders the array to make all the elements less than or equal to the pivot
-    appear first, followed by all the elements greater than the pivot. The two subarrays
-    are then sorted recursively.
+    @problem
+    Write a program that takes an array A and an index i into A, and rearranges the
+    elements such that all elements less than A[i] (the "pivot") appear first, followed by
+    elements equal to the pivot, followed by elements greater than the pivot.
     <p>
-
-    Implemented naively, quicksort has large run times and deep function call stacks
-    on arrays with many duplicates because the subarrays may differ greatly in size. One
-    solution is to reorder the array so that all elements less than the pivot appear first,
-    followed by elements equal to the pivot, followed by elements greater than the pivot.
-    This is known as Dutch national flag partitioning, because the Dutch national flag
-    consists of three horizontal bands, each in a different color.
     As an example, assuming that black precedes white and white precedes gray,
     Figure 2.1(b) is a valid partitioning for Figure 2.1(a).
     If gray precedes black and black precedes white, Figure 2.1(c)
@@ -27,15 +19,6 @@
     <br>
     <img src="/dnf.png"></img>
     <br>
-
-    @summary 
-    Reorder an array into elements less than, equal to and greater than a key.  <b>#Arrays #OffByOne #InPlace</b>
-
-    @problem
-    Write a program that takes an array A and an index i into A, and rearranges the
-    elements such that all elements less than A[i] (the "pivot") appear first, followed by
-    elements equal to the pivot, followed by elements greater than the pivot.
-    <p>
 
     @hint 
     It's possible to do this in O(n) time and O(1) space.

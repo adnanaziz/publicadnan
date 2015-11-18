@@ -46,8 +46,9 @@ function parseFile(filename, callback) {
             currentField = lines[i].trim().substring(1); // drop leading @
             result[currentField] = "";
             i++;
-            while (!(lines[i].match(/^\s+@/)) && !(lines[i].match(/^\s+\*\//))) {
+            while (!(lines[i].match(/^\s*@/)) && !(lines[i].match(/^\s*\*\//))) {
                 result[currentField] += lines[i];
+                console.log("lines[i] = " + lines[i]);
                 i++;
             }
             i--; // back up one line
@@ -191,7 +192,14 @@ var problemFileToDict = function(filename, callback) {
 };
 
 var slugToFileName = {
-    "dnf":"DutchNationalFlag.java"
+    "parity":"Parity1.java",
+    "dnf":"DutchNationalFlag.java",
+    "integer-string-conversion": "InterconvertingStringInteger.java",
+    "base-conversion": "ConvertBase.java",
+    "list-cycle": "CheckingCycle.java",
+    "stack-with-max": "StackWithMax.java",
+    "binary-tree-level-order": "BinaryTreeLevelOrder.java",
+    "is-binary-tree-balanced": "BalancedBinaryTree.java"
 };
 
 module.exports.servePost = function(req, res) {
