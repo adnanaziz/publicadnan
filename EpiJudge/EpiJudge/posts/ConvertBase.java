@@ -21,7 +21,7 @@ public class ConvertBase {
   // @include
   // @judge-include-display
   public static String convertBase(String s, int b1, int b2) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     boolean isNegative = s.startsWith("-");
     int x = 0;
     for (int i = (isNegative ? 1 : 0); i < s.length(); ++i) {
@@ -43,7 +43,7 @@ public class ConvertBase {
     }
     result.reverse();
     return result.toString();
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
   // @exclude

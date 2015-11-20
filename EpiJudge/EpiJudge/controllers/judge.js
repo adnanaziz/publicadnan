@@ -13,6 +13,8 @@ mockPostDict.hashtags = "#List #Java #InPlace #ArrayList #HashTable #Medium #Adn
 
 var fs = require('fs')
 
+var print = console.log;
+
 module.exports.postToDict = postToDict;
 
 var postToDict;
@@ -58,7 +60,7 @@ function parseFile(filename, callback) {
             i++;
             while (!(lines[i].match(/^\s*@/)) && !(lines[i].match(/^\s*\*\//))) {
                 result[currentField] += lines[i];
-                console.log("lines[i] = " + lines[i]);
+                // console.log("lines[i] = " + lines[i]);
                 i++;
             }
             i--; // back up one line
@@ -124,10 +126,25 @@ function parseFile(filename, callback) {
     for (var i = 0; i < prototypes.length; i++) {
         try {
             fileContent = fs.readFileSync('posts/' + prototypes[i], 'utf8');
+
             var tmp1 = fileContent.replace(/\s*import/g, "// import");
-            var tmp2 = tmp1.replace(/package com.epi/g, "// package com.epi");
-            var tmp3 = tmp2.replace(/public class/g, "class");
-            testcase = testcase + "\n\n" + tmp3;
+            var tmp2 = tmp1.replace(/package com.epi;/g, "// package com.epi;\n");
+
+            if (tmp2.match(/\npublic\ class\ BinaryTreePrototypeTemplate\ {/)) {
+                print("matched special static class");
+                //tmp2 = tmp2.replace("public class BinaryTreePrototypeTemplate {", "// public class BinaryTreePrototypeTemplate {");
+                tmp2 = tmp2.replace("public class BinaryTreePrototypeTemplate {", "\n// public class BinaryTreePrototypeTemplate {");
+                tmp2 = tmp2.replace("\n}", "\n//}");
+                tmp2 = tmp2.replace("public static class", "class");
+            }  else if (tmp2.match(/\npublic\ class\ BinarySearchTreePrototypeTemplate\ {/)) {
+                print("matched special static class");
+                //tmp2 = tmp2.replace("public class BinaryTreePrototypeTemplate {", "// public class BinaryTreePrototypeTemplate {");
+                tmp2 = tmp2.replace("public class BinarySearchTreePrototypeTemplate {", "\n// public class BinaryTreePrototypeTemplate {");
+                tmp2 = tmp2.replace("\n}", "\n//}");
+                tmp2 = tmp2.replace("public static class", "class");
+            }  
+
+            testcase = testcase + "\n\n" + tmp2;
         } catch (readFileSyncError) {
             return callback("error reading file: " + readFileSyncError);
         }

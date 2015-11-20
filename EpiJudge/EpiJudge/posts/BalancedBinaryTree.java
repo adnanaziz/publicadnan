@@ -9,7 +9,8 @@
    A binary tree is said to be balanced if for each node in the tree,
    the difference in the height of its left and right subtrees is at most one.
    A perfect binary tree is balanced, as is a complete binary tree.
-   A balanced binary tree does not have to be perfect or complete---see the figure for an example.
+   A balanced binary tree does not have to be perfect or complete---see the
+   figure for an example.
    <p>
 
    Write a program that takes as input the root of a binary tree
@@ -41,9 +42,9 @@ public class BalancedBinaryTree {
 
   // @judge-include-display
   public static boolean isBalanced(BinaryTreeNode<Integer> tree) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     return checkBalanced(tree).balanced;
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
 

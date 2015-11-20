@@ -21,7 +21,7 @@ public class CheckingCycle {
   // @include
   // @judge-include-display
   public static ListNode<Integer> hasCycle(ListNode<Integer> head) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     ListNode<Integer> fast = head, slow = head;
 
     while (fast != null && fast.next != null && fast.next.next != null) {
@@ -52,7 +52,7 @@ public class CheckingCycle {
       }
     }
     return null; // no cycle.
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
   // @exclude

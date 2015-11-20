@@ -10,9 +10,11 @@ package com.epi;
     @problem
     Given a binary tree,
     return an array consisting of the keys at the same level. Keys should appear
-    in the order of the corresponding nodes' depths, breaking ties from left to right.
+    in the order of the corresponding nodes' depths, breaking ties from left to
+   right.
     For example, you should return
-    << 314>, <6, 6>, <271, 561, 2, 271>, <28, 0, 3, 1, 28>, <17, 401, 257>, <641 >> for the
+    << 314>, <6, 6>, <271, 561, 2, 271>, <28, 0, 3, 1, 28>, <17, 401, 257>, <641
+   >> for the
     binary tree in the figure.
     <p>
 
@@ -36,7 +38,7 @@ public class BinaryTreeLevelOrder {
   // @judge-include-display
   public static List<List<Integer>> binaryTreeDepthOrder(
       BinaryTreeNode<Integer> tree) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     Queue<BinaryTreeNode<Integer>> processingNodes = new LinkedList<>();
     processingNodes.add(tree);
     int numNodesToProcessAtCurrentLevel = processingNodes.size();
@@ -63,7 +65,7 @@ public class BinaryTreeLevelOrder {
       }
     }
     return result;
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
   // @exclude

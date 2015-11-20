@@ -1,15 +1,17 @@
 // Copyright (c) 2015 Elements of Programming Interviews. All rights reserved.
 
 /*
-    @slug 
+    @slug
     dutch-national-flag
 
-    @title 
+    @title
     Dutch National Flag Partitioning
 
     @problem
-    Write a program that takes an array A and an index i into A, and rearranges the
-    elements such that all elements less than A[i] (the "pivot") appear first, followed by
+    Write a program that takes an array A and an index i into A, and rearranges
+   the
+    elements such that all elements less than A[i] (the "pivot") appear first,
+   followed by
     elements equal to the pivot, followed by elements greater than the pivot.
     <p>
     As an example, assuming that black precedes white and white precedes gray,
@@ -20,18 +22,19 @@
     <img src="/dnf.png"></img>
     <br>
 
-    @hint 
+    @hint
     It's possible to do this in O(n) time and O(1) space.
 
  */
 
 // epi py script to remove @judge directives
-// 
+//
 // judge py script reads whole file. main will run entirely (?).
 // we will import java.util.*, strip leading package and import statements
-// questions: 
+// questions:
 //   how is the user supplied part executed?
-//   what if user adds classes? they will be inner classes here, is that a problem? 
+//   what if user adds classes? they will be inner classes here, is that a
+//   problem?
 //      (i think we will have to make methods nonstatic to get away with this)
 // package com.epi;
 
@@ -40,13 +43,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-class DutchNationalFlag {
+public class DutchNationalFlag {
   // @include
   // @judge-include-display
   public static enum Color { RED, WHITE, BLUE }
 
-  public void dutchFlagPartition(int pivotIndex, List<Color> A) {
-  // @judge-exclude-display
+  public static void dutchFlagPartition(int pivotIndex, List<Color> A) {
+    // @judge-exclude-display
+    Color pivot = A.get(pivotIndex);
 
     /**
      * Keep the following invariants during partitioning:
@@ -69,9 +73,9 @@ class DutchNationalFlag {
     }
     // @judge-include-display
   }
-    // @judge-exclude-display
+  // @judge-exclude-display
 
-    // @exclude
+  // @exclude
 
   private static List<Color> randArray(int len) {
     Random r = new Random();
@@ -87,7 +91,7 @@ class DutchNationalFlag {
 
     for (int times = 0; times < 10; ++times) {
       int n = 10;
-        
+
       try {
         if (args.length == 1) {
           n = Integer.parseInt(args[0]);
@@ -106,31 +110,29 @@ class DutchNationalFlag {
       new DutchNationalFlag().dutchFlagPartition(pivotIndex, A);
 
       check(pivot, A);
-
-
     }
   }
 
   public static void check(Color pivot, List<Color> A) {
-      int n = A.size();
-      int i = 0;
-      while (i < n && A.get(i).ordinal() < pivot.ordinal()) {
-        //System.out.print(A.get(i) + " ");
-        ++i;
-      }
-      while (i < n && A.get(i) == pivot) {
-        //System.out.print(A.get(i) + " ");
-        ++i;
-      }
-      while (i < n && A.get(i).ordinal() > pivot.ordinal()) {
-        //System.out.print(A.get(i) + " ");
-        ++i;
-      }
-      System.out.println();
-
-      if (i != n) {
-        System.err.println("Failed test, saw " + A);
-        System.exit(-1);
-      }
+    int n = A.size();
+    int i = 0;
+    while (i < n && A.get(i).ordinal() < pivot.ordinal()) {
+      // System.out.print(A.get(i) + " ");
+      ++i;
     }
+    while (i < n && A.get(i) == pivot) {
+      // System.out.print(A.get(i) + " ");
+      ++i;
+    }
+    while (i < n && A.get(i).ordinal() > pivot.ordinal()) {
+      // System.out.print(A.get(i) + " ");
+      ++i;
+    }
+    System.out.println();
+
+    if (i != n) {
+      System.err.println("Failed test, saw " + A);
+      System.exit(-1);
+    }
+  }
 }

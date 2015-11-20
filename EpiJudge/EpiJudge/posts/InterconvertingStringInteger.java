@@ -8,10 +8,14 @@ package com.epi;
     Interconvert strings and integers.  <b>#Strings #PrimitiveTypes</b>
 
     @problem
-    A string is a sequence of characters. A string may encode an integer, e.g., "123"
-    encodes 123. In this problem, you are to implement methods that take a string
-    representing an integer and return the corresponding integer, and vice versa. Your
-    code should handle negative integers. You cannot use library functions like <code>stoi</code> in
+    A string is a sequence of characters. A string may encode an integer, e.g.,
+   "123"
+    encodes 123. In this problem, you are to implement methods that take a
+   string
+    representing an integer and return the corresponding integer, and vice
+   versa. Your
+    code should handle negative integers. You cannot use library functions like
+   <code>stoi</code> in
     C++ and <code>parseInt</code> in Java.
 
     @hint
@@ -40,7 +44,7 @@ public class InterconvertingStringInteger {
 
   // @judge-include-display
   public static String intToString(int x) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     boolean isNegative = false;
     if (x < 0) {
       x = -x;
@@ -58,13 +62,13 @@ public class InterconvertingStringInteger {
     }
     s.reverse();
     return s.toString();
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
 
   // @judge-include-display
   public static int stringToInt(String s) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     boolean isNegative = s.charAt(0) == '-';
     int result = 0;
     for (int i = s.charAt(0) == '-' ? 1 : 0; i < s.length(); ++i) {
@@ -72,7 +76,7 @@ public class InterconvertingStringInteger {
       result = result * 10 + digit;
     }
     return isNegative ? -result : result;
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
   // @exclude
