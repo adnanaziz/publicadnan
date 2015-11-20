@@ -53,15 +53,16 @@ function parseFile(filename, callback) {
             lines[i] = "// " + lines[i];
         } 
         var currentField;
-        if (lines[i].match(/^\s*@/)) {
-            //console.log("matched line " + lines[i]);
+        if (lines[i].match(/^\s*@judge/)) {
+            console.log("matched line " + lines[i] + " " + i);
             currentField = lines[i].trim().substring(1); // drop leading @
             result[currentField] = "";
             i++;
-            while (!(lines[i].match(/^\s*@/)) && !(lines[i].match(/^\s*\*\//))) {
+            while (!(lines[i].match(/^\s*@judge/)) && !(lines[i].match(/^\s*\*\//))) {
                 result[currentField] += lines[i];
                 // console.log("lines[i] = " + lines[i]);
                 i++;
+                print(lines[i]);
             }
             i--; // back up one line
         }
@@ -245,11 +246,18 @@ var slugToFileName = {
     "list-cycle": "CheckingCycle.java",
     "stack-with-max": "StackWithMax.java",
     "binary-tree-level-order": "BinaryTreeLevelOrder.java",
-    "is-binary-tree-balanced": "BalancedBinaryTree.java"
+    "is-binary-tree-balanced": "BalancedBinaryTree.java",
+    "merge-sorted-files": "MergeSortedArrays.java",
+    "first-occurence-of-k": "BinarySearchFirstK.java",
+    "anonymous-letter": "AnonymousLetter.java",
+    "intersect-two-sorted-arrays": "IntersectSortedArrays3.java",
+    "render-a-calendar": "RenderingCalendar.java"
 };
 
 module.exports.servePost = function(req, res) {
     var postid = req.params.id;
+    print("postid = " + postid);
+    print("filename = " + slugToFileName[postid]);
     parseFile(slugToFileName[postid], function(err, postDict) {
         if (err) {
             console.log("Error " + err);

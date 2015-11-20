@@ -36,7 +36,7 @@
 //   what if user adds classes? they will be inner classes here, is that a
 //   problem?
 //      (i think we will have to make methods nonstatic to get away with this)
-// package com.epi;
+package com.epi;
 
 import java.util.ArrayList;
 import java.util.Collections;
