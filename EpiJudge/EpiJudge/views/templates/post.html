@@ -139,7 +139,7 @@
         </div>
         -->
 
-            <div class="row" style="padding-top: 20px; padding-left:16px;">
+            <div class="row" style="padding-top: 0px; padding-left:16px; padding-bottom: 14px;">
 
                 <!--<span class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -166,23 +166,23 @@
 -->
 
 
-                <button type="button" value="submit" id="hint-btn" class="btn btn-xs btn-default " aria-label="Left Align">
+                <button type="button" value="submit" id="hint-btn" class="btn btn-sm btn-default " aria-label="Left Align">
                     <span>Hint {% if hint2 %}1{% endif %}</span>
                 </button>
 
                 {% if hint2 %}
-                <button type="button" id="hint2-btn" value="submit" class="btn btn-danger btn-xs">
+                <button type="button" id="hint2-btn" value="submit" class="btn btn-danger btn-sm">
                     <span>Hint 2</span>
                 </button>
                 {% endif %}
 
-                <button type="button" value="submit" id="custom-args-btn" class="btn btn-xs btn-primary">
+                <button type="button" value="submit" id="custom-args-btn" class="btn btn-sm btn-primary">
                     <span>Custom args</span>
                 </button>
 
 
                 <a href="{{discussion|default('http://talk.elementsofprogramminginterviews.com')}}">
-                    <button type="button" id="change-column" value="submit" class="btn btn-success btn-xs" aria-label="Left Align">
+                    <button type="button" id="change-column" value="submit" class="btn btn-success btn-sm" aria-label="Left Align">
                         <span>Discussion</span>
                     </button>
                 </a>
@@ -192,7 +192,7 @@
             </button>
             -->
 
-                <button type="button" id="sendto-compilebox" value="submit" class="btn btn-warning btn-xs">
+                <button type="button" id="sendto-compilebox" value="submit" class="btn btn-warning btn-sm">
                     <span>Run</span>
                 </button>
 
@@ -345,7 +345,7 @@
                 var tmp = lines[i].replace("/usercode/file.java:", "") + "\n";
                 if (tmp.match(/^\d+:/)) {
                     var parts = tmp.split(":");
-                    parts[0] = "Line " + (parseInt(parts[0]) - (begin - 1));
+                    parts[0] = "Line " + (parseInt(parts[0]) - (begin + 1));
                     parts = parts.join(":");
                     result += parts;
                     console.log("parts = " + parts);
@@ -395,11 +395,7 @@
                     success: function(serverResp) { // on ajax success
 
                         //console.log("serverResp = " + JSON.stringify(serverResp));
-                        var begin = {
-                            {
-                                begin
-                            }
-                        };
+                        var begin = {{begin}};
                         var massagedErrors = postProcess(serverResp.errors, begin);
                         console.log(massagedErrors);
                         $('#compilebox-output').html(serverResp.output);

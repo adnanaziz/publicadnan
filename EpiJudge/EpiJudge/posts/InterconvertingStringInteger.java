@@ -8,7 +8,7 @@ package com.epi;
     Interconvert strings and integers.  <b>#Strings #PrimitiveTypes</b>
 
     @problem
-    A string is a sequence of characters. A string may encode an integer, e.g., “123”
+    A string is a sequence of characters. A string may encode an integer, e.g., "123"
     encodes 123. In this problem, you are to implement methods that take a string
     representing an integer and return the corresponding integer, and vice versa. Your
     code should handle negative integers. You cannot use library functions like <code>stoi</code> in
@@ -22,9 +22,7 @@ package com.epi;
 import java.util.Random;
 
 public class InterconvertingStringInteger {
-  // @judge-include-display
   public static String randIntString(int len) {
-  // @judge-exclude-display
     Random r = new Random();
     StringBuilder ret = new StringBuilder();
     if (len == 0) {
@@ -38,9 +36,7 @@ public class InterconvertingStringInteger {
       ret.append((char)('0' + r.nextInt(10)));
     }
     return ret.toString();
-  // @judge-include-display
   }
-  // @judge-exclude-display
 
   // @judge-include-display
   public static String intToString(int x) {
@@ -66,7 +62,9 @@ public class InterconvertingStringInteger {
   }
   // @judge-exclude-display
 
+  // @judge-include-display
   public static int stringToInt(String s) {
+  // @judge-exclude-display
     boolean isNegative = s.charAt(0) == '-';
     int result = 0;
     for (int i = s.charAt(0) == '-' ? 1 : 0; i < s.length(); ++i) {
@@ -74,7 +72,9 @@ public class InterconvertingStringInteger {
       result = result * 10 + digit;
     }
     return isNegative ? -result : result;
+  // @judge-include-display
   }
+  // @judge-exclude-display
   // @exclude
 
   public static void main(String[] args) {

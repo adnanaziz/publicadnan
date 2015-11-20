@@ -40,9 +40,19 @@ function parseFile(filename, callback) {
 
     var result = {};
     for (var i = 0; i < lines.length; i++) {
+        if (lines[i].match(/^\s*public class/)) {
+            var idx = lines[i].indexOf("public");
+            lines[i] = lines[i].substring(idx + "public".length);
+        } 
+        if (lines[i].match(/^\s*package com.epi/)) {
+            lines[i] = "// " + lines[i];
+        } 
+        if (lines[i].match(/^\s*import /)) {
+            lines[i] = "// " + lines[i];
+        } 
         var currentField;
-        if (lines[i].match(/^\s+@/)) {
-            console.log("matched line " + lines[i]);
+        if (lines[i].match(/^\s*@/)) {
+            //console.log("matched line " + lines[i]);
             currentField = lines[i].trim().substring(1); // drop leading @
             result[currentField] = "";
             i++;
@@ -73,7 +83,12 @@ function parseFile(filename, callback) {
             end = i;
         }
         if (skeletonWrite && !line.match(/\/\/\ @judge-include-display/)) {
-            skeleton += line + "\n";
+            if (i > 0 && line.match(/^\s*}\s*$/)) { 
+                // stuff in a blank line
+                skeleton += "\n" + line + "\n";
+            } else {
+                skeleton += line + "\n";
+            }
         }
     }
     skeleton =  "import java.util.*;\n\nclass Solution {\n\n" + skeleton;
@@ -104,8 +119,22 @@ function parseFile(filename, callback) {
     for (var i = end+1; i < lines.length; i++) {
         testcase += lines[i] + "\n";
     }
-    result.javatestcase = testcase;
-    console.log(">>> result = " + JSON.stringify(result, null, 4));
+    
+    var prototypes = ["LinkedListPrototypeTemplate.java", "BinaryTreePrototypeTemplate.java", "BinarySearchTreePrototypeTemplate.java"]; 
+    for (var i = 0; i < prototypes.length; i++) {
+        try {
+            fileContent = fs.readFileSync('posts/' + prototypes[i], 'utf8');
+            var tmp1 = fileContent.replace(/\s*import/g, "// import");
+            var tmp2 = tmp1.replace(/package com.epi/g, "// package com.epi");
+            var tmp3 = tmp2.replace(/public class/g, "class");
+            testcase = testcase + "\n\n" + tmp3;
+        } catch (readFileSyncError) {
+            return callback("error reading file: " + readFileSyncError);
+        }
+    }
+
+    result.javatestcase = "import java.util.*;\n\n" + testcase;
+    // console.log(">>> result = " + JSON.stringify(result, null, 4));
     callback(null, result);
 
 /*
