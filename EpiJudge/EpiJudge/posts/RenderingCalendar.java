@@ -3,7 +3,7 @@
     render-a-calender
 
     @title
-    Render a Calendar
+    Render a Calendaro
 
     @problem
     Write a program that takes a set of events, and determines the maximum number of

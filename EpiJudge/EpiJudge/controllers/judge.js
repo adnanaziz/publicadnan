@@ -53,12 +53,12 @@ function parseFile(filename, callback) {
             lines[i] = "// " + lines[i];
         } 
         var currentField;
-        if (lines[i].match(/^\s*@judge/)) {
+        if (!lines[i].match(/^\s*@Override/) && lines[i].match(/^\s*@/)) {
             console.log("matched line " + lines[i] + " " + i);
             currentField = lines[i].trim().substring(1); // drop leading @
             result[currentField] = "";
             i++;
-            while (!(lines[i].match(/^\s*@judge/)) && !(lines[i].match(/^\s*\*\//))) {
+            while (!(lines[i].match(/^\s*@/)) && !(lines[i].match(/^\s*\*\//))) {
                 result[currentField] += lines[i];
                 // console.log("lines[i] = " + lines[i]);
                 i++;
@@ -152,7 +152,7 @@ function parseFile(filename, callback) {
     }
 
     result.javatestcase = "import java.util.*;\n\n" + testcase;
-    // console.log(">>> result = " + JSON.stringify(result, null, 4));
+    console.log(">>> result = " + JSON.stringify(result, null, 4));
     callback(null, result);
 
 /*
@@ -251,7 +251,15 @@ var slugToFileName = {
     "first-occurence-of-k": "BinarySearchFirstK.java",
     "anonymous-letter": "AnonymousLetter.java",
     "intersect-two-sorted-arrays": "IntersectSortedArrays3.java",
-    "render-a-calendar": "RenderingCalendar.java"
+    "render-a-calendar": "RenderingCalendar.java",
+    "is-binary-tree-a-bst": "IsBinaryTreeABST.java",
+    "powerset": "PowerSet.java", 
+    "number-of-ways": "NumberWays.java", 
+    "3sum": "ThreeSum.java",
+    "paint-matrix": "PaintingIterative.java",
+    "gcd": "GCD1.java",
+    "biggest-product-n-minus-1-entries": "BiggestProductNMinus1.java"
+
 };
 
 module.exports.servePost = function(req, res) {

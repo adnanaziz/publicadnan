@@ -1,3 +1,5 @@
+package com.epi;
+
 /*
     @slug
     merge-sorted-arrays
@@ -14,8 +16,6 @@
     What part of each array is important as you process the inputs?
 
  */
-
-package com.epi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
