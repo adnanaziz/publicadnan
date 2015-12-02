@@ -1,6 +1,8 @@
+//package com.epi;
+
 /*
     "anonymous-letter": "AnonymousLetter.java"
-   
+
    @slug
    anonymous-letter
 
@@ -8,10 +10,14 @@
    Is an anonymous letter constructible?
 
    @problem
-   Write a program which takes text for an anonymous letter and text for a magazine
-   and determines if it is possible to write the anonymous letter using the magazine.
-   The anonymous letter can be written using the magazine if for each character in the
-   anonymous letter, the number of times it appears in the anonymous letter is no more
+   Write a program which takes text for an anonymous letter and text for a
+   magazine
+   and determines if it is possible to write the anonymous letter using the
+   magazine.
+   The anonymous letter can be written using the magazine if for each character
+   in the
+   anonymous letter, the number of times it appears in the anonymous letter is
+   no more
    than the number of times it appears in the magazine.
 
    @hint
@@ -20,7 +26,6 @@
  */
 // Copyright (c) 2015 Elements of Programming Interviews. All rights reserved.
 
-package com.epi;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +46,7 @@ public class AnonymousLetter {
   // @judge-include-display
   public static boolean isLetterConstructibleFromMagazine(String letterText,
                                                           String magazineText) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     Map<Character, Integer> charFrequencyForLetter = new HashMap<>();
     // Compute the frequencies for all chars in letterText.
     for (int i = 0; i < letterText.length(); i++) {
@@ -69,19 +74,33 @@ public class AnonymousLetter {
       }
     }
     return false;
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
   // @exclude
 
+  private static void check(String letter, String magazine, boolean expected) {
+    if (expected != isLetterConstructibleFromMagazine(letter, magazine)) {
+        System.err.println("Your program incorrectly reports that " 
+                                + (letter.length() > 0 ? letter : "the empty string")
+                                + " is" + (expected ? " not" : "") 
+                                +  " constructible from " + magazine);
+        System.exit(-1);
+    }
+  }
+
   private static void simpleTest() {
-    assert(!isLetterConstructibleFromMagazine("123", "456"));
-    assert(!isLetterConstructibleFromMagazine("123", "12222222"));
-    assert(isLetterConstructibleFromMagazine("123", "1123"));
-    assert(isLetterConstructibleFromMagazine("123", "123"));
-    assert(!isLetterConstructibleFromMagazine("12323", "123"));
-    assert(
-        isLetterConstructibleFromMagazine("GATTACA", "A AD FS GA T ACA TTT"));
+    check("123", "456", false);
+    check("123", "12222222", false);
+    check("123", "1123", true);
+    check("123", "123", true);
+    check("12323", "123", false);
+    check("GATTACA", "A AD FS GA T ACA TTT", true);
+    check("a", "", false);
+    check("aa", "aa", true);
+    check("aa", "aaa", true);
+    check("", "123", true);
+    check("", "", true);
   }
 
   public static void main(String[] args) {

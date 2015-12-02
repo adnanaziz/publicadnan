@@ -72,34 +72,57 @@ public class StackWithMax {
   }
   // @exclude
 
+  public static void check(boolean condition, String msg) {
+    if (!condition) {
+        System.err.println(msg);
+        System.exit(-1);
+    }
+  }
+
+  public static void missedMaxException() {
+      System.err.println("Should have seen an exception, max() on empty stack!");
+      System.exit(-1);
+  }
+
+  public static void missedPopException() {
+      System.err.println("Should have seen an exception, pop() on empty stack!");
+      System.exit(-1);
+  }
+
   public static void main(String[] args) {
     Stack s = new Stack();
     s.push(1);
     s.push(2);
-    assert(s.max() == 2);
+    check(s.max() == 2, "failed max() call with stack created by push 1, push 2");
     System.out.println(s.max()); // 2
     System.out.println(s.pop()); // 2
-    assert(s.max() == 1);
+    check(s.max() == 1, "failed max() call with stack created by push 1, push 2, pop");
     System.out.println(s.max()); // 1
     s.push(3);
     s.push(2);
-    assert(s.max() == 3);
+    check(s.max() == 3, "failed max() call with stack created by push 1, push 2, pop, push 3, push 2");
     System.out.println(s.max()); // 3
     s.pop();
-    assert(s.max() == 3);
+    check(s.max() == 3, "failed max() call with stack created by push 1, push 2, pop, push 3, push 2, pop");
     System.out.println(s.max()); // 3
     s.pop();
-    assert(s.max() == 1);
+    check(s.max() == 1, "failed max() call with stack created by push 1, push 2, pop, push 3, push 2, pop, pop");
     System.out.println(s.max()); // 1
     s.pop();
+
     try {
       s.max();
-      s.pop();
-      s.pop();
-      s.pop();
-      s.pop();
+      missedMaxException();
     } catch (RuntimeException e) {
-      System.out.println(e.getMessage());
+      System.out.println("Got expected exception calling max() on an empty stack:" + e.getMessage());
     }
+
+    try {
+      s.pop();
+      missedPopException();
+    } catch (RuntimeException e) {
+      System.out.println("Got expected exception calling pop() on an empty stack:" + e.getMessage());
+    }
+
   }
 }

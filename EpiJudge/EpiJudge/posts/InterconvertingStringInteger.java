@@ -23,6 +23,7 @@ package com.epi;
 
 */
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class InterconvertingStringInteger {
@@ -81,25 +82,67 @@ public class InterconvertingStringInteger {
   // @judge-exclude-display
   // @exclude
 
+  private static void checkIntToStr(int x, String str) {
+    if (x != Integer.parseInt(str)) {
+      System.err.println("Error: you converted " + x + " to " + str);
+      System.exit(-1);
+    }
+  }
+
+  private static void checkStrToInt(String str, int x) {
+    if (x != Integer.parseInt(str)) {
+      System.err.println("Error: you converted " + str + " to " + x);
+      System.exit(-1);
+    }
+  }
+
+  private static void directedTests() {
+    checkIntToStr(0, intToString(0));
+    checkIntToStr(-1, intToString(-1));
+    checkIntToStr(1, intToString(1));
+    checkIntToStr(2, intToString(2));
+    checkIntToStr(-2, intToString(-2));
+    checkIntToStr(9, intToString(9));
+    checkIntToStr(10, intToString(10));
+    checkIntToStr(123, intToString(123));
+    checkIntToStr(Integer.MAX_VALUE - 1, intToString(Integer.MAX_VALUE - 1));
+    checkIntToStr(Integer.MAX_VALUE, intToString(Integer.MAX_VALUE));
+    checkIntToStr(Integer.MIN_VALUE + 1, intToString(Integer.MIN_VALUE + 1));
+    // fails bacause of overflow
+    // checkIntToStr(Integer.MIN_VALUE, intToString(Integer.MIN_VALUE));
+
+    checkStrToInt("0", stringToInt("0"));
+    checkStrToInt("-1", stringToInt("-1"));
+    checkStrToInt("1", stringToInt("1"));
+    checkStrToInt("2", stringToInt("2"));
+    checkStrToInt("-2", stringToInt("-2"));
+    checkStrToInt("9", stringToInt("9"));
+    checkStrToInt("10", stringToInt("10"));
+    checkStrToInt("123", stringToInt("123"));
+    checkStrToInt("2147483646", stringToInt("2147483646"));
+    checkStrToInt("2147483647", stringToInt("2147483647"));
+    checkStrToInt("-2147483648", stringToInt("-2147483648"));
+    checkStrToInt("-2147483647", stringToInt("-2147483647"));
+  }
+
   public static void main(String[] args) {
+    directedTests();
     Random r = new Random();
     if (args.length == 1) {
-      try {
-        System.out.println(stringToInt(args[0]));
-      } catch (Exception e) {
-        System.out.println(e.getMessage());
-      }
+      int x = stringToInt(args[0]);
+      checkStrToInt(args[0], x);
+      String str = intToString(x);
+      checkIntToStr(x, str);
     } else {
       for (int times = 0; times < 10000; ++times) {
         int x = r.nextInt();
         String str = intToString(x);
-        System.out.println(x + " " + str);
-        assert(x == Integer.parseInt(str));
+        checkIntToStr(x, str);
         str = randIntString(r.nextInt(10));
         x = stringToInt(str);
-        System.out.println(str + " " + x);
-        assert(x == Integer.parseInt(str));
+        checkStrToInt(str, x);
       }
     }
+    System.out.println("You passed all tests!");
   }
 }

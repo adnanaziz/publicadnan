@@ -88,6 +88,13 @@ public class BinaryTreeLevelOrder {
     List<List<Integer>> goldenRes = Arrays.asList(
         Arrays.asList(3), Arrays.asList(2, 5), Arrays.asList(1, 4, 6),
         Arrays.asList(10), Arrays.asList(13));
-    assert(goldenRes.equals(result));
+    if (!goldenRes.equals(result)) {
+        System.err.println("Failed on input " + tree);
+        System.err.println("Expected " + goldenRes);
+        System.err.println("Your code produced " + result);
+        System.exit(-1);
+    } else {
+        System.out.println("You passed all tests.");
+    }
   }
 }

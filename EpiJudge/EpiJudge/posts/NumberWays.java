@@ -1,3 +1,4 @@
+//package com.epi;
 /*
     @slug
     number-of-ways
@@ -5,23 +6,28 @@
     @title
 
     @problem
-    In this problem you are to count the number of ways of starting at the top-left corner
-    of a 2D array and getting to the bottom-right corner. All moves must either go right or
-    down. For example, there are three ways in a 5x5 2D array, as shown in the figure.
+    In this problem you are to count the number of ways of starting at the
+   top-left corner
+    of a 2D array and getting to the bottom-right corner. All moves must either
+   go right or
+    down. For example, there are three ways in a 5x5 2D array, as shown in the
+   figure.
     <p>
 
     <img src="/path-array.png"></img>
 
-    Write a program that counts how many ways you can go from the top-left to the
-    bottom-right in an n x m 2D array. How would you do so in the presence of obstacles,
-    specified by an n x m Boolean 2D array B, where a true represents an obstacle?
+    Write a program that counts how many ways you can go from the top-left to
+   the
+    bottom-right in an n x m 2D array. How would you do so in the presence of
+   obstacles,
+    specified by an n x m Boolean 2D array B, where a true represents an
+   obstacle?
 
     @hint
     If i > 0 and j > 0, you can get to (i, j) from (i − 1, j) or (j − 1, i).
 
 
  */
-package com.epi;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +38,7 @@ public class NumberWays {
   // @include
   // @judge-include-display
   public static int numberOfWays(int n, int m) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     if (n < m) {
       int temp = n;
       n = m;
@@ -47,7 +53,7 @@ public class NumberWays {
       }
     }
     return A.get(m - 1);
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
   // @exclude
@@ -71,6 +77,17 @@ public class NumberWays {
     return table[n][k];
   }
 
+  private static void check(int n, int m) {
+    int expected = checkAns(n + m - 2, m - 1);
+    int got = numberOfWays(n, m);
+    if (got != expected) {
+        System.err.println("Incorrect result for n, m = " + n + ", " + m);
+        System.err.println("Expected " + expected);
+        System.err.println("Your program computed " + got);
+        System.exit(-1);
+    }
+  }
+
   public static void main(String[] args) {
     Random r = new Random();
     for (int times = 0; times < 1000; ++times) {
@@ -84,7 +101,7 @@ public class NumberWays {
       }
       System.out.println("n = " + n + ", m = " + m + ", number of ways = "
                          + numberOfWays(n, m));
-      assert(checkAns(n + m - 2, m - 1) == numberOfWays(n, m));
+      check(n,m);
       if (args.length == 2) {
         break;
       }

@@ -1,3 +1,4 @@
+package com.epi;
 /*
     @slug
     powerset
@@ -6,22 +7,27 @@
     Compute the power set.
 
     @problem
-    The power set of a set S is the set of all subsets of S, including both the empty set {}
-    and S itself. The power set of {0, 1, 2} is graphically illustrated in the figure.
+    The power set of a set S is the set of all subsets of S, including both the
+   empty set {}
+    and S itself. The power set of {0, 1, 2} is graphically illustrated in the
+   figure.
     <p>
 
     <img src="/powerset.png"></img>
 
     @hint
-    There are 2^n subsets for a given set S of size n. There are 2^k k-bit words.
+    There are 2^n subsets for a given set S of size n. There are 2^k k-bit
+   words.
 
  */
-package com.epi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class PowerSet {
   // @include
@@ -29,7 +35,7 @@ public class PowerSet {
 
   // @judge-include-display
   public static List<List<Integer>> generatePowerSet(List<Integer> inputSet) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     List<List<Integer>> powerSet = new ArrayList<>();
     for (int intForSubset = 0; intForSubset < (1 << inputSet.size());
          ++intForSubset) {
@@ -43,18 +49,56 @@ public class PowerSet {
       powerSet.add(subset);
     }
     return powerSet;
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
   // @exclude
+  
+  private static void check(List<Integer> input, List<List<Integer>> expected) {
+    List<List<Integer>> got = generatePowerSet(input);
+    Set<Set<Integer>> gotSet = new HashSet<>();
+    for (List<Integer> item : got) {
+        gotSet.add(new HashSet<>(item));
+    }
+    if (gotSet.size() != got.size()) {
+        System.err.println("Error, your powerset has duplicate entries.");
+        System.err.println("Input:" + input);
+        System.err.println("Your result:" + got);
+        System.exit(-1);
+    }
+
+    Set<Set<Integer>> expectedSet = new HashSet<>();
+    for (List<Integer> item : expected) {
+        expectedSet.add(new HashSet<>(item));
+    }
+
+    if (!expectedSet.equals(gotSet)) {
+        System.err.println("Error on input " + input);
+        System.err.println("Expected " + expected);
+        System.err.println("Got " + got);
+        System.exit(-1);
+    }
+    
+  }
 
   private static void simpleTest() {
+    List<Integer> EMPTY_LIST = new ArrayList<>();
+
+    List<Integer> input = Arrays.asList(0, 1, 2);
     List<List<Integer>> goldenResult = Arrays.asList(
-        new ArrayList<Integer>(), Arrays.asList(0), Arrays.asList(1),
+        EMPTY_LIST, Arrays.asList(0), Arrays.asList(1),
         Arrays.asList(0, 1), Arrays.asList(2), Arrays.asList(0, 2),
         Arrays.asList(1, 2), Arrays.asList(0, 1, 2));
-    List<List<Integer>> result = generatePowerSet(Arrays.asList(0, 1, 2));
-    assert(result.equals(goldenResult));
+
+    check(input, goldenResult);
+
+    input = EMPTY_LIST;
+    goldenResult = Arrays.asList(EMPTY_LIST);
+    check(input, goldenResult);
+
+    input = Arrays.asList(Integer.MAX_VALUE);
+    goldenResult = Arrays.asList(EMPTY_LIST, Arrays.asList(Integer.MAX_VALUE));
+    check(input, goldenResult);
   }
 
   public static void main(String[] args) {

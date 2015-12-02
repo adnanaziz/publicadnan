@@ -1,12 +1,15 @@
+// package com.epi;
+
 /*
     @slug
     render-a-calender
 
     @title
-    Render a Calendaro
+    Render a Calendar
 
     @problem
-    Write a program that takes a set of events, and determines the maximum number of
+    Write a program that takes a set of events, and determines the maximum
+   number of
     events that take place concurrently.
 
     @hint
@@ -14,7 +17,6 @@
 
  */
 
-package com.epi;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -32,6 +34,15 @@ public class RenderingCalendar {
       this.start = start;
       this.finish = finish;
     }
+
+    //@exclude
+    //@judge-exclude-display
+    @Override
+    public String toString() {
+        return "[" + start + "," + finish + "]";
+    }
+    //@judge-include-display
+    //@include
   }
   // @judge-exclude-display
 
@@ -55,7 +66,7 @@ public class RenderingCalendar {
 
   // @judge-include-display
   public static int findMaxSimultaneousEvents(List<Event> A) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     // Builds an array of all endpoints.
     List<Endpoint> E = new ArrayList<>();
     for (Event event : A) {
@@ -79,17 +90,42 @@ public class RenderingCalendar {
       }
     }
     return maxNumSimultaneousEvents;
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
   // @exclude
+
+  private static void check(int expected, List<Event> events) {
+    int got = findMaxSimultaneousEvents(events);
+    if (expected != got) {
+        System.err.println("Failed on input " + events);
+        System.err.println("Expected " + expected);
+        System.err.println("Got " + got);
+        System.exit(-1);
+    }
+  }
 
   private static void simpleTest() {
     List<Event> events = Arrays.asList(
         new Event(1, 5), new Event(2, 7), new Event(4, 5), new Event(6, 10),
         new Event(8, 9), new Event(9, 17), new Event(11, 13), new Event(12, 15),
         new Event(14, 15));
-    assert(3 == findMaxSimultaneousEvents(events));
+    check(3, events);
+
+    check(1, Arrays.asList( new Event(1,2), new Event(3,4)));
+    check(2, Arrays.asList( new Event(1,3), new Event(3,4)));
+    check(2, Arrays.asList( new Event(1,3), new Event(0,4)));
+    check(2, Arrays.asList( new Event(1,3), new Event(0,4), new Event(-1,0)));
+    check(2, Arrays.asList( new Event(1,1), new Event(0,0), new Event(0,0)));
+    int N = 1000000;
+    List<Event> big1 = new ArrayList<>(N);
+    List<Event> big2 = new ArrayList<>(N);
+    for (int i = 0; i < N; i++) {
+        big1.add(new Event(i,i));
+        big2.add(new Event(-i,i));
+    }
+    check(1, big1);
+    check(N, big2);
   }
 
   public static void main(String[] args) {

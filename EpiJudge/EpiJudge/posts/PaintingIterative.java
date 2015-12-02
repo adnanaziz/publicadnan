@@ -1,3 +1,4 @@
+package com.epi;
 /*
     @slug
     paint-matrix
@@ -7,14 +8,16 @@
 
     @problem
     Let A be a Boolean 2D array encoding a black-and-white image. The entry
-    A(a, b) can be viewed as encoding the color at location (a, b). 
+    A(a, b) can be viewed as encoding the color at location (a, b).
     Define the region associated with an entry to be all entries
     for which there exists a path from the initial entry to those entries
     all of which are the same color.
     <p>
 
-    Implement a routine that takes an Boolean array A together with an entry (x, y)
-    and flips the color of the region associated with (x, y). See Figure 15.5 for an example
+    Implement a routine that takes an Boolean array A together with an entry (x,
+   y)
+    and flips the color of the region associated with (x, y). See Figure 15.5
+   for an example
     of flipping.
 
     <img src="/paint-matrix.png"></img>
@@ -24,9 +27,9 @@
 
  */
 
-package com.epi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -46,7 +49,7 @@ public class PaintingIterative {
 
   // @judge-include-display
   public static void flipColor(List<List<Boolean>> A, int x, int y) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     int[][] dir = new int[][] {new int[] {0, 1}, new int[] {0, -1},
                                new int[] {1, 0}, new int[] {-1, 0}};
     boolean color = A.get(x).get(y);
@@ -68,12 +71,99 @@ public class PaintingIterative {
       }
       q.remove();
     }
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
   // @exclude
 
+  private static void check(List<List<Boolean>> input, int i, int j, List<List<Boolean>> golden, List<List<Boolean>> got) {
+    if (!got.equals(golden)) {
+        System.err.println("Your program fails for the point (" + i + "," + j + ")" + " and matrix " + input);
+        System.err.println("Computed " + got);
+        System.err.println("Expected " + golden);
+        System.exit(-1);
+    }
+  }
+
+  private static void directedTests() {
+    List<List<Boolean>> A = new ArrayList<>();
+    A.add(Arrays.asList(true, false, false, true));
+    A.add(Arrays.asList(true, true, false, true));
+    A.add(Arrays.asList(true, false, true, true));
+    A.add(Arrays.asList(true, false, false, true));
+
+    // make deep copy of A
+    List<List<Boolean>> B =  new ArrayList<>();
+    for (List<Boolean> list : A) {
+        B.add( new ArrayList<Boolean>(list));
+    }
+
+    int i = 3;
+    int j = 1;
+
+    //System.out.println("color = " + i + " " + j + " " + A.get(i).get(j));
+    //System.out.println(A);
+    flipColor(B, i, j);
+    //System.out.println(A);
+
+    List<List<Boolean>> golden = Arrays.asList(
+            Arrays.asList(true, false, false, true), 
+            Arrays.asList(true, true, false, true), 
+            Arrays.asList(true, true, true, true), 
+            Arrays.asList(true, true, true, true));
+
+    check(A, i, j, golden, B);
+
+    A = new ArrayList<>();
+    for (List<Boolean> list : B) {
+        A.add(new ArrayList<>(list));
+    }
+
+    i = 3;
+    j = 3;
+    flipColor(B, i, j);
+    golden = Arrays.asList(
+            Arrays.asList(false, false, false, false), 
+            Arrays.asList(false, false, false, false), 
+            Arrays.asList(false, false, false, false), 
+            Arrays.asList(false, false, false, false));
+
+    check(A, i, j, golden, B);
+
+    A = new ArrayList<>();
+    A.add(Arrays.asList(true, false, false, true));
+    A.add(Arrays.asList(false, true, false, true));
+
+    B = new ArrayList<>();
+    for (List<Boolean> list : A) {
+       B.add( new ArrayList<Boolean>(list));
+    }
+
+    i = 0;
+    j = 0;
+    flipColor(B, i, j);
+    golden = Arrays.asList(Arrays.asList(false, false, false, true),
+                           Arrays.asList(false, true, false, true));
+
+    check(A, i, j, golden, B);
+
+    A = new ArrayList<>();
+    for (List<Boolean> list : B) {
+        A.add(new ArrayList<>(list));
+    }
+
+    i = 1;
+    j = 3;
+
+    flipColor(B, i, j);
+    golden = Arrays.asList(Arrays.asList(false, false, false, false),
+                           Arrays.asList(false, true, false, false));
+
+    check(A, i, j, golden, B);
+  }
+
   public static void main(String[] args) {
+    directedTests();
     int n;
     Random gen = new Random();
     if (args.length == 1) {

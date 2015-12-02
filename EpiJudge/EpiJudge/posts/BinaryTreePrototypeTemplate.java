@@ -1,5 +1,9 @@
 package com.epi;
 
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class BinaryTreePrototypeTemplate {
@@ -46,7 +50,99 @@ public class BinaryTreePrototypeTemplate {
     @Override
     public int hashCode() { return Objects.hash(data, left, right); }
     // clang-format on
+
+    // Based on https://leetcode.com/faq/#binary-tree
+    @Override
+    public String toString() {
+      List<Deque<BinaryTreeNode<T>>> levels = new ArrayList<>();
+
+      Deque<BinaryTreeNode<T>> currLevel = new LinkedList<>();
+      currLevel.add(this);
+      Deque<BinaryTreeNode<T>> nextLevel = new LinkedList<>();
+      while (true) {
+        levels.add(currLevel);
+        for (BinaryTreeNode<T> iter : currLevel) {
+          if (iter.left != null) {
+              nextLevel.add(iter.left);
+          } 
+          if (iter.right != null) {
+              nextLevel.add(iter.right);
+          }
+        }
+        if (nextLevel.size() == 0) {
+            break;
+        } else {
+            currLevel = nextLevel;
+            nextLevel = new LinkedList<>();
+        }
+      }
+
+      List<String> result = new ArrayList<>();
+      result.add(this.data.toString());
+      for (int i = 0; i < levels.size() -1; i++) {
+        Deque<BinaryTreeNode<T>> thisLevel = levels.get(i);
+        for (BinaryTreeNode<T> node : thisLevel) {
+            result.add( node.left != null ? node.left.data.toString() : "#");
+            result.add( node.right != null ? node.right.data.toString() : "#");
+        }
+      }
+
+      int numTrailingHashes = 0;
+      for (int i = result.size() -1; i >= 0; i--) {
+        if (result.get(i).equals("#")) {
+            numTrailingHashes++;
+        } else {
+            break;
+        }
+      }
+      
+      StringBuilder sb = new StringBuilder();
+      sb.append("{");
+      for (int i = 0; i < result.size() - numTrailingHashes; i++) {
+        sb.append(result.get(i));
+        if (i < result.size()  - numTrailingHashes - 1) {
+          sb.append(",");
+        }
+      }
+      sb.append("}");
+      return sb.toString();
+    }
     // @include
   }
   // @exclude
+
+  public static void main(String[] args) {
+
+    BinaryTreePrototypeTemplate.BinaryTreeNode A = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(1);
+    A.right = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(2);
+    A.right.left = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(3);
+    System.out.println(A);
+    assert(A.toString().equals("{1,#,2,3}"));
+
+    BinaryTreePrototypeTemplate.BinaryTreeNode<Integer> B = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(1);
+    B.left = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(2);
+    B.right = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(3);
+    B.right.left = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(4);
+    B.right.left.right = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(5);
+    System.out.println(B);
+    assert(B.toString().equals("{1,2,3,#,#,4,#,#,5}"));
+
+    BinaryTreePrototypeTemplate.BinaryTreeNode<Integer> C = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(1,
+                    new BinaryTreePrototypeTemplate.BinaryTreeNode(2), 
+                    new BinaryTreePrototypeTemplate.BinaryTreeNode(3));
+    System.out.println(C);
+    assert(C.toString().equals("{1,2,3}"));
+
+    BinaryTreePrototypeTemplate.BinaryTreeNode<Integer> D = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(5,
+                    new BinaryTreePrototypeTemplate.BinaryTreeNode(4), 
+                    new BinaryTreePrototypeTemplate.BinaryTreeNode(7));
+
+    D.left.left = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(3,
+                        new BinaryTreePrototypeTemplate.BinaryTreeNode<>(-1), null);
+
+    D.right.left = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(2,
+                        new BinaryTreePrototypeTemplate.BinaryTreeNode<>(9), null);
+    System.out.println(D);
+    assert(D.toString().equals("{5,4,7,3,#,2,#,-1,#,9}"));
+  }
 }

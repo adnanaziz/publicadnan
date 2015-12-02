@@ -1,5 +1,3 @@
-package com.epi;
-
 /*
     @slug
     merge-sorted-arrays
@@ -8,14 +6,18 @@ package com.epi;
     Merge sorted arrays.
 
     @problem
-    Write a program that takes as input a set of sorted arrays and computes the union
-    of these arrays as a sorted array. For example, if the input is <3, 5, 7>, <0, 6>,
+    Write a program that takes as input a set of sorted arrays and computes the
+   union
+    of these arrays as a sorted array. For example, if the input is <3, 5, 7>,
+   <0, 6>,
     and <0, 6, 28>, then the output is <0, 0, 3, 5, 6, 6, 7, 28>.
 
     @hint
     What part of each array is important as you process the inputs?
 
  */
+
+package com.epi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +44,7 @@ public class MergeSortedArrays {
   // @judge-include-display
   public static List<Integer> mergeSortedArrays(
       List<List<Integer>> sortedArrays) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     PriorityQueue<ArrayEntry> minHeap = new PriorityQueue<>(
         DEFAULT_INITIAL_CAPACITY, new Comparator<ArrayEntry>() {
           @Override
@@ -76,10 +78,18 @@ public class MergeSortedArrays {
       }
     }
     return result;
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
   // @exclude
+
+  private static void check(List<List<Integer>> S, List<Integer> ans, List<Integer> golden) {
+    if (!Arrays.equals(ans, golden)) {
+        System.err.println("Your program failed on input " + S);
+        System.err.println("Expected " + golden);
+        System.err.println("Got " + ans);
+    }
+  }
 
   private static void simpleTest() {
     List<List<Integer>> S
@@ -88,16 +98,16 @@ public class MergeSortedArrays {
     List<Integer> ans = mergeSortedArrays(S);
     List<Integer> golden
         = Arrays.asList(1, 2, 2, 3, 5, 10, 12, 100, Integer.MAX_VALUE);
-    assert(9 == ans.size() && ans.equals(golden));
+    check(S, ans, golden);
 
     S = Arrays.asList(Arrays.asList(1));
     ans = mergeSortedArrays(S);
-    assert(1 == ans.size() && 1 == ans.get(0));
+    check(S, ans, golden);
 
     S = Arrays.asList(new ArrayList<Integer>(), Arrays.asList(1),
                       Arrays.asList(2));
     ans = mergeSortedArrays(S);
-    assert(2 == ans.size() && ans.equals(Arrays.asList(1, 2)));
+    check(S, ans, golden);
   }
 
   public static void main(String[] args) {

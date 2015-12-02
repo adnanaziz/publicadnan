@@ -39,6 +39,7 @@
 package com.epi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -86,34 +87,59 @@ public class DutchNationalFlag {
     return ret;
   }
 
+  private static void unitTest(int pivot, List<Color> A) {
+    List<Color> Adup = new ArrayList<>(A);
+    new DutchNationalFlag().dutchFlagPartition(pivot, A);
+
+    if (!check(Adup.get(pivot), A, Adup)) {
+      System.exit(-1);
+    }
+  }
+
   public static void main(String[] args) {
+    unitTest(0, Arrays.asList(Color.RED, Color.BLUE, Color.WHITE));
+    unitTest(1, Arrays.asList(Color.RED, Color.BLUE, Color.WHITE));
+    unitTest(2, Arrays.asList(Color.RED, Color.BLUE, Color.WHITE));
+    unitTest(0, Arrays.asList(Color.RED, Color.WHITE, Color.WHITE));
+    unitTest(1, Arrays.asList(Color.RED, Color.WHITE, Color.WHITE));
+    unitTest(2, Arrays.asList(Color.RED, Color.WHITE, Color.WHITE));
+    unitTest(0, Arrays.asList(Color.RED, Color.WHITE, Color.WHITE));
+    unitTest(1, Arrays.asList(Color.WHITE, Color.WHITE, Color.WHITE));
+
+    unitTest(1,
+             Arrays.asList(Color.RED, Color.WHITE, Color.WHITE, Color.WHITE));
+    unitTest(1, Arrays.asList(Color.RED, Color.BLUE, Color.WHITE, Color.WHITE));
+    unitTest(0,
+             Arrays.asList(Color.RED, Color.WHITE, Color.WHITE, Color.WHITE));
+    unitTest(0, Arrays.asList(Color.RED, Color.BLUE, Color.WHITE, Color.WHITE));
+
     Random gen = new Random();
 
     for (int times = 0; times < 10; ++times) {
-      int n = 10;
+      int n;
 
-      try {
-        if (args.length == 1) {
-          n = Integer.parseInt(args[0]);
-        } else {
-          n = gen.nextInt(100) + 1;
-        }
-      } catch (Exception e) {
-        // user provided bad input (or compilebox gave us a -) so we skip
+      if (args.length == 1) {
+        n = Integer.parseInt(args[0]);
+      } else {
+        n = gen.nextInt(100) + 1;
       }
 
       List<Color> A = randArray(n);
+      List<Color> Adup = new ArrayList<>(A);
 
       int pivotIndex = gen.nextInt(n);
       Color pivot = A.get(pivotIndex);
 
       new DutchNationalFlag().dutchFlagPartition(pivotIndex, A);
 
-      check(pivot, A);
+      if (!check(pivot, A, Adup)) {
+        System.exit(-1);
+      }
     }
+    System.out.println("All tests passed!");
   }
 
-  public static void check(Color pivot, List<Color> A) {
+  public static boolean check(Color pivot, List<Color> A, List<Color> Adup) {
     int n = A.size();
     int i = 0;
     while (i < n && A.get(i).ordinal() < pivot.ordinal()) {
@@ -128,11 +154,12 @@ public class DutchNationalFlag {
       // System.out.print(A.get(i) + " ");
       ++i;
     }
-    System.out.println();
 
     if (i != n) {
-      System.err.println("Failed test, saw " + A);
+      System.err.println("Failed test, on input " + Adup
+                         + " your code updated to " + A);
       System.exit(-1);
     }
+    return true;
   }
 }

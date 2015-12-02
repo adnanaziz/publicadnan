@@ -13,7 +13,9 @@
     <img src="/bst-example.png"></img>
 
     @hint
-    Is it correct to check for each \myindex{node}node that its key is greater than or equal to the key at its left child and less than or equal to the key at its right child?
+    Is it correct to check for each \myindex{node}node that its key is greater
+   than or equal to the key at its left child and less than or equal to the key
+   at its right child?
 
  */
 
@@ -25,9 +27,9 @@ public class IsBinaryTreeABST {
   // @include
   // @judge-include-display
   public static boolean isBinaryTreeBST(BinaryTreeNode<Integer> tree) {
-  // @judge-exclude-display
+    // @judge-exclude-display
     return areKeysInRange(tree, Integer.MIN_VALUE, Integer.MAX_VALUE);
-  // @judge-include-display
+    // @judge-include-display
   }
   // @judge-exclude-display
 
@@ -45,6 +47,15 @@ public class IsBinaryTreeABST {
   }
   // @exclude
 
+  static void unitTest(BinaryTreeNode<Integer> root, boolean expectedValue) {
+    if (isBinaryTreeBST(root) != expectedValue) {
+      System.err.println("Wrong output, got " + (!expectedValue) + ", expected "
+                         + expectedValue);
+      System.err.println("Tree is " + root);
+      System.exit(-1);
+    }
+  }
+
   public static void main(String[] args) {
     // 3
     // 2 5
@@ -55,18 +66,14 @@ public class IsBinaryTreeABST {
     tree.right = new BinaryTreeNode<>(5);
     tree.right.left = new BinaryTreeNode<>(4);
     tree.right.right = new BinaryTreeNode<>(6);
-    // should output true.
-    assert isBinaryTreeBST(tree);
-    System.out.println(isBinaryTreeBST(tree));
+    unitTest(tree, true);
     // 10
     // 2 5
     // 1 4 6
     tree.data = 10;
     // should output false.
-    assert !isBinaryTreeBST(tree);
-    System.out.println(isBinaryTreeBST(tree));
+    unitTest(tree, false);
     // should output true.
-    assert isBinaryTreeBST(null);
-    System.out.println(isBinaryTreeBST(null));
+    unitTest(null, false);
   }
 }
