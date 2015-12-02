@@ -81,14 +81,14 @@ public class BalancedBinaryTree {
     tree.right.left = new BinaryTreeNode<Integer>();
     tree.right.right = new BinaryTreeNode<Integer>();
     if (!isBalanced(tree)) {
-        System.err.println("Incorrect result on " + tree + "\nThis tree is balanced.");
+        System.err.println("Incorrect result on balanced tree " + tree);
         System.exit(-1);
     }
     tree = new BinaryTreeNode<>();
     tree.left = new BinaryTreeNode<Integer>();
     tree.left.left = new BinaryTreeNode<Integer>();
     if (isBalanced(tree)) {
-        System.err.println("Incorrect result: " + tree + "\nThis tree is not balanced.");
+        System.err.println("Incorrect result on unbalanced tree: " + tree);
         System.exit(-1);
     }
   }

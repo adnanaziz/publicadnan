@@ -108,41 +108,41 @@ public class BinaryTreePrototypeTemplate {
       return sb.toString();
     }
     // @include
+
+    private static void testToString() {
+
+      BinaryTreeNode A = new BinaryTreeNode<>(1);
+      A.right = new BinaryTreeNode<>(2);
+      A.right.left = new BinaryTreeNode<>(3);
+      System.out.println(A);
+      assert(A.toString().equals("{1,#,2,3}"));
+
+      BinaryTreeNode<Integer> B = new BinaryTreeNode<>(1);
+      B.left = new BinaryTreeNode<>(2);
+      B.right = new BinaryTreeNode<>(3);
+      B.right.left = new BinaryTreeNode<>(4);
+      B.right.left.right = new BinaryTreeNode<>(5);
+      System.out.println(B);
+      assert(B.toString().equals("{1,2,3,#,#,4,#,#,5}"));
+
+      BinaryTreeNode<Integer> C = new BinaryTreeNode<>(1,
+                      new BinaryTreeNode(2), 
+                      new BinaryTreeNode(3));
+      System.out.println(C);
+      assert(C.toString().equals("{1,2,3}"));
+
+      BinaryTreeNode<Integer> D = new BinaryTreeNode<>(5,
+                      new BinaryTreeNode(4), 
+                      new BinaryTreeNode(7));
+
+      D.left.left = new BinaryTreeNode<>(3,
+                          new BinaryTreeNode<>(-1), null);
+
+      D.right.left = new BinaryTreeNode<>(2,
+                          new BinaryTreeNode<>(9), null);
+      System.out.println(D);
+      assert(D.toString().equals("{5,4,7,3,#,2,#,-1,#,9}"));
+    }
   }
   // @exclude
-
-  public static void main(String[] args) {
-
-    BinaryTreePrototypeTemplate.BinaryTreeNode A = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(1);
-    A.right = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(2);
-    A.right.left = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(3);
-    System.out.println(A);
-    assert(A.toString().equals("{1,#,2,3}"));
-
-    BinaryTreePrototypeTemplate.BinaryTreeNode<Integer> B = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(1);
-    B.left = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(2);
-    B.right = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(3);
-    B.right.left = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(4);
-    B.right.left.right = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(5);
-    System.out.println(B);
-    assert(B.toString().equals("{1,2,3,#,#,4,#,#,5}"));
-
-    BinaryTreePrototypeTemplate.BinaryTreeNode<Integer> C = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(1,
-                    new BinaryTreePrototypeTemplate.BinaryTreeNode(2), 
-                    new BinaryTreePrototypeTemplate.BinaryTreeNode(3));
-    System.out.println(C);
-    assert(C.toString().equals("{1,2,3}"));
-
-    BinaryTreePrototypeTemplate.BinaryTreeNode<Integer> D = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(5,
-                    new BinaryTreePrototypeTemplate.BinaryTreeNode(4), 
-                    new BinaryTreePrototypeTemplate.BinaryTreeNode(7));
-
-    D.left.left = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(3,
-                        new BinaryTreePrototypeTemplate.BinaryTreeNode<>(-1), null);
-
-    D.right.left = new BinaryTreePrototypeTemplate.BinaryTreeNode<>(2,
-                        new BinaryTreePrototypeTemplate.BinaryTreeNode<>(9), null);
-    System.out.println(D);
-    assert(D.toString().equals("{5,4,7,3,#,2,#,-1,#,9}"));
-  }
 }

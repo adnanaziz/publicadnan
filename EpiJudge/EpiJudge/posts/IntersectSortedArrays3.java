@@ -1,4 +1,4 @@
-//package com.epi;
+package com.epi;
 
 /*
     @slug
