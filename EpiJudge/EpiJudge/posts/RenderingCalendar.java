@@ -1,4 +1,4 @@
-// package com.epi;
+package com.epi;
 
 /*
     @slug
@@ -35,14 +35,12 @@ public class RenderingCalendar {
       this.finish = finish;
     }
 
-    //@exclude
-    //@judge-exclude-display
+    // @exclude
     @Override
     public String toString() {
         return "[" + start + "," + finish + "]";
     }
-    //@judge-include-display
-    //@include
+    // @include
   }
   // @judge-exclude-display
 

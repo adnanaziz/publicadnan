@@ -60,10 +60,11 @@ public class Parity1 {
   }
 
   static void unitTest(long L, short expectedParity) {
-    short P = parity(L);
-    if (P != expectedParity) {
-      System.err.println("Wrong results for " + longToBinaryString(L));
-      System.err.println("Expected " + expectedParity + " got " + P);
+    short got = parity(L);
+    if (got != expectedParity) {
+      System.err.println("Wrong result for " + longToBinaryString(L));
+      System.err.println("Expected " + expectedParity);
+      System.err.println("Got " + got);
       System.exit(-1);
     }
   }
@@ -160,13 +161,13 @@ public class Parity1 {
     long bitByBitSolutionTime = stressTestBitByBit(N);
     long assocSolutionTime = stressTestAssoc(N);
     long SCALE = 1000000L;
-    System.out.println("user, table, bit-by-bit, assoc = " 
-                            + userSolutionTime/SCALE + ", " + tableSolutionTime/SCALE + ", " 
-                            + bitByBitSolutionTime/SCALE + ", " + assocSolutionTime/SCALE);
+    //System.out.println("user, table, bit-by-bit, assoc = " 
+    //                        + userSolutionTime/SCALE + ", " + tableSolutionTime/SCALE + ", " 
+    //                        + bitByBitSolutionTime/SCALE + ", " + assocSolutionTime/SCALE);
     if (userSolutionTime >  0.5 * bitByBitSolutionTime) {
-        System.err.println("Your program took " + userSolutionTime + " nanoseconds for " + N + " inputs.");
-        System.err.println("You should aims for " + tableSolutionTime + " nanoseconds.");
         System.err.println("Your program fails because it's too slow.");
+        System.err.println("Your program took " + userSolutionTime/SCALE + " milliseconds for " + N + " inputs.");
+        System.err.println("Your target time should be less than " + tableSolutionTime/SCALE + " milliseconds.");
         System.exit(-1);
     }
   }

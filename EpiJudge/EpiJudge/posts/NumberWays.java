@@ -1,4 +1,4 @@
-//package com.epi;
+package com.epi;
 /*
     @slug
     number-of-ways
@@ -7,24 +7,20 @@
 
     @problem
     In this problem you are to count the number of ways of starting at the
-   top-left corner
-    of a 2D array and getting to the bottom-right corner. All moves must either
-   go right or
-    down. For example, there are three ways in a 5x5 2D array, as shown in the
-   figure.
+   top-left corner of a 2D array and getting to the bottom-right corner. All moves must either
+   go right or down. We show three ways in a 5x5 2D array in the figure below (many
+   more are possible).
     <p>
 
     <img src="/path-array.png"></img>
+    <p>
 
-    Write a program that counts how many ways you can go from the top-left to
-   the
-    bottom-right in an n x m 2D array. How would you do so in the presence of
-   obstacles,
-    specified by an n x m Boolean 2D array B, where a true represents an
-   obstacle?
+    Write a program that counts how many ways you can go from the top-left to the
+    bottom-right in an n x m 2D array. How would you do so in the presence of obstacles,
+    specified by an n x m Boolean 2D array B, where a true represents an obstacle?
 
     @hint
-    If i > 0 and j > 0, you can get to (i, j) from (i − 1, j) or (j − 1, i).
+    If i > 0 and j > 0, you can get to (i, j) from (i - 1, j) or (j - 1, i).
 
 
  */

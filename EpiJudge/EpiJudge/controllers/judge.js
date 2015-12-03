@@ -95,7 +95,7 @@ function parseFile(filename, callback) {
         }
     }
     //TODO(AA): why is this import here when we add again?
-    skeleton =  "import java.util.*;\nimport java.math.BigInteger;n\nclass Solution {\n\n" + skeleton;
+    skeleton =  "import java.util.*;\nimport java.math.*;\n\nclass Solution {\n\n" + skeleton;
     skeleton = skeleton + "\n}";
     print("---skeleton = " + skeleton);
     result.javaskeleton = skeleton;
@@ -153,7 +153,8 @@ function parseFile(filename, callback) {
         }
     }
 
-    result.javatestcase = "import java.util.*;\nimport java.math.BigInteger;\n\n" + testcase;
+    // result.javatestcase = "import java.util.*;\nimport java.math.BigInteger;\n\n" + testcase;
+    result.javatestcase = "import java.util.*;\n\n" + testcase;
     console.log(">>> result = " + JSON.stringify(result, null, 4));
     callback(null, result);
 

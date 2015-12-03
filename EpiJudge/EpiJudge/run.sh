@@ -1,1 +1,1 @@
-supervisor -w 'posts/,controllers/,app.js' -e '.' app.js
+supervisor -w 'posts/,controllers/,app.js'  app.js

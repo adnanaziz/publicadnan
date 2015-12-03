@@ -13,7 +13,7 @@ package com.epi;
    figure.
     <p>
 
-    <img src="/powerset.png"></img>
+    <img src="/powerset.png" width=400px></img>
 
     @hint
     There are 2^n subsets for a given set S of size n. There are 2^k k-bit
@@ -122,5 +122,6 @@ public class PowerSet {
       }
       System.out.println();
     }
+    System.out.println("All tests passed.");
   }
 }

@@ -58,7 +58,9 @@ public class IntersectSortedArrays3 {
   private static void check(List<Integer> A, List<Integer> B, List<Integer> expected) {
     List<Integer> got = intersectTwoSortedArrays(A,B);
     if (!got.equals(expected)) {
-        System.err.println("Incorrect intersection computed for input arrays\n" + "A = " + A + "\nB = " + B);
+        System.err.println("Incorrect intersection");
+        System.err.println("A = " + A);
+        System.err.println("B = " + B);
         System.err.println("Got " + got);
         System.err.println("Expected " + expected);
         System.exit(-1);

@@ -54,6 +54,7 @@ public class BinaryTreePrototypeTemplate {
     // Based on https://leetcode.com/faq/#binary-tree
     @Override
     public String toString() {
+      int nodeId = 0;
       List<Deque<BinaryTreeNode<T>>> levels = new ArrayList<>();
 
       Deque<BinaryTreeNode<T>> currLevel = new LinkedList<>();
@@ -78,12 +79,16 @@ public class BinaryTreePrototypeTemplate {
       }
 
       List<String> result = new ArrayList<>();
-      result.add(this.data.toString());
+      result.add(this.data == null ? ("" + nodeId++) : this.data.toString());
       for (int i = 0; i < levels.size() -1; i++) {
         Deque<BinaryTreeNode<T>> thisLevel = levels.get(i);
         for (BinaryTreeNode<T> node : thisLevel) {
-            result.add( node.left != null ? node.left.data.toString() : "#");
-            result.add( node.right != null ? node.right.data.toString() : "#");
+            result.add( node.left != null 
+                ? (node.left.data == null ? ("" + nodeId++) : node.left.data.toString()) 
+                : "#");
+            result.add( node.right != null 
+                ? (node.right.data == null ? ("" + nodeId++) : node.right.data.toString()) 
+                : "#");
         }
       }
 

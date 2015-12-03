@@ -88,6 +88,7 @@ public class MergeSortedArrays {
         System.err.println("Your program failed on input " + S);
         System.err.println("Expected " + golden);
         System.err.println("Got " + ans);
+        System.exit(-1);
     }
   }
 

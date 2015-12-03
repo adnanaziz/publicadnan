@@ -10,10 +10,10 @@
     and checks if the tree satisfies the BST property.
     See the figure for an example of a BST.
     <p>
-    <img src="/bst-example.png"></img>
+    <img src="/bst-example.png" width="400px"></img>
 
     @hint
-    Is it correct to check for each \myindex{node}node that its key is greater
+    Is it correct to check for each node that its key is greater
    than or equal to the key at its left child and less than or equal to the key
    at its right child?
 
