@@ -327,7 +327,7 @@
 
             <div class="panel panel-default" id="compilebox-output-container" style="display:none">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><pre>stdout</pre></h3>
+                    <h1 class="panel-title"><pre>stdout</pre></h1>
                 </div>
                 <div class="panel-body">
                     <pre><code><div id="compilebox-output"></div></code></pre>
@@ -336,7 +336,7 @@
 
             <div class="panel panel-default" id="compilebox-errors-container" style="display:none">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><pre>stderr</pre></h3>
+                    <h1 class="panel-title"><pre>stderr</pre></h1>
                 </div>
                 <div class="panel-body">
                     <pre><code><div id="compilebox-errors"></div></code></pre>
@@ -407,7 +407,20 @@
 
 
     <script>
-        var postProcess = function(errors, begin) {
+        var postProcessOutput = function(stdout, begin) {
+            console.log("stdout = " + stdout);
+            var lines = stdout.split("\n");
+            var result = "";
+            for (var i = 0; i < lines.length; i++) {
+                if (lines[i].match(/^Note:/)) {
+                    continue;
+                }
+                result += lines[i];
+            }
+            return return;
+        }
+
+        var postProcessErrors = function(errors, begin) {
             console.log("errors = " + errors);
             var lines = errors.split("\n");
             var result = "";
@@ -466,15 +479,20 @@
 
                         //console.log("serverResp = " + JSON.stringify(serverResp));
                         var begin = {{begin}};
-                        var massagedErrors = postProcess(serverResp.errors, begin);
+                        var massagedErrors = postProcessErrors(serverResp.errors, begin);
+                        var massagedOutput = postProcessStdout(serverResp.output, begin);
                         console.log(massagedErrors);
                         $('#compilebox-output').html(serverResp.output);
                         $('#compilebox-errors').html(massagedErrors);
                         $('#compilebox-time').html(serverResp.time);
-                        $('#compilebox-output-container').show();
-                        $('#compilebox-errors-container').show();
-                        $("#std-output").show();
-                        $("#error-output").show();
+                        if (massagedOutput.trim().length > 0) {
+                            $('#compilebox-output-container').show();
+                        }
+                        if (massagedErrors.trim().length > 0) {
+                            $('#compilebox-errors-container').show();
+                        }
+                        //$("#std-output").show();
+                        //$("#error-output").show();
 
                     },
                     error: function(serverResp) { // on ajax failure
