@@ -28,6 +28,26 @@ var endsWith = function(str, suffix) {
     }
 }
 
+var finalCleanJava = function(code) {
+    var lines = code.split("\n");
+    var resultLines = [];
+    var prevLine = "";
+    for (var i = 0; i < lines.length; i++) {
+        if (lines[i].match(/@include/) || lines[i].match(/@exclude/)) {
+            continue;
+        } else if  (prevLine.trim() == "" && lines[i].trim() == "") {
+            // dont want multiple consecutive blank lines
+            continue;
+        } else if (prevLine.trim() == "{" && lines[i].trim() == "}" 
+                    || prevLine.trim() == "}" && lines[i].trim().match(/^public/)) {
+            resultLines.push("\n");
+        }
+        resultLines.push(lines[i]);
+        prevLine = lines[i];
+    }
+    return resultLines.join("\n");
+};
+
 function parseFile(filename, callback) {
     var fileContent;
     console.log("filename = " + filename);
@@ -97,6 +117,7 @@ function parseFile(filename, callback) {
     //TODO(AA): why is this import here when we add again?
     skeleton =  "import java.util.*;\nimport java.math.*;\n\nclass Solution {\n\n" + skeleton;
     skeleton = skeleton + "\n}";
+    skeleton = finalCleanJava(skeleton);
     print("---skeleton = " + skeleton);
     result.javaskeleton = skeleton;
 
