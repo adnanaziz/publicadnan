@@ -5,6 +5,7 @@
     <title>{{title | default('EPI Judge')}}</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script> -->
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -172,7 +173,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1>EPI Judge</h1>
-            <h2>Learn by hands-on coding!</h2>
+            <h2>A hands-on coding companion to our popular book! </h2>
         </div>
     </div>
 
@@ -325,12 +326,30 @@
                 {{cplusplusskeleton}}
             </div>
 
+            <div class="panel panel-default" id="compilebox-running-container" style="display:none">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Your job is running</h1>
+                </div>
+                <div class="panel-body">
+                    <pre><code><div id="compilebox-running">Your program has been sent to the judge, please wait a few seconds...</div></code></pre>
+                </div>
+            </div>
+
             <div class="panel panel-default" id="compilebox-output-container" style="display:none">
                 <div class="panel-heading">
                     <h1 class="panel-title">stdout</h1>
                 </div>
                 <div class="panel-body">
                     <pre><code><div id="compilebox-output"></div></code></pre>
+                </div>
+            </div>
+            
+            <div class="panel panel-default" id="compilebox-fail-container" style="display:none">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Compile Failed</h2>
+                </div>
+                <div class="panel-body">
+                    <pre><code><div id="compilebox-fail"></div></code></pre>
                 </div>
             </div>
 
@@ -434,7 +453,7 @@
         var postProcessEditorText = function(text) {
             var lines = text.split("\n");
             // brittle, relies on the preamble having two imports...
-            var OFFSET = 4;
+            var OFFSET = 5;
             var result = lines.slice(OFFSET, -2).join("\n");
             return result;
         }
@@ -452,6 +471,10 @@
         $(document).ready(function() {
             $("#sendto-compilebox").click(function() {
                 console.log("In compilebox");
+                $("#compilebox-running-container").show();
+                $("#compilebox-output-container").hide();
+                $("#compilebox-errors-container").hide();
+                $("#compilebox-fail-container").hide();
                 var editorText = editor.getValue();
                 var massagedEditorText = postProcessEditorText(editorText);
                 var codeToRun = javatestcase.replace("// @judge-fill", "\n // submitted solution:\n" + massagedEditorText + "\n// end submitted solution\n");
@@ -461,7 +484,19 @@
                     "stdin": $("#custom-test").text()
                 };
 
-                console.log(JSON.stringify(compileboxArgs));
+
+                /* $.ajax({
+                    type: 'POST',
+                    url: '/api/updateLastProgram',
+                    data: {last: editorText},
+                    success: function(resp) {
+                        console.log("success with update");
+                    },
+                    error: function(resp) {
+                        console.log("failure with update" + JSON.stringify(resp));
+                    }
+                ); */
+
                 $.ajax({
                     type: 'POST', // http method
                     url: compileboxServer + 'compile', // target URL
@@ -469,6 +504,7 @@
                     data: compileboxArgs,
                     //data: {},
                     success: function(serverResp) { // on ajax success
+                        $("#compilebox-running-container").hide();
 
                         //console.log("serverResp = " + JSON.stringify(serverResp));
                         var begin = {{begin}};
@@ -476,13 +512,19 @@
                         var massagedOutput = serverResp.output;
                         console.log(massagedErrors);
 
+                        console.log("massagedOutput " + massagedOutput);
                         $('#compilebox-time').html(serverResp.time);
-
-                        if (massagedOutput.trim().length > 0) {
+                        if (massagedOutput.trim().length > 0 && (massagedOutput.trim() != "Compilation Failed")) {
                             $('#compilebox-output').html(serverResp.output);
                             $('#compilebox-output-container').show();
+                            console.log("massagedOutput.trim().length > 0");
+                            console.log("massagedOutput.trim() = " + massagedOutput.trim());
+                        } else if (massagedOutput.trim() == "Compilation Failed") {
+                            console.log("Compilation Failed!");
+                            $('#compilebox-fail-container').show();
+                            $('#compilebox-fail').html(massagedErrors);
                         }
-                        if (massagedErrors.trim().length > 0) {
+                        if (massagedErrors.trim().length > 0 && massagedOutput.trim() != "Compilation Failed") {
                             $('#compilebox-errors').html(massagedErrors);
                             $('#compilebox-errors-container').show();
                         }
@@ -708,6 +750,14 @@
             editor.setValue($("#cplusplusskeleton-content").text());
             console.log("here!");
         });
+    </script>
+
+
+    <script>
+        //if (Cookies.get("session") == undefined) {
+        //    Cookies.set("session", "foo");
+        //    console.log("set cookie");
+        //}
     </script>
 
 

@@ -14,6 +14,9 @@ mockPostDict.hashtags = "#List #Java #InPlace #ArrayList #HashTable #Medium #Adn
 var fs = require('fs')
 
 var print = console.log;
+var str = function(s) {
+    return JSON.stringify(s, null, 4);
+};
 
 module.exports.postToDict = postToDict;
 
@@ -48,7 +51,18 @@ var finalCleanJava = function(code) {
     return resultLines.join("\n");
 };
 
-function parseFile(filename, callback) {
+var userInputs = {};
+
+function parseFile(sessionCookie, filename, callback) {
+
+    var existingInput = undefined;
+    if (sessionCookie !== undefined) {
+        print("have sessionCookie:", sessionCookie);
+        if (userInputs[sessionCookie + "_" + filename] != undefined) {
+            existingInput = userInputs[sessionCookie + "_" + filename];
+        }
+    }
+
     var fileContent;
     console.log("filename = " + filename);
     try {
@@ -119,7 +133,8 @@ function parseFile(filename, callback) {
     skeleton = skeleton + "\n}";
     skeleton = finalCleanJava(skeleton);
     print("---skeleton = " + skeleton);
-    result.javaskeleton = skeleton;
+    // result.javaskeleton = skeleton;
+    result.javaskeleton = existingInput || skeleton;
 
 /*
     if "// @judge-include-display" in line:
@@ -175,7 +190,7 @@ function parseFile(filename, callback) {
     }
 
     // result.javatestcase = "import java.util.*;\nimport java.math.BigInteger;\n\n" + testcase;
-    result.javatestcase = "import java.util.*;\n\n" + testcase;
+    result.javatestcase = "import java.util.*;\nimport java.math.*;\n\n" + testcase;
     console.log(">>> result = " + JSON.stringify(result, null, 4));
     callback(null, result);
 
@@ -189,6 +204,11 @@ function parseFile(filename, callback) {
         test.write("%s\n" % lines[i])
 */
 
+};
+
+module.exports.updateLastProgram = function(req, res) {
+    userInputs[req.cookies.sessionCookie + "_" + req.body.post] = req.body.submission;
+    res.json({code:500});
 };
 
 function initPostToDict(callback) {
@@ -290,7 +310,9 @@ module.exports.servePost = function(req, res) {
     var postid = req.params.id;
     print("postid = " + postid);
     print("filename = " + slugToFileName[postid]);
-    parseFile(slugToFileName[postid], function(err, postDict) {
+    print("cookie = " + str(req.cookies));
+
+    parseFile(req.cookies.sessionCookie, slugToFileName[postid], function(err, postDict) {
         if (err) {
             console.log("Error " + err);
             res.render('templates/routingerror.html', {serverError:500, serverErrorMessage:err});

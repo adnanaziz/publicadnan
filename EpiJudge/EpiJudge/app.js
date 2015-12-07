@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 var express = require('express');
-//var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 //var compress = require('compression');
 var favicon = require('serve-favicon');
 //var session = require('express-session');
@@ -107,7 +107,18 @@ app.use(bodyParser.urlencoded({
 
 //app.use(expressValidator());
 //app.use(methodOverride());
-//app.use(cookieParser());
+app.use(cookieParser());
+app.use(function(req, res, next) {
+ if (req.cookies.sessionCookie === undefined)
+  {
+    // no: set a new cookie
+    var randomNumber=Math.random().toString();
+    randomNumber=randomNumber.substring(2,randomNumber.length);
+    res.cookie('sessionCookie',randomNumber, { maxAge: 36000, httpOnly: true });
+    console.log('session cookie created successfully');
+  }
+    next();
+});
 
 /*
 app.use(session({
@@ -268,6 +279,8 @@ app.post('/api/studyguide2', function(req, res) {
 app.post('/api/search', judge.search);
 
 app.get('/api/searchSuggestionsForBloodhound', judge.autocomplete);
+
+app.post('/api/updateLastProgram', judge.updateLastProgram);
 
 
 /**
