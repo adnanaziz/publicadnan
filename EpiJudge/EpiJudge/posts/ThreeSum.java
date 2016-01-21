@@ -68,20 +68,20 @@ public class ThreeSum {
     boolean expected = checkAns(A, t);
     boolean got = hasThreeSum(A, t);
     if (expected != got) {
-        System.err.println("Incorrect answer for target " + t);
-        System.err.println("A = " + A);
-        System.err.println("Expected " + expected + ", you computed " + got);
-        System.exit(-1);
+      System.err.println("Incorrect answer for target " + t);
+      System.err.println("A = " + A);
+      System.err.println("Expected " + expected + ", you computed " + got);
+      System.exit(-1);
     }
   }
 
   private static void directedTests() {
-    check(Arrays.asList(1,2,3), 6);
-    check(Arrays.asList(1,1,1), 1);
-    check(Arrays.asList(1,1,1), 3);
-    check(Arrays.asList(1,1), 3);
-    check(Arrays.asList(1,1), 3);
-    check(Arrays.asList(1,1,2,2,3,3), 6);
+    check(Arrays.asList(1, 2, 3), 6);
+    check(Arrays.asList(1, 1, 1), 1);
+    check(Arrays.asList(1, 1, 1), 3);
+    check(Arrays.asList(1, 1), 3);
+    check(Arrays.asList(1, 1), 3);
+    check(Arrays.asList(1, 1, 2, 2, 3, 3), 6);
   }
 
   private static void stressTest() {
@@ -109,7 +109,7 @@ public class ThreeSum {
         A.add(gen.nextInt(200000) - 100000);
       }
       System.out.println(hasThreeSum(A, T) ? "true" : "false");
-      check(A,T);
+      check(A, T);
     }
   }
 }

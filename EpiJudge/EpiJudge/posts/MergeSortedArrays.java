@@ -83,12 +83,13 @@ public class MergeSortedArrays {
   // @judge-exclude-display
   // @exclude
 
-  private static void check(List<List<Integer>> S, List<Integer> ans, List<Integer> golden) {
+  private static void check(List<List<Integer>> S, List<Integer> ans,
+                            List<Integer> golden) {
     if (!ans.equals(golden)) {
-        System.err.println("Your program failed on input " + S);
-        System.err.println("Expected " + golden);
-        System.err.println("Got " + ans);
-        System.exit(-1);
+      System.err.println("Your program failed on input " + S);
+      System.err.println("Expected " + golden);
+      System.err.println("Got " + ans);
+      System.exit(-1);
     }
   }
 

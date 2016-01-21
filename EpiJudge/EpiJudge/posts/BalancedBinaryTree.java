@@ -17,6 +17,26 @@
    and checks whether the tree is balanced.
    <p>
 
+   The binary tree class is
+
+<pre>
+   class BinaryTreeNode<T> {
+       public T data;
+       public BinaryTreeNode<T> left, right;
+   }
+
+   public BinaryTreeNode(T data) { this.data = data; }
+
+   public BinaryTreeNode(T data, BinaryTreeNode<T> left,
+                          BinaryTreeNode<T> right) {
+     this.data = data;
+     this.left = left;
+     this.right = right;
+   }
+</pre>
+<p>
+
+
    <img src="/binary-tree.png"></img>
 
    @hint
@@ -81,15 +101,15 @@ public class BalancedBinaryTree {
     tree.right.left = new BinaryTreeNode<Integer>();
     tree.right.right = new BinaryTreeNode<Integer>();
     if (!isBalanced(tree)) {
-        System.err.println("Incorrect result on balanced tree " + tree);
-        System.exit(-1);
+      System.err.println("Incorrect result on balanced tree " + tree);
+      System.exit(-1);
     }
     tree = new BinaryTreeNode<>();
     tree.left = new BinaryTreeNode<Integer>();
     tree.left.left = new BinaryTreeNode<Integer>();
     if (isBalanced(tree)) {
-        System.err.println("Incorrect result on unbalanced tree: " + tree);
-        System.exit(-1);
+      System.err.println("Incorrect result on unbalanced tree: " + tree);
+      System.exit(-1);
     }
   }
 }

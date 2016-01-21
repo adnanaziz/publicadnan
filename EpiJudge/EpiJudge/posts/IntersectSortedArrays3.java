@@ -9,7 +9,8 @@ package com.epi;
 
     @problem
     Write a program which takes as input two sorted arrays, and returns a new
-   array containing elements that are present in both of the input arrays. The input
+   array containing elements that are present in both of the input arrays. The
+   input
    arrays may have duplicate entries, but the returned array should be free of
    duplicates.
     <p>
@@ -23,7 +24,6 @@ package com.epi;
     are approximately equal?
 
  */
-
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,30 +55,36 @@ public class IntersectSortedArrays3 {
   // @judge-exclude-display
   // @exclude
 
-  private static void check(List<Integer> A, List<Integer> B, List<Integer> expected) {
-    List<Integer> got = intersectTwoSortedArrays(A,B);
+  private static void check(List<Integer> A, List<Integer> B,
+                            List<Integer> expected) {
+    List<Integer> got = intersectTwoSortedArrays(A, B);
     if (!got.equals(expected)) {
-        System.err.println("Incorrect intersection");
-        System.err.println("A = " + A);
-        System.err.println("B = " + B);
-        System.err.println("Got " + got);
-        System.err.println("Expected " + expected);
-        System.exit(-1);
+      System.err.println("Incorrect intersection");
+      System.err.println("A = " + A);
+      System.err.println("B = " + B);
+      System.err.println("Got " + got);
+      System.err.println("Expected " + expected);
+      System.exit(-1);
     }
   }
 
   public static void main(String[] args) {
     List<Integer> empty = Collections.emptyList();
-    check(Arrays.asList(1,2,3,4), Arrays.asList(1,4,5), Arrays.asList(1,4));
-    check(empty, Arrays.asList(1,4,5), empty);
+    check(Arrays.asList(1, 2, 3, 4), Arrays.asList(1, 4, 5),
+          Arrays.asList(1, 4));
+    check(empty, Arrays.asList(1, 4, 5), empty);
     check(empty, empty, empty);
-    check(Arrays.asList(1,4,5), empty, empty);
-    check(Arrays.asList(1,2,2,4), Arrays.asList(1,2,5), Arrays.asList(1,2));
-    check(Arrays.asList(1,2,3,4), Arrays.asList(1,4,5), Arrays.asList(1,4));
-    check(Arrays.asList(1,2,3,4), Arrays.asList(5,6,9), empty);
-    check(Arrays.asList(1,1,1,1), Arrays.asList(1,1,1), Arrays.asList(1));
-    check(Arrays.asList(1,1,1,2,2), Arrays.asList(1,1,1,1,1,2), Arrays.asList(1,2));
-    check(Arrays.asList(-2,1,1,1,2,2), Arrays.asList(-1,1,1,1,1,1,2,2), Arrays.asList(1,2));
+    check(Arrays.asList(1, 4, 5), empty, empty);
+    check(Arrays.asList(1, 2, 2, 4), Arrays.asList(1, 2, 5),
+          Arrays.asList(1, 2));
+    check(Arrays.asList(1, 2, 3, 4), Arrays.asList(1, 4, 5),
+          Arrays.asList(1, 4));
+    check(Arrays.asList(1, 2, 3, 4), Arrays.asList(5, 6, 9), empty);
+    check(Arrays.asList(1, 1, 1, 1), Arrays.asList(1, 1, 1), Arrays.asList(1));
+    check(Arrays.asList(1, 1, 1, 2, 2), Arrays.asList(1, 1, 1, 1, 1, 2),
+          Arrays.asList(1, 2));
+    check(Arrays.asList(-2, 1, 1, 1, 2, 2),
+          Arrays.asList(-1, 1, 1, 1, 1, 1, 2, 2), Arrays.asList(1, 2));
 
     int N = 100000000;
     List<Integer> bigList = new ArrayList<>(N);

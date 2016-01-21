@@ -26,8 +26,8 @@ public class ConvertBase {
     int x = 0;
     for (int i = (isNegative ? 1 : 0); i < s.length(); ++i) {
       x *= b1;
-      x += Character.isDigit(s.charAt(i)) ? s.charAt(i) - '0' : s.charAt(i)
-                                                                    - 'A' + 10;
+      x += Character.isDigit(s.charAt(i)) ? s.charAt(i) - '0'
+                                          : s.charAt(i) - 'A' + 10;
     }
 
     StringBuilder result = new StringBuilder();

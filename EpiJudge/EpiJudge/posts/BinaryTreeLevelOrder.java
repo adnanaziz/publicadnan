@@ -8,17 +8,34 @@ package com.epi;
     Binary Tree in level order
 
     @problem
-    Given a binary tree,
-    return an array consisting of the keys at the same level. Keys should appear
-    in the order of the corresponding nodes' depths, breaking ties from left to
-   right.
-    For example, you should return
-    << 314>, <6, 6>, <271, 561, 2, 271>, <28, 0, 3, 1, 28>, <17, 401, 257>, <641
-   >> for the
-    binary tree in the figure.
+    Given a binary tree, return an array consisting of the keys at the same
+level. Keys should appear in the order of the corresponding nodes' depths,
+breaking ties from left to right.
+
+    For example, you should return << 314>, <6, 6>, <271, 561, 2, 271>, <28, 0,
+3, 1, 28>, <17, 401, 257>, <641>> for the binary tree in the figure.
     <p>
 
     <img src="/binary-tree.png"></img>
+
+  The binary tree class is
+
+<pre>
+   class BinaryTreeNode<T> {
+       public T data;
+       public BinaryTreeNode<T> left, right;
+   }
+
+   public BinaryTreeNode(T data) { this.data = data; }
+
+   public BinaryTreeNode(T data, BinaryTreeNode<T> left,
+                          BinaryTreeNode<T> right) {
+     this.data = data;
+     this.left = left;
+     this.right = right;
+   }
+</pre>
+<p>
 
     @hint
     Start by solving this problem with a pair of queues.
@@ -89,12 +106,12 @@ public class BinaryTreeLevelOrder {
         Arrays.asList(3), Arrays.asList(2, 5), Arrays.asList(1, 4, 6),
         Arrays.asList(10), Arrays.asList(13));
     if (!goldenRes.equals(result)) {
-        System.err.println("Failed on input " + tree);
-        System.err.println("Expected " + goldenRes);
-        System.err.println("Your code produced " + result);
-        System.exit(-1);
+      System.err.println("Failed on input " + tree);
+      System.err.println("Expected " + goldenRes);
+      System.err.println("Your code produced " + result);
+      System.exit(-1);
     } else {
-        System.out.println("You passed all tests.");
+      System.out.println("You passed all tests.");
     }
   }
 }

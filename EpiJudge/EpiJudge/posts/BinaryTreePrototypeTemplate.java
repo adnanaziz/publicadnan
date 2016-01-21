@@ -64,48 +64,50 @@ public class BinaryTreePrototypeTemplate {
         levels.add(currLevel);
         for (BinaryTreeNode<T> iter : currLevel) {
           if (iter.left != null) {
-              nextLevel.add(iter.left);
-          } 
+            nextLevel.add(iter.left);
+          }
           if (iter.right != null) {
-              nextLevel.add(iter.right);
+            nextLevel.add(iter.right);
           }
         }
         if (nextLevel.size() == 0) {
-            break;
+          break;
         } else {
-            currLevel = nextLevel;
-            nextLevel = new LinkedList<>();
+          currLevel = nextLevel;
+          nextLevel = new LinkedList<>();
         }
       }
 
       List<String> result = new ArrayList<>();
       result.add(this.data == null ? ("" + nodeId++) : this.data.toString());
-      for (int i = 0; i < levels.size() -1; i++) {
+      for (int i = 0; i < levels.size() - 1; i++) {
         Deque<BinaryTreeNode<T>> thisLevel = levels.get(i);
         for (BinaryTreeNode<T> node : thisLevel) {
-            result.add( node.left != null 
-                ? (node.left.data == null ? ("" + nodeId++) : node.left.data.toString()) 
-                : "#");
-            result.add( node.right != null 
-                ? (node.right.data == null ? ("" + nodeId++) : node.right.data.toString()) 
-                : "#");
+          result.add(node.left != null
+                         ? (node.left.data == null ? ("" + nodeId++)
+                                                   : node.left.data.toString())
+                         : "#");
+          result.add(node.right != null ? (node.right.data == null
+                                               ? ("" + nodeId++)
+                                               : node.right.data.toString())
+                                        : "#");
         }
       }
 
       int numTrailingHashes = 0;
-      for (int i = result.size() -1; i >= 0; i--) {
+      for (int i = result.size() - 1; i >= 0; i--) {
         if (result.get(i).equals("#")) {
-            numTrailingHashes++;
+          numTrailingHashes++;
         } else {
-            break;
+          break;
         }
       }
-      
+
       StringBuilder sb = new StringBuilder();
       sb.append("{");
       for (int i = 0; i < result.size() - numTrailingHashes; i++) {
         sb.append(result.get(i));
-        if (i < result.size()  - numTrailingHashes - 1) {
+        if (i < result.size() - numTrailingHashes - 1) {
           sb.append(",");
         }
       }
@@ -115,7 +117,6 @@ public class BinaryTreePrototypeTemplate {
     // @include
 
     private static void testToString() {
-
       BinaryTreeNode A = new BinaryTreeNode<>(1);
       A.right = new BinaryTreeNode<>(2);
       A.right.left = new BinaryTreeNode<>(3);
@@ -130,21 +131,17 @@ public class BinaryTreePrototypeTemplate {
       System.out.println(B);
       assert(B.toString().equals("{1,2,3,#,#,4,#,#,5}"));
 
-      BinaryTreeNode<Integer> C = new BinaryTreeNode<>(1,
-                      new BinaryTreeNode(2), 
-                      new BinaryTreeNode(3));
+      BinaryTreeNode<Integer> C = new BinaryTreeNode<>(1, new BinaryTreeNode(2),
+                                                       new BinaryTreeNode(3));
       System.out.println(C);
       assert(C.toString().equals("{1,2,3}"));
 
-      BinaryTreeNode<Integer> D = new BinaryTreeNode<>(5,
-                      new BinaryTreeNode(4), 
-                      new BinaryTreeNode(7));
+      BinaryTreeNode<Integer> D = new BinaryTreeNode<>(5, new BinaryTreeNode(4),
+                                                       new BinaryTreeNode(7));
 
-      D.left.left = new BinaryTreeNode<>(3,
-                          new BinaryTreeNode<>(-1), null);
+      D.left.left = new BinaryTreeNode<>(3, new BinaryTreeNode<>(-1), null);
 
-      D.right.left = new BinaryTreeNode<>(2,
-                          new BinaryTreeNode<>(9), null);
+      D.right.left = new BinaryTreeNode<>(2, new BinaryTreeNode<>(9), null);
       System.out.println(D);
       assert(D.toString().equals("{5,4,7,3,#,2,#,-1,#,9}"));
     }

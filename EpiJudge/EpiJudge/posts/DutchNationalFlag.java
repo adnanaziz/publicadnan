@@ -156,8 +156,9 @@ public class DutchNationalFlag {
     }
 
     if (i != n) {
-      System.err.println("Failed test, on input " + Adup
-                         + " your code updated to " + A);
+      System.err.println("Failing test: pivot = " + pivot + " array = " + Adup
+                         + "."
+                         + "Your code updated to " + A);
       System.exit(-1);
     }
     return true;

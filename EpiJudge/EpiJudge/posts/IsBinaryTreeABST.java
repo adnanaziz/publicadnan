@@ -12,6 +12,27 @@
     <p>
     <img src="/bst-example.png" width="400px"></img>
 
+  The binary tree class is
+
+<pre>
+   class BinaryTreeNode<T> {
+       public T data;
+       public BinaryTreeNode<T> left, right;
+   }
+
+   public BinaryTreeNode(T data) { this.data = data; }
+
+   public BinaryTreeNode(T data, BinaryTreeNode<T> left,
+                          BinaryTreeNode<T> right) {
+     this.data = data;
+     this.left = left;
+     this.right = right;
+   }
+</pre>
+
+<p>
+
+
     @hint
     Is it correct to check for each node that its key is greater
    than or equal to the key at its left child and less than or equal to the key

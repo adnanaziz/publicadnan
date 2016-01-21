@@ -53,32 +53,31 @@ public class PowerSet {
   }
   // @judge-exclude-display
   // @exclude
-  
+
   private static void check(List<Integer> input, List<List<Integer>> expected) {
     List<List<Integer>> got = generatePowerSet(input);
     Set<Set<Integer>> gotSet = new HashSet<>();
     for (List<Integer> item : got) {
-        gotSet.add(new HashSet<>(item));
+      gotSet.add(new HashSet<>(item));
     }
     if (gotSet.size() != got.size()) {
-        System.err.println("Error, your powerset has duplicate entries.");
-        System.err.println("Input:" + input);
-        System.err.println("Your result:" + got);
-        System.exit(-1);
+      System.err.println("Error, your powerset has duplicate entries.");
+      System.err.println("Input:" + input);
+      System.err.println("Your result:" + got);
+      System.exit(-1);
     }
 
     Set<Set<Integer>> expectedSet = new HashSet<>();
     for (List<Integer> item : expected) {
-        expectedSet.add(new HashSet<>(item));
+      expectedSet.add(new HashSet<>(item));
     }
 
     if (!expectedSet.equals(gotSet)) {
-        System.err.println("Error on input " + input);
-        System.err.println("Expected " + expected);
-        System.err.println("Got " + got);
-        System.exit(-1);
+      System.err.println("Error on input " + input);
+      System.err.println("Expected " + expected);
+      System.err.println("Got " + got);
+      System.exit(-1);
     }
-    
   }
 
   private static void simpleTest() {
@@ -86,9 +85,9 @@ public class PowerSet {
 
     List<Integer> input = Arrays.asList(0, 1, 2);
     List<List<Integer>> goldenResult = Arrays.asList(
-        EMPTY_LIST, Arrays.asList(0), Arrays.asList(1),
-        Arrays.asList(0, 1), Arrays.asList(2), Arrays.asList(0, 2),
-        Arrays.asList(1, 2), Arrays.asList(0, 1, 2));
+        EMPTY_LIST, Arrays.asList(0), Arrays.asList(1), Arrays.asList(0, 1),
+        Arrays.asList(2), Arrays.asList(0, 2), Arrays.asList(1, 2),
+        Arrays.asList(0, 1, 2));
 
     check(input, goldenResult);
 

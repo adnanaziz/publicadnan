@@ -17,7 +17,6 @@ package com.epi;
 
  */
 
-
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +37,7 @@ public class RenderingCalendar {
     // @exclude
     @Override
     public String toString() {
-        return "[" + start + "," + finish + "]";
+      return "[" + start + "," + finish + "]";
     }
     // @include
   }
@@ -96,10 +95,10 @@ public class RenderingCalendar {
   private static void check(int expected, List<Event> events) {
     int got = findMaxSimultaneousEvents(events);
     if (expected != got) {
-        System.err.println("Failed on input " + events);
-        System.err.println("Expected " + expected);
-        System.err.println("Got " + got);
-        System.exit(-1);
+      System.err.println("Failed on input " + events);
+      System.err.println("Expected " + expected);
+      System.err.println("Got " + got);
+      System.exit(-1);
     }
   }
 
@@ -110,17 +109,17 @@ public class RenderingCalendar {
         new Event(14, 15));
     check(3, events);
 
-    check(1, Arrays.asList( new Event(1,2), new Event(3,4)));
-    check(2, Arrays.asList( new Event(1,3), new Event(3,4)));
-    check(2, Arrays.asList( new Event(1,3), new Event(0,4)));
-    check(2, Arrays.asList( new Event(1,3), new Event(0,4), new Event(-1,0)));
-    check(2, Arrays.asList( new Event(1,1), new Event(0,0), new Event(0,0)));
+    check(1, Arrays.asList(new Event(1, 2), new Event(3, 4)));
+    check(2, Arrays.asList(new Event(1, 3), new Event(3, 4)));
+    check(2, Arrays.asList(new Event(1, 3), new Event(0, 4)));
+    check(2, Arrays.asList(new Event(1, 3), new Event(0, 4), new Event(-1, 0)));
+    check(2, Arrays.asList(new Event(1, 1), new Event(0, 0), new Event(0, 0)));
     int N = 1000000;
     List<Event> big1 = new ArrayList<>(N);
     List<Event> big2 = new ArrayList<>(N);
     for (int i = 0; i < N; i++) {
-        big1.add(new Event(i,i));
-        big2.add(new Event(-i,i));
+      big1.add(new Event(i, i));
+      big2.add(new Event(-i, i));
     }
     check(1, big1);
     check(N, big2);

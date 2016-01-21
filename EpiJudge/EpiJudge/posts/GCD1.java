@@ -28,9 +28,7 @@ public class GCD1 {
   // @judge-include-display
   public static long GCD(long x, long y) {
     // @judge-exclude-display
-    if (x == 0) {
-      return y;
-    } else if (y == 0) {
+    if (x == y) {
       return x;
     } else if ((x & 1) == 0 && (y & 1) == 0) { // x and y are even.
       return GCD(x >>> 1, y >>> 1) << 1;
@@ -58,26 +56,26 @@ public class GCD1 {
     long got = GCD(a, b);
     long expected = gcdGolden(a, b);
     if (got != expected) {
-        System.err.println("Your program failed on input " + a + ", " + b);
-        System.err.println("Expected GCD = " + expected);
-        System.err.println("GCD you computed = " + got);
-        System.exit(-1);
+      System.err.println("Your program failed on input " + a + ", " + b);
+      System.err.println("Expected GCD = " + expected);
+      System.err.println("GCD you computed = " + got);
+      System.exit(-1);
     }
   }
 
   public static void main(String[] args) {
-    check(2L,2L);
-    check(2L,3L);
-    check(17L,289L); 
-    check(13L,17L);
-    check(17L,289L);
-    check(18L,24L);
-    check(1024L*1023L,1023L*1025L);
-    check(317L*1024L*1023L,317L*1023L*1025L);
-    check(Long.MAX_VALUE,Long.MAX_VALUE-1L);
-    check(Long.MAX_VALUE-1L,(Long.MAX_VALUE-1L)/(2L));
-    check(0L,0L);
-    check(0L,1L);
-    check(10L,100L);
+    check(2L, 2L);
+    check(2L, 3L);
+    check(17L, 289L);
+    check(13L, 17L);
+    check(17L, 289L);
+    check(18L, 24L);
+    check(1024L * 1023L, 1023L * 1025L);
+    check(317L * 1024L * 1023L, 317L * 1023L * 1025L);
+    check(Long.MAX_VALUE, Long.MAX_VALUE - 1L);
+    check(Long.MAX_VALUE - 1L, (Long.MAX_VALUE - 1L) / (2L));
+    check(0L, 0L);
+    check(0L, 1L);
+    check(10L, 100L);
   }
 }

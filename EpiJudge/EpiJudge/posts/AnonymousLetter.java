@@ -26,7 +26,6 @@ package com.epi;
  */
 // Copyright (c) 2015 Elements of Programming Interviews. All rights reserved.
 
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -65,15 +64,16 @@ public class AnonymousLetter {
         charFrequencyForLetter.put(c, charFrequencyForLetter.get(c) - 1);
         if (charFrequencyForLetter.get(c) == 0) {
           charFrequencyForLetter.remove(c);
-          // Empty charFrequencyForLetter means every char in letterText
-          // can be covered by a character in magazineText.
+          // All characters for letterText are matched.
           if (charFrequencyForLetter.isEmpty()) {
-            return true;
+            break;
           }
         }
       }
     }
-    return false;
+    // Empty charFrequencyForLetter means every char in letterText can be
+    // covered by a character in magazineText.
+    return charFrequencyForLetter.isEmpty();
     // @judge-include-display
   }
   // @judge-exclude-display
@@ -81,11 +81,11 @@ public class AnonymousLetter {
 
   private static void check(String letter, String magazine, boolean expected) {
     if (expected != isLetterConstructibleFromMagazine(letter, magazine)) {
-        System.err.println("Your program incorrectly reports that " 
-                                + (letter.length() > 0 ? letter : "the empty string")
-                                + " is" + (expected ? " not" : "") 
-                                +  " constructible from " + magazine);
-        System.exit(-1);
+      System.err.println("Your program incorrectly reports that "
+                         + (letter.length() > 0 ? letter : "the empty string")
+                         + " is" + (expected ? " not" : "")
+                         + " constructible from " + magazine);
+      System.exit(-1);
     }
   }
 

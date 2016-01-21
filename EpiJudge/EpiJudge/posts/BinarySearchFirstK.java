@@ -8,9 +8,12 @@ package com.epi;
     Search a sorted array for first occurrence of a key
 
     @problem
-    Write a method that takes a sorted array and a key and returns the index of the 
-    first occurrence of that key in the array. For example, when applied to the array in
-    the figure, your algorithm should return 3 if the given key is 108; if it is 285, your
+    Write a method that takes a sorted array and a key and returns the index of
+   the
+    first occurrence of that key in the array. For example, when applied to the
+   array in
+    the figure, your algorithm should return 3 if the given key is 108; if it is
+   285, your
     algorithm should return 6.
     <p>
 
@@ -61,12 +64,12 @@ public class BinarySearchFirstK {
     }
     return -1;
   }
-  
+
   private static void check(int expected, int got, List<Integer> A, int key) {
     if (expected != got) {
-        System.err.println("Failed looking for " + key + " in array " + A);
-        System.err.println("Got " + got + ", expected " + expected);
-        System.exit(-1);
+      System.err.println("Failed looking for " + key + " in array " + A);
+      System.err.println("Got " + got + ", expected " + expected);
+      System.exit(-1);
     }
   }
 
