@@ -67,6 +67,7 @@ int main(int argc, char* argv[]) {
       n = dis(gen);
     }
     vector<Color> A(RandVector(n));
+    vector<Color> Aorig(A);
     uniform_int_distribution<int> dis(0, A.size() - 1);
     int pivot_index = dis(gen);
     Color pivot = A[pivot_index];
@@ -85,7 +86,15 @@ int main(int argc, char* argv[]) {
       ++i;
     }
     cout << endl;
-    assert(i == A.size());
+    if (i == A.size()) {
+        continue;
+    } else {
+        cerr << "Your program produced the wrong result" << endl;
+        cerr << "Input:\n" << Aorig << endl;
+        cerr << "Output:\n" << A << endl;
+        exit(-1);
+    }
   }
-  return 0;
+  cout << "All tests passed" << endl;
+  exit(0);
 }
