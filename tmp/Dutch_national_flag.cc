@@ -90,18 +90,18 @@ int main(int argc, char* argv[]) {
     if (i == A.size()) {
         continue;
     } else {
-        cerr << "Your program produced the wrong result" << endl;
-        cerr << "Input:\n" << endl;
+        std::cerr << "Your program produced the wrong result" << endl;
+        std::cerr << "Input:\n" << endl;
         for (auto i = Aorig.begin(); i != Aorig.end(); ++i) {
-            std::cout << *i << ' ';
+            std::cerr << *i << ' ';
         }
-        cerr << "Output:\n" << endl;
+        std::cerr << "Output:\n" << endl;
         for (auto i = A.begin(); i != A.end(); ++i) {
-            std::cout << *i << ' ';
+            std::cerr << *i << ' ';
         }
         exit(-1);
     }
   }
-  cout << "All tests passed" << endl;
+  std::cout << "All tests passed" << endl;
   exit(0);
 }
