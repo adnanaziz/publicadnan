@@ -91,11 +91,11 @@ int main(int argc, char* argv[]) {
         continue;
     } else {
         std::cerr << "Your program produced the wrong result" << endl;
-        std::cerr << "Input:\n" << endl;
+        std::cerr << "\nInput:" << endl;
         for (auto i = Aorig.begin(); i != Aorig.end(); ++i) {
             std::cerr << *i << ' ';
         }
-        std::cerr << "Output:\n" << endl;
+        std::cerr << "\nOutput:" << endl;
         for (auto i = A.begin(); i != A.end(); ++i) {
             std::cerr << *i << ' ';
         }
