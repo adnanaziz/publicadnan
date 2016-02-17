@@ -7,6 +7,7 @@
 #include <vector>
 
 using std::cout;
+using std::cerr;
 using std::default_random_engine;
 using std::endl;
 using std::random_device;
@@ -74,15 +75,15 @@ int main(int argc, char* argv[]) {
     DutchFlagPartition(pivot_index, &A);
     int i = 0;
     while (i < A.size() && A[i] < pivot) {
-      cout << A[i] << ' ';
+      // cout << A[i] << ' ';
       ++i;
     }
     while (i < A.size() && A[i] == pivot) {
-      cout << A[i] << ' ';
+      // cout << A[i] << ' ';
       ++i;
     }
     while (i < A.size() && A[i] > pivot) {
-      cout << A[i] << ' ';
+      // cout << A[i] << ' ';
       ++i;
     }
     cout << endl;
@@ -90,8 +91,14 @@ int main(int argc, char* argv[]) {
         continue;
     } else {
         cerr << "Your program produced the wrong result" << endl;
-        cerr << "Input:\n" << Aorig << endl;
-        cerr << "Output:\n" << A << endl;
+        cerr << "Input:\n" << endl;
+        for (auto i = Aorig.begin(); i != Aorig.end(); ++i) {
+            std::cout << *i << ' ';
+        }
+        cerr << "Output:\n" << endl;
+        for (auto i = A.begin(); i != A.end(); ++i) {
+            std::cout << *i << ' ';
+        }
         exit(-1);
     }
   }
