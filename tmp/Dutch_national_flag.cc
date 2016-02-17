@@ -95,7 +95,7 @@ int main(int argc, char* argv[]) {
         for (auto i = Aorig.begin(); i != Aorig.end(); ++i) {
             std::cerr << *i << ' ';
         }
-        std::cerr << "\nOutput:" << endl;
+        std::cerr << "\n\nOutput:" << endl;
         for (auto i = A.begin(); i != A.end(); ++i) {
             std::cerr << *i << ' ';
         }
