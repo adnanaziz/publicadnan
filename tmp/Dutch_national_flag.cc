@@ -15,11 +15,11 @@ using std::uniform_int_distribution;
 using std::vector;
 
 // @include
-// @judge-include
+// @judge-include-display
 typedef enum { RED, WHITE, BLUE } Color;
 
 void DutchFlagPartition(int pivot_index, vector<Color>* A_ptr) {
-  // @judge-exclude
+  // @judge-exclude-display
   vector<Color>& A = *A_ptr;
   Color pivot = A[pivot_index];
   /**
@@ -41,9 +41,9 @@ void DutchFlagPartition(int pivot_index, vector<Color>* A_ptr) {
       swap(A[equal], A[--larger]);
     }
   }
-  // @judge-include
+  // @judge-include-display
 }
-// @judge-exclude
+// @judge-exclude-display
 // @exclude
 
 vector<Color> RandVector(int len) {
