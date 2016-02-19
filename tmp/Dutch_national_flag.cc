@@ -7,7 +7,6 @@
 #include <vector>
 
 using std::cout;
-using std::cerr;
 using std::default_random_engine;
 using std::endl;
 using std::random_device;
@@ -44,7 +43,7 @@ void DutchFlagPartition(int pivot_index, vector<Color>* A_ptr) {
   }
   // @judge-include-display
 }
-// @judge-exclude-display
+  // @judge-exclude-display
 // @exclude
 
 vector<Color> RandVector(int len) {
@@ -68,40 +67,25 @@ int main(int argc, char* argv[]) {
       n = dis(gen);
     }
     vector<Color> A(RandVector(n));
-    vector<Color> Aorig(A);
     uniform_int_distribution<int> dis(0, A.size() - 1);
     int pivot_index = dis(gen);
     Color pivot = A[pivot_index];
     DutchFlagPartition(pivot_index, &A);
     int i = 0;
     while (i < A.size() && A[i] < pivot) {
-      // cout << A[i] << ' ';
+      cout << A[i] << ' ';
       ++i;
     }
     while (i < A.size() && A[i] == pivot) {
-      // cout << A[i] << ' ';
+      cout << A[i] << ' ';
       ++i;
     }
     while (i < A.size() && A[i] > pivot) {
-      // cout << A[i] << ' ';
+      cout << A[i] << ' ';
       ++i;
     }
     cout << endl;
-    if (i == A.size()) {
-        continue;
-    } else {
-        std::cerr << "Your program produced the wrong result" << endl;
-        std::cerr << "\nInput:" << endl;
-        for (auto i = Aorig.begin(); i != Aorig.end(); ++i) {
-            std::cerr << *i << ' ';
-        }
-        std::cerr << "\n\nOutput:" << endl;
-        for (auto i = A.begin(); i != A.end(); ++i) {
-            std::cerr << *i << ' ';
-        }
-        exit(-1);
-    }
+    assert(i == A.size());
   }
-  std::cout << "All tests passed" << endl;
-  exit(0);
+  return 0;
 }
