@@ -1,0 +1,84 @@
+%\usepackage{tikz,ifthen,calc}
+%\usetikzlibrary{shapes,arrows}
+%\usepackage{intcalc} % for parity checks on sums of defined vars
+%\usepackage{xifthen} % for parity checks on sums of defined vars
+%\usepackage{xcolor}
+%\definecolor{light-gray}{gray}{0.95}
+%\usetikzlibrary{trees}
+
+\newcommand{\numdays}{40}
+\newcommand{\eps}{0.1}
+
+\newcommand{\stockquote}[5]{
+  \draw[] (#1,#2) -- (#1,#5);
+  \draw[fill=black] (#1,#2) circle (0.05);
+  \draw[fill=black] (#1,#5) circle (0.05);
+  % \draw[fill=black] (#1-\eps, #3-\eps) rectangle (#1+\eps, #3+\eps);
+  \draw[fill=white] (#1-\eps, #4-\eps) rectangle (#1+\eps, #4+\eps);
+  % \draw (#1,#3) node {#5};
+}
+
+%\newcommand{\interval}[4]{\draw (#1,#3) -- node[align=center,above] {#4} (#2,#3);
+%                          \leftbracket{#1}{#3}; \rightbracket{#2}{#3}; }
+\begin{tikzpicture}[scale=0.32*\scalefactor]
+\draw[arrows={-latex},thin] (0,0) -- (3+\numdays,0);
+
+
+\foreach \i in {0,...,\numdays} {
+%  \node at (0.0+\i,-0.5) {\tiny \i};
+  \draw[thin,fill=gray] (0.0+\i,0.0) circle (0.04);
+  \ifthenelse{0 = \intcalcMod{\i}{5} }{
+    \draw[thin,fill=black] (\i,0.0) circle (0.12);
+    \draw (\i,-1) node {\footnotesize Day \i};
+  }
+}
+
+% day, low, UNUSED, middle, high
+\newcommand{\stockdata}{
+{0/4.98/5.21/5.24/5.59},
+{1/4.98/5.29/5.55/6.58},
+{2/4.96/5.22/5.28/6.04},
+{3/5.1/5.2/5.81/6.91},
+{4/5.91/5.14/7.00/7.45},
+{5/4.66/5.43/5.85/6.14},
+{6/4.43/5.58/5.98/6.10},
+{7/4.51/5.65/5.32/6.00},
+{8/5.08/5.74/5.8/5.92},
+{9/5.5/5.55/5.68/6},
+{10/5.43/5.71/6.09/6.18},
+{11/5.98/6.3/6.46/6.64},
+{12/5.97/6.42/6.5/6.65},
+{13/6.33/6.35/6.97/7.3},
+{14/6.99/7.03/7.50/7.39},
+{15/6.7/7.01/7.51/7.99},
+{16/6.57/7.18/7.58/7.79},
+{17/6.72/7.56/7.6/7.88},
+{18/7.82/7.24/8.18/8.90},
+{19/7.22/7.6/7.71/8.63},
+{20/7.36/7.66/7.89/8.53},
+{21/7.36/8.06/8.08/8.14},
+{22/7.48/7.68/8.16/8.3},
+{23/7.84/7.92/8.08/8.61},
+{24/7.45/8.25/8.52/9.02},
+{25/7.64/8.2/8.84/9.37},
+{26/8.04/8.41/8.76/9.16},
+{27/6.77/8.61/7.12/7.86},
+{28/8.23/8.58/8.69/9.08},
+{29/8.3/8.41/8.75/9.47},
+{30/8.55/8.71/8.84/9.69},
+{31/8.68/9.14/9.36/9.83},
+{32/8.31/9.34/9.68/10.32},
+{33/8.52/9.36/9.79/10.76},
+{34/8.73/9.34/9.43/11.17},
+{35/9.14/9.16/9.22/11.05},
+{36/8.87/9.11/9.74/11.26},
+{37/7.0/7.2/7.4/7.5},
+{38/6/6.47/6.85/7.6},
+{39/4.3/4.41/4.9/5.5},
+{40/4.0/4.28/4.32/5.3}}
+
+\foreach \i/ \low/ \up/ \start/ \end in  \stockdata{
+  \stockquote{\i}{\low}{\up}{\start}{\end};
+}
+
+\end{tikzpicture}

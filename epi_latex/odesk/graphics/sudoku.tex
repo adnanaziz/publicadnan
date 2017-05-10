@@ -1,0 +1,51 @@
+\begin{tikzpicture}[scale=0.6*\scalefactor]
+\foreach \i in {0,...,8} {
+  \foreach \j in {0,...,8} {
+     \draw (\i,\j) rectangle (\i+1,\j+1);
+   }
+}
+
+\foreach \i in {0,3,6}
+  \foreach \j in {0,3,6}
+     \draw[very thick] (\i,\j) rectangle (\i+3,\j+3);
+
+\draw (4.5,0.5) node {\large \textbf{8}};
+\draw (7.5,0.5) node {\large \textbf{7}};
+\draw (8.5,0.5) node {\large \textbf{9}};
+
+\draw (3.5,1.5) node {\large \textbf{4}};
+\draw (4.5,1.5) node {\large \textbf{1}};
+\draw (5.5,1.5) node {\large \textbf{9}};
+\draw (8.5,1.5) node {\large \textbf{5}};
+
+\draw (1.5,2.5) node {\large \textbf{6}};
+\draw (6.5,2.5) node {\large \textbf{2}};
+\draw (7.5,2.5) node {\large \textbf{8}};
+
+\draw (0.5,3.5) node {\large \textbf{7}};
+\draw (4.5,3.5) node {\large \textbf{2}};
+\draw (8.5,3.5) node {\large \textbf{6}};
+
+\draw (0.5,4.5) node {\large \textbf{4}};
+\draw (3.5,4.5) node {\large \textbf{8}};
+\draw (5.5,4.5) node {\large \textbf{3}};
+\draw (8.5,4.5) node {\large \textbf{1}};
+
+\draw (0.5,5.5) node {\large \textbf{8}};
+\draw (4.5,5.5) node {\large \textbf{6}};
+\draw (8.5,5.5) node {\large \textbf{3}};
+
+\draw (1.5,6.5) node {\large \textbf{9}};
+\draw (2.5,6.5) node {\large \textbf{8}};
+\draw (7.5,6.5) node {\large \textbf{6}};
+
+\draw (0.5,7.5) node {\large \textbf{6}};
+\draw (3.5,7.5) node {\large \textbf{1}};
+\draw (4.5,7.5) node {\large \textbf{9}};
+\draw (5.5,7.5) node {\large \textbf{5}};
+
+\draw (0.5,8.5) node {\large \textbf{5}};
+\draw (1.5,8.5) node {\large \textbf{3}};
+\draw (4.5,8.5) node {\large \textbf{7}};
+
+\end{tikzpicture}

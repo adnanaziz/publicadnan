@@ -1,0 +1,106 @@
+\begin{tikzpicture}[scale=0.3]
+{
+\lstset{
+%frame=tb,
+  language=C++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  %basicstyle={\small\ttfamily},
+  basicstyle=\ttfamily\footnotesize\bfseries,
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  %keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  %stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\usetikzlibrary{positioning}
+
+\tikzset{
+  big blue arrow/.style={
+    decoration={markings,mark=at position 1 with {\arrow[scale=4,blue]{>}}},
+    postaction={decorate},
+    shorten >=0.4pt}
+}
+
+
+\node(listing1)[draw]{%
+\begin{minipage}{.40\linewidth}
+\begin{lstlisting}
+int sum(int n) {
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total = total + i;
+    }
+    return total;
+};
+\end{lstlisting}
+{\small \em Version 1}
+\end{minipage}
+}
+node(listing3)[draw,below=of listing1]{%
+\begin{minipage}{.40\linewidth}
+\begin{lstlisting}
+void sum(int n, int* result) {
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total = total + i;
+    }
+    *result = total;
+};
+\end{lstlisting}
+{\small \em Version 1a}
+\end{minipage}
+}
+node(listing2)[draw,below=of listing1,left=of listing3]{%
+\begin{minipage}{.40\linewidth}
+\begin{lstlisting}
+int sum(int n) {
+    if (n < 0) {
+        return 0;
+    }
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total += i;
+    }
+    return total;
+};
+...
+int x = sum(10);
+\end{lstlisting}
+{\small \em Version 1b}
+\end{minipage}
+}
+node(listing4)[draw,below=of listing2]{%
+\begin{minipage}{.40\linewidth}
+\begin{lstlisting}
+
+void sum(int n, int* result) {
+    if (n < 0) {
+        return 0;
+    }
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total = total + i;
+    }
+    *result = total;
+};
+...
+int x = sum(10);
+\end{lstlisting}
+{\small \em Merge of Versions 1a and 1b}
+\end{minipage}
+};
+
+\draw[->] (listing1)--(listing2);
+\draw[->] (listing1)--(listing3);
+\draw[->] (listing2)--(listing4);
+\draw[->] (listing3)--(listing4);
+}
+
+\end{tikzpicture}

@@ -1,0 +1,11 @@
+\begin{tikzpicture}[scale=0.35*\scalefactor]
+\foreach \i in {0,...,8} {
+\ifthenelse{0 = \intcalcMod{\intcalcMod{17*\i*\i+13*\i+18}{13}}{3} }{
+      \draw[very thin,color=gray!40,fill=gray] (0, \i) rectangle (13, \i + 1);
+    }{\ifthenelse{1 = \intcalcMod{\intcalcMod{17*\i*\i+13*\i+18}{13}}{3} }{
+      \draw[very thin,color=gray!40,fill=white] (0, \i) rectangle (13, \i + 1);
+    }{
+      \draw[very thin,color=gray!40,fill=black] (0, \i) rectangle (13, \i + 1);
+    }}
+}
+\end{tikzpicture}

@@ -1,0 +1,43 @@
+\begin{tikzpicture}[scale=0.8*\scalefactor]
+
+\newcommand{\trisquare}[3]{
+
+  \draw[align=flush center,text=black!100] (#1+0.5,#2+0.5) node {{\textsc{#3}}};
+%  \draw[align=flush center,text=black!50] (#1+0.5,#2+0.5) node {\small #1 #2};
+
+  \draw[black!60,thick] (#1, #2) rectangle (#1+1,#2+1);
+
+%  \begin{scope}
+%  \clip (#1+0.5,#2-1.0) rectangle (#1+2.0, #2+1.0+1.0);
+%  \draw[black!60,very thick] (#1+0.5,#2+0.5) circle (0.5);
+%  \end{scope}
+}
+
+% first row
+\trisquare{0}{0}{\textbf{2}}
+
+% second row
+\trisquare{-0.5}{-1}{4}
+\trisquare{0.5}{-1}{\textbf{4}}
+
+% third row
+\trisquare{-1.0}{-2}{8}
+\trisquare{-0.0}{-2}{\textbf{5}}
+\trisquare{1.0}{-2}{6}
+
+% forth row
+\trisquare{-1.5}{-3}{4}
+\trisquare{-0.5}{-3}{\textbf{2}}
+\trisquare{0.5}{-3}{6}
+\trisquare{1.5}{-3}{2}
+
+% fifth row
+\trisquare{-2.0}{-4}{1}
+\trisquare{-1.0}{-4}{5}
+\trisquare{-0.0}{-4}{\textbf{2}}
+\trisquare{1.0}{-4}{3}
+\trisquare{2.0}{-4}{4}
+
+
+
+\end{tikzpicture}

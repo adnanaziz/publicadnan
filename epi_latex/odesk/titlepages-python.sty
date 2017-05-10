@@ -1,0 +1,88 @@
+% titlepages.sty     Example title pages
+%\ProvidesPackage{titlepages}[2007/12/02 v1.0 example title pages]
+\ProvidesPackage{titlepages}[2009/07/09 v1.1 example title pages]
+
+\newcommand*{\titleGMforEPI}{\begingroup% Gentle Madness
+\tdrop = 0.00\txtheight
+\vspace*{\baselineskip}
+\vfill
+
+\hbox{%
+
+  \hspace*{0.2\txtwidth}%
+  \rule{2pt}{\txtheight}
+  \hspace*{0.05\txtwidth}%
+
+%\fbox{%
+
+\parbox[b]{0.85\txtwidth}{
+  \vbox{%
+    \vspace{0.0in}
+    {\noindent\HUGE\bfseries \mbox{ } \\  Elements of
+    \\[0.5\baselineskip] Programming  
+    \\[0.5\baselineskip] Interviews in Python
+    % \\[0.5\baselineskip] in Java, what's it in Python?
+    }\\[2\baselineskip]
+    {\huge\itshape The Insiders' Guide}\\[3\baselineskip]
+    {\Large Adnan Aziz \\[0.3\baselineskip] Tsung-Hsien Lee\\ [0.3\baselineskip] Amit Prakash}\par
+    \vspace{0.32\txtheight}
+    %NEW:
+    %\vspace{0.0\txtheight}
+    %\includegraphics[width=.6\textwidth]{wordle-bw}
+    %\vspace{0.0\txtheight}
+    {\noindent \large \textsf{ElementsOfProgrammingInterviews.com}}\\[\baselineskip]
+    }% end of vbox
+}% end of parbox
+
+%}% end of fbox
+  }% end of hbox
+\vfill
+\null
+\endgroup}
+
+\newcommand*{\titleGMforEPILight}{\begingroup% Gentle Madness
+%\tdrop = 0.12\txtheight
+\tdrop = -1.15\txtheight
+\vspace*{\baselineskip}
+\vfill
+  \hbox{%
+  \hspace*{0.1\txtwidth}%
+  \rule{2pt}{\txtheight}
+  \hspace*{0.05\txtwidth}%
+%\fbox{%
+%\parbox[b]{0.75\txtwidth}{
+\parbox[b]{1.00\txtwidth}{
+  \vbox{%
+    \vspace{\tdrop}
+    {\noindent\HUGE\bfseries \mbox{ } \\  Elements\\[0.5\baselineskip] of \\[0.5\baselineskip] Programming  \\[0.5\baselineskip] Interviews in Python}\\[2\baselineskip]
+    {\huge\itshape The Insiders' Guide}\\[1\baselineskip]
+    {\Large Adnan Aziz \\[0.3\baselineskip] Tsung-Hsien Lee \\ [0.3\baselineskip] Amit Prakash}\par
+    %\vspace{0.3\txtheight}
+    %NEW:
+    %\vspace{0.0\txtheight}
+    %\includegraphics[width=.6\textwidth]{wordle-bw}
+    %\vspace{0.0\txtheight}
+ \vspace{0.3in}
+ {
+ \setlength{\fboxrule}{1pt}%
+  \fbox{
+  \parbox{0.7\textwidth}
+    {%\small
+    %\large
+    \textbf{This document is a sampling of our book, Elements of Programming Interviews in Python (EPI).
+    Its purpose is to provide examples of EPI's organization, content, style, topics, and quality. The sampler focuses solely on problems; in particular, it does not include three chapters on the nontechnical aspects of interviewing.
+    We'd love to hear from you---we're especially interested in your suggestions as to where the exposition can be improved, as well as any insights into interviewing trends you may have. \\
+    \mbox{ }\hspace{0.10in}
+    You can buy EPI Python at \textsf{\href{https://www.amazon.com/Elements-Programming-Interviews-Python-Insiders/dp/1537713949/}{Amazon.com}} (paperback).
+    }}
+  }
+  }
+
+    {\noindent \large \textsf{\url{http://ElementsOfProgrammingInterviews.com}}}\\%[\baselineskip]
+    }% end of vbox
+}% end of parbox
+%}% end of fbox
+  }% end of hbox
+\vfill
+\null
+\endgroup}

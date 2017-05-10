@@ -1,0 +1,63 @@
+% http://tex.stackexchange.com/questions/59658/use-of-tikzpicture-matrix-in-align-or-gather-environment/59660#comment126261_59660
+\newcommand{\ninjablackcolor}{black!100}
+\newcommand{\ninjablacknoop}{}
+\newcommand{\ninjablackbase}[1]{%
+\protect\tikz[baseline=-0.6ex,scale=#1]{%
+\protect \draw[color=\ninjablackcolor] (0,0) circle (12ex);%
+\protect \begin{scope}%
+\protect   \draw[color=\ninjablackcolor] (0,0) circle (12ex);%
+\protect   %\clip (0,0) ellipse (12ex and 8ex);%
+\protect   \fill[\ninjablackcolor] (0,0) circle (12ex);%
+\protect \end{scope}%
+\protect \fill[white] (-1ex,2ex) ellipse (10ex and 4ex);%
+%\clip (-2ex,1ex) ellipse (9ex and 5ex); %
+% eyes
+\protect \draw[fill=black] (1.6ex,2ex) circle (1.5ex);%
+\protect \draw[fill=white, white] (1.3ex,2ex) circle (0.5ex);%
+\protect \draw[fill=black] (-6.7ex,2ex) circle (1.5ex);%
+\protect \draw[fill=white, white] (-7.0ex,2ex) circle (0.5ex);%
+%does not show up properly inline and especially in section title
+%bandages
+%\protect \draw[line width=0ex, fill=\ninjablackcolor, rotate around={-40:(10ex,3ex)}] (8.6ex, 5ex) rectangle (18.6ex, 4ex);%
+\protect \fill[\ninjablackcolor, rotate around={-40:(10ex,3ex)}] (8.6ex, 5ex) rectangle (18.6ex, 4ex);%
+\protect \fill[\ninjablackcolor, rotate around={28:(11.6ex,1ex)}] (11.6ex, 1.2ex) rectangle (17.9ex, 2ex);%
+\protect \fill[\ninjablackcolor] (10ex,5ex) .. controls +(170:7ex) and +(20:8ex) ..(15ex,4ex);%
+%\protect \draw[fill=black, rotate around={-40:(1.8,0)}] (1.4ex, 0.8ex) rectangle (2.8ex, 0.6ex); %
+%\protect \draw[fill=black, rotate around={20:(2,0)}] (2.1, 0.5) rectangle (3.0, 0.3); %
+%\protect \draw[line width=2ex] (2.0,0.78) .. controls +(170:0.7) and +(20:0.5) ..(2.7,0.75); %
+}%
+\!}% removing a bit of whitespace at end
+
+\newcommand{\ninjawhitecolor}{black!50}
+\newcommand{\ninjawhitenoop}{}
+\newcommand{\ninjawhitebase}[1]{%
+\protect\tikz[baseline=-0.6ex,scale=#1]{%
+%\protect \draw[thick] (0,0) circle (12ex); %
+\protect \begin{scope}%
+%\protect   \draw[thin] (0,0) circle (12ex); %
+\protect   %\clip (0,0) ellipse (12ex and 8ex);%
+\protect   \fill[color=\ninjawhitecolor] (0,0) circle (12ex);%
+\protect \end{scope}%
+%\protect \draw[] (-1ex,2ex) ellipse (10ex and 4ex); %
+%\protect \draw[fill=white] (-1ex,2ex) ellipse (10ex and 4ex); %
+\protect \fill[white] (-1ex,2ex) ellipse (10ex and 4ex);%
+\protect %\clip (-2ex,1ex) ellipse (9ex and 5ex); %
+\protect % eyes
+\protect \draw[fill=black!90] (1.4ex,2ex) circle (1.5ex);%
+\protect \draw[fill=white, white] (1.1ex,2ex) circle (0.5ex);%
+\protect \draw[fill=black!90] (-6.9ex,2ex) circle (1.5ex);%
+\protect \draw[fill=white, white] (-7.2ex,2ex) circle (0.5ex);%
+%\protect \draw[fill=black!90] (1.4ex,2ex) circle (1.5ex);%
+%\protect \draw[fill=white, white] (1.1ex,2ex) circle (0.5ex);%
+%\protect \draw[fill=black!90] (-6.9ex,2ex) circle (1.5ex);%
+%\protect \draw[fill=white, white] (-7.1ex,2ex) circle (0.5ex);%
+%does not show up properly inline and especially in section title
+%bandages
+\protect \fill[\ninjawhitecolor, rotate around={-40:(10ex,3ex)}] (8.6ex, 5ex) rectangle (18.6ex, 4ex);%
+\protect \fill[\ninjawhitecolor, rotate around={28:(11.6ex,1ex)}] (11.6ex, 1.2ex) rectangle (17.9ex, 2ex);%
+\protect \fill[\ninjawhitecolor] (10ex,5ex) .. controls +(170:7ex) and +(20:8ex) ..(15ex,4ex);%
+%\protect \draw[fill=black!20, black!20, rotate around={-40:(10ex,3ex)}] (8.6ex, 5ex) rectangle (18.6ex, 4ex);%
+%\protect \draw[fill=black!20, black!20, rotate around={28:(11.6ex,1ex)}] (11.6ex, 1.2ex) rectangle (17.9ex, 2ex);%
+%\protect \draw[thick, black!20] (10ex,5ex) .. controls +(170:7ex) and +(20:8ex) ..(15ex,4ex);%
+}%
+\!}% removing a bit of whitespace at end

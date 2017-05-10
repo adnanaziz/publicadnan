@@ -1,0 +1,52 @@
+\tikzstyle{edge} = [draw,line width=0.3pt,arrows={-latex'},black!100]
+\begin{tikzpicture}[scale=1.0*\scalefactor,auto,swap]
+\newcommand{\segmentrightdown}[4]{
+  \draw[edge] (#1+0.85,#2-0.15) -- (#3+0.85,#4-0.15);
+  \draw[fill] (#1+0.85,#2-0-0.15) circle (0.05);
+}
+
+\newcommand{\lineshift}{0.011}
+\draw[help lines,step=1] (0,0) grid (4,4);
+
+\draw[line width=0.5pt, arrows={-},black!100] (0.15,3.85) -- (3.85+\lineshift,3.85);
+\draw[line width=0.5pt, arrows={-},black!100] (3.85,3.85) -- (3.85+\lineshift,0.15-\lineshift);
+\draw[line width=0.5pt, arrows={-},black!100] (3.85,0.15) -- (0.15-\lineshift,0.15);
+\draw[line width=0.5pt, arrows={-},black!100] (0.15,0.15) -- (0.15,2.85+\lineshift);
+
+\draw[line width=0.5pt, arrows={-},black!100] (0.15,2.85+\lineshift) -- (2.85,2.85+\lineshift);
+\draw[line width=0.5pt, arrows={-},black!100] (2.85,2.85+\lineshift) -- (2.85,1.15-\lineshift);
+
+\draw[line width=0.5pt, arrows={-latex'},black!100] (2.85,1.15-\lineshift) -- (1.15,1.15-\lineshift);
+
+\node at (0.5,3.5) {\textbf{1}};
+\node at (1.5,3.5) {\textbf{2}};
+\node at (2.5,3.5) {\textbf{3}};
+\node at (3.5,3.5) {\textbf{4}};
+
+\node at (0.5,2.5) {\textbf{5}};
+\node at (1.5,2.5) {\textbf{6}};
+\node at (2.5,2.5) {\textbf{7}};
+\node at (3.5,2.5) {\textbf{8}};
+
+\node at (0.5,1.5) {\textbf{9}};
+\node at (1.5,1.5) {\textbf{10}};
+\node at (2.5,1.5) {\textbf{11}};
+\node at (3.5,1.5) {\textbf{12}};
+
+\node at (0.5,0.5) {\textbf{13}};
+\node at (1.5,0.5) {\textbf{14}};
+\node at (2.5,0.5) {\textbf{15}};
+\node at (3.5,0.5) {\textbf{16}};
+
+\node at (0.5,4.5) {\emph{\small C0}};
+\node at (1.5,4.5) {\emph{\small C1}};
+\node at (2.5,4.5) {\emph{\small C2}};
+\node at (3.5,4.5) {\emph{\small C3}};
+
+\node at (-0.5,3.5) {\emph{\small R0}};
+\node at (-0.5,2.5) {\emph{\small R1}};
+\node at (-0.5,1.5) {\emph{\small R2}};
+\node at (-0.5,0.5) {\emph{\small R3}};
+
+
+\end{tikzpicture}

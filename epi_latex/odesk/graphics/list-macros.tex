@@ -1,0 +1,32 @@
+\ifx\listnode\undefined
+\newcommand{\listnode}[4]{
+\draw (#1+1,#2+0.5) node {{\footnotesize {$#3$}}};
+\draw[text=black!60] (#1+1.0,#2-0.5) node {{\scriptsize \texttt{#4}}};
+\draw[very thick] (#1,#2) rectangle (#1+3.0,#2+1.0);
+\draw[black] (#1+2.0, #2) -- (#1+2.0, #2+1.0);
+}
+\fi
+
+\ifx\listnodeend\undefined
+\newcommand{\listnodeend}[4]{
+\listnode{#1}{#2}{#3}{#4}
+\draw (#1 + 2.0 + 0.2, #2+0.2) -- (#1+2.0+0.8, #2+0.8);
+\draw (#1 + 2.0 + 0.2, #2+0.8) -- (#1+2.0+0.8, #2+0.2);
+}
+\fi
+
+\ifx\listnodearrow\undefined
+\newcommand{\listnodearrow}[5]{
+\listnode{#1}{#2}{#3}{#4}{#5}
+\draw[fill=black] (#1+2.5,#2+0.5) circle (0.1);
+\draw[very thick,arrows={-latex}] (#1+2.5,#2+0.50) -- (#1+#5,#2+0.50);
+}
+\fi
+
+\ifx\listhead\undefined
+\newcommand{\listhead}[4]{
+\draw (#1+0.50,#2+0.50) node {{\footnotesize {$#3$}}};
+\draw[very thick] (#1,#2) rectangle (#1+1.0,#2+1.0);
+\draw[very thick,arrows={-latex}] (#1+1.0,#2+0.50) -- (#1+#4,#2+0.50);
+}
+\fi
