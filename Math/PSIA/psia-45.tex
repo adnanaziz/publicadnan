@@ -411,11 +411,10 @@ $\frac{?}{\cancel{5}} \times \cancel{5} = \frac{3 \times 5}{4}$ so  $? = \frac{1
 
 $\frac{(140 - 14)}{14} = \frac{140}{14} - \frac{14}{14} = 10 - 1 = 9$.
 
-$9^3 - 9^2 = 9 \times 9 \times 9 - 9 \times 9 = 9 \times 9 \times (9 - 1$.
+$9^3 - 9^2 = 9 \times 9 \times 9 - 9 \times 9 = 9 \times 9 \times (9 - 1)$.
 
 So if you want to know what $9^3 - 9^2$ divided by $9^2$ is, it's
 just $(9-1) = 8$. Similarly, $9^3 - 9^2$ divided by $9$ is $\frac{9 \times 9 \times (9 - 1)}{9} = 9 \times 8 = 72$
-
 
 \section{Geometry}
 
@@ -620,13 +619,26 @@ Basic idea: $2 \times ( 3 + 5 ) = 2 \times 3 + 2 \times 5$. (Think about rows an
 
 General formula: $a \times ( b + c) = a \times b + a \times c$.
 
-Why is it useful to  replace $a \times ( b + c) = a \times b + a \times c$
+\subsubsection*{Why replace $a \times ( b + c) = a \times b + a \times c$?}
 
 $3 \times ( 10 + 231 ) - 3 \times 231$---by distributing we can cancel $3 \times 231$ like this:
 $3 \times 10 + 3 \times 231 - 3 \times 231 = 3 \times 10$ (no complicated multiply by 231).
 
-Why is it useful to replace $a \times b + a \times c$ with $a \times ( b + c)$?
+\subsubsection*{Why replace $a \times b + a \times c$ with $a \times ( b + c)$?}
 
-$ 3 \times 64 + 3 \times 36 = 3 \times (64 + 36) = 3 \times 100$, makes for a simpler product.
+$3 \times 64 + 3 \times 36 = 3 \times (64 + 36) = 3 \times 100$, makes for a simpler product.
+
+Here's another reason you would want to go from $a \times b + a \times c$ to $a \times ( b + c)$.
+
+Suppose you have to solve $x + 2 \times x + 4 \times x + 5 \times x = 144$.
+
+This is pretty hard to solve by just looking at it. However, you can write $x + 2 \times x + 4 \times x + 5 \times x$
+as $(1 + 2 + 4 + 5)\times x$ (since $x + 2 \times x + 4 \times x + 5 \times x = 1 \times x + 2 \times x + 4 \times x + 5 \times x$,
+and distribution works when the $a$ is on the left or the right ($(b+c)\times a = b \times a + c \times a$).
+
+Now the equation is $12 \times x = 144$, which is easy to solve (divide by $12$).
+
+Another interesting application of distribution is simplifying $(1-x)\times(1 + x + x^2 + x^3)$. This becomes
+$(1-x)\times 1 + (1-x)\times x + (1-x)\times x^2 + (1-x)\times x^3$ = $(1 - x) + (x - x^2)  + (x^2 - x^3) + (x^3 - x^4)$ = $1 - x^4$.
 
 \end{document}
