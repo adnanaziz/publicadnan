@@ -43,7 +43,7 @@ struct BitVector {
         return (d[widx(x)] >> boff(x)) & 1u;
     }
     inline void intersection(const BitVector& a, const BitVector& b){
-	std::cout << n << std::endl;
+	const size_t n = d.size();
         for (size_t i=0;i<n;++i) {
 		d[i] = a.d[i] & b.d[i];
 	}
